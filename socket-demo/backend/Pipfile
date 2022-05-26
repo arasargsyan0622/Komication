@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask-socketio = "*"
+flask = "*"
+eventlet = "==0.30.2"
+python-dotenv = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
