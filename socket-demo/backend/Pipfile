@@ -8,6 +8,8 @@ flask-socketio = "*"
 flask = "*"
 eventlet = "==0.30.2"
 python-dotenv = "*"
+flask-sqlalchemy = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
