@@ -1,8 +1,8 @@
 from flask import Flask
-
+from .socket_io import socketio
 app = Flask(__name__)
 
+socketio.init_app(app)
 
-@app.route("/")
-def main():
-    return "hello"
+if __name__ == '__main__':
+    socketio.run(app)
