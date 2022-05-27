@@ -7,6 +7,7 @@ class ChannelMessage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(1000), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     channel_id = db.Column(db.Integer, db.ForeignKey("channels.id"), nullable=False)
     edited = db.Column(db.Boolean, default=False)

@@ -1,12 +1,14 @@
 from .db import db
 from app.models.user import User
 from app.models.inbox import InboxChannel
+import datetime
 
 class DirectMessage(db.Model):
     __tablename__ = "direct_messages"
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(1000), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     inbox_id = db.Column(db.Integer, db.ForeignKey("inbox_channels.id"), nullable=False)
     edited = db.Column(db.Boolean, default=False)
