@@ -15,6 +15,11 @@ const Chat = () => {
 
     let chatroom = history.location.pathname;
 
+    console.log(chatroom);
+    dummyMsg.current.scrollIntoView();
+    let newdate = new Date();
+    console.log(newdate);
+
     const payload = {
       username: "TestUser",
       room: chatroom,
@@ -29,9 +34,15 @@ const Chat = () => {
     });
 
     return () => {
+      console.log("hello");
+      const payload = {
+        username: "TestUser",
+        room: chatroom,
+      };
+      socket.emit("leave", payload);
       socket.disconnect();
     };
-  }, [history.location.pathname]);
+  }, [history]);
 
   const updateChatInput = (e) => {
     setChatInput(e.target.value);
@@ -54,6 +65,22 @@ const Chat = () => {
   return (
     <div className="chat__room__container">
       <div className="message__container">
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
+        <div>adsasdasd</div>
         {messages.map((message, ind) => (
           <div key={ind}>{`${message.user}: ${message.msg}`}</div>
         ))}
