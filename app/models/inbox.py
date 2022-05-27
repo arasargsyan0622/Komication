@@ -12,7 +12,13 @@ class InboxChannel(db.Model):
     user_b_hide = db.Column(db.Boolean, default=False)
 
     inbox_messages = db.relationship("DirectMessage", back_populates="inbox_owner")
-    user_owners = db.relationship("User", back_populates="inboxes")
+    # user_owners = db.relationship("User", back_populates="inboxes")
+
+    # billing_address_id = Column(Integer, ForeignKey("address.id"))
+    # shipping_address_id = Column(Integer, ForeignKey("address.id"))
+
+    user_owner_a = db.relationship("User", foreign_keys=[user_a],back_populates="owner_user_a")
+    user_owner_b = db.relationship("User", foreign_keys=[user_b],back_populates="owner_user_b")
 
     def to_dict(self):
         return {
