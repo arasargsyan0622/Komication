@@ -1,6 +1,6 @@
 from .db import db
-from app.models.user import User
-from app.models.inbox import InboxChannel
+# from app.models import User
+# from app.models import InboxChannel
 import datetime
 
 class DirectMessage(db.Model):
@@ -21,7 +21,7 @@ class DirectMessage(db.Model):
             'id': self.id,
             'content': self.content,
             'timestamp': self.timestamp,
-            'user_id': self.user_id
-            'inbox_id': self.inbox_id
-            'edited': self.edited
+            'user_id': self.user_id,
+            'inbox_id': self.inbox_id,
+            'edited': self.edited,
         }

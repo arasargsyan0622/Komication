@@ -1,6 +1,6 @@
 from .db import db
-from app.models.user import User
-from app.models.direct_message = DirectMessage
+# from app.models import User
+# from app.models import DirectMessage
 
 class InboxChannel(db.Model):
     __tablename__ = "inbox_channels"
@@ -19,6 +19,6 @@ class InboxChannel(db.Model):
             'id': self.id,
             'user_a': self.user_a,
             'user_b': self.user_b,
-            'user_a_hide': self.user_a_hide
-            'user_b_hide': self.user_b_hide
+            'user_a_hide': self.user_a_hide,
+            'user_b_hide': self.user_b_hide,
         }
