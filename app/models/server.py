@@ -1,7 +1,7 @@
 from .db import db
 # from app.models import User
 # from app.models import Channel
-# from app.models.server_user import server_users as jt
+from app.models.server_user import server_users as jt
 
 
 class Server(db.Model):
@@ -18,7 +18,7 @@ class Server(db.Model):
     owner = db.relationship("User", back_populates="servers")
     channels = db.relationship("Channel", back_populates="server_owner")
 
-    # users = db.relationship("User", secondary=jt, back_populates="server_user")
+    users = db.relationship("User", secondary=jt, back_populates="server_user")
 
     def to_dict(self):
         return {
