@@ -1,7 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-# from app.models.server_user import server_users as jt
+from app.models.server_user import server_users as jt
 # from app.models import Server
 # from app.models import ChannelMessage
 # from app.models import InboxChannel
@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     direct_user_messages = db.relationship("DirectMessage", back_populates="user_direct_messages")
     inboxes = db.relationship("InboxChannel", back_populates="user_owners")
 
-    # server_user = db.relationship("Server", secondary=jt, back_populates="users")
+    server_user = db.relationship("Server", secondary=jt, back_populates="users")
 
     @property
     def password(self):
