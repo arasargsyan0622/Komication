@@ -1,6 +1,6 @@
 from .db import db
-from app.models import User
-from app.models import DirectMessage
+# from app.models import User
+# from app.models import DirectMessage
 
 class InboxChannel(db.Model):
     __tablename__ = "inbox_channels"

@@ -1,29 +1,10 @@
 from .db import db
-from app.models import User
-from app.models import Channel
+# from app.models import User
+# from app.models import Channel
+# from app.models.server_user import server_users as jt
 
-server_users = db.Table(
-    "server_users",
-    db.Column(
-        "user_id",
-        db.Integer,
-        db.ForeignKey("user.id"),
-        primary_key=True
-    ),
-    db.Column(
-        "server_id",
-        db.Integer,
-        db.ForeignKey("server.id"),
-        primary_key=True
-    ),
-    db.Column(
-        "moderator",
-        db.Boolean,
-        default=False
-    ),
-)
 
-class Server(db.model):
+class Server(db.Model):
     __tablename__ = 'servers'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -37,7 +18,7 @@ class Server(db.model):
     owner = db.relationship("User", back_populates="servers")
     channels = db.relationship("Channel", back_populates="server_owner")
 
-    users = db.relationship("User", secondary=server_users, back_populates="server_user")
+    # users = db.relationship("User", secondary=jt, back_populates="server_user")
 
     def to_dict(self):
         return {

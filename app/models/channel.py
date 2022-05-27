@@ -1,6 +1,6 @@
 from .db import db
-from app.models import Server
-from app.models import ChannelMessage
+# from app.models import Server
+# from app.models import ChannelMessage
 
 class Channel(db.Model):
     __tablename__ = "channels"

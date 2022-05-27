@@ -1,6 +1,7 @@
 from .db import db
-from app.models import User
-from app.models import Channel
+# from app.models import User
+# from app.models import Channel
+import datetime
 
 class ChannelMessage(db.Model):
     __tablename__ = "channel_messages"

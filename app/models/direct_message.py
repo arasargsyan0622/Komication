@@ -1,6 +1,6 @@
 from .db import db
-from app.models import User
-from app.models import InboxChannel
+# from app.models import User
+# from app.models import InboxChannel
 import datetime
 
 class DirectMessage(db.Model):
