@@ -38,3 +38,14 @@ class Server(db.model):
     channels = db.relationship("Channel", back_populates="server_owner")
 
     users = db.relationship("User", secondary=server_users, back_populates="server_user")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'server_name': self.server_name,
+            'private': self.private,
+            'server_icon_url': self.server_icon_url
+            'server_invite_url': self.server_invite_url
+            'user_id': self.user_id
+            'banner_url': self.banner_url
+        }

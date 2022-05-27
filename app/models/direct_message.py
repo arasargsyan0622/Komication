@@ -15,3 +15,13 @@ class DirectMessage(db.Model):
 
     user_direct_messages = db.relationship("User", back_populates="direct_user_messages")
     inbox_owner = db.relationship("InboxChannel", back_populates="inbox_messages")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'timestamp': self.timestamp,
+            'user_id': self.user_id
+            'inbox_id': self.inbox_id
+            'edited': self.edited
+        }

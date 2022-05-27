@@ -14,3 +14,13 @@ class ChannelMessage(db.Model):
 
     user_channel_messages = db.relationship("User", back_populates="channel_user_messages")
     channel_owner = db.relationship("Channel", back_populates="channel_messages")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'timestamp': self.timestamp,
+            'user_id': self.user_id
+            'channel_id': self.channel_id
+            'edited': self.edited
+        }

@@ -13,3 +13,12 @@ class InboxChannel(db.Model):
 
     inbox_messages = db.relationship("DirectMessage", back_populates="inbox_owner")
     user_owners = db.relationship("User", back_populates="inboxes")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_a': self.user_a,
+            'user_b': self.user_b,
+            'user_a_hide': self.user_a_hide
+            'user_b_hide': self.user_b_hide
+        }

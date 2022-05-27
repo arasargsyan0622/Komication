@@ -11,3 +11,10 @@ class Channel(db.Model):
 
     server_owner = db.relationship("Server", back_populates="channels")
     channel_messages = db.relationship("ChannelMessage", back_populates="channel_owner")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'channel_name': self.channel_name,
+            'server_id': self.server_id,
+        }
