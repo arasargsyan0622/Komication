@@ -1,7 +1,10 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from app.models.server import Server
+from app.models.channel_message import ChannelMessage
+from app.models.inbox import InboxChannel
+from app.models.direct_message import DirectMessage
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -10,6 +13,15 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    avatar_url = db.Column(db.String(255))
+    online = db.Column(db.Boolean, nullable=False, default=False)
+
+    servers = db.relationship("Server", back_populates="owner")
+    channel_user_messages = db.relationship("ChannelMessage", back_populates="user_channel_messages")
+    direct_user_messages = db.relationship("DirectMessage", back_populates="user_direct_messages")
+    inboxes = db.relationship("InboxChannel", back_populates="user_owners")
+
+    server_user = db.relationship("Server", secondary=server_users, back_populates="users")
 
     @property
     def password(self):
@@ -26,5 +38,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'avatar_url': self.avatar_url
+            'online': self.online
         }
