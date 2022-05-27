@@ -1,6 +1,6 @@
 from .db import db
-from app.models.user import User
-from app.models.channel import Channel
+from app.models import User
+from app.models import Channel
 
 class ChannelMessage(db.Model):
     __tablename__ = "channel_messages"
@@ -20,7 +20,7 @@ class ChannelMessage(db.Model):
             'id': self.id,
             'content': self.content,
             'timestamp': self.timestamp,
-            'user_id': self.user_id
-            'channel_id': self.channel_id
-            'edited': self.edited
+            'user_id': self.user_id,
+            'channel_id': self.channel_id,
+            'edited': self.edited,
         }

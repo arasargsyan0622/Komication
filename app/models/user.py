@@ -1,10 +1,10 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from app.models.server import Server
-from app.models.channel_message import ChannelMessage
-from app.models.inbox import InboxChannel
-from app.models.direct_message import DirectMessage
+from app.models import Server
+from app.models import ChannelMessage
+from app.models import InboxChannel
+from app.models import DirectMessage
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -39,6 +39,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'avatar_url': self.avatar_url
-            'online': self.online
+            'avatar_url': self.avatar_url,
+            'online': self.online,
         }

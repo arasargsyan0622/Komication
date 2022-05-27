@@ -1,6 +1,6 @@
 from .db import db
-from app.models.user import User
-from app.models.channel import Channel
+from app.models import User
+from app.models import Channel
 
 server_users = db.Table(
     "server_users",
@@ -44,8 +44,8 @@ class Server(db.model):
             'id': self.id,
             'server_name': self.server_name,
             'private': self.private,
-            'server_icon_url': self.server_icon_url
-            'server_invite_url': self.server_invite_url
-            'user_id': self.user_id
-            'banner_url': self.banner_url
+            'server_icon_url': self.server_icon_url,
+            'server_invite_url': self.server_invite_url,
+            'user_id': self.user_id,
+            'banner_url': self.banner_url,
         }
