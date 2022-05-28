@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from app.models.user_inbox_channels import user_inbox_channels
 from app.models.server_user import server_users as jt
 
 class User(db.Model, UserMixin):
@@ -16,9 +17,8 @@ class User(db.Model, UserMixin):
     servers = db.relationship("Server", back_populates="owner")
     channel_user_messages = db.relationship("ChannelMessage", back_populates="user_channel_messages")
     direct_user_messages = db.relationship("DirectMessage", back_populates="user_direct_messages")
-    # inboxes = db.relationship("InboxChannel", back_populates="user_owners")
-    owner_user_a = db.relationship("InboxChannel", back_populates="user_owner_a")
-    owner_user_b = db.relationship("InboxChannel", back_populates="user_owner_b")
+
+    inbox_channel_user = db.relationship("InboxChannel", secondary=user_inbox_channels, back_populates="channel_inbox_user")
 
     server_user = db.relationship("Server", secondary=jt, back_populates="users")
 

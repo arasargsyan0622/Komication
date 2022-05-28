@@ -1,4 +1,6 @@
 from .db import db
+from app.models.user_inbox_channels import user_inbox_channels
+
 # from app.models import User
 # from app.models import DirectMessage
 
@@ -6,25 +8,15 @@ class InboxChannel(db.Model):
     __tablename__ = "inbox_channels"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_a = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    user_b = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user_a_hide = db.Column(db.Boolean, default=False)
     user_b_hide = db.Column(db.Boolean, default=False)
 
     inbox_messages = db.relationship("DirectMessage", back_populates="inbox_owner")
-    # user_owners = db.relationship("User", back_populates="inboxes")
-
-    # billing_address_id = Column(Integer, ForeignKey("address.id"))
-    # shipping_address_id = Column(Integer, ForeignKey("address.id"))
-
-    user_owner_a = db.relationship("User", foreign_keys=[user_a],back_populates="owner_user_a")
-    user_owner_b = db.relationship("User", foreign_keys=[user_b],back_populates="owner_user_b")
+    channel_inbox_user = db.relationship("User", secondary=user_inbox_channels, back_populates="inbox_channel_user")
 
     def to_dict(self):
         return {
             'id': self.id,
-            'user_a': self.user_a,
-            'user_b': self.user_b,
             'user_a_hide': self.user_a_hide,
             'user_b_hide': self.user_b_hide,
         }
