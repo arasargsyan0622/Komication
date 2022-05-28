@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ExternalLink } from "react-external-link";
-import "./SplashPage.css";
+import "./HeaderNav.css";
 
-function SplashPage() {
+function HeaderNav() {
   return (
     <div>
       <div className="banner__container">
@@ -14,7 +15,7 @@ function SplashPage() {
         <div className="banner__contents__container">
           <div className="banner__nav">
             <div className="banner__nav__logo">
-              <img src="Komication/react-app/src/components/SplashPage/Kominicate_logo-1.svg"></img>
+              <img src="Komication/react-app/src/components/HeaderNav/Kominicate_logo-1.svg"></img>
             </div>
             <div className="banner__nav__links__container">
               <ExternalLink className="banner__nav__links" href="https://www.google.com">
@@ -30,7 +31,11 @@ function SplashPage() {
                 Vernyoon Chao
               </ExternalLink>
             </div>
-            <button className="banner__nav__login">Login</button>
+            <button className="banner__nav__login">
+              <Link className="banner__nav__login" to="/login">
+                Login
+              </Link>
+            </button>
           </div>
           <div className="banner__heading">
             <h1>IMAGINE A PLACE...</h1>
@@ -40,7 +45,11 @@ function SplashPage() {
               more often.
             </div>
             <div className="banner__buttons">
-              <button className="banner__download__button"> Download the Repo!</button>
+              <button className="banner__download__button">
+                <ExternalLink className="banner__download__link" href="https://github.com/arasargsyan0622/Komication">
+                  Download the Repo!
+                </ExternalLink>
+              </button>
               <button className="banner__open__button">Open Komication in your browser</button>
             </div>
           </div>
@@ -50,7 +59,7 @@ function SplashPage() {
   );
 }
 
-export default SplashPage;
+export default HeaderNav;
 {
   /* <NavBar className="test"></NavBar> */
 }
