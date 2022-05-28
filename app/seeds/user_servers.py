@@ -1,4 +1,4 @@
-from app.models import db, User, Server
+from app.models import db, User, Server, InboxChannel
 
 def seed_server_users():
     demo = User(
@@ -15,13 +15,13 @@ def seed_server_users():
     )
 
     server1 = Server(
-        server_name="Novohort", server_icon_url="", server_invite_url="1", user_id=5
+        server_name="Novohort", server_icon_url="", server_invite_url="1", user_id=5, users=[zensan, cecc, dripgod, chrischarming]
     )
     server2 = Server(
-        server_name="a/A Jan 2022", server_icon_url="", server_invite_url="2", user_id=5
+        server_name="a/A Jan 2022", server_icon_url="", server_invite_url="2", user_id=5, users=[zensan, cecc, dripgod]
     )
     server3 = Server(
-        server_name="Thunks for Thots", server_icon_url="", server_invite_url="3", user_id=2
+        server_name="Thunks for Thots", server_icon_url="", server_invite_url="3", user_id=2, users=[]
     )
     server4 = Server(
         server_name="Komication", server_icon_url="", server_invite_url="4", user_id=1
@@ -33,11 +33,22 @@ def seed_server_users():
         server_name="Matterhorn", server_icon_url="", server_invite_url="6", user_id=3
     )
     server7 = Server(
-        server_name="a/A Feb 2022", server_icon_url="", server_invite_url="7", user_id=5, users=[dripgod]
+        server_name="a/A Feb 2022", server_icon_url="", server_invite_url="7", user_id=5,
     )
     server8 = Server(
-        server_name="Propane Prince", server_icon_url="", server_invite_url="8", user_id=5, users=[zensan,cecc, dripgod]
+        server_name="Propane Prince", server_icon_url="", server_invite_url="8", user_id=5,
     )
+
+    inbox1 = InboxChannel( channel_inbox_user=[zensan, dripgod]
+        )
+    inbox2 = InboxChannel(
+        )
+    inbox3 = InboxChannel(
+        )
+    inbox4 = InboxChannel(
+        )
+    inbox5 = InboxChannel(
+        )
 
     db.session.add(demo)
     db.session.add(zensan)
@@ -54,8 +65,17 @@ def seed_server_users():
     db.session.add(server7)
     db.session.add(server8)
 
+    db.session.add(inbox1)
+    db.session.add(inbox2)
+    db.session.add(inbox3)
+    db.session.add(inbox4)
+    db.session.add(inbox5)
+
     db.session.commit()
 
 def undo_server_users():
-    db.session.execute('TRUNCATE server_users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE servers RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE inbox_channels RESTART IDENTITY CASCADE;')
+
     db.session.commit()
