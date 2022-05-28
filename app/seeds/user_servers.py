@@ -1,17 +1,21 @@
 from app.models import db, User, Server, InboxChannel
+from werkzeug.security import generate_password_hash
 
 def seed_server_users():
     demo = User(
-        username='Demo', email='demo@aa.io', hashed_password='password')
+        username='Demo', email='demo@aa.io', hashed_password=generate_password_hash("password")
+    )
     zensan = User(
-        username='Zensan', email='zensan@p.hub', hashed_password='DarrenStinks')
+        username='Zensan', email='zensan@p.hub', hashed_password=generate_password_hash('DarrenStinks')
+    )
     dripgod = User(
-        username='DripGod', email='dripgod@p.hub', hashed_password='password1')
+        username='DripGod', email='dripgod@p.hub', hashed_password=generate_password_hash('password1')
+    )
     chrischarming = User(
-        username='ChrisCharming', email='chrischarming@p.hub', hashed_password='password123'
+        username='ChrisCharming', email='chrischarming@p.hub', hashed_password=generate_password_hash('password123')
     )
     cecc = User(
-        username='Komi-san', email='komi@p.hub', hashed_password='password1'
+        username='Komi-san', email='komi@p.hub', hashed_password=generate_password_hash('password1')
     )
 
     server1 = Server(
