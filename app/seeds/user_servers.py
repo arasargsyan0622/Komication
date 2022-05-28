@@ -41,9 +41,9 @@ def seed_server_users():
 
     inbox1 = InboxChannel( channel_inbox_user=[zensan, dripgod]
         )
-    inbox2 = InboxChannel(
+    inbox2 = InboxChannel( channel_inbox_user=[cecc, dripgod]
         )
-    inbox3 = InboxChannel(
+    inbox3 = InboxChannel( channel_inbox_user=[zensan, chrischarming]
         )
     inbox4 = InboxChannel(
         )
