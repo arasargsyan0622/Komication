@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+}
+
+.sign__up__page {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: url("./discord-sign-up.png") no-repeat center center fixed;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}

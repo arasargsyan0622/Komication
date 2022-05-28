@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+.sign__up__form {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #36393f;
+  width: 500px;
+  height: 575px;
+  color: #b9bbbe;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sign__up__input {
+  padding: 10px;
+  width: 416px;
+  height: 40px;
+  background: #202225;
+  border: none;
+  border-radius: 3px;
+  outline: 0px;
+  color: #dcddde;
+  font-size: 14px;
+}
+.sign__up__header {
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.date__of__birth {
+  width: 416px;
+  display: flex;
+  justify-content: space-around;
+}
+.month__select {
+  border-radius: 4px;
+  width: 145px;
+  height: 40px;
+  background-color: #0000001a;
+  outline: 0px;
+  border-color: rgba(32, 34, 37, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.day__select {
+  border-radius: 4px;
+  width: 124px;
+  height: 40px;
+  background-color: #0000001a;
+  outline: 0px;
+  border-color: rgba(32, 34, 37, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+.year__select {
+  border-radius: 4px;
+  width: 124px;
+  height: 40px;
+  background-color: #0000001a;
+  outline: 0px;
+  outline-color: #36393f;
+  border-color: rgba(32, 34, 37, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  scrollbar-color: black;
+}
+
+.month__select > option {
+  background-color: #36393f;
+  outline-color: #36393f;
+  border: none;
+}
+.day__select > option {
+  background-color: #36393f;
+  outline-color: #36393f;
+  border: none;
+}
+.year__select > option {
+  background-color: #36393f;
+  outline-color: #36393f;
+}
+
+::-webkit-scrollbar {
+  background-color: #36393f;
+  width: 8px;
+  /* background-color: rgba(151, 113, 56, 0);
+  width: 8px; */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #202225;
+  border-radius: 10px;
+  height: 3px;
+}
+
+.sign__up__button {
+  margin-top: 10px;
+  width: 416px;
+  height: 41px;
+  background-color: #5865f2;
+  color: #ffffff;
+  border-radius: 3px;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.sign__up__form__login__link {
+  display: flex;
+  align-self: flex-start;
+  margin-top: 10px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #00aff4;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sign__up__tos__pp {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #a3a6aa;
+  font-size: 11px;
+}
+
+.sign__up__tos,
+.sign__up__pp {
+  text-decoration: none;
+  font-size: 11px;
+  color: #00aff4;
+  font-family: Arial, Helvetica, sans-serif;
+}

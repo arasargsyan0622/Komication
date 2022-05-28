@@ -1,0 +1,9 @@
+.login__page {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: url("../SignUpPage/discord-sign-up.png") no-repeat center center fixed;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+}
