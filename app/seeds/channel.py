@@ -38,5 +38,5 @@ def seed_channels():
     db.session.commit()
 
 def undo_channels():
-    db.session.execute('TRUNCATE servers RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE inbox_channels RESTART IDENTITY CASCADE;')
     db.session.commit()

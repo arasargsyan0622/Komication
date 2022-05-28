@@ -23,5 +23,5 @@ def seed_inboxes():
     db.session.commit()
 
 def undo_inboxes():
-    db.session.execute('TRUNCATE servers RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE inbox_channels RESTART IDENTITY CASCADE;')
     db.session.commit()
