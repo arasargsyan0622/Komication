@@ -16,10 +16,35 @@ def get_user_inbox_channels(id):
 
     my_inbox_channels = current_user.inbox_channel_user
 
-    # my_inbox_channels_users = [my_inbox_channels[0].channel_inbox_user]
-    my_inbox_channels_users = [list(my_inbox_channel).extend(my_inbox_channel.channel_inbox_user) for my_inbox_channel in my_inbox_channels]
-    # my_inbox_channels_users = my_inbox_channels_users
-    print(my_inbox_channels)
-    print(my_inbox_channels_users)
+    my_inbox_channels_users = []
 
-    return {"inbox_channels": [my_inbox_channel.to_dict() for my_inbox_channel in my_inbox_channels]}
+    # spreads the users in a list
+    [my_inbox_channels_users.extend(my_inbox_channel.channel_inbox_user) for my_inbox_channel in my_inbox_channels]
+
+    my_inbox_channels_users_filtered = [x for x in my_inbox_channels_users if x.id != id]
+
+    return {"inbox_channels": [my_inbox_channel.to_dict() for my_inbox_channel in my_inbox_channels], "users": [x.to_dict() for x in my_inbox_channels_users_filtered] }
+
+@inbox_channel_routes.route("/<int:id>", methods=["POST"])
+def create_inbox_channel(id):
+    new_inbox = InboxChannel()
+
+    current_user = User.query.get(id)
+
+    new_inbox.channel_inbox_user.append(current_user)
+
+    db.session.add(new_inbox)
+    db.session.commit()
+
+    return {"inbox_channel": new_inbox.to_dict()}
+
+@inbox_channel_routes.route("/hide/<int:id>", methods=["POST"])
+def hide_inbox_channel(id):
+    current_inbox_channel = InboxChannel.query.get(id)
+
+    current_inbox_channel.user_a_hide = True
+
+    db.session.add(current_inbox_channel)
+    db.session.commit()
+
+    return {"inbox_channel": current_inbox_channel.to_dict()}
