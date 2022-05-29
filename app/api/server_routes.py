@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, jsonify
 from app.models.server import Server
+from app.models.user import User
 from app.models.channel import Channel
 from app.forms.server_form import ServerCreateForm, ServerUpdateForm
 from app.models import db
@@ -28,13 +29,18 @@ def create_server():
         random_string = ""
         random_uuid = uuid.uuid4()
         string_uuid = "http://komication.com/" + random_string.join(str(random_uuid).split("-"))
+
+        current_user = User.query.get(form.user_id.data)
+
         server = Server(
             server_name=form.server_name.data,
             server_icon_url=None,
             server_invite_url=string_uuid,
             user_id=form.user_id.data,
             banner_url=None,
+            users = [current_user]
         )
+
         db.session.add(server)
         db.session.commit()
         return {"server": server.to_dict()}
