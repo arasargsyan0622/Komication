@@ -16,6 +16,8 @@ def get_user_inbox_channels(id):
 
     my_inbox_channels = current_user.inbox_channel_user
 
+    print(my_inbox_channels)
+
     my_inbox_channels_users = []
 
     # spreads the users in a list
@@ -23,7 +25,25 @@ def get_user_inbox_channels(id):
 
     my_inbox_channels_users_filtered = [x for x in my_inbox_channels_users if x.id != id]
 
-    return {"inbox_channels": [my_inbox_channel.to_dict() for my_inbox_channel in my_inbox_channels], "users": [x.to_dict() for x in my_inbox_channels_users_filtered] }
+    inboxes = [my_inbox_channel.to_dict() for my_inbox_channel in my_inbox_channels]
+    print(inboxes)
+
+    users = [x.to_dict() for x in my_inbox_channels_users_filtered]
+    print(users)
+
+    print(my_inbox_channels)
+    for i in range(len(inboxes)):
+        inboxes[i]["users"] = users[i]
+
+    print(inboxes, "hello")
+
+
+
+    print(my_inbox_channels_users_filtered)
+
+    # return {"inbox_channels": [my_inbox_channel.to_dict() for my_inbox_channel in my_inbox_channels], "users": [x.to_dict() for x in my_inbox_channels_users_filtered] }
+
+    return { "inbox_channels": [inbox for inbox in inboxes]}
 
 @inbox_channel_routes.route("/<int:id>", methods=["POST"])
 def create_inbox_channel(id):
