@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, jsonify
 from app.models.server import Server
 from app.forms.server_form import ServerCreateForm, ServerUpdateForm
 from app.models import db
+import uuid
 
 server_routes = Blueprint('servers', __name__)
 
@@ -22,11 +23,13 @@ def server(id):
 def create_server():
     form = ServerCreateForm()
     if form.validate_on_submit():
-        # generate the string for the link
+        random_string = ""
+        random_uuid = uuid.uuid4()
+        string_uuid = "http://komication.com/" + random_string.join(str(random_uuid).split("-"))
         server = Server(
             server_name=form.server_name.data,
             server_icon_url=None,
-            server_invite_url="whateverstring",
+            server_invite_url=string_uuid,
             user_id=form.user_id.data,
             banner_url=None,
         )
