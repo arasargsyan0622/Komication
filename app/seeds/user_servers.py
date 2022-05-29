@@ -49,10 +49,7 @@ def seed_server_users():
         )
     inbox3 = InboxChannel( channel_inbox_user=[zensan, chrischarming]
         )
-    inbox4 = InboxChannel(
-        )
-    inbox5 = InboxChannel(
-        )
+
 
     db.session.add(demo)
     db.session.add(zensan)
@@ -72,8 +69,7 @@ def seed_server_users():
     db.session.add(inbox1)
     db.session.add(inbox2)
     db.session.add(inbox3)
-    db.session.add(inbox4)
-    db.session.add(inbox5)
+
 
     db.session.commit()
 

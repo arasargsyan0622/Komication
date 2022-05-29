@@ -3,35 +3,35 @@ from app.models import db, DirectMessage
 def seed_direct_messages():
     message1 = DirectMessage(
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        user_id=2, inbox_id=1
+        user_id=2, inbox_channel_id=1
     )
     message2 = DirectMessage(
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        user_id=1, inbox_id=1
+        user_id=1, inbox_channel_id=1
     )
     message3 = DirectMessage(
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        user_id=1, inbox_id=1
+        user_id=1, inbox_channel_id=1
     )
     message4 = DirectMessage(
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        user_id=2, inbox_id=1
+        user_id=2, inbox_channel_id=1
     )
     message5 = DirectMessage(
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        user_id=3, inbox_id=2
+        user_id=3, inbox_channel_id=2
     )
     message6 = DirectMessage(
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        user_id=4, inbox_id=2
+        user_id=4, inbox_channel_id=2
     )
     message7 = DirectMessage(
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        user_id=3, inbox_id=2
+        user_id=3, inbox_channel_id=2
     )
     message8 = DirectMessage(
         content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-         user_id=3, inbox_id=2
+         user_id=3, inbox_channel_id=2
     )
 
 
