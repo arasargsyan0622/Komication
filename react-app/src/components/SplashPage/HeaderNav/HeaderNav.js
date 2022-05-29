@@ -14,9 +14,7 @@ function HeaderNav() {
       <div className="absolute__banner">
         <div className="banner__contents__container">
           <div className="banner__nav">
-            <div className="banner__nav__logo">
-              <img src="Komication/react-app/src/components/HeaderNav/Kominicate_logo-1.svg"></img>
-            </div>
+            <div className="banner__nav__logo">{/* <img src="./Komication_logo.svg"></img> */}</div>
             <div className="banner__nav__links__container">
               <ExternalLink className="banner__nav__links" href="https://www.google.com">
                 Ara Sargsyan

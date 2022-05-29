@@ -1,0 +1,15 @@
+.splash__middle__container {
+  display: flex;
+  border: 1px solid red;
+  width: auto;
+  height: 680px;
+  background-color: #f6f6f6;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash__middle__picture {
+  width: 678px;
+  height: 440px;
+  background: url("./middle__splash__image.svg") center;
+}

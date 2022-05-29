@@ -1,0 +1,9 @@
+.splash__footer__container {
+  display: flex;
+  border: 1px solid red;
+  width: auto;
+  height: 511px;
+  background-color: #23272a;
+  justify-content: center;
+  align-items: center;
+}

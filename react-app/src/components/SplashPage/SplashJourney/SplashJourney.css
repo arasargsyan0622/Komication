@@ -1,0 +1,9 @@
+.splash__journey__container {
+  display: flex;
+  border: 1px solid red;
+  width: auto;
+  height: 285px;
+  background-color: #f6f6f6;
+  justify-content: center;
+  align-items: center;
+}

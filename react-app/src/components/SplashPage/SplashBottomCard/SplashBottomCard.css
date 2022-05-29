@@ -1,0 +1,14 @@
+.splash__bottom__container {
+  display: flex;
+  border: 1px solid red;
+  width: auto;
+  height: 680px;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash__bottom__picture {
+  width: 678px;
+  height: 440px;
+  background: url("./bottom__splash__image.svg") center;
+}

@@ -12,7 +12,7 @@ body {
   height: 626px;
   z-index: -5;
   background: url("./discord__splash__middle.png");
-  background-color: #7289da;
+  background-color: #3f4ce2;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -39,6 +39,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.banner__nav__logo {
+  width: 124px;
+  height: 34px;
+  background: url("./Komication__header__nav__logo.svg") no-repeat center;
+  margin-bottom: 10px;
 }
 
 .banner__nav__links__container {
