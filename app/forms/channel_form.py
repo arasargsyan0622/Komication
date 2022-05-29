@@ -1,6 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, IntegerField
+from wtforms.validators import DataRequired
 
-class ChannelForm(FlaskForm):
-    channel_name = StringField("Channel Name")
+
+class ChannelCreateForm(FlaskForm):
+    channel_name = StringField("Channel Name", validators=[DataRequired()])
+    server_id = IntegerField("ServerId", validators=[DataRequired()])
+    submit = SubmitField("Create Channel")
+
+
+class ChannelUpdateForm(FlaskForm):
+    channel_name = StringField("Channel Name", validators=[DataRequired()])
     submit = SubmitField("Create Channel")

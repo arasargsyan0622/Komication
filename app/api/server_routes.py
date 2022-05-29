@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, jsonify
 from app.models.server import Server
+from app.models.channel import Channel
 from app.forms.server_form import ServerCreateForm, ServerUpdateForm
 from app.models import db
 import uuid
@@ -16,7 +17,8 @@ def all_servers():
 @server_routes.route('/<int:id>')
 def server(id):
     server = Server.query.get(id)
-    return {"server": server.to_dict()}
+    channels = Channel.query.join(Server).filter(Server.id == id).all()
+    return {"server": server.to_dict(), "channels": [channel.to_dict() for channel in channels]}
 
 
 @server_routes.route('/', methods=['POST'])
