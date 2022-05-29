@@ -1,8 +1,8 @@
-"""test
+"""model1.0
 
-Revision ID: dd1577d1ced7
+Revision ID: 2fbcdbdd4a0a
 Revises: 
-Create Date: 2022-05-27 18:47:45.707340
+Create Date: 2022-05-28 17:02:50.382210
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'dd1577d1ced7'
+revision = '2fbcdbdd4a0a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,9 +40,9 @@ def upgrade():
     sa.Column('content', sa.String(length=1000), nullable=False),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('inbox_id', sa.Integer(), nullable=False),
+    sa.Column('inbox_channel_id', sa.Integer(), nullable=False),
     sa.Column('edited', sa.Boolean(), nullable=True),
-    sa.ForeignKeyConstraint(['inbox_id'], ['inbox_channels.id'], ),
+    sa.ForeignKeyConstraint(['inbox_channel_id'], ['inbox_channels.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -60,10 +60,10 @@ def upgrade():
     )
     op.create_table('user_inbox_channels',
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('inbox_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['inbox_id'], ['inbox_channels.id'], ),
+    sa.Column('inbox_channel_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['inbox_channel_id'], ['inbox_channels.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('user_id', 'inbox_id')
+    sa.PrimaryKeyConstraint('user_id', 'inbox_channel_id')
     )
     op.create_table('channels',
     sa.Column('id', sa.Integer(), nullable=False),
