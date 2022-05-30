@@ -38,13 +38,15 @@ def create_server():
         random_string = ""
         random_uuid = uuid.uuid4()
         string_uuid = "http://komication.com/" + random_string.join(str(random_uuid).split("-"))
-        url = None
         # current_user = User.query.get(form.user_id.data)
         current_user = User.query.get(1)
-
+        print("hello before image line 43")
+        print(request.files)
         # image upload <-------------------------->
-        image = request.files["image"]
-        if image:
+
+
+        if request.files:
+            image = request.files["image"]
             print("we have an image")
             print(image)
             if not allowed_file(image.filename):
@@ -59,6 +61,8 @@ def create_server():
                 return upload, 400
 
             url = upload["url"]
+        else:
+            url =None
         # image upload <-------------------------->
 
         server = Server(
