@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+.login__form__container {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #36393f;
+  width: 784px;
+  height: 408px;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b9bbbe;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.login__header {
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+.login__label {
+  font-weight: bold;
+}
+.login__welcome__message {
+  color: #b9bbbe;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 25px;
+}
+
+.login__input {
+  width: 414px;
+  height: 40px;
+  background: #202225;
+  border: none;
+  border-radius: 3px;
+  outline: 0px;
+  color: #dcddde;
+  font-size: 14px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+.login__password__input {
+  width: 414px;
+  height: 40px;
+  background: #202225;
+  border: none;
+  border-radius: 3px;
+  outline: 0px;
+  color: #dcddde;
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.login__button {
+  margin-top: 10px;
+  width: 416px;
+  height: 41px;
+  background-color: #5865f2;
+  color: #ffffff;
+  border-radius: 3px;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.login__forgot__password__container {
+  margin-bottom: 15px;
+}
+.login__register__link__container {
+  margin-top: 12px;
+  margin-bottom: 25px;
+  color: #72767d;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.login__form__links {
+  text-decoration: none;
+  color: #00aff4;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+}

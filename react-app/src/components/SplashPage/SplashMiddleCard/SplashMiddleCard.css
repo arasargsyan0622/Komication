@@ -1,0 +1,35 @@
+.splash__middle__container {
+  display: flex;
+  width: auto;
+  height: 680px;
+  background-color: #f6f6f6;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash__middle__picture {
+  width: 678px;
+  height: 440px;
+  background: url("./middle__splash__image.svg") center;
+  margin-left: 7%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.splash__middle__heading {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  height: 440px;
+  justify-content: center;
+}
+
+.splash__middle__heading > h2 {
+  font-size: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.splash__middle__heading > div {
+  font-size: 19px;
+  color: #23272a;
+  font-family: Arial, Helvetica, sans-serif;
+}

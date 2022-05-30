@@ -1,0 +1,130 @@
+.splash__footer__container {
+  display: flex;
+  width: auto;
+  height: 511px;
+  background-color: #23272a;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash__footer__container__links {
+  display: flex;
+  justify-content: space-between;
+  width: 1180px;
+  height: 320px;
+}
+
+.splash__footer__left {
+  width: 280px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+}
+
+.splash__footer__left > h4 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #5865f2;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.splash__footer__left > a {
+  margin-top: 30px;
+  margin-left: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.splash__footer__left__images {
+  display: flex;
+  margin-top: 30px;
+}
+.splash__footer__left__images > div {
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
+}
+
+.splash__footer__right__container {
+  width: 720px;
+  height: auto;
+  margin-right: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+.splash__footer__names {
+  display: flex;
+  flex-direction: column;
+}
+.splash__footer__names__links {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.splash__footer__names__links * {
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 100;
+  color: #ffffff;
+}
+.splash__footer__names > h5 {
+  color: #5865f2;
+  font-size: 14px;
+  font-weight: 100;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.splash__footer__tweet {
+  background: url("./splash__footer__tweet.svg");
+}
+.splash__footer__insta {
+  background: url("./splash__footer__insta.svg");
+}
+.splash__footer__book {
+  background: url("./splash__footer__book.svg");
+}
+.splash__footer__ytube {
+  background: url("./splash__footer__ytube.svg");
+}
+
+.splash__footer__break {
+  width: 1180px;
+  height: 1px;
+  margin-bottom: 32px;
+  background-color: #5865f2;
+}
+
+.splash__footer__sign__up {
+  display: flex;
+  justify-content: space-between;
+  width: 1180px;
+  height: 38px;
+}
+
+.splash__footer__sign__up > button {
+  width: 75px;
+  height: 38px;
+  font-size: 14px;
+  border-radius: 40px;
+  border: none;
+  background-color: #5865f2;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.splash__footer__sign__up__link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.splash__footer__logo {
+  width: 124px;
+  height: 34px;
+  background: url("./Komication__footer__logo.svg");
+}
