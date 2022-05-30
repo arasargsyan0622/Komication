@@ -1,6 +1,5 @@
 .splash__bottom__container {
   display: flex;
-  border: 1px solid red;
   width: auto;
   height: 680px;
   justify-content: center;
@@ -11,4 +10,24 @@
   width: 678px;
   height: 440px;
   background: url("./bottom__splash__image.svg") center;
+  margin-right: 7%;
+}
+
+.splash__bottom__heading {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  height: 440px;
+  justify-content: center;
+}
+
+.splash__bottom__heading > h2 {
+  font-size: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.splash__bottom__heading > div {
+  font-size: 19px;
+  color: #23272a;
+  font-family: Arial, Helvetica, sans-serif;
 }

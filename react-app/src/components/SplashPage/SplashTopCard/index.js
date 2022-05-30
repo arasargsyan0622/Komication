@@ -13,7 +13,6 @@ function SplashTopCard() {
             about your day without clogging up a group chat.
           </div>
         </div>
-        <a href="mailto: KomicationApp@gmail.com">click here</a>
       </div>
     </div>
   );

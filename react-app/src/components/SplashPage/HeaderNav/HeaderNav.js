@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ExternalLink } from "react-external-link";
 import "./HeaderNav.css";
 
-function HeaderNav() {
+function HeaderNav({ user }) {
+  useState();
   return (
     <div>
       <div className="banner__container">
@@ -14,18 +15,21 @@ function HeaderNav() {
       <div className="absolute__banner">
         <div className="banner__contents__container">
           <div className="banner__nav">
-            <div className="banner__nav__logo">{/* <img src="./Komication_logo.svg"></img> */}</div>
+            <div className="banner__nav__logo"></div>
             <div className="banner__nav__links__container">
-              <ExternalLink className="banner__nav__links" href="https://www.google.com">
+              <ExternalLink className="banner__nav__links" href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">
                 Ara Sargsyan
               </ExternalLink>
-              <ExternalLink className="banner__nav__links" href="www.google.com">
+              <ExternalLink
+                className="banner__nav__links"
+                href="https://www.linkedin.com/in/chris-threadgill-b05090185/"
+              >
                 Chris Threadgill
               </ExternalLink>
-              <ExternalLink className="banner__nav__links" href="www.google.com">
+              <ExternalLink className="banner__nav__links" href="https://www.linkedin.com/in/darren-kong-06b47013b/">
                 Darren Kong
               </ExternalLink>
-              <ExternalLink className="banner__nav__links" href="www.google.com">
+              <ExternalLink className="banner__nav__links" href="https://www.linkedin.com/in/vernyoon-chao-783494123/">
                 Vernyoon Chao
               </ExternalLink>
             </div>
