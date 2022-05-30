@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired
 class ServerCreateForm(FlaskForm):
     server_name = StringField("Server Name", validators=[DataRequired()])
     user_id = IntegerField("UserId", validators=[DataRequired()])
-    submit = SubmitField("Create Server")
+    # submit = SubmitField("Create Server")
 
 
 class ServerUpdateForm(FlaskForm):
