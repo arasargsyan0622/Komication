@@ -6,7 +6,7 @@ const Servers = () => {
     const dispatch = useDispatch()
     const [ newName, setNewName ] = useState("")
     const [ priv, setPriv] = useState(false)
-    const [ uuid, setUuid ] = useState("470263f7d83d47a593d31356c5d40e9d")
+    const [ uuid, setUuid ] = useState("a55e747b30994d21b38f6e7ef9246d02")
     const [image, setImage] = useState(null);
 
     const servers = Object.values(useSelector((state) => state.servers))
@@ -53,7 +53,7 @@ const Servers = () => {
                                 Users: {user.username}
                             </div>
                         ))}
-                    </div>
+         https://youtu.be/R9At2ICm4LQ           </div>
                 )
                 })}
             </div>
