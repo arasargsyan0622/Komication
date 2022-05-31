@@ -11,6 +11,6 @@ class ServerCreateForm(FlaskForm):
 class ServerUpdateForm(FlaskForm):
     server_name = StringField("Server Name", validators=[DataRequired()])
     private = BooleanField("Private")
-    server_icon_url = StringField("Icon")
-    banner_url = StringField("Banner")
-    submit = SubmitField("Create Server")
+    # server_icon_url = StringField("Icon")
+    # banner_url = StringField("Banner")
+    # submit = SubmitField("Create Server")
