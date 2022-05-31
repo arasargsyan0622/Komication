@@ -2,19 +2,21 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { createChannel } from "../store/channel"
 import { getCurrServer } from "../store/current_server"
+import Servers from "./test_server"
 
 const Channels = () => {
     const dispatch = useDispatch()
     const [ channelName, setChannelName ] = useState("")
     const id = 1
-    const allChannels = Object.values(useSelector((state) => state.current_server))
-    console.log("allchannels", allChannels)
-    console.log("channel[0", allChannels[0]?.channels)
+    const currServer = Object.values(useSelector((state) => state.current_server))
+    // console.log("allchannels", allChannels)
+    // console.log("channel[0", currServer[0]?.channels)
+    const serverChannels = currServer[0]?.channels
+
     useEffect(()=> {
         dispatch(getCurrServer(id))
     }, [dispatch])
 
-    console.log("this is the component")
     const addChannel = async(e) => {
         e.preventDefault()
         const payload = {
@@ -23,10 +25,21 @@ const Channels = () => {
         }
 
         dispatch(createChannel(payload))
+        setChannelName("")
     }
 
     return (
         <div>
+            <div>text</div>
+            <div>
+                {serverChannels?.map((channel)=>{
+                    return(
+                        <div key={channel.id}>
+                            {channel.channel_name}
+                        </div>
+                    )
+                })}
+            </div>
             <form onSubmit={addChannel}>
                 <input value={channelName} onChange={(e) => setChannelName(e.target.value)} placeholder="Enter channel name"></input>
                 <button type="submit">Create a new channel</button>

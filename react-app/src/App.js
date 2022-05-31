@@ -56,7 +56,7 @@ function App() {
           <Servers />
         </Route>
         <Route path="/test_single" exact={true}>
-          <CurrServer />
+          {/* <CurrServer /> */}
           <CurrChannel />
           <Channels />
         </Route>
