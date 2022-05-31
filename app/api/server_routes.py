@@ -17,10 +17,12 @@ def all_servers():
     return {"servers": [server.to_dict() for server in servers]}
 
 
-@server_routes.route('/<int:id>')
+@server_routes.route('/<string:id>')
 def server(id):
-    server = Server.query.get(id)
-    channels = Channel.query.join(Server).filter(Server.id == id).all()
+    print("this is id", id)
+    server = Server.query.filter(Server.server_invite_url == id).first()
+    print("this is server", server)
+    channels = Channel.query.join(Server).filter(Server.id == server.id).all()
     return {"server": server.to_dict(), "channels": [channel.to_dict() for channel in channels]}
 
 
