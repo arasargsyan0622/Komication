@@ -27,7 +27,7 @@ const currServerReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOAD_CURR_SERVER:
             const current_server = action.current_server
-            newState[current_server.server.server_name] = current_server
+            newState[current_server.server.id] = current_server
             return newState
         default:
             return newState
