@@ -7,21 +7,23 @@ import Servers from "./test_server"
 const Channels = () => {
     const dispatch = useDispatch()
     const [ channelName, setChannelName ] = useState("")
-    const id = 1
+
+    const uuid = 1
     const currServer = Object.values(useSelector((state) => state.current_server))
+    const server_id = currServer[0]?.server.id
     // console.log("allchannels", allChannels)
     // console.log("channel[0", currServer[0]?.channels)
     const serverChannels = currServer[0]?.channels
 
     useEffect(()=> {
-        dispatch(getCurrServer(id))
+
     }, [dispatch])
 
     const addChannel = async(e) => {
         e.preventDefault()
         const payload = {
             channel_name: channelName,
-            server_id: id
+            server_id
         }
 
         dispatch(createChannel(payload))

@@ -22,7 +22,7 @@ export const getCurrServer = (data) => async (dispatch) => {
 const initialState = {};
 
 const currServerReducer = (state = initialState, action) => {
-    const newState = clone(state);
+    const newState = {}
     switch(action.type) {
         case LOAD_CURR_SERVER:
             const current_server = action.current_server
