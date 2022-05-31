@@ -9,7 +9,7 @@ function ServerChannelNav({ currentServer }) {
   return (
     <div className="server__channel__nav__container">
       <ServerTitleCard currentServer={currentServer}></ServerTitleCard>
-      <ServerChannelList></ServerChannelList>
+      <ServerChannelList currentServer={currentServer}></ServerChannelList>
       <UserFooterDisplay></UserFooterDisplay>
     </div>
   );

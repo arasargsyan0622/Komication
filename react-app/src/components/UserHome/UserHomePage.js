@@ -26,11 +26,9 @@ function UserHomePage() {
   }, [useParams(), dispatch]);
 
   return (
-    isLoaded && (
-      <div className="user__home__page">
-        <UserServerList servers={servers}></UserServerList>
-      </div>
-    )
+    <div className="user__home__page">
+      <UserServerList servers={servers}></UserServerList>
+    </div>
   );
 }
 
