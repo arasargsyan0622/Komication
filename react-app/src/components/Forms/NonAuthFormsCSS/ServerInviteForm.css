@@ -1,0 +1,172 @@
+.server__invite__form__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 440px;
+  height: 404px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.server__invite__form__heading {
+  text-align: center;
+  margin-top: 10px;
+}
+.server__invite__header {
+  font-size: 25px;
+  margin: 24px 0px 8px;
+  color: #060607;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.server__invite__message {
+  width: auto;
+  height: 40;
+  font-size: 14px;
+  color: #4f5660;
+  margin-right: 0px;
+  padding-right: 23px;
+  padding-left: 23px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.server__invite__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.server__invite__label {
+  width: 408px;
+  height: 16px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #4f5660;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.server__invite__label > span {
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #d83c3e;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.server__invite__url__input {
+  width: 408px;
+  height: 40px;
+  color: #4f5660;
+  background-color: #e3e5e8;
+  font-size: 12px;
+  outline: 0;
+  border-radius: 3px;
+  border: none;
+}
+
+.server__invite__link__container {
+  width: 408px;
+  height: 20px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 18px 0 10px 0;
+  font-size: 17px;
+  color: #5e6772;
+}
+
+.server__invite__mock__heading {
+  color: #4f5660;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.server__invite__mock__link {
+  color: #4f5660;
+  font-size: 11px;
+  opacity: 14;
+}
+
+.no__invite__redirect {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  height: 64px;
+  margin-top: 20px;
+}
+
+.no__invite__redirect > div {
+  width: 408px;
+  height: 64px;
+  border: none;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #f2f3f5;
+
+  margin-top: 20px;
+}
+
+.no__invite__explore {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50px;
+  margin: 0 10px 0 10px;
+  background: url("./server__invite__explore.svg");
+}
+
+.no__invite__message {
+  padding-right: 50px;
+}
+
+.no__invite__message > h3 {
+  font-size: 17px;
+  color: #060607;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+.no__invite__message > div {
+  font-size: 12px;
+  color: #2e3338;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+.no__invite__arrow {
+  display: flex;
+  background: url("./server__invite__arrow.svg");
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.server__invite__bottom__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 0 0 3px 3px;
+  width: 440px;
+  height: 70px;
+  background-color: #f2f3f5;
+  margin-top: 20px;
+}
+.server__invite__bottom__buttons > div {
+  background-color: #f2f3f5;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.server__invite__button {
+  width: 96px;
+  height: 38px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #5865f2;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+}

@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+.server__channel__nav__container {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: auto;
+  /* height: 1080px; */
+  /* border: dashed 2px black; */
+}
