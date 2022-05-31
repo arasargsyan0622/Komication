@@ -19,6 +19,9 @@ import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage/SplashPage";
 import CreateServer from "./components/s3_test";
 
+import Servers from "./components/test_server"
+
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -48,6 +51,7 @@ function App() {
         </Route>
         <Route path="/test" exact={true}>
           <CreateServer />
+          <Servers />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />

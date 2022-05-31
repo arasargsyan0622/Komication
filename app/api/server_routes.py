@@ -27,35 +27,21 @@ def server(id):
 @server_routes.route('/', methods=['POST'])
 def create_server():
     form = ServerCreateForm()
-    print(form)
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
-    print(form.validate_on_submit())
-    print("in the backend create server route")
     if form.validate_on_submit():
-        print("we have submitted")
-
         random_string = ""
         random_uuid = uuid.uuid4()
-        string_uuid = "http://komication.com/" + random_string.join(str(random_uuid).split("-"))
-        # current_user = User.query.get(form.user_id.data)
+        string_uuid = random_string.join(str(random_uuid).split("-"))
         current_user = User.query.get(1)
-        print("hello before image line 43")
-        print(request.files)
         # image upload <-------------------------->
-
-
         if request.files:
             image = request.files["image"]
-            print("we have an image")
-            print(image)
             if not allowed_file(image.filename):
                 return {"errors":"file type not permitted"}, 400
 
             image.filename = get_unique_filename(image.filename)
 
             upload = upload_file_to_s3(image)
-            print(upload)
             # check if upload worked
             if "url" not in upload:
                 return upload, 400
@@ -77,26 +63,49 @@ def create_server():
 
         db.session.add(server)
         db.session.commit()
-        return {"server": server.to_dict()}
+        return server.to_dict()
     # return jsonify({'success': True})
 
-@server_routes.route('/<int:id>', methods=['PUT'])
+@server_routes.route('/<string:id>', methods=['PUT'])
 def update_server(id):
-    server = Server.query.get(id)
+    server = Server.query.filter(Server.server_invite_url == id).first()
     form = ServerUpdateForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
+
+         # image upload <-------------------------->
+        if request.files:
+            image = request.files["image"]
+            if not allowed_file(image.filename):
+                return {"errors":"file type not permitted"}, 400
+
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+            # check if upload worked
+            if "url" not in upload:
+                return upload, 400
+
+            url = upload["url"]
+        else:
+            url =server.server_icon_url
+        # image upload <-------------------------->
+
         server.server_name = form.server_name.data
         server.private = form.private.data
-        server.server_icon_url = form.server_icon_url.data
-        server.banner_url = form.banner_url.data
+        server.server_icon_url = url
+        # server.banner_url = form.banner_url.data
         db.session.add(server)
         db.session.commit()
-        return {"server": server.to_dict()}
+        return server.to_dict()
 
 
-@server_routes.route('/<int:id>', methods=['DELETE'])
+@server_routes.route('/<string:id>', methods=['DELETE'])
 def delete_server(id):
-    server = Server.query.get(id)
+    server = Server.query.filter(Server.server_invite_url == id).first()
+    print("server in backend", server)
+    server_id = server.id
     db.session.delete(server)
     db.session.commit()
-    return jsonify({'success': True})
+    return {'server_id': server_id}
