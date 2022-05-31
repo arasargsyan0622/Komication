@@ -9,7 +9,7 @@ const Channels = () => {
     const id = 1
     const allChannels = Object.values(useSelector((state) => state.current_server))
     console.log("allchannels", allChannels)
-    console.log("channel[0", allChannels[0])
+    console.log("channel[0", allChannels[0]?.channels)
     useEffect(()=> {
         dispatch(getCurrServer(id))
     }, [dispatch])

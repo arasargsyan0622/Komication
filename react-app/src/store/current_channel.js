@@ -27,6 +27,7 @@ const currChannelReducer = (state=initialState, action) => {
             const current_channel = action.current_channel
             console.log(current_channel)
             newState[current_channel.channel.channel_name] = current_channel
+            return newState
         default:
             return newState
     }
