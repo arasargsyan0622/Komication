@@ -32,11 +32,8 @@ def create_server():
         random_string = ""
         random_uuid = uuid.uuid4()
         string_uuid = random_string.join(str(random_uuid).split("-"))
-        # current_user = User.query.get(form.user_id.data)
         current_user = User.query.get(1)
         # image upload <-------------------------->
-
-
         if request.files:
             image = request.files["image"]
             if not allowed_file(image.filename):
@@ -74,10 +71,30 @@ def update_server(id):
     server = Server.query.filter(Server.server_invite_url == id).first()
     form = ServerUpdateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
+
+         # image upload <-------------------------->
+        if request.files:
+            image = request.files["image"]
+            if not allowed_file(image.filename):
+                return {"errors":"file type not permitted"}, 400
+
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+            # check if upload worked
+            if "url" not in upload:
+                return upload, 400
+
+            url = upload["url"]
+        else:
+            url =server.server_icon_url
+        # image upload <-------------------------->
+
         server.server_name = form.server_name.data
         server.private = form.private.data
-        # server.server_icon_url = form.server_icon_url.data
+        server.server_icon_url = url
         # server.banner_url = form.banner_url.data
         db.session.add(server)
         db.session.commit()
