@@ -1,8 +1,10 @@
 import "./ServerTitleCard.css";
 import { useHistory, UserHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-function ServerTitleCard({ currentServer }) {
+function ServerTitleCard() {
   const history = useHistory();
+  const currentServer = useSelector((state) => state.current_server);
   const serverName = Object.keys(currentServer)[0];
 
   return (
