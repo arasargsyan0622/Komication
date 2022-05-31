@@ -10,6 +10,9 @@ function ServerChannelList() {
           TEXT CHANNELS
         </NavLink>
       </div>
+
+      
+
       <NavLink className={"server__channel__link"} to="/servers/serverId/channelId">
         # testchannel
       </NavLink>
