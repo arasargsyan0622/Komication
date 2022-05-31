@@ -1,0 +1,10 @@
+.user__logout {
+  width: 48px;
+  height: 48px;
+  border-radius: 50px;
+  border: none;
+  background: url("./server__list__logout.svg") no-repeat center;
+  background-color: #36393f;
+  margin-left: 9px;
+  cursor: pointer;
+}

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ExternalLink } from "react-external-link";
 import "./HeaderNav.css";
 
-function HeaderNav({ user }) {
-  useState();
+function HeaderNav() {
   return (
     <div>
       <div className="banner__container">
@@ -62,6 +61,3 @@ function HeaderNav({ user }) {
 }
 
 export default HeaderNav;
-{
-  /* <NavBar className="test"></NavBar> */
-}

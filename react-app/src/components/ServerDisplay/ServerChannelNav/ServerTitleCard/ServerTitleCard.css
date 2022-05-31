@@ -1,0 +1,29 @@
+.server__title__card {
+  width: 240px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2f3136;
+  border-bottom: 2px #27292c solid;
+  cursor: pointer;
+}
+.server__title__card__contents {
+  display: flex;
+  justify-content: space-between;
+  width: 208px;
+  height: 24px;
+}
+
+.server__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.server__edit {
+  background: url("./settings__kog.svg");
+  width: 18px;
+  height: 18px;
+  color: #ffffff;
+}

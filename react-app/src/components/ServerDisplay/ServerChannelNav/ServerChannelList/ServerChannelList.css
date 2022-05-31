@@ -1,0 +1,34 @@
+.server__channel__list__container {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: 910px;
+  padding-top: 15px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* border: solid 2px blue; */
+  background-color: #2f3136;
+}
+.server__channel__list__container > div {
+  padding-left: 15px;
+  font-size: 12px;
+  color: #96989d;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.server__channel__header {
+  text-decoration: none;
+  font-size: 12px;
+  color: #96989d;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.server__channel__link {
+  width: 224px;
+  height: 34px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #96989d;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 25px;
+  padding-top: 10px;
+}

@@ -1,0 +1,16 @@
+.user__explore__logo {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50px;
+
+  background: url("./server__list__explore.svg") no-repeat center;
+  background-color: #36393f;
+  cursor: pointer;
+}
+.home__card__link {
+  width: 48px;
+  height: 48px;
+}
