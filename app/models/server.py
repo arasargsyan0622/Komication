@@ -29,5 +29,6 @@ class Server(db.Model):
             'server_invite_url': self.server_invite_url,
             'user_id': self.user_id,
             'banner_url': self.banner_url,
+            "channels" : [channel.to_dict() for channel in self.channels],
             "users": [user.to_dict() for user in self.users],
         }

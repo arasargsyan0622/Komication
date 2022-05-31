@@ -66,7 +66,6 @@ export const createServer = (data) => async dispatch => {
 
 export const editServer = data => async dispatch => {
     const formData = new FormData()
-    console.log("-=-=-=-=-=-=", data)
     formData.append("server_name", data.server_name)
     formData.append("image", data.image )
     formData.append("private",data.private)

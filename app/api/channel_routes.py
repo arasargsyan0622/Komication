@@ -12,7 +12,9 @@ def channel(id):
     channel = Channel.query.get(id)
     messages = ChannelMessage.query.join(Channel).filter(Channel.id == id).all()
 
-    return {"channels": [channel.to_dict()], "messages": [message.to_dict() for message in messages]}
+    # return {"channels": [channel.to_dict()], "messages": [message.to_dict() for message in messages]}
+    return {"channel": channel.to_dict(), "messages": [message.to_dict() for message in messages]}
+
 
 
 @channel_routes.route("/", methods=["POST"])
