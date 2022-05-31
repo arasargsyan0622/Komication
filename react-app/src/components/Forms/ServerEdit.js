@@ -79,36 +79,3 @@ const ServerEdit = () => {
 };
 
 export default ServerEdit;
-
-// <div className="create__server__form__heading">
-//   <h1 className="create__server__header">Customize your server</h1>
-//   <div className="create__server__message">
-//     Give your new server a personality with a name and an icon. You can always change it later.
-//   </div>
-// </div>
-// <form className="create__form" onSubmit={handleSubmit}>
-//   <input className="create__form__image__input" input type="file" accept="image/*" onChange={updateImage}></input>
-//   <label className="create__server__label" htmlFor="email">
-//     SERVER NAME
-//   </label>
-
-//   <input
-//     className="create__server__name__input"
-//     value={serverName}
-//     onChange={(e) => setServerName(e.target.value)}
-//     type="text"
-//     placeholder="User's server"
-//   />
-//   <div className="server__invite__link__container">
-//     Already have an invite link?{" "}
-//     <Link className="server__invite__link" to="/servers/invite">
-//       Join a Server.
-//     </Link>
-//   </div>
-// </form>
-// <div className="create__server__bottom__buttons">
-//   <div onClick={() => history.push("/me")}>Back</div>
-//   <button className="create__server__button" type="submit">
-//     Create
-//   </button>
-// </div>
