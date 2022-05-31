@@ -12,6 +12,8 @@ import { authenticate } from "./store/session";
 import SplashPage from "./components/SplashPage/SplashPage";
 import CreateServer from "./components/s3_test";
 import Servers from "./components/test_server"
+import CurrServer from "./components/test_cur_server"
+import CurrChannel from "./components/test_cur_channel";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +46,10 @@ function App() {
         <Route path="/test" exact={true}>
           <CreateServer />
           <Servers />
+        </Route>
+        <Route path="/test_single" exact={true}>
+          <CurrServer />
+          <CurrChannel />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />

@@ -2,10 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import serverReducer from "./server"
+import currServerReducer from './current_server';
+import currChannelReducer from "./current_channel";
 
 const rootReducer = combineReducers({
   session,
   servers: serverReducer,
+  current_server: currServerReducer,
+  current_channel: currChannelReducer
 });
 
 
