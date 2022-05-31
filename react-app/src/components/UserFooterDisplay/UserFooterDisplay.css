@@ -41,7 +41,7 @@
 .user__footer__avatar {
   width: 32px;
   height: 32px;
-  background: url("./Komi_Circle_Icon.svg");
+  /* background: url("./Komi_Circle_Icon.svg"); */
   border-radius: 50px;
 }
 .user__footer__settings {

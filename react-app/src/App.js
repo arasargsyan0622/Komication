@@ -84,6 +84,10 @@ function App() {
             <ServerDisplay></ServerDisplay>
           </ProtectedRoute>
 
+          <ProtectedRoute path="/servers/:serverUuid/:channelId">
+            
+          </ProtectedRoute>
+
           <ProtectedRoute path="/user/newServer" exact={true}>
             <NewServerForm></NewServerForm>
           </ProtectedRoute>

@@ -19,35 +19,35 @@ def seed_server_users():
     )
 
     server1 = Server(
-        server_name="Novohort", server_icon_url="", server_invite_url="1", user_id=5, users=[zensan, cecc, dripgod, chrischarming]
+        server_name="Novohort", server_icon_url="", server_invite_url="c27ca0cc1cc64ac3abb983b7af80bdf6", user_id=5, users=[zensan, cecc, dripgod, chrischarming]
     )
     server2 = Server(
-        server_name="a/A Jan 2022", server_icon_url="", server_invite_url="2", user_id=5, users=[zensan, cecc, dripgod]
+        server_name="a/A Jan 2022", server_icon_url="", server_invite_url="bf03534952094518ab2ca0e4c0e30608", user_id=5, users=[zensan, cecc, dripgod]
     )
     server3 = Server(
-        server_name="Thunks for Thots", server_icon_url="", server_invite_url="3", user_id=2, users=[]
+        server_name="Thunks for Thots", server_icon_url="", server_invite_url="589d5d5de7a14bb59834bb6f35dd1d83", user_id=2, users=[]
     )
     server4 = Server(
-        server_name="Komication", server_icon_url="", server_invite_url="4", user_id=1
+        server_name="Komication", server_icon_url="", server_invite_url="4b7aaa64604b4632ae79be43a94e000b", user_id=1
     )
     server5 = Server(
-        server_name="MS Paint", server_icon_url="", server_invite_url="5", user_id=1
+        server_name="MS Paint", server_icon_url="", server_invite_url="d1bc0e87129843c09a384c34dc1edf9a", user_id=1
     )
     server6 = Server(
-        server_name="Matterhorn", server_icon_url="", server_invite_url="6", user_id=3
+        server_name="Matterhorn", server_icon_url="", server_invite_url="d908dea78e434db382ad0e8ef999ca35", user_id=3
     )
     server7 = Server(
-        server_name="a/A Feb 2022", server_icon_url="", server_invite_url="7", user_id=5,
+        server_name="a/A Feb 2022", server_icon_url="", server_invite_url="f9082062be324829b39ad358ad20f7f5", user_id=5,
     )
     server8 = Server(
-        server_name="Propane Prince", server_icon_url="", server_invite_url="8", user_id=5,
+        server_name="Propane Prince", server_icon_url="", server_invite_url="da98e0700e3543b98d865a2c24bef528", user_id=5,
     )
 
-    inbox1 = InboxChannel( channel_inbox_user=[zensan, dripgod]
+    inbox1 = InboxChannel( inbox_uuid="4dd7745f900f44f69cefdec53fd57f8b", channel_inbox_user=[zensan, dripgod]
         )
-    inbox2 = InboxChannel( channel_inbox_user=[cecc, dripgod]
+    inbox2 = InboxChannel( inbox_uuid="c486d729df984094ad7b871ff53a8ef5", channel_inbox_user=[cecc, dripgod]
         )
-    inbox3 = InboxChannel( channel_inbox_user=[zensan, chrischarming]
+    inbox3 = InboxChannel( inbox_uuid="4e280b32701240a5abdd92d3bae33410", channel_inbox_user=[zensan, chrischarming]
         )
 
 
