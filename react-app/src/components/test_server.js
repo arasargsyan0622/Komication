@@ -6,7 +6,9 @@ const Servers = () => {
     const dispatch = useDispatch()
     const [ newName, setNewName ] = useState("")
     const [ priv, setPriv] = useState(false)
-    const [ uuid, setUuid ] = useState("7bcfeba495b547f0a4c29fcc9d036fed")
+    const [ uuid, setUuid ] = useState("470263f7d83d47a593d31356c5d40e9d")
+    const [image, setImage] = useState(null);
+
     const servers = Object.values(useSelector((state) => state.servers))
 
     useEffect(() => {
@@ -19,8 +21,14 @@ const Servers = () => {
             server_name: newName,
             uuid,
             private: priv,
+            image
         }
         dispatch(editServer(data))
+    }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
     }
 
     const changePrivState = async() => {
@@ -39,6 +47,7 @@ const Servers = () => {
                 return(
                     <div key={server.id}>
                         {server.server_name}
+                        <h3>{server.server_invite_url}</h3>
                         {server.users.map((user) => (
                             <div>
                                 Users: {user.username}
@@ -52,6 +61,11 @@ const Servers = () => {
                 <input value={newName} onChange={e => setNewName(e.target.value)} placeholder="New Name"></input>
                 {priv ? <input type="checkbox" value={priv} onChange={changePrivState} defaultChecked></input> :
                         <input type="checkbox" value={priv} onChange={changePrivState}></input> }
+                <input
+            type ="file"
+            accept="image/*"
+            onChange={updateImage}
+            />
                 <button type="submit">Submit</button>
             </form>
             <div>
