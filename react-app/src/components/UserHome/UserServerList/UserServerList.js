@@ -5,7 +5,11 @@ import UserExploreCard from "./UserExploreCard";
 import "./UserServerList.css";
 import UserAddServerCard from "./UserAddServerCard";
 
-function UserServerList({ servers }) {
+import { useSelector, useDispatch } from "react-redux";
+
+function UserServerList() {
+  const servers = Object.values(useSelector((state) => state.servers));
+
   let user;
   return (
     <div className="user__server__list">

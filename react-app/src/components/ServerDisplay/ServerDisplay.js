@@ -10,14 +10,10 @@ import { getCurrServer } from "../../store/current_server";
 import { useParams } from "react-router-dom";
 
 function ServerDisplay() {
+  const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const servers = Object.values(useSelector((state) => state.servers));
-  const dispatch = useDispatch();
-
   let newUuid = useParams().serverUuid;
-
-  const currentServer = useSelector((state) => state.current_server);
 
   useEffect(() => {
     dispatch(getServers()).then(() => {
@@ -31,8 +27,8 @@ function ServerDisplay() {
   return (
     isLoaded && (
       <div className="server__display">
-        <UserServerList servers={servers}></UserServerList>
-        <ServerChannelNav currentServer={currentServer}></ServerChannelNav>
+        <UserServerList></UserServerList>
+        <ServerChannelNav></ServerChannelNav>
       </div>
     )
   );

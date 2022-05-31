@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    avatar_url = db.Column(db.String(255))
+    avatar_url = db.Column(db.String(255), default="http://komication.s3.amazonaws.com/c85fcf48768a4fac810e7ac3ee1a3b85.png")
     online = db.Column(db.Boolean, nullable=False, default=False)
 
     servers = db.relationship("Server", back_populates="owner")
