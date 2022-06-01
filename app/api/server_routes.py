@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, jsonify, request
 from app.models.server import Server
 from app.models.user import User
 from app.models.channel import Channel
-from app.forms.server_form import ServerCreateForm, ServerUpdateForm
+from app.forms.server_form import ServerCreateForm, ServerUpdateForm, ServerInviteForm
 from app.models import db
 from app.api.aws_s3_bucket import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -24,6 +24,21 @@ def server(id):
     print("this is server", server)
     channels = Channel.query.join(Server).filter(Server.id == server.id).all()
     return {"server": server.to_dict(), "channels": [channel.to_dict() for channel in channels]}
+
+@server_routes.route('/wasInvited/<string:uuid>', methods=['POST'])
+def invited_to_server(uuid):
+    form = ServerInviteForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data, "helloo????")
+    current_user = User.query.get(form.user_id.data)
+    server = Server.query.filter(Server.server_invite_url == uuid).first()
+    if form.validate_on_submit():
+        server.users.append(current_user)
+        db.session.add(server)
+        db.session.commit()
+        return server.to_dict()
+
+
 
 
 @server_routes.route('/', methods=['POST'])

@@ -5,9 +5,13 @@ import "./NonAuthFormsCSS/ServerInviteForm.css";
 
 const ServerInvite = ({ setShowModal }) => {
   const history = useHistory();
-
   const [serverInvite, setServerInvite] = useState("");
-  const handleSubmit = async (e) => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    history.push(`${serverInvite}`);
+    window.location.reload(false);
+  };
   return (
     <div className="server__invite__form__container">
       <div className="server__invite__form__heading">
@@ -17,7 +21,7 @@ const ServerInvite = ({ setShowModal }) => {
         </div>
       </div>
       <div className="server__invite__form">
-        <form className="server__invite__form" onSubmit={handleSubmit}>
+        <form className="server__invite__form">
           <label className="server__invite__label" htmlFor="email">
             INVITE LINK <span>*</span>
           </label>
@@ -51,7 +55,7 @@ const ServerInvite = ({ setShowModal }) => {
       </div>
       <div className="server__invite__bottom__buttons">
         <div onClick={() => setShowModal(false)}>Back</div>
-        <button className="server__invite__button" type="submit">
+        <button className="server__invite__button" onClick={handleSubmit}>
           Join Server
         </button>
       </div>
