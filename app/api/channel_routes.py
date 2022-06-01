@@ -42,25 +42,23 @@ def create_channel():
 
 @channel_routes.route('/<string:uuid>', methods=["PUT"])
 def update_channel(uuid):
-    # print("==================", uuid)
+    print("==================", uuid)
     channel = Channel.query.filter(Channel.channel_uuid == uuid).first()
-    # print("----------------------------", channel.channel_name)
+    print("----------------------------", channel.id)
     form = ChannelUpdateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print("-=-=-=-=-=-=-=-=-=-", form.channel_name.data)
-    # if form.validate_on_submit():
-    channel.channel_name = form.channel_name.data
-    db.session.add(channel)
-    db.session.commit()
-    return channel.to_dict()
-
+    print("-=-=-=-=-=-=-=-=-=-", form.channel_name.data)
+    if form.validate_on_submit():
+        channel.channel_name = form.channel_name.data
+        db.session.add(channel)
+        db.session.commit()
+        return channel.to_dict()
+    return {"message":"error"}
 
 @channel_routes.route('/<string:uuid>', methods=['DELETE'])
 def delete_channel(uuid):
-    # channel = Channel.query.get(id)
-    print("==========", uuid)
+
     channel = Channel.query.filter(Channel.channel_uuid == uuid).first()
-    print(channel)
     channel_id = channel.id
     server_id = channel.server_id
     db.session.delete(channel)

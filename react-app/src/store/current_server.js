@@ -75,7 +75,7 @@ export const updateChannel = (data) => async dispatch => {
   if(response.ok) {
     const channel = await response.json()
     console.log("channel in update thunk", channel)
-    // dispatch
+    dispatch(editChannel(channel))
   }
 }
 
@@ -109,6 +109,9 @@ const currServerReducer = (state = initialState, action) => {
           return newState
         case ADD_CHANNEL:
           newState[action.channel.server_id].server.channels[action.channel.id] = action.channel
+          return newState
+        case EDIT_CHANNEL:
+          newState[action.channel.server_id].server.channels[action.channel.id]= action.channel
           return newState
         case REMOVE_CHANNEL:
           currentServer = action.myServer

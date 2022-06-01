@@ -33,9 +33,9 @@ const Channels = () => {
 
     const editChannel = async(e) => {
         e.preventDefault()
-        const uuid = "cb5971b92752478fbde065f4e45d5c52"
+        const uuid = "dab56ed0b77140f5b30177bba9ff821d"
         const payload = {
-            channel_name: channelName,
+            channel_name: editName,
             uuid
         }
         dispatch(updateChannel(payload))
