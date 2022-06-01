@@ -13,8 +13,9 @@ function ServerChannelList() {
   const currentServer = useSelector((state) => state.current_server);
 
   const [channels, setChannels] = useState(
-    Object.values(currentServer)[0]?.channels
+    Object?.values(Object?.values(currentServer)[0].server.channels)
   );
+  console.log(channels);
 
   const uuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
