@@ -10,36 +10,46 @@
   /* border: dashed 1px blue; */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-top: 42px;
+  /* top: 0; */
+  overflow: hidden;
 }
 .server__header__nav {
   display: flex;
   align-items: center;
+  flex-shrink: 1;
   justify-content: space-between;
-  width: 100%;
-  height: 48px;
+  /* width: auto; */
+  height: 150px;
   background-color: #36393f;
   border-bottom: 2px solid #27292c;
   /* border: 1px solid red; */
+  /* position: fixed; */
+  top: 0;
 }
 
 .server__channel__display__container {
   display: flex;
-  height: 100%;
-  /* border: 5px solid orange; */
+  max-height: 100%;
 }
 
-.channel__messages__container {
-  width: 100%;
-  background-color: #36393f;
-}
 .chat__room__container {
   background-color: #36393f;
 }
 
 .online__users__container {
   width: 240px;
+  height: 100%;
+  max-height: 100%;
   background-color: #2f3136;
-  /* border: 2px solid purple; */
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.online__users__container::-webkit-scrollbar {
+  display: none;
 }
 .online__users__container > div {
   color: #96989d;
@@ -48,7 +58,6 @@
   margin-top: 15px;
   padding: 0 15px;
   font-weight: 600;
-  /* border: 2px solid purple; */
 }
 .server__header__name {
   display: flex;
