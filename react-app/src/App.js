@@ -59,7 +59,7 @@ function App() {
             <Servers />
           </Route>
           <Route path="/test_single" exact={true}>
-            <CurrChannel />
+            {/* <CurrChannel /> */}
             <Channels />
           </Route>
           <ProtectedRoute path="/users" exact={true}>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 // import { createChannel } from "../store/channel"
-import { getCurrServer, createChannel} from "../store/current_server"
+import { getCurrServer, createChannel, deleteChannel} from "../store/current_server"
 
 const Channels = () => {
     const dispatch = useDispatch()
@@ -12,11 +12,10 @@ const Channels = () => {
     const currServer = Object.values(useSelector((state) => state.current_server))
     const server_uuid = "c27ca0cc1cc64ac3abb983b7af80bdf6"
     const myServer = currServer[0]?.server
-    // const server_id = myServer?.id
-    const serverChannels = currServer[0]?.channels
-    console.log("-=-=-=-=-=-", serverChannels)
+    const channels = (myServer?.channels)
+
     useEffect(()=> {
-        dispatch(getCurrServer(server_uuid)).then(()=>setIsLoaded(true))
+        dispatch(getCurrServer(server_uuid)).then(()=> setIsLoaded(true))
     }, [dispatch])
 
     const addChannel = async(e) => {
@@ -25,22 +24,30 @@ const Channels = () => {
             channel_name: channelName,
             myServer
         }
-
-        // dispatch(createChannel(payload)).then(()=>dispatch(getCurrServer(server_uuid))
+        // dispatch(createChannel(payload)).then(() => dispatch(getCurrServer(server_uuid)))
         dispatch(createChannel(payload))
+
         setChannelName("")
+    }
+
+    const eraseChannel = async(channel)=>{
+        console.log(channel)
+        const channelUuid = channel.channel_uuid
+        const payload = {channelUuid}
+        console.log(channelUuid)
+        dispatch(deleteChannel(channelUuid))
     }
 
     return (
         isLoaded && (
             <div>
-                {/* <div>Server Name:{currServer[0]?.server.server_name}</div> */}
-                <div>Server Name:{myServer.server_name}</div>
+                <div>Server Name:{myServer?.server_name}</div>
                 <div>
-                    {serverChannels.map((channel)=>{
+                    {Object.values(channels).map((channel)=>{
                         return(
                             <div key={channel.id}>
                                 Channel Name: {channel.channel_name}
+                                <button onClick={(e)=>eraseChannel(channel)}>delete</button>
                             </div>
                         )
                     })}
@@ -51,6 +58,7 @@ const Channels = () => {
                 </form>
             </div>
         )
+
     )
 }
 

@@ -3,17 +3,26 @@ const clone = rfdc();
 
 const LOAD_CURR_SERVER = "api/server/LOAD_CURR_SERVER";
 const ADD_CHANNEL = "api/channels/ADD_CHANNEL"
+const REMOVE_CHANNEL = "api/channels/REMOVE_CHANNEL"
 
-const loadServer = (current_server) => {
+const loadServer = (myServer) => {
   return {
     type: LOAD_CURR_SERVER,
-    current_server,
+    myServer,
   };
 };
 
 const addChannel = (channel, myServer) => {
     return {
         type: ADD_CHANNEL,
+        channel,
+        myServer
+    }
+}
+
+const removeChannel = (channel, myServer) => {
+ return {
+        type: REMOVE_CHANNEL,
         channel,
         myServer
     }
@@ -30,11 +39,7 @@ export const getCurrServer = (data) => async (dispatch) => {
 
 export const createChannel = data => async dispatch => {
     const { channel_name, myServer } = data
-    console.log(data)
-    console.log(myServer)
     const server_id = myServer.id
-
-    console.log("server id in thunk", server_id)
     const response = await fetch(`/api/channels/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,21 +53,40 @@ export const createChannel = data => async dispatch => {
     return response
 }
 
+export const deleteChannel = uuid => async dispatch => {
+  // console.log(uuid)
+  const response = await fetch(`/api/channels/${uuid}`, {
+    method:"DELETE",
+  })
+  console.log(response)
+  if(response.ok) {
+    const channel = await response.json()
+    console.log(channel)
+    dispatch(removeChannel(channel))
+  }
+}
+
 const initialState = {};
 
 const currServerReducer = (state = initialState, action) => {
     const newState = clone(state)
+    let currentServer
     switch(action.type) {
         case LOAD_CURR_SERVER:
-          // newState={}
-          const current_server = action.current_server
-          newState[current_server.server.id] = current_server
+          currentServer = action.myServer
+          const newobj ={}
+          currentServer.server.channels.forEach(channel =>{
+            newobj[channel.id] = channel
+          })
+          newState[currentServer.server.id] = currentServer
+          newState[currentServer.server.id].server.channels = newobj
           return newState
         case ADD_CHANNEL:
-          const new_channel = action.channel
-          const new_channels = [...action.myServer.channels, new_channel]
-          newState[action.myServer.id] = new_channels
-          console.log("new state after adding channel \n",newState)
+          newState[action.channel.server_id].server.channels[action.channel.id] = action.channel
+          return newState
+        case REMOVE_CHANNEL:
+          currentServer = action.myServer
+          delete newState[action.channel.server_id].server.channels[action.channel.channel_id]
           return newState
         default:
           return newState

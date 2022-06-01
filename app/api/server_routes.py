@@ -24,9 +24,9 @@ def server(uuid):
 
     server = Server.query.filter(Server.server_invite_url == uuid).first()
     print("this is server", server)
-    channels = Channel.query.join(Server).filter(Server.id == server.id).all()
-    return {"server": server.to_dict(), "channels": [channel.to_dict() for channel in channels]}
-
+    # channels = Channel.query.join(Server).filter(Server.id == server.id).all()
+    # return {"server": server.to_dict(), "channels": [channel.to_dict() for channel in channels]}
+    return {"server": server.to_dict()}
 
 @server_routes.route('/', methods=['POST'])
 def create_server():

@@ -51,9 +51,14 @@ def update_channel(id):
         return channel.to_dict()
 
 
-@channel_routes.route('/<int:id>', methods=['DELETE'])
-def delete_channel(id):
-    channel = Channel.query.get(id)
+@channel_routes.route('/<string:uuid>', methods=['DELETE'])
+def delete_channel(uuid):
+    # channel = Channel.query.get(id)
+    print("==========", uuid)
+    channel = Channel.query.filter(Channel.channel_uuid == uuid).first()
+    print(channel)
+    channel_id = channel.id
+    server_id = channel.server_id
     db.session.delete(channel)
     db.session.commit()
-    return jsonify({'success': True})
+    return {'channel_id': channel_id, 'server_id':server_id}
