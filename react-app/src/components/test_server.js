@@ -6,7 +6,7 @@ const Servers = () => {
     const dispatch = useDispatch()
     const [ newName, setNewName ] = useState("")
     const [ priv, setPriv] = useState(false)
-    const [ uuid, setUuid ] = useState("8")
+    const [ uuid ] = useState("8")
     const [image, setImage] = useState(null);
 
     const servers = Object.values(useSelector((state) => state.servers))

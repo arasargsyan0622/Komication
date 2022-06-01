@@ -9,7 +9,7 @@ import { getCurrServer } from "../../store/current_server";
 import { useParams } from "react-router-dom";
 
 function UserHomePage() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [setIsLoaded] = useState(false);
 
   const servers = Object.values(useSelector((state) => state.servers));
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function UserHomePage() {
 
   useEffect(() => {
     dispatch(getServers()).then(() => {
-      if (newUuid)
+      if (newUuid) 
         dispatch(getCurrServer(newUuid)).then(() => {
           setIsLoaded(true);
         });

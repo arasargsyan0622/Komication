@@ -4,7 +4,6 @@ import ServerChannelList from "./ServerChannelList/ServerChannelList";
 import UserFooterDisplay from "../../UserFooterDisplay/UserFooterDisplay";
 
 function ServerChannelNav() {
-  let server;
   return (
     <div className="server__channel__nav__container">
       <ServerTitleCard></ServerTitleCard>

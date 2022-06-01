@@ -5,6 +5,7 @@ import serverReducer from "./server"
 import currServerReducer from './current_server';
 import currChannelReducer from "./current_channel_msg";
 
+
 const rootReducer = combineReducers({
   session,
   servers: serverReducer,

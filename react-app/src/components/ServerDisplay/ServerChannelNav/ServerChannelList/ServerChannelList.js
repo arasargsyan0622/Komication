@@ -14,13 +14,13 @@ function ServerChannelList() {
 
   const [channels, setChannels] = useState(Object.values(currentServer)[0]?.channels);
 
-  const uuid = Object.values(currentServer)[0]?.server.server_invite_url;
+  // const uuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
   const users = Object.values(currentServer)[0]?.server.users;
 
   useEffect(() => {
     currentServer = Object.values(currentServer)[0];
-    console.log(currentServer);
+    // console.log(currentServer);
     setChannels(Object.values(currentServer.server.channels));
     let was_I_Invited = true;
     users?.forEach((user) => {
