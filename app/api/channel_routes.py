@@ -20,11 +20,11 @@ def channel(uuid):
 
 @channel_routes.route("/", methods=["POST"])
 def create_channel():
-    print("this is the api route")
+    # print("this is the api route")
     form = ChannelCreateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("this is the form name -=-=-=-=-=-=-", form.channel_name.data)
-    print("this is the form id ===========", form.server_id.data)
+    # print("this is the form name -=-=-=-=-=-=-", form.channel_name.data)
+    # print("this is the form id ===========", form.server_id.data)
     if form.validate_on_submit():
         random_string = ""
         random_uuid = uuid.uuid4()
@@ -34,21 +34,25 @@ def create_channel():
             server_id=form.server_id.data,
             channel_uuid=string_uuid
         )
-        print("channel uin api", channel)
+        # print("channel uin api", channel)
         db.session.add(channel)
         db.session.commit()
         return channel.to_dict()
 
 
-@channel_routes.route('/<int:id>', methods=["PUT"])
-def update_channel(id):
-    channel = Channel.query.get(id)
+@channel_routes.route('/<string:uuid>', methods=["PUT"])
+def update_channel(uuid):
+    # print("==================", uuid)
+    channel = Channel.query.filter(Channel.channel_uuid == uuid).first()
+    # print("----------------------------", channel.channel_name)
     form = ChannelUpdateForm()
-    if form.validate_on_submit():
-        channel.channel_name = form.channel_name.data
-        db.session.add(channel)
-        db.session.commit()
-        return channel.to_dict()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print("-=-=-=-=-=-=-=-=-=-", form.channel_name.data)
+    # if form.validate_on_submit():
+    channel.channel_name = form.channel_name.data
+    db.session.add(channel)
+    db.session.commit()
+    return channel.to_dict()
 
 
 @channel_routes.route('/<string:uuid>', methods=['DELETE'])

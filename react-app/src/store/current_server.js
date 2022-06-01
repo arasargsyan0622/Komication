@@ -3,6 +3,7 @@ const clone = rfdc();
 
 const LOAD_CURR_SERVER = "api/server/LOAD_CURR_SERVER";
 const ADD_CHANNEL = "api/channels/ADD_CHANNEL"
+const EDIT_CHANNEL = "api/channels/EDIT_CHANNEL"
 const REMOVE_CHANNEL = "api/channels/REMOVE_CHANNEL"
 
 const loadServer = (myServer) => {
@@ -18,6 +19,14 @@ const addChannel = (channel, myServer) => {
         channel,
         myServer
     }
+}
+
+const editChannel = (channel, myServer) => {
+  return {
+    type: EDIT_CHANNEL,
+    channel,
+    myServer
+  }
 }
 
 const removeChannel = (channel, myServer) => {
@@ -51,6 +60,23 @@ export const createChannel = data => async dispatch => {
         dispatch(addChannel(channel, myServer))
     }
     return response
+}
+
+export const updateChannel = (data) => async dispatch => {
+  const { channel_name, uuid } = data
+  console.log("channel name in thunk", channel_name)
+  console.log("uuid in thunk", uuid)
+  const response = await fetch(`/api/channels/${uuid}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ channel_name })
+  })
+
+  if(response.ok) {
+    const channel = await response.json()
+    console.log("channel in update thunk", channel)
+    // dispatch
+  }
 }
 
 export const deleteChannel = uuid => async dispatch => {

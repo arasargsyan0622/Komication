@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 // import { createChannel } from "../store/channel"
-import { getCurrServer, createChannel, deleteChannel} from "../store/current_server"
+import { getCurrServer, createChannel, deleteChannel, updateChannel} from "../store/current_server"
 
 const Channels = () => {
     const dispatch = useDispatch()
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [ isLoaded, setIsLoaded ] = useState(false)
     const [ channelName, setChannelName ] = useState("")
+    const [ editName, setEditName ] = useState("")
 
     // const uuid = 1
     const currServer = Object.values(useSelector((state) => state.current_server))
@@ -30,10 +31,19 @@ const Channels = () => {
         setChannelName("")
     }
 
+    const editChannel = async(e) => {
+        e.preventDefault()
+        const uuid = "cb5971b92752478fbde065f4e45d5c52"
+        const payload = {
+            channel_name: channelName,
+            uuid
+        }
+        dispatch(updateChannel(payload))
+    }
+
     const eraseChannel = async(channel)=>{
         console.log(channel)
         const channelUuid = channel.channel_uuid
-        const payload = {channelUuid}
         console.log(channelUuid)
         dispatch(deleteChannel(channelUuid))
     }
@@ -55,6 +65,10 @@ const Channels = () => {
                 <form onSubmit={addChannel}>
                     <input value={channelName} onChange={(e) => setChannelName(e.target.value)} placeholder="Enter channel name"></input>
                     <button type="submit">Create a new channel</button>
+                </form>
+                <form onSubmit={editChannel}>
+                    <input value={editName} onChange={(e) => setEditName(e.target.value)} placeholder="Edit channel name"></input>
+                    <button type="submit">Edit a new channel</button>
                 </form>
             </div>
         )
