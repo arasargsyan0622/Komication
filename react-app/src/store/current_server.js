@@ -95,11 +95,11 @@ export const deleteChannel = (uuid) => async (dispatch) => {
 const initialState = {};
 
 const currServerReducer = (state = initialState, action) => {
-    const newState = clone(state)
-
+    let newState = clone(state)
     switch(action.type) {
         case LOAD_CURR_SERVER:
           const currentServer = action.myServer
+          newState={}
           const newobj ={}
           currentServer.server.channels.forEach(channel =>{
             newobj[channel.id] = channel
