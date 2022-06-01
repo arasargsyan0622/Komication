@@ -5,9 +5,15 @@
   height: 910px;
   padding-top: 15px;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: scroll hidden;
   /* border: solid 2px blue; */
   background-color: #2f3136;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.server__channel__list__container::-webkit-scrollbar {
+  display: none;
 }
 .server__channel__list__container > div {
   padding-left: 15px;
@@ -22,7 +28,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 .server__channel__link {
-  width: 224px;
+  width: 240px;
   height: 34px;
   text-decoration: none;
   cursor: pointer;

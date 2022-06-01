@@ -1,0 +1,16 @@
+.server__user__card__container {
+  display: flex;
+  align-items: center;
+  width: 224px;
+  height: 42px;
+  padding: 0 15px;
+  /* border: 1px solid red; */
+}
+.server__user__card__avatar {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50px;
+  background: url("./Komi_Circle_Icon.svg") center;
+  margin-right: 10px;
+}

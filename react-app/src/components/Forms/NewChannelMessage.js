@@ -3,21 +3,18 @@ import React, { useState, useEffect, useRef } from "react";
 import NewChannelMessage from "./Forms/NewChannelMessage";
 import { useHistory } from "react-router-dom";
 
-let socket;
-
-const Chat = () => {
+function NewChannelMessage({ chatInput, updateChatInput, sendChat }) {
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const history = useHistory();
   const dummyMsg = useRef();
-
   useEffect(() => {
     socket = io();
 
     let chatroom = history.location.pathname;
 
     console.log(chatroom);
-    // dummyMsg.current.scrollIntoView();
+    dummyMsg.current.scrollIntoView();
     let newdate = new Date();
     console.log(newdate);
 
@@ -31,7 +28,7 @@ const Chat = () => {
     socket.on("chat", (data) => {
       console.log(data);
       setMessages((messages) => [...messages, data]);
-      // dummyMsg.current.scrollIntoView();
+      dummyMsg.current.scrollIntoView();
     });
 
     return () => {
@@ -62,20 +59,19 @@ const Chat = () => {
     socket.emit("chat", payload);
     setChatInput("");
   };
-
   return (
     <div className="chat__room__container">
       <div className="message__container">
         {messages.map((message, ind) => (
           <div key={ind}>{`${message.user}: ${message.msg}`}</div>
         ))}
-        {/* <div ref={dummyMsg}></div> */}
+        <div ref={dummyMsg}></div>
       </div>
       <form className="chat__form" onSubmit={sendChat}>
         <input className="chat_input" value={chatInput} onChange={updateChatInput} />
       </form>
     </div>
   );
-};
+}
 
-export default Chat;
+export default NewChannelMessage;
