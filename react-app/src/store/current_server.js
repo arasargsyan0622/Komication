@@ -96,9 +96,10 @@ const initialState = {};
 
 const currServerReducer = (state = initialState, action) => {
     let newState = clone(state)
+    let currentServer
     switch(action.type) {
         case LOAD_CURR_SERVER:
-          const currentServer = action.myServer
+          currentServer = action.myServer
           newState={}
           const newobj ={}
           currentServer.server.channels.forEach(channel =>{

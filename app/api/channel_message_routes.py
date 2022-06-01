@@ -31,7 +31,8 @@ def create_channel_message():
 @channel_message_routes.route("/<int:id>", methods=["DELETE"])
 def delete_channel_message(id):
     channel_message = ChannelMessage.query.get(id)
+    print(channel_message)
     message_deleted = channel_message
     db.session.delete(channel_message)
     db.session.commit()
-    return message_deleted
+    return message_deleted.to_dict()

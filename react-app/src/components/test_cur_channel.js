@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getCurrChannel, createMessage} from "../store/current_channel_msg"
+import {getCurrChannel, createMessage, deleteMessage} from "../store/current_channel_msg"
 
 const CurrChannel = () => {
     const dispatch = useDispatch()
@@ -28,8 +28,9 @@ const CurrChannel = () => {
         dispatch(createMessage(payload))
     }
 
-    const deleteMessage = async(e)=> {
-
+    const eraseMessage = async(message)=> {
+        const message_id = message.id
+        dispatch(deleteMessage(message_id))
     }
     return (
         isLoaded && (
@@ -40,7 +41,7 @@ const CurrChannel = () => {
                         <div key={message.id}>
                             <div>MessageId:{message.id}</div>
                             <div>{message.content}</div>
-                            <button onClick={(e)=>deleteMessage(message)}>delete</button>
+                            <button onClick={(e)=>eraseMessage(message)}>delete</button>
                         </div>
                     )
                 })}
