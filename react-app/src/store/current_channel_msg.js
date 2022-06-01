@@ -66,7 +66,6 @@ export const updateMessage = data => async dispatch => {
 
     if(response.ok) {
         const myMessage = await response.json()
-        console.log(myMessage)
         dispatch(editMessage(myMessage))
     }
 }
@@ -102,7 +101,6 @@ const currChannelReducer = (state=initialState, action) => {
         case EDIT_MESSAGE:
             const editMessage = action.myMessage
             newState[editMessage.channel_id].channel.channel_messages[editMessage.id] = editMessage
-            console.log(newState)
             return newState
         case REMOVE_MESSAGE:
             const currentMessage = action.myMessage

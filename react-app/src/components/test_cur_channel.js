@@ -53,7 +53,6 @@ const CurrChannel = () => {
                             <div>MessageId:{message.id}</div>
                             <div>{message.content}</div>
                             <button onClick={(e)=>eraseMessage(message)}>delete</button>
-
                         </div>
                     )
                 })}
