@@ -28,7 +28,7 @@ function ServerDisplay() {
           setIsLoaded(true);
         });
     });
-  }, [dispatch]);
+  }, [dispatch, newUuid]);
 
   //TODO CREATE CURRENT CHANNEL STORE PASS CHANNEL AS PROPS TO CHANNEL DISPLAY
   //TODO AND SERVER CHANNEL NAV AND HEADER & SEARCH

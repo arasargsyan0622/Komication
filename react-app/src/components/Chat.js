@@ -72,7 +72,11 @@ const Chat = () => {
         {/* <div ref={dummyMsg}></div> */}
       </div>
       <form className="chat__form" onSubmit={sendChat}>
-        <input className="chat_input" value={chatInput} onChange={updateChatInput} />
+        <input
+          className="chat_input"
+          value={chatInput}
+          onChange={updateChatInput}
+        />
       </form>
     </div>
   );
