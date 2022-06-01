@@ -11,6 +11,10 @@ ENV FLASK_ENV=production
 # SQLALCHEMY_ECHO -> Just set it to true
 ENV SQLALCHEMY_ECHO=True
 
+ENV S3_BUCKET=komication
+ENV S3_KEY=AKIA4EF7O3BIVEOSPOGZ
+ENV S3_SECRET=1GT9mqNA9Kbaon/JnyJ5gJ72tXUm2lGyHbZyNOit
+
 # Set the directory for upcoming commands to /var/www
 WORKDIR /var/www
 # Copy all the files from your repo to the working directory
