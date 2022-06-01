@@ -1,6 +1,8 @@
 .user__server__list {
   height: 100%;
   width: 75px;
+  min-width: 75px;
+
   /* border: 1px solid red; */
   background-color: #202225;
   overflow: scroll;
