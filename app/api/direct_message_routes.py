@@ -11,6 +11,7 @@ direct_message_routes = Blueprint("direct_messages", __name__)
 @direct_message_routes.route("/", methods=["POST"])
 def create_direct_message():
     form = DirectMessageCreateForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         direct_message = DirectMessage(
             content = form.content.data,
@@ -19,7 +20,18 @@ def create_direct_message():
         )
         db.session.add(direct_message)
         db.session.commit()
-        return {"direct_message": direct_message.to_dict()}
+        return direct_message.to_dict()
+
+@direct_message_routes.route("/<int:id>", methods=["PUT"])
+def update_direct_message(id):
+    direct_message = DirectMessage.query.get(id)
+    form = DirectMessageUpdateForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        direct_message.content = form.content.data
+        db.session.commit()
+        direct_message.to_dict()
+        return direct_message.to_dict()
 
 
 @direct_message_routes.route("/<int:id>", methods=["DELETE"])
