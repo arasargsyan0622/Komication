@@ -13,10 +13,10 @@ function NewChannelMessage({ chatInput, updateChatInput, sendChat }) {
 
     let chatroom = history.location.pathname;
 
-    console.log(chatroom);
+    // console.log(chatroom);
     dummyMsg.current.scrollIntoView();
     let newdate = new Date();
-    console.log(newdate);
+    // console.log(newdate);
 
     const payload = {
       username: "TestUser",
@@ -26,13 +26,13 @@ function NewChannelMessage({ chatInput, updateChatInput, sendChat }) {
     socket.emit("join", payload);
 
     socket.on("chat", (data) => {
-      console.log(data);
+      // console.log(data);
       setMessages((messages) => [...messages, data]);
       dummyMsg.current.scrollIntoView();
     });
 
     return () => {
-      console.log("hello");
+      // console.log("hello");
       const payload = {
         username: "TestUser",
         room: chatroom,

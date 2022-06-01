@@ -10,7 +10,7 @@ function UserFooterDisplay() {
       <div className="user__footer__contents">
         <div className="user__footer__information">
           {/* <div className="user__footer__avatar"></div> */}
-          <img className="user__footer__avatar" src={user.avatar_url}></img>
+          <img className="user__footer__avatar" src={user.avatar_url} alt="avatar-img"></img>
           <div className="user__footer__details">
             <div>{user.username}</div>
             <span>#{user.id}</span>

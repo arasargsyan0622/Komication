@@ -54,7 +54,7 @@ export const createChannel = (data) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ channel_name, server_id }),
   });
-  console.log("this is in the thunk", response);
+  // console.log("this is in the thunk", response);
   if (response.ok) {
     const channel = await response.json();
     dispatch(addChannel(channel, myServer));
@@ -64,8 +64,8 @@ export const createChannel = (data) => async (dispatch) => {
 
 export const updateChannel = (data) => async (dispatch) => {
   const { channel_name, uuid } = data;
-  console.log("channel name in thunk", channel_name);
-  console.log("uuid in thunk", uuid);
+  // console.log("channel name in thunk", channel_name);
+  // console.log("uuid in thunk", uuid);
   const response = await fetch(`/api/channels/${uuid}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -74,7 +74,7 @@ export const updateChannel = (data) => async (dispatch) => {
 
   if (response.ok) {
     const channel = await response.json();
-    console.log("channel in update thunk", channel);
+    // console.log("channel in update thunk", channel);
     dispatch(editChannel(channel));
   }
 };
@@ -84,10 +84,10 @@ export const deleteChannel = (uuid) => async (dispatch) => {
   const response = await fetch(`/api/channels/${uuid}`, {
     method: "DELETE",
   });
-  console.log(response);
+  // console.log(response);
   if (response.ok) {
     const channel = await response.json();
-    console.log(channel);
+    // console.log(channel);
     dispatch(removeChannel(channel));
   }
 };
