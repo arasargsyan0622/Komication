@@ -111,7 +111,7 @@ const currServerReducer = (state = initialState, action) => {
           newState[action.channel.server_id].server.channels[action.channel.id] = action.channel
           return newState
         case EDIT_CHANNEL:
-          newState[action.channel.server_id].server.channels[action.channel.id]= action.channel
+          newState[action.channel.server_id].server.channels[action.channel.id] = action.channel
           return newState
         case REMOVE_CHANNEL:
           currentServer = action.myServer
