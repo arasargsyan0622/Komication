@@ -2,5 +2,78 @@
   display: flex;
   width: 100%;
   height: 100vh;
-  border: 1px solid lime;
+  /* border: 1px solid lime; */
+}
+
+.server__channel__display {
+  width: 100%;
+  /* border: dashed 1px blue; */
+  display: flex;
+  flex-direction: column;
+}
+.server__header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 48px;
+  background-color: #36393f;
+  border-bottom: 2px solid #27292c;
+  /* border: 1px solid red; */
+}
+
+.server__channel__display__container {
+  display: flex;
+  height: 100%;
+  /* border: 5px solid orange; */
+}
+
+.channel__messages__container {
+  width: 100%;
+  background-color: #36393f;
+}
+.chat__room__container {
+  background-color: #36393f;
+}
+
+.online__users__container {
+  width: 240px;
+  background-color: #2f3136;
+  /* border: 2px solid purple; */
+}
+.online__users__container > div {
+  color: #96989d;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 15px;
+  padding: 0 15px;
+  font-weight: 600;
+  /* border: 2px solid purple; */
+}
+.server__header__name {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.server__header__name > div {
+  width: 24px;
+  height: 24px;
+  background: url("./channel__header__hash.svg");
+}
+.server__header__name > span {
+  margin-left: 10px;
+}
+
+.server__search__container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 500px;
+  max-width: 500px;
+  height: 40px;
+  /* border: 1px solid red; */
 }

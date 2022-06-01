@@ -6,6 +6,7 @@
   flex-direction: column;
   width: 240px;
   height: auto;
+  /* margin-left: 10px */
   /* height: 1080px; */
   /* border: dashed 2px black; */
 }

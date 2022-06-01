@@ -78,16 +78,16 @@ function App() {
           <ProtectedRoute path="/servers/serverId/edit" exact={true}>
             <ServerEdit></ServerEdit>
           </ProtectedRoute>
-          <ProtectedRoute path="/servers/:serverUuid">
-            <ServerDisplay></ServerDisplay>
-          </ProtectedRoute>
-
-          <ProtectedRoute path="/servers/:serverUuid/:channelId">
-
-          </ProtectedRoute>
-
           <ProtectedRoute path="/user/newServer" exact={true}>
             <NewServerForm></NewServerForm>
+          </ProtectedRoute>
+          {/* <ProtectedRoute path="/servers/:serverUuid/:channelId">
+            <h1>this is working</h1>
+          </ProtectedRoute> */}
+
+
+          <ProtectedRoute path="/servers/:serverUuid">
+            <ServerDisplay></ServerDisplay>
           </ProtectedRoute>
         </Switch>
       </BrowserRouter>
