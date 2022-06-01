@@ -1,16 +1,17 @@
 import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
-import NewChannelMessage from "./Forms/NewChannelMessage";
+import "./ChannelDisplay.css";
+
 import { useHistory } from "react-router-dom";
 
 let socket;
 
-const Chat = () => {
+function ChannelDisplay({ channel }) {
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const history = useHistory();
-  const dummyMsg = useRef();
-
+  // const dummyMsg = useRef();
+  console.log(messages);
   useEffect(() => {
     socket = io();
 
@@ -62,20 +63,37 @@ const Chat = () => {
     socket.emit("chat", payload);
     setChatInput("");
   };
-
   return (
-    <div className="chat__room__container">
-      <div className="message__container">
+    <div className="channel__display__container">
+      <div className="channel__messages__container">
         {messages.map((message, ind) => (
-          <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+          <div className="channel__message__div" key={ind}>
+            <div className="channel__message__avatar"></div>
+            <div className="channel__message__contents">
+              <div className="message__user__time">
+                <div className="channel__message__username">{`${message.user}`}</div>
+                <div className="channel__message__date">Date Here</div>
+              </div>
+              <div className="channel__message">{`${message.msg}`}</div>
+            </div>
+          </div>
         ))}
         {/* <div ref={dummyMsg}></div> */}
       </div>
-      <form className="chat__form" onSubmit={sendChat}>
-        <input className="chat_input" value={chatInput} onChange={updateChatInput} />
+      <form className="channel__chat__form" onSubmit={sendChat}>
+        <div className="channel__chat__input__container">
+          <div className="channel__add__input"></div>
+          <input
+            className="channel__chat__input"
+            placeholder="Message #channelName"
+            value={chatInput}
+            onChange={updateChatInput}
+          />
+          <button className="send__chat__button"></button>
+        </div>
       </form>
     </div>
   );
-};
+}
 
-export default Chat;
+export default ChannelDisplay;
