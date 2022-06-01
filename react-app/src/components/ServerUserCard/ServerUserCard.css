@@ -1,7 +1,7 @@
 .server__user__card__container {
   display: flex;
   align-items: center;
-  width: 224px;
+  width: auto;
   height: 42px;
   padding: 0 15px;
   /* border: 1px solid red; */
