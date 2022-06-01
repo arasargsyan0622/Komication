@@ -20,8 +20,8 @@ import SplashPage from "./components/SplashPage/SplashPage";
 import CreateServer from "./components/s3_test";
 
 import Servers from "./components/test_server";
-import CurrServer from "./components/test_cur_server";
 import CurrChannel from "./components/test_cur_channel";
+import Channels from "./components/test_channel"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,8 +59,8 @@ function App() {
             <Servers />
           </Route>
           <Route path="/test_single" exact={true}>
-            <CurrServer />
-            <CurrChannel />
+            {/* <CurrChannel /> */}
+            <Channels />
           </Route>
           <ProtectedRoute path="/users" exact={true}>
             <UsersList />
@@ -68,7 +68,6 @@ function App() {
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
           </ProtectedRoute>
-
           <ProtectedRoute path="/me" exact={true}>
             <UserHomePage></UserHomePage>
           </ProtectedRoute>
@@ -82,10 +81,10 @@ function App() {
           <ProtectedRoute path="/user/newServer" exact={true}>
             <NewServerForm></NewServerForm>
           </ProtectedRoute>
-
           {/* <ProtectedRoute path="/servers/:serverUuid/:channelId">
             <h1>this is working</h1>
           </ProtectedRoute> */}
+
 
           <ProtectedRoute path="/servers/:serverUuid">
             <ServerDisplay></ServerDisplay>

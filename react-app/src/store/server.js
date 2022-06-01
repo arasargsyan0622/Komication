@@ -71,7 +71,6 @@ export const editServer = data => async dispatch => {
     formData.append("private",data.private)
     const response = await fetch(`/api/servers/${data.uuid}`, {
         method: "PUT",
-        // headers: { "Content-Type": "application/json" },
         body: formData
     })
 
