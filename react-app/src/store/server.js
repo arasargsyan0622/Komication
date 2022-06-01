@@ -35,9 +35,11 @@ const removeServer = (id) => {
 };
 
 export const getServers = () => async (dispatch) => {
+  console.log("getting servers from getServers");
   const response = await fetch("/api/servers/");
   if (response.ok) {
     const servers = await response.json();
+    console.log(servers);
     dispatch(loadServers(servers));
   }
 };
@@ -54,8 +56,9 @@ export const createServer = (data) => async (dispatch) => {
 
   if (response.ok) {
     const newServer = await response.json();
+    console.log(newServer);
     dispatch(addServer(newServer));
-    return newServer;
+    return true;
   }
 };
 
@@ -80,7 +83,6 @@ export const editServer = (data) => async (dispatch) => {
   formData.append("private", data.private);
   const response = await fetch(`/api/servers/${data.uuid}`, {
     method: "PUT",
-    // headers: { "Content-Type": "application/json" },
     body: formData,
   });
 
@@ -92,6 +94,7 @@ export const editServer = (data) => async (dispatch) => {
 };
 
 export const deleteServer = (uuid) => async (dispatch) => {
+  console.log("uuid in thunk", uuid);
   const response = await fetch(`/api/servers/${uuid}`, {
     method: "DELETE",
   });

@@ -17,13 +17,16 @@ def all_servers():
     return {"servers": [server.to_dict() for server in servers]}
 
 
-@server_routes.route('/<string:id>')
-def server(id):
-    print("this is id", id)
-    server = Server.query.filter(Server.server_invite_url == id).first()
+@server_routes.route('/<string:uuid>')
+def server(uuid):
+    # this id is a uuid
+    print("this is uuid", uuid)
+    server = Server.query.filter(Server.server_invite_url == uuid).first()
     print("this is server", server)
-    channels = Channel.query.join(Server).filter(Server.id == server.id).all()
-    return {"server": server.to_dict(), "channels": [channel.to_dict() for channel in channels]}
+    # channels = Channel.query.join(Server).filter(Server.id == server.id).all()
+    # return {"server": server.to_dict(), "channels": [channel.to_dict() for channel in channels]}
+    return {"server": server.to_dict()}
+
 
 @server_routes.route('/wasInvited/<string:uuid>', methods=['POST'])
 def invited_to_server(uuid):
@@ -37,8 +40,6 @@ def invited_to_server(uuid):
         db.session.add(server)
         db.session.commit()
         return server.to_dict()
-
-
 
 
 @server_routes.route('/', methods=['POST'])

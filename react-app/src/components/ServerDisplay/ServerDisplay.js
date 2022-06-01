@@ -21,12 +21,13 @@ function ServerDisplay() {
 
   let newUuid = useParams().serverUuid;
 
+  console.log(newUuid);
+
   useEffect(() => {
     dispatch(getServers()).then(() => {
-      if (newUuid)
-        dispatch(getCurrServer(newUuid)).then(() => {
-          setIsLoaded(true);
-        });
+      dispatch(getCurrServer(newUuid)).then(() => {
+        setIsLoaded(true);
+      });
     });
   }, [dispatch, newUuid]);
 
