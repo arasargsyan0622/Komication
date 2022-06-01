@@ -55,6 +55,18 @@ function ServerDisplay() {
               <ServerUserCard></ServerUserCard>
               <ServerUserCard></ServerUserCard>
               <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
               <div>OFFLINE</div>
               <ServerUserCard></ServerUserCard>
               <ServerUserCard></ServerUserCard>

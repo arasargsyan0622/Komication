@@ -1,6 +1,6 @@
 .channel__display__container {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   flex-shrink: 1;
   background-color: #36393f;
   display: flex;
@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: column;
   height: 68px;
+  margin-bottom: 20px;
 }
 .channel__chat__input__container {
   display: flex;
