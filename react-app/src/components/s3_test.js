@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createServer } from "../store/server";
-import User from "./User";
+// import User from "./User";
 
 const CreateServer = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const CreateServer = () => {
       // history.push("/images");
     } else {
       setImageLoading(false);
-      console.log("error");
+      // console.log("error");
     }
   };
 

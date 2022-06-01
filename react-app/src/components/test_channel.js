@@ -49,9 +49,9 @@ const Channels = () => {
   };
 
   const eraseChannel = async (channel) => {
-    console.log(channel);
+    // console.log(channel);
     const channelUuid = channel.channel_uuid;
-    console.log(channelUuid);
+    // console.log(channelUuid);
     dispatch(deleteChannel(channelUuid));
   };
 
@@ -64,7 +64,7 @@ const Channels = () => {
             return (
               <div key={channel.id}>
                 Channel Name: {channel.channel_name}
-                <button onClick={(e) => eraseChannel(channel)}>delete</button>
+                <button onClick={() => eraseChannel(channel)}>delete</button>
               </div>
             );
           })}

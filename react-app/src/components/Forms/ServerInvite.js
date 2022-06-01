@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./NonAuthFormsCSS/ServerInviteForm.css";
 
 const ServerInvite = ({ setShowModal }) => {

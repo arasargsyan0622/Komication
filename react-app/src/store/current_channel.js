@@ -26,6 +26,7 @@ const currChannelReducer = (state=initialState, action) => {
         case LOAD_CURR_CHANNEL:
             const current_channel = action.current_channel
             newState[current_channel.channel.channel_name] = current_channel
+            return newState
         default:
             return newState
     }
