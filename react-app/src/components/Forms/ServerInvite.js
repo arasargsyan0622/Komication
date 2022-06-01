@@ -9,16 +9,14 @@ const ServerInvite = ({ setShowModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    history.push(`${serverInvite}`);
+    history.push(`/servers/${serverInvite}`);
     window.location.reload(false);
   };
   return (
     <div className="server__invite__form__container">
       <div className="server__invite__form__heading">
         <h1 className="server__invite__header">Join a Server</h1>
-        <div className="server__invite__message">
-          Enter an invite below to join an existing server
-        </div>
+        <div className="server__invite__message">Enter an invite below to join an existing server</div>
       </div>
       <div className="server__invite__form">
         <form className="server__invite__form">
@@ -35,9 +33,7 @@ const ServerInvite = ({ setShowModal }) => {
           />
         </form>
         <div className="server__invite__link__container">
-          <div className="server__invite__mock__heading">
-            INVITES SHOULD LOOK LIKE
-          </div>
+          <div className="server__invite__mock__heading">INVITES SHOULD LOOK LIKE</div>
           <div className="server__invite__mock__link">
             https://komication.herokuapp.com/servers/ecafe871d9d34809818eb31a2afff6a3
           </div>

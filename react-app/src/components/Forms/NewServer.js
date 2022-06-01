@@ -28,6 +28,9 @@ const NewServerForm = ({ setShowModal }) => {
 
     const finishLoad = await dispatch(createServer(payload));
 
+    console.log(finishLoad);
+    console.log("hello?????????????");
+
     if (finishLoad) {
       setImageLoading(false);
       // setShowModal(false);
