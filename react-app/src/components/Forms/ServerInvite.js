@@ -3,11 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import "./NonAuthFormsCSS/ServerInviteForm.css";
 
-const ServerInvite = () => {
+const ServerInvite = ({ setShowModal }) => {
   const history = useHistory();
-
   const [serverInvite, setServerInvite] = useState("");
-  const handleSubmit = async (e) => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    history.push(`/servers/${serverInvite}`);
+    window.location.reload(false);
+  };
   return (
     <div className="server__invite__form__container">
       <div className="server__invite__form__heading">
@@ -15,7 +19,7 @@ const ServerInvite = () => {
         <div className="server__invite__message">Enter an invite below to join an existing server</div>
       </div>
       <div className="server__invite__form">
-        <form className="server__invite__form" onSubmit={handleSubmit}>
+        <form className="server__invite__form">
           <label className="server__invite__label" htmlFor="email">
             INVITE LINK <span>*</span>
           </label>
@@ -46,8 +50,8 @@ const ServerInvite = () => {
         </div>
       </div>
       <div className="server__invite__bottom__buttons">
-        <div onClick={() => history.push("/me")}>Back</div>
-        <button className="server__invite__button" type="submit">
+        <div onClick={() => setShowModal(false)}>Back</div>
+        <button className="server__invite__button" onClick={handleSubmit}>
           Join Server
         </button>
       </div>

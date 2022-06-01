@@ -5,7 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 function ServerTitleCard() {
   const history = useHistory();
   const currentServer = useSelector((state) => state.current_server);
-  const serverName = Object.keys(currentServer)[0];
+  const serverName = Object.values(currentServer)[0]?.server.server_name;
+
+  console.log(serverName);
 
   return (
     <div className="server__title__card">

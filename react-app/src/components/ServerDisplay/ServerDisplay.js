@@ -21,14 +21,15 @@ function ServerDisplay() {
 
   let newUuid = useParams().serverUuid;
 
+  console.log(newUuid);
+
   useEffect(() => {
     dispatch(getServers()).then(() => {
-      if (newUuid)
-        dispatch(getCurrServer(newUuid)).then(() => {
-          setIsLoaded(true);
-        });
+      dispatch(getCurrServer(newUuid)).then(() => {
+        setIsLoaded(true);
+      });
     });
-  }, [dispatch]);
+  }, [dispatch, newUuid]);
 
   //TODO CREATE CURRENT CHANNEL STORE PASS CHANNEL AS PROPS TO CHANNEL DISPLAY
   //TODO AND SERVER CHANNEL NAV AND HEADER & SEARCH
