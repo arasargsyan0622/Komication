@@ -5,6 +5,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50px;
+  border: none;
 
   background: url("./server__list__add.svg") no-repeat center;
   background-color: #36393f;

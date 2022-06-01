@@ -7,6 +7,9 @@ class ServerCreateForm(FlaskForm):
     user_id = IntegerField("UserId", validators=[DataRequired()])
     # submit = SubmitField("Create Server")
 
+class ServerInviteForm(FlaskForm):
+    user_id = IntegerField("UserId", validators=[DataRequired()])
+
 
 class ServerUpdateForm(FlaskForm):
     server_name = StringField("Server Name", validators=[DataRequired()])
