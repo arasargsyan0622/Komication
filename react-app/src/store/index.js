@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   servers: serverReducer,
   current_server: currServerReducer,
   current_channel: currChannelReducer,
-  channel: channelReducer
+  // channel: channelReducer
 });
 
 

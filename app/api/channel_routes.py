@@ -4,13 +4,14 @@ from app.models.server import Server
 from app.models.channel_message import ChannelMessage
 from app.models import db
 from app.forms.channel_form import ChannelCreateForm, ChannelUpdateForm
+import uuid
 
 channel_routes = Blueprint("channels", __name__)
 
-@channel_routes.route("/<int:id>")
-def channel(id):
-    channel = Channel.query.get(id)
-    messages = ChannelMessage.query.join(Channel).filter(Channel.id == id).all()
+@channel_routes.route("/<string:uuid>")
+def channel(uuid):
+    channel = Channel.query.get(uuid)
+    messages = ChannelMessage.query.join(Channel).filter(Channel.id == uuid).all()
 
     # return {"channels": [channel.to_dict()], "messages": [message.to_dict() for message in messages]}
     return {"channel": channel.to_dict(), "messages": [message.to_dict() for message in messages]}
@@ -22,13 +23,16 @@ def create_channel():
     print("this is the api route")
     form = ChannelCreateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("this is the form name", form.channel_name.data)
-    print("this is the form id", form.server_id.data)
+    print("this is the form name -=-=-=-=-=-=-", form.channel_name.data)
+    print("this is the form id ===========", form.server_id.data)
     if form.validate_on_submit():
-        print("we got to our if statement")
+        random_string = ""
+        random_uuid = uuid.uuid4()
+        string_uuid = random_string.join(str(random_uuid).split("-"))
         channel = Channel (
             channel_name=form.channel_name.data,
             server_id=form.server_id.data,
+            channel_uuid=string_uuid
         )
         print("channel uin api", channel)
         db.session.add(channel)
