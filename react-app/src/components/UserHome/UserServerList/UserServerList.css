@@ -6,8 +6,8 @@
   /* border: 1px solid red; */
   background-color: #202225;
   overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* -ms-overflow-style: none; */
+  /* scrollbar-width: none; */
 }
 .user__server__list::-webkit-scrollbar {
   display: none;

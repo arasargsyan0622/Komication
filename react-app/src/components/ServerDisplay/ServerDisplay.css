@@ -25,19 +25,26 @@
 .server__channel__display__container {
   display: flex;
   height: 100%;
+  overflow-y: scroll;
   /* border: 5px solid orange; */
 }
 
-.channel__messages__container {
+/* .channel__messages__container {
   width: 100%;
+  max-height: 840px;
   background-color: #36393f;
-}
+
+} */
+
 .chat__room__container {
   background-color: #36393f;
 }
 
 .online__users__container {
   width: 240px;
+  height: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
   background-color: #2f3136;
   /* border: 2px solid purple; */
 }
