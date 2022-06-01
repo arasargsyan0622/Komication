@@ -9,8 +9,22 @@ import { useSelector, useDispatch } from "react-redux";
 
 function UserServerList() {
   const servers = Object.values(useSelector((state) => state.servers));
+  const user = useSelector((state) => state.session.user);
+  const ownedServers = servers.filter((server) => server.user_id == user.id);
 
-  let user;
+  const joinedServers = servers.filter((server) => {
+    const inServer = server.users.filter((checkingUser) => {
+      if (checkingUser.id === user.id) {
+        return user;
+      }
+    });
+    if (inServer == false) {
+      return;
+    } else {
+      return server;
+    }
+  });
+
   return (
     <div className="user__server__list">
       <UserHomeCard
@@ -22,7 +36,7 @@ function UserServerList() {
         <div className="user__server__list__break"></div>
       </div>
 
-      {servers.map((server) => {
+      {joinedServers.map((server) => {
         return <UserServerCard server={server}></UserServerCard>;
       })}
 

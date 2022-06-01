@@ -82,7 +82,6 @@ function App() {
           <ProtectedRoute path="/servers/:serverUuid">
             <ServerDisplay></ServerDisplay>
           </ProtectedRoute>
-
           <ProtectedRoute path="/servers/:serverUuid/:channelId">
             
           </ProtectedRoute>

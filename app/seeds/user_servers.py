@@ -25,22 +25,22 @@ def seed_server_users():
         server_name="a/A Jan 2022", server_icon_url="", server_invite_url="bf03534952094518ab2ca0e4c0e30608", user_id=5, users=[zensan, cecc, dripgod]
     )
     server3 = Server(
-        server_name="Thunks for Thots", server_icon_url="", server_invite_url="589d5d5de7a14bb59834bb6f35dd1d83", user_id=2, users=[]
+        server_name="Thunks for Thots", server_icon_url="", server_invite_url="589d5d5de7a14bb59834bb6f35dd1d83", user_id=2, users=[demo, zensan]
     )
     server4 = Server(
-        server_name="Komication", server_icon_url="", server_invite_url="4b7aaa64604b4632ae79be43a94e000b", user_id=1
+        server_name="Komication", server_icon_url="", server_invite_url="4b7aaa64604b4632ae79be43a94e000b", user_id=1, users=[demo, cecc, dripgod, chrischarming]
     )
     server5 = Server(
-        server_name="MS Paint", server_icon_url="", server_invite_url="d1bc0e87129843c09a384c34dc1edf9a", user_id=1
+        server_name="MS Paint", server_icon_url="", server_invite_url="d1bc0e87129843c09a384c34dc1edf9a", user_id=1, users=[demo, cecc, dripgod, chrischarming]
     )
     server6 = Server(
-        server_name="Matterhorn", server_icon_url="", server_invite_url="d908dea78e434db382ad0e8ef999ca35", user_id=3
+        server_name="Matterhorn", server_icon_url="", server_invite_url="d908dea78e434db382ad0e8ef999ca35", user_id=3, users=[zensan, cecc, dripgod, chrischarming]
     )
     server7 = Server(
-        server_name="a/A Feb 2022", server_icon_url="", server_invite_url="f9082062be324829b39ad358ad20f7f5", user_id=5,
+        server_name="a/A Feb 2022", server_icon_url="", server_invite_url="f9082062be324829b39ad358ad20f7f5", user_id=5, users=[zensan, cecc, dripgod, chrischarming]
     )
     server8 = Server(
-        server_name="Propane Prince", server_icon_url="", server_invite_url="da98e0700e3543b98d865a2c24bef528", user_id=5,
+        server_name="Propane Prince", server_icon_url="", server_invite_url="da98e0700e3543b98d865a2c24bef528", user_id=5, users=[zensan, cecc, dripgod, chrischarming]
     )
 
     inbox1 = InboxChannel( inbox_uuid="4dd7745f900f44f69cefdec53fd57f8b", channel_inbox_user=[zensan, dripgod]

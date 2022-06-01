@@ -34,7 +34,7 @@ def create_server():
         random_string = ""
         random_uuid = uuid.uuid4()
         string_uuid = random_string.join(str(random_uuid).split("-"))
-        current_user = User.query.get(1)
+        current_user = User.query.get(form.user_id.data)
         # image upload <-------------------------->
         if request.files:
             image = request.files["image"]
@@ -57,8 +57,7 @@ def create_server():
             server_name=form.server_name.data,
             server_icon_url=url,
             server_invite_url=string_uuid,
-            # user_id=form.user_id.data,
-            user_id=1,
+            user_id=form.user_id.data,
             banner_url=None,
             users = [current_user]
         )
