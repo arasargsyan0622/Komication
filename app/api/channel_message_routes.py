@@ -28,6 +28,21 @@ def create_channel_message():
         db.session.commit()
         return  channel_message.to_dict()
     return {"error": "could not make message"}
+
+@channel_message_routes.route('/<int:id>', methods=["PUT"])
+def update_channel_message(id):
+    channel_message = ChannelMessage.query.get(id)
+    form = ChannelMessageUpdateForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        channel_message.content = form.content.data
+        channel_message.edited = True
+        db.session.add(channel_message)
+        db.session.commit()
+        return channel_message.to_dict()
+    return {"error":"could nto edit message"}
+
+
 @channel_message_routes.route("/<int:id>", methods=["DELETE"])
 def delete_channel_message(id):
     channel_message = ChannelMessage.query.get(id)

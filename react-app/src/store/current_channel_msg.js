@@ -3,6 +3,7 @@ const clone = rfdc()
 
 const LOAD_CURR_CHANNEL = "api/channel/LOAD_CURR_CHANNEL"
 const ADD_MESSAGE = "api/message/ADD_MESSAGE"
+const EDIT_MESSAGE = "api/message/EDIT_MESSAGE"
 const REMOVE_MESSAGE = 'api/message/REMOVE_MESSAGE'
 
 const loadChannel = (myChannel) => {
@@ -15,6 +16,13 @@ const loadChannel = (myChannel) => {
 const addMessage = (myMessage) => {
     return {
         type: ADD_MESSAGE,
+        myMessage
+    }
+}
+
+const editMessage = (myMessage) => {
+    return{
+        type: EDIT_MESSAGE,
         myMessage
     }
 }
@@ -47,13 +55,29 @@ export const createMessage = data => async dispatch => {
     }
 }
 
+export const updateMessage = data => async dispatch => {
+    const {content, id} = data
+    console.log(id)
+    const response = await fetch(`/api/channel_messages/${id}`,{
+        method:"PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content })
+    })
+
+    if(response.ok) {
+        const myMessage = await response.json()
+        console.log(myMessage)
+        dispatch(editMessage(myMessage))
+    }
+}
+
 export const deleteMessage = data => async dispatch => {
     const response = await fetch(`/api/channel_messages/${data}`, {
         method:"DELETE",
     })
     if (response.ok) {
-        const message = await response.json();
-        dispatch(removeMessage(message))
+        const myMessage = await response.json();
+        dispatch(removeMessage(myMessage))
     }
 }
 
@@ -73,8 +97,12 @@ const currChannelReducer = (state=initialState, action) => {
             return newState
         case ADD_MESSAGE:
             const newMessage = action.myMessage
-            console.log(newState)
             newState[newMessage.channel_id].channel.channel_messages[newMessage.id] = newMessage
+            return newState
+        case EDIT_MESSAGE:
+            const editMessage = action.myMessage
+            newState[editMessage.channel_id].channel.channel_messages[editMessage.id] = editMessage
+            console.log(newState)
             return newState
         case REMOVE_MESSAGE:
             const currentMessage = action.myMessage
