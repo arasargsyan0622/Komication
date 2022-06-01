@@ -2,6 +2,7 @@ import rfdc from 'rfdc'
 const clone = rfdc()
 
 const LOAD_CURR_CHANNEL = "api/channel/LOAD_CURR_CHANNEL"
+const ADD_MESSAGE = "api/message/ADD_MESSAGE"
 
 const loadChannel = (myChannel) => {
     return {
@@ -10,25 +11,32 @@ const loadChannel = (myChannel) => {
     }
 }
 
+
+const addMessage = (myMessage) => {
+    return {
+        type: ADD_MESSAGE,
+        myMessage
+    }
+}
+
 export const getCurrChannel = (data) => async dispatch => {
     const response = await fetch(`/api/channels/${data}`);
-    console.log(response)
     if (response.ok){
         const channel = await response.json()
         dispatch(loadChannel(channel))
     }
 }
 
-const createMessage = data => async dispatch => {
-    const {content} = data
-    const response = await fetch(`/api/channel_messages`, {
+export const createMessage = data => async dispatch => {
+    const {content, user_id, channel_id} = data
+    const response = await fetch(`/api/channel_messages/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content })
+        body: JSON.stringify({ content, user_id, channel_id })
     })
     if(response.ok) {
-        const message = await response.json()
-        dispatch()
+        const myMessage = await response.json()
+        dispatch(addMessage(myMessage))
     }
 }
 
@@ -54,6 +62,14 @@ const currChannelReducer = (state=initialState, action) => {
 
             newState[currentChannel.channel.id].channel.channel_messages = normMessages
             console.log(newState)
+            return newState
+        case ADD_MESSAGE:
+            const newMessage = action.myMessage
+            // console.log(newMessage.channel_message.channel_id)
+            console.log(newState)
+            newState[newMessage.channel_id].channel.channel_messages[newMessage.id] = newMessage
+            console.log(newState)
+            console.log("hello")
             return newState
         default:
             return newState
