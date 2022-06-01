@@ -10,7 +10,7 @@ function ChannelDisplay({ channel }) {
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const history = useHistory();
-  // const dummyMsg = useRef();
+  const dummyMsg = useRef();
   console.log(messages);
   useEffect(() => {
     socket = io();
@@ -18,7 +18,7 @@ function ChannelDisplay({ channel }) {
     let chatroom = history.location.pathname;
 
     console.log(chatroom);
-    // dummyMsg.current.scrollIntoView();
+    dummyMsg.current.scrollIntoView();
     let newdate = new Date();
     console.log(newdate);
 
@@ -32,7 +32,7 @@ function ChannelDisplay({ channel }) {
     socket.on("chat", (data) => {
       console.log(data);
       setMessages((messages) => [...messages, data]);
-      // dummyMsg.current.scrollIntoView();
+      dummyMsg.current.scrollIntoView();
     });
 
     return () => {
@@ -66,19 +66,21 @@ function ChannelDisplay({ channel }) {
   return (
     <div className="channel__display__container">
       <div className="channel__messages__container">
-        {messages.map((message, ind) => (
-          <div className="channel__message__div" key={ind}>
-            <div className="channel__message__avatar"></div>
-            <div className="channel__message__contents">
-              <div className="message__user__time">
-                <div className="channel__message__username">{`${message.user}`}</div>
-                <div className="channel__message__date">Date Here</div>
+        <div ref={dummyMsg}></div>
+        {messages
+          .map((message, ind) => (
+            <div className="channel__message__div" key={ind}>
+              <div className="channel__message__avatar"></div>
+              <div className="channel__message__contents">
+                <div className="message__user__time">
+                  <div className="channel__message__username">{`${message.user}`}</div>
+                  <div className="channel__message__date">Date Here</div>
+                </div>
+                <div className="channel__message">{`${message.msg}`}</div>
               </div>
-              <div className="channel__message">{`${message.msg}`}</div>
             </div>
-          </div>
-        ))}
-        {/* <div ref={dummyMsg}></div> */}
+          ))
+          .reverse()}
       </div>
       <form className="channel__chat__form" onSubmit={sendChat}>
         <div className="channel__chat__input__container">
