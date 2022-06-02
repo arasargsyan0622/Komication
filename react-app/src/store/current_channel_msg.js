@@ -42,6 +42,7 @@ export const getCurrChannel = (data) => async dispatch => {
     }
 }
 
+
 export const createMessage = data => async dispatch => {
     const {content, user_id, channel_id} = data
     const response = await fetch(`/api/channel_messages/`, {
@@ -105,6 +106,7 @@ const currChannelReducer = (state=initialState, action) => {
         case REMOVE_MESSAGE:
             const currentMessage = action.myMessage
             delete newState[currentMessage.channel_id].channel.channel_messages[currentMessage.id]
+            return newState
         default:
             return newState
     }

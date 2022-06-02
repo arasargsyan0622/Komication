@@ -21,7 +21,8 @@ import CreateServer from "./components/s3_test";
 
 import Servers from "./components/test_server";
 import CurrChannel from "./components/test_cur_channel";
-import Channels from "./components/test_channel";
+import CurrInbox from "./components/test_direct_messages"
+import Channels from "./components/test_channel"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,6 +64,9 @@ function App() {
           </Route>
           <Route path="/test_channel" exact={true}>
             <CurrChannel />
+          </Route>
+          <Route path="/test_direct_messages" exact={true}>
+            <CurrInbox />
           </Route>
           <ProtectedRoute path="/users" exact={true}>
             <UsersList />

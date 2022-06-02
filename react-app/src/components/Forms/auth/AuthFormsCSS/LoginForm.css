@@ -72,6 +72,20 @@
   font-size: 16px;
 }
 
+.demo__login__button {
+  margin-top: 10px;
+  width: 190px;
+  height: 41px;
+  background-color: #5865f2;
+  color: #ffffff;
+  border-radius: 3px;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin-bottom: 25px;
+  margin-right: 25px;
+}
+
 .login__forgot__password__container {
   margin-bottom: 15px;
 }
