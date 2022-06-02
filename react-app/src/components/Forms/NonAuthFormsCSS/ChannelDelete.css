@@ -1,0 +1,73 @@
+.delete__channel__form__container {
+  width: 440px;
+  height: 200px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  background-color: #36393f;
+}
+.delete__channel__form__heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 440px;
+  height: 56px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.delete__channel__confirmation__message {
+  width: 440px;
+  height: 74px;
+  padding: 0px 8px 20px 16px;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  color: #ffffff;
+}
+
+.delete__channel__bottom__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 440px;
+  height: 70px;
+  padding: 16px;
+  background-color: #2f3136;
+}
+.delete__channel__bottom__buttons > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 38px;
+  padding: 2px 16px;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.delete__channel__bottom__buttons > div:hover {
+  text-decoration: underline;
+}
+
+.delete__channel__button {
+  width: 122px;
+  height: 38px;
+  background-color: #d83c3e;
+  padding: 2px 16px;
+  border: none;
+  outline: 0;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.delete__channel__button:hover {
+  background-color: #b32225;
+}
