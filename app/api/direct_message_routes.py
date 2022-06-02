@@ -11,6 +11,7 @@ direct_message_routes = Blueprint("direct_messages", __name__)
 @direct_message_routes.route("/", methods=["POST"])
 def create_direct_message():
     form = DirectMessageCreateForm()
+    print("form in backend -----------------------------------------", form)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         direct_message = DirectMessage(
@@ -20,6 +21,7 @@ def create_direct_message():
         )
         db.session.add(direct_message)
         db.session.commit()
+        print("direct_message in backend --------------", direct_message)
         return direct_message.to_dict()
     return {"error": "could not make message"}
 

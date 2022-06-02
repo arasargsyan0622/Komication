@@ -10,7 +10,12 @@ const CurrInbox = () => {
 
     const uuid = "4dd7745f900f44f69cefdec53fd57f8b"
     const currInbox = Object.values(useSelector((state) => state.current_inboxes))
-    console.log("currInbox[0] ----------", currInbox[0])
+    console.log("currInbox ----------", currInbox)
+
+
+    // const inboxChannels = Object.values(currInbox)
+    // console.log("inbox channels -=-=-=-=-=", inboxChannels[0])
+
 
     const userId = useSelector((state) => state.session.user.id)
 
@@ -22,7 +27,8 @@ const CurrInbox = () => {
         e.preventDefault()
         const payload = {
             content: message,
-            user_id: userId
+            user_id: userId,
+
         }
     }
 
