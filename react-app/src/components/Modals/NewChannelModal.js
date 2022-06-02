@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 function NewChannelModal() {
   const { server } = Object.values(useSelector((state) => state.current_server))[0];
-  console.log(server);
   const [showModal, setShowModal] = useState(false);
   return (
     <>
