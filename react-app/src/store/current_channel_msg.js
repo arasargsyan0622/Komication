@@ -5,6 +5,7 @@ const LOAD_CURR_CHANNEL = "api/channel/LOAD_CURR_CHANNEL";
 const ADD_MESSAGE = "api/message/ADD_MESSAGE";
 const EDIT_MESSAGE = "api/message/EDIT_MESSAGE";
 const REMOVE_MESSAGE = "api/message/REMOVE_MESSAGE";
+const CLEAN_CURR_CHANNEL = "api/channel/CLEAN_CURR_CHANNEL";
 
 const loadChannel = (myChannel) => {
   return {
@@ -33,6 +34,10 @@ const removeMessage = (myMessage) => {
     myMessage,
   };
 };
+
+export const cleanCurrChannel = () => ({
+  type: CLEAN_CURR_CHANNEL,
+});
 
 export const getCurrChannel = (data) => async (dispatch) => {
   const response = await fetch(`/api/channels/${data}`);
@@ -112,6 +117,9 @@ const currChannelReducer = (state = initialState, action) => {
       delete newState[currentMessage.channel_id].channel.channel_messages[
         currentMessage.id
       ];
+    case CLEAN_CURR_CHANNEL:
+      const cleanState = {};
+      return cleanState;
     default:
       return newState;
   }

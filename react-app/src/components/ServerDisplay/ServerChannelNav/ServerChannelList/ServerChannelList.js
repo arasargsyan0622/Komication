@@ -8,7 +8,10 @@ import { useHistory } from "react-router-dom";
 
 import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
-import { getCurrChannel } from "../../../../store/current_channel_msg";
+import {
+  getCurrChannel,
+  cleanCurrChannel,
+} from "../../../../store/current_channel_msg";
 
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
@@ -56,9 +59,9 @@ function ServerChannelList() {
     if (currentChannelUuid) {
       dispatch(getCurrChannel(currentChannelUuid));
     }
-    console.log(
-      "hello from server channel display ------------------------------------------------"
-    );
+    return () => {
+      dispatch(cleanCurrChannel());
+    };
   }, [dispatch, currentChannelUuid]);
 
   return (
