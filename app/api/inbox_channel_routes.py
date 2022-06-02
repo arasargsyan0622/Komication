@@ -6,6 +6,7 @@ from app.models.inbox import InboxChannel
 from app.models.channel_message import ChannelMessage
 from app.models.direct_message import DirectMessage
 from app.models import db
+import uuid
 
 inbox_channel_routes = Blueprint("inbox_channel", __name__)
 
@@ -15,28 +16,31 @@ def get_user_inbox_channels(id):
     current_user = User.query.get(id)
     my_inbox_channels = current_user.inbox_channel_user
     my_inbox_channels_users = []
-    # spreads the users in a list
     [my_inbox_channels_users.extend(my_inbox_channel.channel_inbox_user) for my_inbox_channel in my_inbox_channels]
     my_inbox_channels_users_filtered = [x for x in my_inbox_channels_users if x.id != id]
     inboxes = [my_inbox_channel.to_dict() for my_inbox_channel in my_inbox_channels]
     users = [x.to_dict() for x in my_inbox_channels_users_filtered]
     for i in range(len(inboxes)):
         inboxes[i]["users"] = users[i]
-    print(inboxes, "hello")
-    print(my_inbox_channels_users_filtered)
-    # return {"inbox_channels": [my_inbox_channel.to_dict() for my_inbox_channel in my_inbox_channels], "users": [x.to_dict() for x in my_inbox_channels_users_filtered] }
     return { "inbox_channels": [inbox for inbox in inboxes]}
 
 @inbox_channel_routes.route("/<int:id>", methods=["POST"])
 def create_inbox_channel(id):
-    new_inbox = InboxChannel()
 
+
+    random_string = ""
+    random_uuid = uuid.uuid4()
+    string_uuid = random_string.join(str(random_uuid).split("-"))
     current_user = User.query.get(id)
-
+    new_inbox = InboxChannel(inbox_uuid= string_uuid)
     new_inbox.channel_inbox_user.append(current_user)
-
+    print("====================")
+    print(id)
+    print(new_inbox)
+    print(new_inbox.channel_inbox_user)
+    print("====================")
     db.session.add(new_inbox)
-    db.session.commit()
+    # db.session.commit()
 
     return {"inbox_channel": new_inbox.to_dict()}
 
