@@ -1,0 +1,19 @@
+.inbox__search__container {
+  width: 240px;
+  height: 48px;
+  background-color: #2f3136;
+  border-bottom: 2px #27292c solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.direct__message__search {
+  width: 220px;
+  height: 28px;
+  background-color: #202225;
+  color: #a3a6aa;
+  padding: 1px 6px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
