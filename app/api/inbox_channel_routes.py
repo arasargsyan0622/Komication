@@ -33,16 +33,14 @@ def create_inbox_channel(id):
     current_user = User.query.get(id)
     new_user = User.query.filter(User.username == form.newUser.data).first()
     # inbox_a = InboxChannel.query.filter(current_user in InboxChannel.channel_inbox_user and new_inbox in InboxChannel.channel_inbox_user).first()
-    print("-----------------------")
-    print("-=-=-=-", current_user.inbox_channel_user)
+    # print("-----------------------")
+    # print("-=-=-=-", current_user.inbox_channel_user)
     # print(current_user.inbox_channel_user[3].channel_inbox_user)
     # print(new_user in current_user.inbox_channel_user[3].channel_inbox_user)
-
-    print("below is the filter")
     myInbox = [inbox for inbox in current_user.inbox_channel_user if new_user in inbox.channel_inbox_user ]
-    print(myInbox)
-    print(InboxChannel.channel_inbox_user)
-    print("-----------------------")
+    # print(myInbox)
+    # print(InboxChannel.channel_inbox_user)
+    # print("-----------------------")
     if not len(myInbox):
         if form.validate_on_submit():
             random_string = ""
@@ -52,19 +50,19 @@ def create_inbox_channel(id):
             new_inbox.channel_inbox_user.append(current_user)
             new_inbox.channel_inbox_user.append(new_user)
 
-            print("====================")
-            print(id)
-            print(new_user)
-            print(form.newUser.data)
-            print(new_inbox)
-            print(new_inbox.channel_inbox_user)
+            # print("====================")
+            # print(id)
+            # print(new_user)
+            # print(form.newUser.data)
+            # print(new_inbox)
+            # print(new_inbox.channel_inbox_user)
             # print(new_inbox.users)
-            print("====================")
+            # print("====================")
             db.session.add(new_inbox)
             db.session.commit()
             test = new_inbox.to_dict()
             test["users"] = new_user.to_dict()
-            print("==-=-=-=-", test)
+            # print("==-=-=-=-", test)
             # send inbox state with new user to match get inbox state
             return test
     else:
