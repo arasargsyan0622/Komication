@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 
 import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
-
+import NewChannelModal from "../../../Modals/NewChannelModal";
+import ChannelEditModal from "../../../Modals/ChannelEditModal";
 function ServerChannelList() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
@@ -51,15 +52,16 @@ function ServerChannelList() {
   return (
     <div className="server__channel__list__container">
       <div className="server__channels__container">
-        <div>
-          <NavLink to="/servers/serverId/edit" className={"server__channel__header"}>
-            TEXT CHANNELS
-          </NavLink>
+        <div className="server__channel__add__container">
+          <div className={"server__channel__header"}>TEXT CHANNELS</div>
+          <NewChannelModal></NewChannelModal>
         </div>
         {channels?.map((channel) => {
           return (
             <div key={channel.id} className={"server__channel__link"} onClick={() => UpdateCurrentChannel(channel.id)}>
-              # {channel.channel_name}
+              <div className="server__channel__link__name"># {channel.channel_name}</div>
+
+              <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
             </div>
           );
         })}
