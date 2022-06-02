@@ -65,7 +65,9 @@ export const addCurrentUserInbox = (data) => async (dispatch) => {
     if (response.ok) {
         const inboxChannel = await response.json()
         console.log(inboxChannel)
-        // dispatch(addInbox)
+        console.log(inboxChannel.users)
+        // inboxChannel.channel_inbox_user = inboxChannel.channel_inbox_user[0]
+        dispatch(addInbox(inboxChannel))
     }
 }
 // export const addMessageThunk = (data) => async (dispatch) => {
@@ -118,7 +120,7 @@ const directMessagesReducer = (state = initialState, action) => {
         case LOAD_CURR_INBOXES:
             const currentInboxes = action.inboxes
             const normInboxes = {}
-            console.log(action.inboxes)
+            // console.log(action.inboxes)
             currentInboxes.inbox_channels.forEach(inbox => {
                 normInboxes[inbox.id] = inbox
             });
@@ -126,6 +128,10 @@ const directMessagesReducer = (state = initialState, action) => {
             newState.inbox_channels = normInboxes
             return newState
         case ADD_INBOX:
+            console.log(action.inbox)
+            const newInbox = action.inbox
+            console.log(newState)
+            newState.inbox_channels[newInbox.id] = newInbox
             return newState
         // case ADD_MESSAGE:
         //     newState[action.message.id] = action.message

@@ -51,17 +51,22 @@ def create_inbox_channel(id):
             new_inbox = InboxChannel(inbox_uuid= string_uuid)
             new_inbox.channel_inbox_user.append(current_user)
             new_inbox.channel_inbox_user.append(new_user)
+
             print("====================")
             print(id)
             print(new_user)
             print(form.newUser.data)
             print(new_inbox)
             print(new_inbox.channel_inbox_user)
+            # print(new_inbox.users)
             print("====================")
             db.session.add(new_inbox)
             db.session.commit()
-
-            return {"inbox_channel": new_inbox.to_dict()}
+            test = new_inbox.to_dict()
+            test["users"] = new_user.to_dict()
+            print("==-=-=-=-", test)
+            # send inbox state with new user to match get inbox state
+            return test
     else:
         return {"message": "inbox already exists"}
 

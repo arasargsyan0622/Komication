@@ -8,7 +8,7 @@ const CurrInbox = () => {
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [newUser, setNewUser] = useState()
     const currInbox = Object.values(useSelector((state) => state.current_inboxes))
-    console.log("currInbox ----------", currInbox[0])
+    // console.log("currInbox ----------", currInbox[0])
     const userId = useSelector((state) => state.session.user.id)
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const CurrInbox = () => {
                     )
                 })}
                 <form onSubmit = {addInboxChannel}>
-                    <input value={newUser} onChange={(e)=> setNewUser(e.target.value)} placeholder="user id"></input>
+                    <input onChange={(e)=> setNewUser(e.target.value)} placeholder="user id"></input>
                     <button type="submit">add inbox channel</button>
                 </form>
             </div>
