@@ -105,6 +105,7 @@ const currChannelReducer = (state=initialState, action) => {
         case REMOVE_MESSAGE:
             const currentMessage = action.myMessage
             delete newState[currentMessage.channel_id].channel.channel_messages[currentMessage.id]
+            return newState
         default:
             return newState
     }
