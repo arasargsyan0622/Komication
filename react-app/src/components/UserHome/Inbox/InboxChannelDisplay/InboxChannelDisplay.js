@@ -42,7 +42,7 @@ function InboxChannelDisplay({ channel }) {
         room: chatroom,
       };
       socket.emit("leave", payload);
-      // socket.disconnect();
+      socket.disconnect();
     };
   }, [history]);
 

@@ -21,7 +21,7 @@ import CreateServer from "./components/s3_test";
 
 import Servers from "./components/test_server";
 import CurrChannel from "./components/test_cur_channel";
-import Channels from "./components/test_channel"
+import Channels from "./components/test_channel";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -87,8 +87,10 @@ function App() {
             <h1>this is working</h1>
           </ProtectedRoute> */}
 
-
           <ProtectedRoute path="/servers/:serverUuid">
+            <ServerDisplay></ServerDisplay>
+          </ProtectedRoute>
+          <ProtectedRoute path="/servers/:serverUuid/:channelUuid">
             <ServerDisplay></ServerDisplay>
           </ProtectedRoute>
         </Switch>
