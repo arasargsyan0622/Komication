@@ -24,10 +24,8 @@ function ServerDisplay() {
   // console.log(newUuid);
 
   useEffect(() => {
-    dispatch(getServers()).then(() => {
-      dispatch(getCurrServer(newUuid)).then(() => {
-        setIsLoaded(true);
-      });
+    dispatch(getCurrServer(newUuid)).then(() => {
+      setIsLoaded(true);
     });
   }, [dispatch, newUuid]);
 

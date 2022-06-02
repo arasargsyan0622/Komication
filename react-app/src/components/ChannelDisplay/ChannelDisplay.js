@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 let socket;
 
 function ChannelDisplay({ channel }) {
+  console.log(channel);
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const history = useHistory();
