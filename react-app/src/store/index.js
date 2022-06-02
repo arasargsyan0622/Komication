@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   servers: serverReducer,
   current_server: currServerReducer,
   current_channel: currChannelReducer,
-  direct_messages: directMessagesReducer,
+  current_inboxes: directMessagesReducer,
 });
 
 
