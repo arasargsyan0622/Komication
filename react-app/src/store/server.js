@@ -108,9 +108,10 @@ export const deleteServer = (uuid) => async (dispatch) => {
 const initialState = {};
 
 const serverReducer = (state = initialState, action) => {
-  const newState = clone(state);
+  let newState = clone(state);
   switch (action.type) {
     case LOAD_SERVERS:
+      newState = {};
       const servers = action.servers;
       servers.servers.forEach((server) => {
         newState[server.id] = server;

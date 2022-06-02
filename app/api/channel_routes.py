@@ -23,11 +23,11 @@ def channel(uuid):
 
 @channel_routes.route("/", methods=["POST"])
 def create_channel():
-    # print("this is the api route")
     form = ChannelCreateForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     # print("this is the form name -=-=-=-=-=-=-", form.channel_name.data)
     # print("this is the form id ===========", form.server_id.data)
+    print(form.data)
     if form.validate_on_submit():
         random_string = ""
         random_uuid = uuid.uuid4()
