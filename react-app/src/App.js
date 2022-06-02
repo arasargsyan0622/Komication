@@ -23,6 +23,7 @@ import Servers from "./components/test_server";
 import CurrChannel from "./components/test_cur_channel";
 import CurrInbox from "./components/test_direct_messages"
 import Channels from "./components/test_channel"
+import DMs from "./components/dm";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -67,6 +68,9 @@ function App() {
           </Route>
           <Route path="/test_direct_messages" exact={true}>
             <CurrInbox />
+          </Route>
+          <Route path="/dms" exact={true}>
+            <DMs />
           </Route>
           <ProtectedRoute path="/users" exact={true}>
             <UsersList />

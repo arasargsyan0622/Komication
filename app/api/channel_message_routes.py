@@ -17,7 +17,7 @@ def create_channel_message():
         )
         db.session.add(channel_message)
         db.session.commit()
-        return  channel_message.to_dict()
+        return channel_message.to_dict()
     return {"error": "could not make message"}
 
 @channel_message_routes.route('/<int:id>', methods=["PUT"])
