@@ -42,6 +42,7 @@ export const getCurrChannel = (data) => async dispatch => {
     }
 }
 
+
 export const createMessage = data => async dispatch => {
     const {content, user_id, channel_id} = data
     const response = await fetch(`/api/channel_messages/`, {

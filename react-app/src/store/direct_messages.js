@@ -1,15 +1,23 @@
 import rfdc from 'rfdc'
 const clone = rfdc()
 
-const LOAD_CURR_INBOX = '/api/direct_messages/LOAD_CURR_INBOX'
+const LOAD_CURR_INBOXES = '/api/direct_messages/LOAD_CURR_INBOX'
+const ADD_INBOX = 'api/direct_messages/ADD_INBOX'
 // const ADD_MESSAGE = '/api/direct_messages/ADD_MESSAGE'
 // const EDIT_MESSAGE = '/api/direct_messages/EDIT_MESSAGE'
 // const REMOVE_MESSAGE = '/api/direct_messages/REMOVE_MESSAGE'
 
-const getInbox = (inbox) => {
+const getInboxes = (inboxes) => {
     return {
-        type: LOAD_CURR_INBOX,
-        inbox,
+        type: LOAD_CURR_INBOXES,
+        inboxes,
+    }
+}
+
+const addInbox = (inbox) => {
+    return {
+        type: ADD_INBOX,
+        inbox
     }
 }
 
@@ -34,18 +42,32 @@ const getInbox = (inbox) => {
 //     }
 // }
 
-export const getCurrentInbox = (data) => async (dispatch) => {
+export const getCurrentUserInboxes = (data) => async (dispatch) => {
     // console.log("data -==-=-===-=", data)
     const response = await fetch(`/api/inbox_channel/${data}`)
     // console.log("response ----------------", response)
     if (response.ok) {
-        const inbox = await response.json()
+        const inboxes = await response.json()
         // console.log("inbox in thunk =================", inbox)
-        dispatch(getInbox(inbox))
+        dispatch(getInboxes(inboxes))
     }
     return response
 }
 
+export const addCurrentUserInbox = (data) => async (dispatch) => {
+    const {userId, newUserId} = data
+    const response = await fetch(`api/inbox_channel/${userId}`, {
+        method: "POST",
+        headers:  { "Content-Type": "application/json" },
+        body: JSON.stringify({ data }),
+    })
+    console.log(response)
+    if (response.ok) {
+        const inboxChannel = await response.json()
+        console.log(inboxChannel)
+        // dispatch(addInbox)
+    }
+}
 // export const addMessageThunk = (data) => async (dispatch) => {
 //     const { message } = data
 //     const response = await fetch(`/api/direct_messages/`, {
@@ -93,14 +115,17 @@ const initialState = {}
 const directMessagesReducer = (state = initialState, action) => {
     let newState = clone(state)
     switch (action.type) {
-        case LOAD_CURR_INBOX:
-            const currentInbox = action.inbox
+        case LOAD_CURR_INBOXES:
+            const currentInboxes = action.inboxes
             const normInboxes = {}
-            currentInbox.inbox_channels.forEach(inbox => {
+            console.log(action.inboxes)
+            currentInboxes.inbox_channels.forEach(inbox => {
                 normInboxes[inbox.id] = inbox
             });
-            newState = currentInbox
+            newState = currentInboxes
             newState.inbox_channels = normInboxes
+            return newState
+        case ADD_INBOX:
             return newState
         // case ADD_MESSAGE:
         //     newState[action.message.id] = action.message
