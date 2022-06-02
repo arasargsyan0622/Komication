@@ -8,12 +8,17 @@ import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
+import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
+
 function ServerChannelList() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
   let currentServer = useSelector((state) => state.current_server);
+  const serverOwner = Object.values(currentServer)[0]?.server.user_id;
 
-  const [channels, setChannels] = useState(Object.values(currentServer)[0]?.channels);
+  const [channels, setChannels] = useState(
+    Object.values(currentServer)[0]?.channels
+  );
 
   // const uuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
@@ -58,18 +63,27 @@ function ServerChannelList() {
         </div>
         {channels?.map((channel) => {
           return (
-            <div key={channel.id} className={"server__channel__link"} onClick={() => UpdateCurrentChannel(channel.id)}>
-              <div className="server__channel__link__name"># {channel.channel_name}</div>
+            <div
+              key={channel.id}
+              className={"server__channel__link"}
+              onClick={() => UpdateCurrentChannel(channel.id)}
+            >
+              <div className="server__channel__link__name">
+                # {channel.channel_name}
+              </div>
 
               <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
             </div>
           );
         })}
       </div>
-      <div className="server__delete__container">
-        <div className="server__delete__heading">Delete Server</div>
-        <div className="server__delete__trash"></div>
-      </div>
+      {currentUser.id === serverOwner ? (
+        <div className="server__delete__container">
+          <ServerDeleteModal />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
