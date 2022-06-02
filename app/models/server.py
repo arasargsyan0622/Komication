@@ -16,7 +16,7 @@ class Server(db.Model):
     banner_url = db.Column(db.String(255))
 
     owner = db.relationship("User", back_populates="servers")
-    channels = db.relationship("Channel", back_populates="server_owner")
+    channels = db.relationship("Channel", back_populates="server_owner", cascade="all, delete-orphan")
 
     users = db.relationship("User", secondary=jt, back_populates="server_user")
 

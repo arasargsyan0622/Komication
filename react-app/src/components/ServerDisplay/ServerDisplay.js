@@ -9,7 +9,7 @@ import ServerUserCard from "../ServerUserCard/ServerUserCard";
 
 import "./ServerDisplay.css";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getServers } from "../../store/server";
 import { getCurrServer } from "../../store/current_server";
 import { useParams } from "react-router-dom";
@@ -19,9 +19,12 @@ function ServerDisplay() {
   // const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  let newUuid = useParams().serverUuid;
-
+  const channel = useSelector((state) => state.current_channel);
+  // console.log(channel, "hello from here");
   // console.log(newUuid);
+  console.log(channel);
+
+  let newUuid = useParams().serverUuid;
 
   useEffect(() => {
     let mounted = true;
@@ -46,46 +49,50 @@ function ServerDisplay() {
     <div className="server__display">
       <UserServerList></UserServerList>
       <ServerChannelNav></ServerChannelNav>
-      <div className="server__channel__display">
-        <div className="server__header__nav">
-          <div className="server__header__name">
-            <div className="server__header__hash"></div>
-            <span>Channel Name</span>
+      {channel ? (
+        <div className="server__channel__display">
+          <div className="server__header__nav">
+            <div className="server__header__name">
+              <div className="server__header__hash"></div>
+              <span>Channel Name</span>
+            </div>
+            <div className="server__search__container">
+              <ServerSearch></ServerSearch>
+            </div>
           </div>
-          <div className="server__search__container">
-            <ServerSearch></ServerSearch>
+          <div className="server__channel__display__container">
+            <ChannelDisplay></ChannelDisplay>
+            <div className="online__users__container">
+              <div>ONLINE</div>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <div>OFFLINE</div>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+              <ServerUserCard></ServerUserCard>
+            </div>
           </div>
         </div>
-        <div className="server__channel__display__container">
-          <ChannelDisplay></ChannelDisplay>
-          <div className="online__users__container">
-            <div>ONLINE</div>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <div>OFFLINE</div>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-            <ServerUserCard></ServerUserCard>
-          </div>
-        </div>
-      </div>
+      ) : (
+        <>Welcome make a new Channel</>
+      )}
     </div>
   ) : (
     <p>loading.... this is server loading hehe</p>

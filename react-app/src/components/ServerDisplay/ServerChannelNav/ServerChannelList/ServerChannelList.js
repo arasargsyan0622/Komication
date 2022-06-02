@@ -4,30 +4,32 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { useState, useEffect } from "react";
 
+import { useHistory } from "react-router-dom";
+
 import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
+import { getCurrChannel } from "../../../../store/current_channel_msg";
+
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
 import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
 
 function ServerChannelList() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const currentUser = useSelector((state) => state.session.user);
   let currentServer = useSelector((state) => state.current_server);
   const serverOwner = Object.values(currentServer)[0]?.server.user_id;
-
-  const [channels, setChannels] = useState(
-    Object.values(currentServer)[0]?.channels
+  const channels = useSelector((state) =>
+    Object.values(Object.values(state.current_server)[0].server.channels)
   );
-
-  // const uuid = Object.values(currentServer)[0]?.server.server_invite_url;
+  const currentChannelUuid = window.location.pathname.split("/")[3];
 
   const users = Object.values(currentServer)[0]?.server.users;
 
   useEffect(() => {
-    currentServer = Object.values(currentServer)[0];
-    // console.log(currentServer);
-    setChannels(Object.values(currentServer.server.channels));
+    // currentServer = Object.values(currentServer)[0];
+
     let was_I_Invited = true;
     users?.forEach((user) => {
       // checks if I am in the server
@@ -36,6 +38,7 @@ function ServerChannelList() {
       }
     });
     const server_uuid = window.location.pathname.split("/")[2];
+
     if (was_I_Invited === true && users) {
       const payload = {
         user_id: currentUser.id,
@@ -43,16 +46,20 @@ function ServerChannelList() {
       };
       dispatch(wasInvited(payload)).then(() => {
         dispatch(getServers()).then(() => {
-          dispatch(getCurrServer(server_uuid));
+          dispatch(getCurrServer(server_uuid)).then(() => {
+            dispatch(getCurrChannel(currentChannelUuid));
+          });
         });
       });
     }
-  }, [dispatch, currentServer]);
 
-  async function UpdateCurrentChannel(channelId) {
-    // await dispatch(cleanChannel());
-    // dispatch(setCurrentChannel(channelId));
-  }
+    if (currentChannelUuid) {
+      dispatch(getCurrChannel(currentChannelUuid));
+    }
+    console.log(
+      "hello from server channel display ------------------------------------------------"
+    );
+  }, [dispatch, currentChannelUuid]);
 
   return (
     <div className="server__channel__list__container">
@@ -63,17 +70,18 @@ function ServerChannelList() {
         </div>
         {channels?.map((channel) => {
           return (
-            <div
-              key={channel.id}
-              className={"server__channel__link"}
-              onClick={() => UpdateCurrentChannel(channel.id)}
+            <NavLink
+              to={`/servers/${
+                Object.values(currentServer)[0].server.server_invite_url
+              }/${channel.channel_uuid}`}
             >
-              <div className="server__channel__link__name">
-                # {channel.channel_name}
+              <div key={channel.id} className={"server__channel__link"}>
+                <div className="server__channel__link__name">
+                  # {channel.channel_name}
+                </div>
+                <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
               </div>
-
-              <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
-            </div>
+            </NavLink>
           );
         })}
       </div>
