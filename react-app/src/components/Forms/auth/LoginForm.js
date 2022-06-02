@@ -28,6 +28,24 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const demoLogin1 = async (e) => {
+    e.preventDefault();
+    await dispatch(login("demo@aa.io", "password"))
+
+  }
+
+  const demoLogin2 = async (e) => {
+    e.preventDefault();
+    await dispatch(login("zensan@p.hub", "DarrenStinks"))
+
+  }
+
+  const demoLogin3 = async (e) => {
+    e.preventDefault();
+    await dispatch(login("dripgod@p.hub", "password1"))
+
+  }
+
   if (user) {
     return <Redirect to="/me" />;
   }
@@ -77,7 +95,18 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
-      <div>PLACEHOLDER</div>
+      <div>
+        <form onSubmit={demoLogin1}>
+          <button type="submit" className="demo__login__button">Demo User:Demo</button>
+        </form>
+        <form onSubmit={demoLogin2}>
+          <button type="submit" className="demo__login__button">Demo User:Zensan</button>
+        </form>
+        <form onSubmit={demoLogin3}>
+          <button type="submit" className="demo__login__button">Demo User:Dripgod</button>
+        </form>
+      </div>
+
     </div>
   );
 };
