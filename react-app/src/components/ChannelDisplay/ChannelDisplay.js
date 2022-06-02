@@ -18,7 +18,7 @@ function ChannelDisplay({ channel }) {
     let chatroom = history.location.pathname;
 
     // console.log(chatroom);
-    dummyMsg?.current.scrollIntoView();
+    dummyMsg?.current?.scrollIntoView();
     // let newdate = new Date();
     // console.log(newdate);
 
@@ -32,7 +32,7 @@ function ChannelDisplay({ channel }) {
     socket.on("chat", (data) => {
       // console.log(data);
       setMessages((messages) => [...messages, data]);
-      dummyMsg?.current.scrollIntoView();
+      dummyMsg?.current?.scrollIntoView();
     });
 
     return () => {

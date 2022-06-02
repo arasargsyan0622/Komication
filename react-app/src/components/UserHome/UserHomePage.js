@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserServerList from "./UserServerList/UserServerList";
+import UserFooterDisplay from "../UserFooterDisplay/UserFooterDisplay";
+import NewInboxChannelForm from "../Forms/NewInboxChannel";
 
 import "./UserHomePage.css";
 
@@ -28,6 +30,10 @@ function UserHomePage() {
   return (
     <div className="user__home__page">
       <UserServerList servers={servers}></UserServerList>
+      <div className="inbox__channel__nav__container">
+        <NewInboxChannelForm></NewInboxChannelForm>
+        <UserFooterDisplay></UserFooterDisplay>
+      </div>
     </div>
   );
 }
