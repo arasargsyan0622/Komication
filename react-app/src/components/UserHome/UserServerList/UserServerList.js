@@ -1,9 +1,9 @@
 import UserServerCard from "./UserServerCard";
 import UserHomeCard from "./UserHomeCard";
 import LogoutButton from "../../Forms/auth/LogoutButton";
+import NewServerModal from "../../Modals/NewServerModal";
 import UserExploreCard from "./UserExploreCard";
 import "./UserServerList.css";
-import UserAddServerCard from "./UserAddServerCard";
 
 import { useSelector } from "react-redux";
 
@@ -12,17 +12,16 @@ function UserServerList() {
   const user = useSelector((state) => state.session.user);
   // const ownedServers = servers.filter((server) => server.user_id == user.id);
 
+  // checks to see if im in any server
   const joinedServers = servers.filter((server) => {
-    
     const inServer = server.users.filter((checkingUser) => {
-
       if (checkingUser.id === user.id) {
         return user;
       }
-
     });
 
-    if (inServer === false) {
+    // checks falsy value. inServer is an array and if its empty its falsy.
+    if (inServer == false) {
       return;
     } else {
       return server;
@@ -45,8 +44,7 @@ function UserServerList() {
           <UserServerCard key={server.id} server={server}></UserServerCard>
         );
       })}
-
-      <UserAddServerCard props={user}></UserAddServerCard>
+      <NewServerModal></NewServerModal>
 
       <UserExploreCard></UserExploreCard>
 

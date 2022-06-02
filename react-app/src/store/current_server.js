@@ -95,32 +95,36 @@ export const deleteChannel = (uuid) => async (dispatch) => {
 const initialState = {};
 
 const currServerReducer = (state = initialState, action) => {
-    let newState = clone(state)
-    let currentServer
-    switch(action.type) {
-        case LOAD_CURR_SERVER:
-          currentServer = action.myServer
-          newState={}
-          const newobj ={}
-          currentServer.server.channels.forEach(channel =>{
-            newobj[channel.id] = channel
-          })
-          newState[currentServer.server.id] = currentServer
-          newState[currentServer.server.id].server.channels = newobj
-          return newState
-        case ADD_CHANNEL:
-          newState[action.channel.server_id].server.channels[action.channel.id] = action.channel
-          return newState
-        case EDIT_CHANNEL:
-          newState[action.channel.server_id].server.channels[action.channel.id] = action.channel
-          return newState
-        case REMOVE_CHANNEL:
-          currentServer = action.myServer
-          delete newState[action.channel.server_id].server.channels[action.channel.channel_id]
-          return newState
-        default:
-          return newState
-    }
-}
+  let newState = clone(state);
+  let currentServer;
+  switch (action.type) {
+    case LOAD_CURR_SERVER:
+      currentServer = action.myServer;
+      newState = {};
+      const newobj = {};
+      currentServer.server.channels.forEach((channel) => {
+        newobj[channel.id] = channel;
+      });
+      newState[currentServer.server.id] = currentServer;
+      newState[currentServer.server.id].server.channels = newobj;
+      return newState;
+    case ADD_CHANNEL:
+      newState[action.channel.server_id].server.channels[action.channel.id] =
+        action.channel;
+      return newState;
+    case EDIT_CHANNEL:
+      newState[action.channel.server_id].server.channels[action.channel.id] =
+        action.channel;
+      return newState;
+    case REMOVE_CHANNEL:
+      currentServer = action.myServer;
+      delete newState[action.channel.server_id].server.channels[
+        action.channel.channel_id
+      ];
+      return newState;
+    default:
+      return newState;
+  }
+};
 
 export default currServerReducer;

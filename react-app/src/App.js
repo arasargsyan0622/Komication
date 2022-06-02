@@ -91,8 +91,10 @@ function App() {
             <h1>this is working</h1>
           </ProtectedRoute> */}
 
-
           <ProtectedRoute path="/servers/:serverUuid">
+            <ServerDisplay></ServerDisplay>
+          </ProtectedRoute>
+          <ProtectedRoute path="/servers/:serverUuid/:channelUuid">
             <ServerDisplay></ServerDisplay>
           </ProtectedRoute>
         </Switch>

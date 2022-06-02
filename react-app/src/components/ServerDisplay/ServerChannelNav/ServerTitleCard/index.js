@@ -1,6 +1,8 @@
 import "./ServerTitleCard.css";
 import { useHistory } from "react-router-dom";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+
+import ServerEditModal from "../../../Modals/ServerEditModal";
 
 function ServerTitleCard() {
   const history = useHistory();
@@ -11,27 +13,7 @@ function ServerTitleCard() {
 
   return (
     <div className="server__title__card">
-      <div
-        className="server__title__card__contents"
-        onClick={() => history.push("/servers/serverId/edit")}
-      >
-        <div
-          className="server__title"
-          onClick={(e) => {
-            e.stopPropagation();
-            history.push("/servers/serverId/edit");
-          }}
-        >
-          {serverName}
-        </div>
-        <div
-          className="server__edit"
-          onClick={(e) => {
-            e.stopPropagation();
-            history.push("/servers/serverId/edit");
-          }}
-        ></div>
-      </div>
+      <ServerEditModal />
     </div>
   );
 }

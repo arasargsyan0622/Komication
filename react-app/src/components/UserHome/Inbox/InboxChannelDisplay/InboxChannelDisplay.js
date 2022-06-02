@@ -1,13 +1,12 @@
 import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
-import "./ChannelDisplay.css";
+import "./InboxChannelDisplay.css";
 
 import { useHistory } from "react-router-dom";
 
 let socket;
 
-function ChannelDisplay({ channel }) {
-  console.log(channel);
+function InboxChannelDisplay({ channel }) {
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const history = useHistory();
@@ -19,7 +18,7 @@ function ChannelDisplay({ channel }) {
     let chatroom = history.location.pathname;
 
     // console.log(chatroom);
-    dummyMsg?.current?.scrollIntoView();
+    dummyMsg.current?.scrollIntoView();
     // let newdate = new Date();
     // console.log(newdate);
 
@@ -33,7 +32,7 @@ function ChannelDisplay({ channel }) {
     socket.on("chat", (data) => {
       // console.log(data);
       setMessages((messages) => [...messages, data]);
-      dummyMsg?.current?.scrollIntoView();
+      dummyMsg.current?.scrollIntoView();
     });
 
     return () => {
@@ -99,4 +98,4 @@ function ChannelDisplay({ channel }) {
   );
 }
 
-export default ChannelDisplay;
+export default InboxChannelDisplay;
