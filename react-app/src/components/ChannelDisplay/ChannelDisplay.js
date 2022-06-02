@@ -3,49 +3,53 @@ import React, { useState, useEffect, useRef } from "react";
 import "./ChannelDisplay.css";
 
 import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 let socket;
 
-function ChannelDisplay({ channel }) {
+function ChannelDisplay() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const dummyMsg = useRef();
+
+  const user = useSelector((state) => state.session.user);
+  const channel = useSelector((state) => state.current_channel);
+
+  console.log(user);
   console.log(channel);
+
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
-  const history = useHistory();
-  const dummyMsg = useRef();
+
   // console.log(messages);
   useEffect(() => {
     socket = io();
 
     let chatroom = history.location.pathname;
 
-    // console.log(chatroom);
     dummyMsg?.current?.scrollIntoView();
-    // let newdate = new Date();
-    // console.log(newdate);
 
     const payload = {
-      username: "TestUser",
+      username: user.username,
       room: chatroom,
     };
 
     socket.emit("join", payload);
 
     socket.on("chat", (data) => {
-      // console.log(data);
       setMessages((messages) => [...messages, data]);
       dummyMsg?.current?.scrollIntoView();
     });
 
     return () => {
-      // console.log("hello");
       const payload = {
-        username: "TestUser",
+        username: user.username,
         room: chatroom,
       };
       socket.emit("leave", payload);
       socket.disconnect();
     };
-  }, [history]);
+  }, [dispatch, channel]);
 
   const updateChatInput = (e) => {
     setChatInput(e.target.value);
@@ -56,14 +60,14 @@ function ChannelDisplay({ channel }) {
     let chatroom = history.location.pathname;
 
     const payload = {
-      user: "TestUser",
+      user: user.username,
       msg: chatInput,
       room: chatroom,
     };
-
     socket.emit("chat", payload);
     setChatInput("");
   };
+
   return (
     <div className="channel__display__container">
       <div className="channel__messages__container">

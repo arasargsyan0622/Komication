@@ -40,6 +40,13 @@ const ConfirmDeleteServer = () => {
     ) {
       history.push("/me");
       window.location.reload(false);
+    } else if (
+      joinedServers[0].server_invite_url !=
+      Object.values(currentServer)[0].server.server_invite_url
+    ) {
+      const firstJoinedServer = joinedServers[0]?.server_invite_url;
+      history.push(`/servers/${firstJoinedServer}`);
+      window.location.reload(false);
     } else {
       const firstJoinedServer = joinedServers[1]?.server_invite_url;
       history.push(`/servers/${firstJoinedServer}`);
