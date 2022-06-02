@@ -6,8 +6,7 @@ const CurrInbox = () => {
     const dispatch = useDispatch()
 
     const [ isLoaded, setIsLoaded ] = useState(false)
-    const [newUserId, setNewUserId] = useState()
-    const uuid = "4dd7745f900f44f69cefdec53fd57f8b"
+    const [newUser, setNewUser] = useState()
     const currInbox = Object.values(useSelector((state) => state.current_inboxes))
     console.log("currInbox ----------", currInbox[0])
     const userId = useSelector((state) => state.session.user.id)
@@ -18,9 +17,10 @@ const CurrInbox = () => {
 
     const addInboxChannel = ((e)=>{
         e.preventDefault()
+
         const payload = {
             userId,
-            newUserId,
+            newUser,
         }
         console.log(payload)
         dispatch(addCurrentUserInbox(payload))
@@ -38,7 +38,7 @@ const CurrInbox = () => {
                     )
                 })}
                 <form onSubmit = {addInboxChannel}>
-                    <input value={newUserId} onChange={(e)=> setNewUserId(e.target.value)} placeholder="user id"></input>
+                    <input value={newUser} onChange={(e)=> setNewUser(e.target.value)} placeholder="user id"></input>
                     <button type="submit">add inbox channel</button>
                 </form>
             </div>

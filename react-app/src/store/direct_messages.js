@@ -55,11 +55,11 @@ export const getCurrentUserInboxes = (data) => async (dispatch) => {
 }
 
 export const addCurrentUserInbox = (data) => async (dispatch) => {
-    const {userId, newUserId} = data
+    const {userId, newUser} = data
     const response = await fetch(`api/inbox_channel/${userId}`, {
         method: "POST",
         headers:  { "Content-Type": "application/json" },
-        body: JSON.stringify({ data }),
+        body: JSON.stringify({ userId, newUser }),
     })
     console.log(response)
     if (response.ok) {

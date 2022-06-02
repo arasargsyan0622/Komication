@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, redirect, jsonify
+from operator import ne
+from flask import Blueprint, render_template, redirect, jsonify, request
+from app.forms.inbox_form import UserInboxCreateForm
 from app.models.channel import Channel
 from app.models.server import Server
 from app.models.user import User
@@ -26,23 +28,42 @@ def get_user_inbox_channels(id):
 
 @inbox_channel_routes.route("/<int:id>", methods=["POST"])
 def create_inbox_channel(id):
-
-
-    random_string = ""
-    random_uuid = uuid.uuid4()
-    string_uuid = random_string.join(str(random_uuid).split("-"))
+    form = UserInboxCreateForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     current_user = User.query.get(id)
-    new_inbox = InboxChannel(inbox_uuid= string_uuid)
-    new_inbox.channel_inbox_user.append(current_user)
-    print("====================")
-    print(id)
-    print(new_inbox)
-    print(new_inbox.channel_inbox_user)
-    print("====================")
-    db.session.add(new_inbox)
-    # db.session.commit()
+    new_user = User.query.filter(User.username == form.newUser.data).first()
+    # inbox_a = InboxChannel.query.filter(current_user in InboxChannel.channel_inbox_user and new_inbox in InboxChannel.channel_inbox_user).first()
+    print("-----------------------")
+    print("-=-=-=-", current_user.inbox_channel_user)
+    # print(current_user.inbox_channel_user[3].channel_inbox_user)
+    # print(new_user in current_user.inbox_channel_user[3].channel_inbox_user)
 
-    return {"inbox_channel": new_inbox.to_dict()}
+    print("below is the filter")
+    myInbox = [inbox for inbox in current_user.inbox_channel_user if new_user in inbox.channel_inbox_user ]
+    print(myInbox)
+    print(InboxChannel.channel_inbox_user)
+    print("-----------------------")
+    if not len(myInbox):
+        if form.validate_on_submit():
+            random_string = ""
+            random_uuid = uuid.uuid4()
+            string_uuid = random_string.join(str(random_uuid).split("-"))
+            new_inbox = InboxChannel(inbox_uuid= string_uuid)
+            new_inbox.channel_inbox_user.append(current_user)
+            new_inbox.channel_inbox_user.append(new_user)
+            print("====================")
+            print(id)
+            print(new_user)
+            print(form.newUser.data)
+            print(new_inbox)
+            print(new_inbox.channel_inbox_user)
+            print("====================")
+            db.session.add(new_inbox)
+            db.session.commit()
+
+            return {"inbox_channel": new_inbox.to_dict()}
+    else:
+        return {"message": "inbox already exists"}
 
 @inbox_channel_routes.route("/hide/<int:id>", methods=["POST"])
 def hide_inbox_channel(id):
