@@ -19,19 +19,28 @@ function UserHomePage() {
 
   const servers = Object.values(useSelector((state) => state.servers));
 
+  console.log("hello from user home page");
+
   let newUuid = useParams().serverUuid;
   let channel;
 
   useEffect(() => {
-    dispatch(getServers()).then(() => {
-      if (newUuid)
-        dispatch(getCurrServer(newUuid)).then(() => {
+    let mounted = true;
+    let t = setTimeout(() => {
+      if (mounted) {
+        dispatch(getServers()).then(() => {
           setIsLoaded(true);
         });
-    });
+      }
+    }, 500);
+
+    return () => {
+      mounted = false;
+      clearTimeout(t);
+    };
   }, [dispatch]);
 
-  return (
+  return isLoaded ? (
     <div className="user__home__page">
       <UserServerList servers={servers}></UserServerList>
       <div className="inbox__channel__nav__container">
@@ -46,6 +55,8 @@ function UserHomePage() {
         <InboxChannelDisplay channel={channel}></InboxChannelDisplay>
       </div>
     </div>
+  ) : (
+    <p>loading.... ASDDDDDDDDDDDDDDDDDDDDDzsxcccccccccccccccccc You suck</p>
   );
 }
 
