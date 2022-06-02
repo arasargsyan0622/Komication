@@ -35,9 +35,9 @@ const getInbox = (inbox) => {
 // }
 
 export const getCurrentInbox = (data) => async (dispatch) => {
-    console.log("data -==-=-===-=", data)
+    // console.log("data -==-=-===-=", data)
     const response = await fetch(`/api/inbox_channel/${data}`)
-    console.log("response ----------------", response)
+    // console.log("response ----------------", response)
     if (response.ok) {
         const inbox = await response.json()
         // console.log("inbox in thunk =================", inbox)
