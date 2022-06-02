@@ -1,41 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMessageThunk, editMessageThunk } from '../store/dir.msg'
+import { getInbox, addMessageThunk, editMessageThunk } from '../store/dir.msg'
 import { getCurrentInbox } from "../store/direct_messages"
 
 const DMs = () => {
     const dispatch = useDispatch()
 
     const [ isLoaded, setIsLoaded ] = useState(false)
-    const [ message, setMessage ] = useState("")
+    const [ content, setContent ] = useState("")
     // const [ editMessage, setEditMessage ] = useState("")
 
-    const uuid = "4e280b32701240a5abdd92d3bae33410"
-    const currInboxes = useSelector((state) => state.current_inboxes)
-    // console.log("currInboxes -> channels", currInboxes.inbox_channels)
-    const currInbox = currInboxes?.inbox_channels
-
-    let messages
-    if(currInbox) {
-        messages = Object.values(currInbox)[0].inbox_messages
-        // console.log("messages ------ ", messages)
-    }
-
-    // cosnt messages = once can get into messages
+    const uuid = "4dd7745f900f44f69cefdec53fd57f8b"
+    const currMessages = Object.values(useSelector((state) => state.direct_messages))
+    // console.log("currMessages", currMessages)
 
     const userId = useSelector((state) => state.session.user.id)
 
     useEffect(() => {
-        dispatch(getCurrentInbox(userId)).then(() => setIsLoaded(true))
+        dispatch(getInbox(uuid)).then(() => setIsLoaded(true))
     }, [dispatch, userId])
 
     const addMessage = async(e) => {
         e.preventDefault()
+        const inbox_id = 1
         const payload = {
-            content: messages,
+            content,
             user_id: userId,
-            inbox_id: currInbox.id
+            inbox_channel_id: inbox_id
         }
+        // console.log("payload --=-=-=-=-=-=-", payload)
         dispatch(addMessageThunk(payload))
     }
 
@@ -52,18 +45,19 @@ const DMs = () => {
     return (
         isLoaded &&
         <div>
-            {messages.map(message => {
+            {currMessages.map(message => {
                 return(
                         <div key={message.id}>
                         <div>User id: {message.user_id}</div>
                         <div>Message id: {message.id}</div>
                         <div>Message: {message.content}</div>
+                        <div>Inbox id: {message.inbox_channel_id}</div>
                         <div>------------------------</div>
                     </div>
                 )
             })}
             <form onSubmit={addMessage}>
-                <input value={message} onChange={e => setMessage(e.target.value)} placeholder="Enter your message"></input>
+                <input value={content} onChange={e => setContent(e.target.value)} placeholder="Enter your message"></input>
                 <button type='submit'>Add a message</button>
             </form>
             {/* <form>
