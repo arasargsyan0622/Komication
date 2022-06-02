@@ -1,0 +1,11 @@
+.channel__edit__form {
+  width: 100%;
+  height: 100%;
+  border: solid 1px lime;
+}
+.test__modal__full {
+  width: 100vw;
+  height: 100vh;
+  border: solid 1px blue;
+  background-color: #393f39;
+}

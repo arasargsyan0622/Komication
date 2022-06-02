@@ -20,6 +20,12 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.server__channel__add__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
 .server__channels__container::-webkit-scrollbar {
   display: none;
 }
@@ -62,14 +68,39 @@
   color: #96989d;
   font-family: Arial, Helvetica, sans-serif;
 }
+.server__create__channel__button {
+  width: 18px;
+  height: 18px;
+  background: url("./new__channel__button.svg");
+  border: none;
+  cursor: pointer;
+}
 .server__channel__link {
-  width: 240px;
+  display: flex;
+  justify-content: space-between;
+  width: auto;
   height: 34px;
   text-decoration: none;
   cursor: pointer;
   color: #96989d;
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
-  padding-left: 25px;
+  padding-left: 20px;
   padding-top: 10px;
+}
+.server__channel__link__name {
+  max-width: 200px;
+}
+.server__channel__settings__container {
+  margin-left: 20px;
+}
+
+.channel__edit__button {
+  width: 15px;
+  height: 15px;
+  background: url("./settings__kog.svg") center no-repeat;
+  border: none;
+  padding: 0px;
+  margin-right: 10px;
+  cursor: pointer;
 }

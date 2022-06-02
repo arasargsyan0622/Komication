@@ -1,0 +1,265 @@
+.create__channel__form__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 460px;
+  height: 458px;
+  border-radius: 5px;
+  background-color: #36393f;
+}
+
+.create__channel__form__heading {
+  display: flex;
+  text-align: start;
+  padding: 16px;
+  width: 460px;
+  height: 80px;
+  justify-content: space-between;
+}
+.create__channel__header__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.create__channel__header {
+  display: flex;
+  color: #ffffff;
+  font-size: 20px;
+  width: 144px;
+  height: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0px;
+}
+.create__channel__message {
+  font-size: 12px;
+  color: #b9bbbe;
+  margin-left: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 144px;
+  height: 16px;
+}
+.cancel__modal__x {
+  width: 24px;
+  height: 24px;
+  /* margin-right: 10px;
+  margin-top: 10px; */
+  background: url("./cancel__modal__x.svg") center no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.create__channel__input__container {
+  display: flex;
+  width: 428px;
+  height: 40px;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #202225;
+  border-radius: 3px;
+  border: none;
+  margin-top: 8px;
+}
+.new__channel__hash {
+  /* transform: translateX(10px); */
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  margin-left: 10px;
+}
+.create__channel__name__input {
+  width: 408px;
+  height: 40px;
+  margin-left: 10px;
+  color: #36393f;
+  background-color: #202225;
+  color: #ffffff;
+  font-size: 16px;
+  outline: 0;
+  border-radius: 3px;
+  border: none;
+}
+
+.create__channel__label {
+  width: 428px;
+  height: 16px;
+  padding-left: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #dcddde;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.create__channel__bottom__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px;
+  border-radius: 0 0 3px 3px;
+  width: 460px;
+  height: 70px;
+  background-color: #2f3136;
+}
+
+.create__channel__bottom__buttons > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2f3136;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 96px;
+  height: 38px;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.create__channel__button {
+  width: 123px;
+  height: 38px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #5865f2;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+}
+.create__channel__form {
+  height: 100%;
+  padding: 16px;
+}
+
+.server__channel__add__placeholder__top {
+  width: 428px;
+  height: 132px;
+  margin-bottom: 20px;
+}
+.server__text__channel__add__placeholder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #484c53;
+  padding: 10px 12px;
+  width: 428px;
+  height: 62px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  /* border: 1px solid red; */
+}
+.text__channel__add__hash {
+  width: 24px;
+  height: 24px;
+  background: url("./text__channel__hashtag.svg") center no-repeat;
+}
+.text__channel__add__message {
+  width: 322px;
+  height: 42px;
+}
+.text__channel__add__message > div {
+  font-size: 15px;
+  color: #dcddde;
+  font-weight: 600;
+  padding-bottom: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.text__channel__add__message > span {
+  font-size: 14px;
+  color: #b9bbbe;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.text__channel__add__radio {
+  width: 24px;
+  height: 24px;
+  background: url("./text__channel__radio.svg") center no-repeat;
+  cursor: pointer;
+}
+
+.server__voice__channel__add__placeholder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  width: 428px;
+  height: 62px;
+  background-color: #2f3136;
+  border-radius: 4px;
+  /* border: 1px solid red; */
+}
+.voice__channel__add__speaker {
+  width: 24px;
+  height: 24px;
+  background: url("./voice__channel__speaker.svg") center no-repeat;
+}
+.voice__channel__add__message {
+  width: 322px;
+  height: 42px;
+}
+.voice__channel__add__message > div {
+  font-size: 15px;
+  color: #dcddde;
+  font-weight: 600;
+  padding-bottom: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.voice__channel__add__message > span {
+  font-size: 14px;
+  color: #b9bbbe;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.voice__channel__add__radio {
+  width: 24px;
+  height: 24px;
+  background: url("./voice__channel__radio.svg") center no-repeat;
+}
+.server__channel__add__placeholder__bottom {
+  width: 428px;
+  height: 52px;
+  margin-top: 15px;
+}
+.private__channel__header__container {
+  display: flex;
+  justify-content: space-between;
+}
+.private__channel__header__container > div {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  margin-bottom: 7px;
+}
+.private__channel__lock {
+  width: 20px;
+  height: 20px;
+  background: url("./private__server__lock.svg") center no-repeat;
+}
+.private__channel__header {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  font-size: 16px;
+  margin-left: 5px;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.private__channel__message {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #b9bbbe;
+}
+.private__channel__x {
+  display: flex;
+  align-items: center;
+  width: 45px;
+  height: 28px;
+  border-radius: 14px;
+  background-color: #484c53;
+}
+.private__channel__x > span {
+  width: 25px;
+  height: 20px;
+  background: url("./private__server__x.svg");
+}
