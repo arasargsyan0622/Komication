@@ -9,3 +9,9 @@
   border: solid 1px blue;
   background-color: #393f39;
 }
+
+.channel__delete__container {
+  width: 544px;
+  height: 100%;
+  border: 1px lime dashed;
+}

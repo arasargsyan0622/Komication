@@ -10,11 +10,13 @@ function ChannelEditForm({ setShowModal }) {
   return (
     <>
       <div className="test__modal__full">
-        <form className="channel__edit__form">
+        <div className="channel__delete__container"></div>
+        <div className="channel__edit__container"></div>
+        {/* <form className="channel__edit__form">
           <h1>FULL SCREEN MODAL</h1>
           <div></div>
-          <button onClick={() => setShowModal(false)}>CLOSE MODAL</button>
-        </form>
+        </form> */}
+        <button onClick={() => setShowModal(false)}>CLOSE MODAL</button>
       </div>
     </>
   );
