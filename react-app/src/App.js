@@ -20,7 +20,7 @@ import SplashPage from "./components/SplashPage/SplashPage";
 import CreateServer from "./components/s3_test";
 
 import Servers from "./components/test_server";
-// import CurrChannel from "./components/test_cur_channel";
+import CurrChannel from "./components/test_cur_channel";
 import Channels from "./components/test_channel"
 
 function App() {
@@ -59,8 +59,10 @@ function App() {
             <Servers />
           </Route>
           <Route path="/test_single" exact={true}>
-            {/* <CurrChannel /> */}
             <Channels />
+          </Route>
+          <Route path="/test_channel" exact={true}>
+            <CurrChannel />
           </Route>
           <ProtectedRoute path="/users" exact={true}>
             <UsersList />

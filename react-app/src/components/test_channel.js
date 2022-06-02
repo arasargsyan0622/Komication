@@ -40,7 +40,7 @@ const Channels = () => {
 
   const editChannel = async (e) => {
     e.preventDefault();
-    const uuid = "c4d2d1ab4b914a5c8170dfb17bf4e5b9";
+    const uuid = "f56cb45f73044333a17eb5670647dc78";
     const payload = {
       channel_name: editName,
       uuid,

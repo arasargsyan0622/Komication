@@ -10,11 +10,14 @@ channel_routes = Blueprint("channels", __name__)
 
 @channel_routes.route("/<string:uuid>")
 def channel(uuid):
-    channel = Channel.query.get(uuid)
-    messages = ChannelMessage.query.join(Channel).filter(Channel.id == uuid).all()
+    channel = Channel.query.filter(Channel.channel_uuid == uuid).first()
+    # messages = ChannelMessage.query.join(Channel).filter(Channel.id == uuid).all()
 
     # return {"channels": [channel.to_dict()], "messages": [message.to_dict() for message in messages]}
-    return {"channel": channel.to_dict(), "messages": [message.to_dict() for message in messages]}
+
+    # return {"channel": channel.to_dict(), "messages": [message.to_dict() for message in messages]}
+    return {"channel": channel.to_dict()}
+
 
 
 
