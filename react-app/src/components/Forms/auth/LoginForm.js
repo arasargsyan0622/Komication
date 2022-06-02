@@ -96,6 +96,7 @@ const LoginForm = () => {
         </form>
       </div>
       <div>
+        <img></img>
         <form onSubmit={demoLogin1}>
           <button type="submit" className="demo__login__button">Demo User:Demo</button>
         </form>

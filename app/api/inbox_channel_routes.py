@@ -15,7 +15,7 @@ def get_user_inbox_channels(id):
     current_user = User.query.get(id)
 
     my_inbox_channels = current_user.inbox_channel_user
-
+    print(my_inbox_channels)
     my_inbox_channels_users = []
 
     # spreads the users in a list

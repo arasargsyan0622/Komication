@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, jsonify
+from flask import Blueprint, render_template, redirect, jsonify, request
 from app.models.channel import Channel
 from app.models.server import Server
 from app.models.channel_message import ChannelMessage

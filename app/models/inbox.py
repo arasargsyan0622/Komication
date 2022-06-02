@@ -20,6 +20,5 @@ class InboxChannel(db.Model):
             'id': self.id,
             'user_a_hide': self.user_a_hide,
             'user_b_hide': self.user_b_hide,
-            'inbox_uuid': self.inbox_uuid
-            
+            'inbox_uuid': self.inbox_uuid,
         }
