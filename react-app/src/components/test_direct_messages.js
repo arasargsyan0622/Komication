@@ -6,15 +6,25 @@ const CurrInbox = () => {
     const dispatch = useDispatch()
 
     const [ isLoaded, setIsLoaded ] = useState(false)
+    const [ message, setMessage ] = useState("")
 
     const uuid = "4dd7745f900f44f69cefdec53fd57f8b"
     const currInbox = Object.values(useSelector((state) => state.current_inboxes))
-    console.log("currInbox ----------", currInbox[0])
+    console.log("currInbox[0] ----------", currInbox[0])
+
     const userId = useSelector((state) => state.session.user.id)
 
     useEffect(() => {
         dispatch(getCurrentInbox(userId)).then(() => setIsLoaded(true))
     }, [dispatch])
+
+    const addMessage = async(e) => {
+        e.preventDefault()
+        const payload = {
+            content: message,
+            user_id: userId
+        }
+    }
 
     return (
         isLoaded && (
