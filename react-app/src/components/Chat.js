@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
-import NewChannelMessage from "./Forms/NewChannelMessage";
+// import NewChannelMessage from "./Forms/NewChannelMessage";
 import { useHistory } from "react-router-dom";
 
 let socket;
@@ -9,17 +9,17 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const history = useHistory();
-  const dummyMsg = useRef();
+  // const dummyMsg = useRef();
 
   useEffect(() => {
     socket = io();
 
     let chatroom = history.location.pathname;
 
-    console.log(chatroom);
+    // console.log(chatroom);
     // dummyMsg.current.scrollIntoView();
-    let newdate = new Date();
-    console.log(newdate);
+    // let newdate = new Date();
+    // console.log(newdate);
 
     const payload = {
       username: "TestUser",
@@ -29,13 +29,13 @@ const Chat = () => {
     socket.emit("join", payload);
 
     socket.on("chat", (data) => {
-      console.log(data);
+      // console.log(data);
       setMessages((messages) => [...messages, data]);
       // dummyMsg.current.scrollIntoView();
     });
 
     return () => {
-      console.log("hello");
+      // console.log("hello");
       const payload = {
         username: "TestUser",
         room: chatroom,

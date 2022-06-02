@@ -3,13 +3,14 @@ FROM python:3.9
 # Set the following enviroment variables
 #
 # REACT_APP_BASE_URL -> Your deployment URL
-ENV REACT_APP_BASE_URL=http://localhost:5000
+ENV REACT_APP_BASE_URL=https://komication.heroku.com
 # FLASK_APP -> entry point to your flask app
 ENV FLASK_APP=app
 # FLASK_ENV -> Tell flask to use the production server
 ENV FLASK_ENV=production
 # SQLALCHEMY_ECHO -> Just set it to true
 ENV SQLALCHEMY_ECHO=True
+
 
 # Set the directory for upcoming commands to /var/www
 WORKDIR /var/www

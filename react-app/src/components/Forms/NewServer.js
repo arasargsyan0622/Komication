@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./NonAuthFormsCSS/NewServerForm.css";
 
 import ServerInviteModal from "../Modals/ServerInviteModal";
@@ -28,8 +28,8 @@ const NewServerForm = ({ setShowModal }) => {
 
     const finishLoad = await dispatch(createServer(payload));
 
-    console.log(finishLoad);
-    console.log("hello?????????????");
+    // console.log(finishLoad);
+    // console.log("hello?????????????");
 
     if (finishLoad) {
       setImageLoading(false);
@@ -38,7 +38,7 @@ const NewServerForm = ({ setShowModal }) => {
       window.location.reload(false);
     } else {
       setImageLoading(false);
-      console.log("error");
+      // console.log("error");
     }
   };
 
@@ -59,7 +59,6 @@ const NewServerForm = ({ setShowModal }) => {
       <form className="create__form">
         <input
           className="create__form__image__input"
-          input
           type="file"
           accept="image/*"
           onChange={updateImage}

@@ -11,16 +11,16 @@ function ChannelDisplay({ channel }) {
   const [chatInput, setChatInput] = useState("");
   const history = useHistory();
   const dummyMsg = useRef();
-  console.log(messages);
+  // console.log(messages);
   useEffect(() => {
     socket = io();
 
     let chatroom = history.location.pathname;
 
-    console.log(chatroom);
-    dummyMsg?.current.scrollIntoView();
-    let newdate = new Date();
-    console.log(newdate);
+    // console.log(chatroom);
+    dummyMsg?.current?.scrollIntoView();
+    // let newdate = new Date();
+    // console.log(newdate);
 
     const payload = {
       username: "TestUser",
@@ -30,13 +30,13 @@ function ChannelDisplay({ channel }) {
     socket.emit("join", payload);
 
     socket.on("chat", (data) => {
-      console.log(data);
+      // console.log(data);
       setMessages((messages) => [...messages, data]);
-      dummyMsg?.current.scrollIntoView();
+      dummyMsg?.current?.scrollIntoView();
     });
 
     return () => {
-      console.log("hello");
+      // console.log("hello");
       const payload = {
         username: "TestUser",
         room: chatroom,

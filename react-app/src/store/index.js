@@ -4,7 +4,8 @@ import session from './session'
 import serverReducer from "./server"
 import currServerReducer from './current_server';
 import currChannelReducer from "./current_channel";
-import directMessagesReducer from './direct_messages';
+import directMessagesReducer from "./direct_messages"
+
 
 const rootReducer = combineReducers({
   session,

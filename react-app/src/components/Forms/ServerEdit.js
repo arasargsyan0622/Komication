@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+// import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import "./NonAuthFormsCSS/ServerEditForm.css";
 
 const ServerEdit = () => {
   const history = useHistory();
   const [image, setImage] = useState(null);
-  const [imageLoading, setImageLoading] = useState(false);
+  const [ setImageLoading ] = useState(false);
   const [serverName, setServerName] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,9 +26,10 @@ const ServerEdit = () => {
       history.push("/images");
     } else {
       setImageLoading(false);
-      console.log("error");
+      // console.log("error");
     }
   };
+  console.log("for Darren", handleSubmit)
   const updateImage = (e) => {
     const file = e.target.files[0];
     setImage(file);

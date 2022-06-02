@@ -4,24 +4,24 @@ import ServerChannelNav from "./ServerChannelNav/ServerChannelNav";
 import ChannelDisplay from "../ChannelDisplay/ChannelDisplay";
 import ServerSearch from "../Forms/ServerSearch";
 import ServerUserCard from "../ServerUserCard/ServerUserCard";
-import { useHistory } from "react-router-dom";
-import ProtectedRoute from "../Forms/auth/ProtectedRoute";
+// import { useHistory } from "react-router-dom";
+// import ProtectedRoute from "../Forms/auth/ProtectedRoute";
 
 import "./ServerDisplay.css";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getServers } from "../../store/server";
 import { getCurrServer } from "../../store/current_server";
 import { useParams } from "react-router-dom";
 
 function ServerDisplay() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
 
   let newUuid = useParams().serverUuid;
 
-  console.log(newUuid);
+  // console.log(newUuid);
 
   useEffect(() => {
     dispatch(getServers()).then(() => {
