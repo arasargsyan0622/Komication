@@ -1,0 +1,94 @@
+.confirm__delete__server {
+  width: 440px;
+  height: 292px;
+  display: flex;
+  flex-direction: column;
+  background-color: #36393f;
+}
+.server__delete__header {
+  width: 440px;
+  height: 56px;
+  padding: 16px;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.confirm__delete__server__warning {
+  width: 408px;
+  height: 62px;
+  background-color: #faa81a;
+  font-size: 16px;
+
+  line-height: 1.4;
+  margin: 0 0 20px;
+  padding: 10px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.confirm__server__name__input__container {
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+  height: 166px;
+  padding: 0px 8px 0px 16px;
+}
+.confirm__server__name__input__container > label {
+  display: flex;
+  width: 408px;
+  height: 16px;
+  font-size: 12px;
+  color: #b9bbbe;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 0 8px;
+}
+.confirm__server__name__input__container > form > input {
+  width: 408px;
+  height: 40px;
+  padding: 10px;
+  background-color: #202225;
+  color: #ffffff;
+  outline: 0;
+  border: none;
+}
+
+.confirm__delete__server__buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 70px;
+  background-color: #2f3136;
+  padding: 16px;
+}
+.confirm__delete__server__buttons > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 38px;
+  padding: 2px 16px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.confirm__delete__server__buttons > div:hover {
+  text-decoration: underline;
+}
+.confirm__delete__server__buttons > button {
+  width: 111px;
+  height: 38px;
+  background-color: #d83c3e;
+  padding: 2px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.confirm__delete__server__buttons > button:hover {
+  background-color: #8d2c2d;
+}
