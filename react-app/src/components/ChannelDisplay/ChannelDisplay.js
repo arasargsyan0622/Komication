@@ -82,7 +82,7 @@ function ChannelDisplay() {
   };
 
   const formatDate = (date) => {
-    const newDate = moment.utc(date).format("DD/MM/YY hh:mm a");
+    const newDate = moment(date).format("DD/MM/YY hh:mm a");
     return newDate;
   };
 
