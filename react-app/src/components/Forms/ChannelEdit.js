@@ -5,24 +5,26 @@ import "./NonAuthFormsCSS/ChannelEditForm.css";
 import { useSelector, useDispatch } from "react-redux";
 import ChannelDeleteModal from "../Modals/ChannelDeleteModal";
 // import ChannelDeleteForm from "./ChannelDelete";
-import {updateChannel} from "../../store/current_server";
+import { updateChannel } from "../../store/current_server";
 
 function ChannelEditForm({ setShowModal }) {
-  const { server } = Object.values(useSelector((state) => state.current_server))[0];
+  const { server } = Object.values(
+    useSelector((state) => state.current_server)
+  )[0];
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [editName, setEditName] = useState("");
   const dispatch = useDispatch();
-  const currChannel = Object.values(useSelector((state)=> state.current_channel))
-  const uuid = currChannel[0]?.channel.channel_uuid
-
-
+  const currChannel = Object.values(
+    useSelector((state) => state.current_channel)
+  );
+  const uuid = currChannel[0]?.channel.channel_uuid;
 
   const editChannel = async () => {
     const payload = {
       channel_name: editName,
       uuid,
     };
-    dispatch(updateChannel(payload)).then(()=>setShowModal(false));
+    dispatch(updateChannel(payload)).then(() => setShowModal(false));
   };
 
   return (
@@ -33,17 +35,25 @@ function ChannelEditForm({ setShowModal }) {
             <div className="channel__nav__header">
               <div className="channel__edit__hash"></div>
               <div className="channel__edit__name">channel</div>
-              <div className="channel__edit__placeholder__channels">text channels</div>
+              <div className="channel__edit__placeholder__channels">
+                text channels
+              </div>
             </div>
             <div className="channel__nav__options">
-              <div className="channel__edit__option" id="hard__code__channel__edit">
+              <div
+                className="channel__edit__option"
+                id="hard__code__channel__edit"
+              >
                 Overview
               </div>
               <div className="channel__edit__option">Permissions</div>
               <div className="channel__edit__option">Invites</div>
               <div className="channel__edit__option">Integrations</div>
             </div>
-            <ChannelDeleteModal confirmDelete={confirmDelete} setConfirmDelete={setConfirmDelete}></ChannelDeleteModal>
+            <ChannelDeleteModal
+              confirmDelete={confirmDelete}
+              setConfirmDelete={setConfirmDelete}
+            ></ChannelDeleteModal>
           </div>
         </div>
         <div className="channel__edit__container">
@@ -53,7 +63,12 @@ function ChannelEditForm({ setShowModal }) {
                 <span>OVERVIEW</span>
                 <div className="channel__edit__input__container">
                   <label>CHANNEL NAME</label>
-                  <input className="channel__edit__name__input" placeholder="channel name goes here" value={editName} onChange={(e)=>setEditName(e.target.value)}></input>
+                  <input
+                    className="channel__edit__name__input"
+                    placeholder={`${currChannel[0].channel.channel_name}`}
+                    value={editName}
+                    onChange={(e) => setEditName(e.target.value)}
+                  ></input>
                 </div>
                 <div className="channel__edit__break"></div>
               </form>
@@ -65,16 +80,25 @@ function ChannelEditForm({ setShowModal }) {
                 <span>Careful -- check if you have unsaved changes!</span>
                 <div className="channel__save__buttons__container">
                   <div onClick={() => setShowModal(false)}>Back</div>
-                  <button onClick={() => editChannel()} className="channel__edit__save__button">
+                  <button
+                    onClick={() => editChannel()}
+                    className="channel__edit__save__button"
+                  >
                     Save Changes
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="full__screen__modal__esc__container" onClick={() => setShowModal(false)}>
+          <div
+            className="full__screen__modal__esc__container"
+            onClick={() => setShowModal(false)}
+          >
             <div onClick={() => setShowModal(false)} className="escape__circle">
-              <div onClick={() => setShowModal(false)} className="escape__x"></div>
+              <div
+                onClick={() => setShowModal(false)}
+                className="escape__x"
+              ></div>
             </div>
             <div onClick={() => setShowModal(false)} className="escape__text">
               ESC

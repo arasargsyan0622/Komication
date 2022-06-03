@@ -21,7 +21,7 @@ function ChannelRightSide() {
 
   useEffect(() => {
     setIsLoaded(true);
-  }, [dispatch, channel]);
+  }, [dispatch, channel, server]);
 
   return (
     isLoaded && (
