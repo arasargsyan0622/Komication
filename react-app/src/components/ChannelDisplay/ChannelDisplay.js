@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
 import "./ChannelDisplay.css";
+import moment from "moment";
 
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -90,11 +91,8 @@ function ChannelDisplay() {
   };
 
   const formatDate = (date) => {
-    const dateNow = new Date();
-    console.log(dateNow);
-    console.log(date);
-    const newDate = "";
-    return date;
+    const newDate = moment(date).format("DD/MM/YY hh:mm a");
+    return newDate;
   };
 
   const addMessage = async (e) => {

@@ -15,7 +15,7 @@ def create_channel_message():
             content = form.content.data,
             user_id = form.user_id.data,
             channel_id = form.channel_id.data,
-            timestamp = datetime.datetime.now()
+            timestamp = datetime.datetime.now() 
         )
         db.session.add(channel_message)
         db.session.commit()
