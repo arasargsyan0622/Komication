@@ -1,4 +1,5 @@
 from flask_socketio import SocketIO, emit, join_room, leave_room
+from app.models import db, ChannelMessage
 
 socketio = SocketIO(cors_allowed_origins="*")
 
@@ -8,6 +9,7 @@ def test_disconnect():
 
 @socketio.on("chat")
 def handle_chat(data):
+    print(data)
     emit("chat", data, broadcast=True, to=data["room"])
 
 @socketio.on('join')

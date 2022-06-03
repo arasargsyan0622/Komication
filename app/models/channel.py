@@ -11,7 +11,7 @@ class Channel(db.Model):
     channel_uuid = db.Column(db.String(255), nullable=False, unique=True)
 
     server_owner = db.relationship("Server", back_populates="channels")
-    channel_messages = db.relationship("ChannelMessage", back_populates="channel_owner")
+    channel_messages = db.relationship("ChannelMessage", back_populates="channel_owner", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

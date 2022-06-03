@@ -35,11 +35,11 @@ export const addCurrentUserInbox = (data) => async (dispatch) => {
         headers:  { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, newUser }),
     })
-    console.log(response)
+    // console.log(response)
     if (response.ok) {
         const inboxChannel = await response.json()
-        console.log(inboxChannel)
-        console.log(inboxChannel.users)
+        // console.log(inboxChannel)
+        // console.log(inboxChannel.users)
         dispatch(addInbox(inboxChannel))
     }
 }
@@ -59,9 +59,9 @@ const directMessagesReducer = (state = initialState, action) => {
             newState.inbox_channels = normInboxes
             return newState
         case ADD_INBOX:
-            console.log(action.inbox)
+            // console.log(action.inbox)
             const newInbox = action.inbox
-            console.log(newState)
+            // console.log(newState)
             newState.inbox_channels[newInbox.id] = newInbox
             return newState
         default:

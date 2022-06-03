@@ -58,8 +58,8 @@ export const createChannel = (data) => async (dispatch) => {
   if (response.ok) {
     const channel = await response.json();
     dispatch(addChannel(channel, myServer));
+    return channel;
   }
-  return response;
 };
 
 export const updateChannel = (data) => async (dispatch) => {

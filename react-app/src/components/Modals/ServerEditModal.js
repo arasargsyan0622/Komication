@@ -7,17 +7,23 @@ function ServerEditModal() {
   const [showModal, setShowModal] = useState(false);
   const currentServer = useSelector((state) => state.current_server);
   const serverName = Object.values(currentServer)[0]?.server.server_name;
+  const currentUser = useSelector((state) => state.session.user);
+
+  const serverOwner = Object.values(currentServer)[0]?.server.user_id;
+  const currentUserId = currentUser.id;
 
   return (
     <>
-      <div
-        className="server__title__card__contents"
-        onClick={() => setShowModal(true)}
-      >
-        <div className="server__title" onClick={(e) => setShowModal(true)}>
-          {serverName}
-        </div>
-        <div className="server__edit" onClick={(e) => setShowModal(true)}></div>
+      <div className="server__title__card__contents">
+        <div className="server__title">{serverName}</div>
+        {serverOwner === currentUserId ? (
+          <div
+            className="server__edit"
+            onClick={(e) => setShowModal(true)}
+          ></div>
+        ) : (
+          <></>
+        )}
       </div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

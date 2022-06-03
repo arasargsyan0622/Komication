@@ -70,6 +70,7 @@
   border: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .demo__user__button__container {
@@ -79,10 +80,10 @@
   align-items: center;
 }
 
-.demo__user__icon{
+.demo__user__icon {
   width: 44px;
   height: 44px;
-    /* background: url("./Komi_Circle_Icon.svg"); */
+  /* background: url("./Komi_Circle_Icon.svg"); */
   border-radius: 50px;
   margin-right: 20px;
 }
@@ -99,6 +100,7 @@
   font-size: 16px;
   margin-bottom: 25px;
   margin-right: 25px;
+  cursor: pointer;
 }
 
 .login__forgot__password__container {

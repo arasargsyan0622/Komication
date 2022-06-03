@@ -30,21 +30,18 @@ const LoginForm = () => {
 
   const demoLogin1 = async (e) => {
     e.preventDefault();
-    await dispatch(login("demo@aa.io", "password"))
-
-  }
+    await dispatch(login("demo@aa.io", "password"));
+  };
 
   const demoLogin2 = async (e) => {
     e.preventDefault();
-    await dispatch(login("zensan@p.hub", "DarrenStinks"))
-
-  }
+    await dispatch(login("zensan@p.hub", "DarrenStinks"));
+  };
 
   const demoLogin3 = async (e) => {
     e.preventDefault();
-    await dispatch(login("dripgod@p.hub", "password1"))
-
-  }
+    await dispatch(login("dripgod@p.hub", "password1"));
+  };
 
   if (user) {
     return <Redirect to="/me" />;
@@ -54,7 +51,9 @@ const LoginForm = () => {
     <div className="login__form__container">
       <div className="login__form">
         <h1 className="login__header">Welcome Back!</h1>
-        <div className="login__welcome__message">We're so excited to see you again!</div>
+        <div className="login__welcome__message">
+          We're so excited to see you again!
+        </div>
         <form onSubmit={onLogin}>
           <div>
             {errors.map((error, ind) => (
@@ -65,7 +64,13 @@ const LoginForm = () => {
             EMAIL
           </label>
           <div>
-            <input className="login__input" name="email" type="text" value={email} onChange={updateEmail} />
+            <input
+              className="login__input"
+              name="email"
+              type="text"
+              value={email}
+              onChange={updateEmail}
+            />
           </div>
           <label className="login__label" htmlFor="password">
             PASSWORD
@@ -97,25 +102,39 @@ const LoginForm = () => {
       </div>
       <div>
         <div className="demo__user__button__container">
-          <img className="demo__user__icon" src="./Komi_Circle_Icon.svg"></img>
+          <img
+            className="demo__user__icon"
+            src="http://komication.s3.amazonaws.com/c85fcf48768a4fac810e7ac3ee1a3b85.png"
+          ></img>
           <form onSubmit={demoLogin1}>
-            <button type="submit" className="demo__login__button">Demo User:Demo</button>
+            <button type="submit" className="demo__login__button">
+              Demo User:Demo
+            </button>
           </form>
         </div>
         <div className="demo__user__button__container">
-          <img className="demo__user__icon" src="./Komi_Circle_Icon.svg"></img>
+          <img
+            className="demo__user__icon"
+            src="http://komication.s3.amazonaws.com/c85fcf48768a4fac810e7ac3ee1a3b85.png"
+          ></img>
           <form onSubmit={demoLogin2}>
-            <button type="submit" className="demo__login__button">Demo User:Zensan</button>
+            <button type="submit" className="demo__login__button">
+              Demo User:Zensan
+            </button>
           </form>
         </div>
         <div className="demo__user__button__container">
-          <img className="demo__user__icon" src="./Komi_Circle_Icon.svg"></img>
+          <img
+            className="demo__user__icon"
+            src="http://komication.s3.amazonaws.com/c85fcf48768a4fac810e7ac3ee1a3b85.png"
+          ></img>
           <form onSubmit={demoLogin3}>
-            <button type="submit" className="demo__login__button">Demo User:Dripgod</button>
+            <button type="submit" className="demo__login__button">
+              Demo User:Dripgod
+            </button>
           </form>
         </div>
       </div>
-
     </div>
   );
 };
