@@ -12,10 +12,12 @@ import {
   getCurrChannel,
   cleanCurrChannel,
 } from "../../../../store/current_channel_msg";
+import deleteChannel from "../../../../store/server"
 
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
 import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
+
 
 function ServerChannelList() {
   const dispatch = useDispatch();
@@ -69,6 +71,14 @@ function ServerChannelList() {
     };
   }, [dispatch, currentChannelUuid]);
 
+  const submit = (e) => {
+    e.preventDefault();
+    const channelUuid = Object?.values(
+      Object?.values(currentServer)[0]?.server.channels
+    )[0]?.channel_uuid;
+    // dispatch(deleteChannel(channelUuid));
+  };
+
   return (
     <div className="server__channel__list__container">
       <div className="server__channels__container">
@@ -97,6 +107,19 @@ function ServerChannelList() {
                 </div>
                 {currentUser.id === serverOwner ? (
                   <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="channel__leave__container">
+                {currentUser.id !== serverOwner ? (
+                  <button
+                    type="submit"
+                    className="channel__leave__button"
+                    onClick={submit}
+                  >
+                    Leave the server
+                  </button>
                 ) : (
                   <></>
                 )}

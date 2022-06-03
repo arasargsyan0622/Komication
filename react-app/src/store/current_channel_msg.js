@@ -117,6 +117,7 @@ const currChannelReducer = (state = initialState, action) => {
       delete newState[currentMessage.channel_id].channel.channel_messages[
         currentMessage.id
       ];
+      break
     case CLEAN_CURR_CHANNEL:
       const cleanState = {};
       return cleanState;

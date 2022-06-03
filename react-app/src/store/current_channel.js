@@ -11,10 +11,6 @@ const loadChannel = (current_channel) => {
   };
 };
 
-export const cleanCurrChannel = () => ({
-  type: CLEAN_CURR_CHANNEL,
-});
-
 export const getCurrChannel = (data) => async (dispatch) => {
   const response = await fetch(`/api/channels/${data}`);
   if (response.ok) {
