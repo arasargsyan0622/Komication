@@ -10,10 +10,11 @@ import {updateChannel} from "../../store/current_server";
 function ChannelEditForm({ setShowModal }) {
   const { server } = Object.values(useSelector((state) => state.current_server))[0];
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [editName, setEditName] = useState("");
   const dispatch = useDispatch();
   const currChannel = Object.values(useSelector((state)=> state.current_channel))
   const uuid = currChannel[0]?.channel.channel_uuid
+  const channelName = currChannel[0]?.channel.channel_name
+  const [editName, setEditName] = useState(channelName);
 
 
 

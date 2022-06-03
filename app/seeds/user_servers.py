@@ -19,13 +19,13 @@ def seed_server_users():
     )
 
     server1 = Server(
-        server_name="Novohort", server_icon_url="", server_invite_url="c27ca0cc1cc64ac3abb983b7af80bdf6", user_id=5, users=[zensan, cecc, dripgod, chrischarming]
+        server_name="Novohort", server_icon_url="", server_invite_url="c27ca0cc1cc64ac3abb983b7af80bdf6", user_id=5, users=[zensan, cecc, dripgod, chrischarming, demo]
     )
     server2 = Server(
-        server_name="a/A Jan 2022", server_icon_url="", server_invite_url="bf03534952094518ab2ca0e4c0e30608", user_id=5, users=[zensan, cecc, dripgod]
+        server_name="a/A Jan 2022", server_icon_url="", server_invite_url="bf03534952094518ab2ca0e4c0e30608", user_id=5, users=[zensan, cecc, dripgod, demo]
     )
     server3 = Server(
-        server_name="Thunks for Thots", server_icon_url="", server_invite_url="589d5d5de7a14bb59834bb6f35dd1d83", user_id=2, users=[demo, zensan]
+        server_name="Thunks for Thots", server_icon_url="", server_invite_url="589d5d5de7a14bb59834bb6f35dd1d83", user_id=2, users=[demo, zensan, dripgod]
     )
     server4 = Server(
         server_name="Komication", server_icon_url="", server_invite_url="4b7aaa64604b4632ae79be43a94e000b", user_id=1, users=[demo, cecc, dripgod, chrischarming]

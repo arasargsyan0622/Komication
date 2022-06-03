@@ -4,6 +4,7 @@ import "./ChannelDisplay.css";
 
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import {getCurrChannel, createMessage, deleteMessage, updateMessage} from "../../store/current_channel_msg"
 
 let socket;
 
@@ -11,18 +12,28 @@ function ChannelDisplay() {
   const history = useHistory();
   const dispatch = useDispatch();
   const dummyMsg = useRef();
+  // const [ isLoaded, setIsLoaded ] = useState(false)
+
 
   const user = useSelector((state) => state.session.user);
   const channel = useSelector((state) => state.current_channel);
-
-  console.log(user);
-  console.log(channel);
-
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
+  const [ messageContent, setMessageContent ] = useState("")
+  const channelMessages = Object.values(channel)[0].channel.channel_messages
+  const currServer = Object.values(useSelector((state) => state.current_server))[0];
+  const users = currServer.server.users
+  const normUsers = {}
+  users.forEach((user)=>{
+    normUsers[user.id] = user
+  })
+  console.log(normUsers)
+  const myChannelId = Object.values(channel)[0].channel.id
+  const myChannelUuid = Object.values(channel)[0].channel.channel_uuid
 
-  // console.log(messages);
   useEffect(() => {
+    // dispatch(getCurrChannel(uuid)).then(()=>setIsLoaded(true))
+
     socket = io();
 
     let chatroom = history.location.pathname;
@@ -37,7 +48,8 @@ function ChannelDisplay() {
     socket.emit("join", payload);
 
     socket.on("chat", (data) => {
-      setMessages((messages) => [...messages, data]);
+      // setMessages((messages) => [...messages, data]);
+      dispatch(getCurrChannel(myChannelUuid))
       dummyMsg?.current?.scrollIntoView();
     });
 
@@ -49,7 +61,7 @@ function ChannelDisplay() {
       socket.emit("leave", payload);
       socket.disconnect();
     };
-  }, [dispatch, channel]);
+  }, [dispatch]);
 
   const updateChatInput = (e) => {
     setChatInput(e.target.value);
@@ -68,39 +80,97 @@ function ChannelDisplay() {
     setChatInput("");
   };
 
+  const addMessage = async(e) => {
+        e.preventDefault()
+        let chatroom = history.location.pathname;
+
+        const payload = {
+          user: user.username,
+          msg: chatInput,
+          room: chatroom,
+        };
+        socket.emit("chat", payload);
+        const msgPayload = {
+            content: messageContent,
+            user_id: user.id,
+            channel_id: myChannelId
+        }
+      // dispatch(getCurrChannel(myChannelUuid))
+        dispatch(createMessage(msgPayload))
+  }
+
   return (
+
     <div className="channel__display__container">
       <div className="channel__messages__container">
         <div ref={dummyMsg}></div>
-        {messages
+        {Object.values(channelMessages)
           .map((message, ind) => (
-            <div className="channel__message__div" key={ind}>
+            <div className="channel__message__div" key={message.id}>
               <div className="channel__message__avatar"></div>
               <div className="channel__message__contents">
                 <div className="message__user__time">
-                  <div className="channel__message__username">{`${message.user}`}</div>
-                  <div className="channel__message__date">Date Here</div>
+                  <div className="channel__message__username">{normUsers[message.user_id]?.username}</div>
+                  <div className="channel__message__date">{message.timestamp}</div>
                 </div>
-                <div className="channel__message">{`${message.msg}`}</div>
+                <div className="channel__message">{`${message.content}`}</div>
               </div>
             </div>
           ))
           .reverse()}
       </div>
-      <form className="channel__chat__form" onSubmit={sendChat}>
+      <form className="channel__chat__form" onSubmit={addMessage}>
         <div className="channel__chat__input__container">
           <div className="channel__add__input"></div>
           <input
             className="channel__chat__input"
             placeholder="Message #channelName"
-            value={chatInput}
-            onChange={updateChatInput}
+            value={messageContent}
+            onChange={(e)=> setMessageContent
+            (e.target.value)}
           />
           <button className="send__chat__button"></button>
         </div>
       </form>
     </div>
+
   );
 }
+//   return (
+
+//     <div className="channel__display__container">
+//       <div className="channel__messages__container">
+//         <div ref={dummyMsg}></div>
+//         {messages
+//           .map((message, ind) => (
+//             <div className="channel__message__div" key={ind}>
+//               <div className="channel__message__avatar"></div>
+//               <div className="channel__message__contents">
+//                 <div className="message__user__time">
+//                   <div className="channel__message__username">{`${message.user}`}</div>
+//                   <div className="channel__message__date">Date Here</div>
+//                 </div>
+//                 <div className="channel__message">{`${message.msg}`}</div>
+//               </div>
+//             </div>
+//           ))
+//           .reverse()}
+//       </div>
+//       <form className="channel__chat__form" onSubmit={sendChat}>
+//         <div className="channel__chat__input__container">
+//           <div className="channel__add__input"></div>
+//           <input
+//             className="channel__chat__input"
+//             placeholder="Message #channelName"
+//             value={chatInput}
+//             onChange={updateChatInput}
+//           />
+//           <button className="send__chat__button"></button>
+//         </div>
+//       </form>
+//     </div>
+
+//   );
+// }
 
 export default ChannelDisplay;
