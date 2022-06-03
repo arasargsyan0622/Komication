@@ -98,25 +98,21 @@ const currChannelReducer = (state = initialState, action) => {
         normMessages[message.id] = message;
       });
       newState[currentChannel.channel.id] = currentChannel;
-      newState[currentChannel.channel.id].channel.channel_messages =
-        normMessages;
+      newState[currentChannel.channel.id].channel.channel_messages = normMessages;
       return newState;
     case ADD_MESSAGE:
       const newMessage = action.myMessage;
-      newState[newMessage.channel_id].channel.channel_messages[newMessage.id] =
-        newMessage;
+      console.log(newState);
+      console.log(newMessage);
+      newState[newMessage.channel_id].channel.channel_messages[newMessage.id] = newMessage;
       return newState;
     case EDIT_MESSAGE:
       const editMessage = action.myMessage;
-      newState[editMessage.channel_id].channel.channel_messages[
-        editMessage.id
-      ] = editMessage;
+      newState[editMessage.channel_id].channel.channel_messages[editMessage.id] = editMessage;
       return newState;
     case REMOVE_MESSAGE:
       const currentMessage = action.myMessage;
-      delete newState[currentMessage.channel_id].channel.channel_messages[
-        currentMessage.id
-      ];
+      delete newState[currentMessage.channel_id].channel.channel_messages[currentMessage.id];
       return newState;
     case CLEAN_CURR_CHANNEL:
       const cleanState = {};
