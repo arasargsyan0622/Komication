@@ -39,6 +39,7 @@ const removeChannel = (channel, myServer) => {
 
 export const getCurrServer = (data) => async (dispatch) => {
   const response = await fetch(`/api/servers/${data}`);
+
   if (response.ok) {
     const server = await response.json();
     dispatch(loadServer(server));
@@ -109,18 +110,14 @@ const currServerReducer = (state = initialState, action) => {
       newState[currentServer.server.id].server.channels = newobj;
       return newState;
     case ADD_CHANNEL:
-      newState[action.channel.server_id].server.channels[action.channel.id] =
-        action.channel;
+      newState[action.channel.server_id].server.channels[action.channel.id] = action.channel;
       return newState;
     case EDIT_CHANNEL:
-      newState[action.channel.server_id].server.channels[action.channel.id] =
-        action.channel;
+      newState[action.channel.server_id].server.channels[action.channel.id] = action.channel;
       return newState;
     case REMOVE_CHANNEL:
       currentServer = action.myServer;
-      delete newState[action.channel.server_id].server.channels[
-        action.channel.channel_id
-      ];
+      delete newState[action.channel.server_id].server.channels[action.channel.channel_id];
       return newState;
     default:
       return newState;

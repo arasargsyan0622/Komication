@@ -18,9 +18,7 @@ function ChannelDisplay() {
   console.log(user);
   console.log(channel);
 
-  const oldMessages = Object.values(
-    Object.values(channel)[0].channel.channel_messages
-  );
+  const oldMessages = Object.values(Object.values(channel)[0].channel.channel_messages);
 
   console.log(oldMessages);
   const channelName = Object.values(Object.values(channel)[0])[0].channel_name;
@@ -87,9 +85,7 @@ function ChannelDisplay() {
               <div className="channel__message__contents">
                 <div className="message__user__time">
                   <div className="channel__message__username">{`${message.user_id}`}</div>
-                  <div className="channel__message__date">
-                    {message.timestamp}
-                  </div>
+                  <div className="channel__message__date">{message.timestamp}</div>
                 </div>
                 <div className="channel__message">{`${message.content}`}</div>
               </div>
@@ -103,6 +99,8 @@ function ChannelDisplay() {
           <input
             className="channel__chat__input"
             placeholder={`Message #${channelName}`}
+            required
+            maxLength={900}
             value={chatInput}
             onChange={updateChatInput}
           />

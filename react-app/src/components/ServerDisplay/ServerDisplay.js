@@ -11,6 +11,7 @@ import ChannelRightSide from "./ServerChannelNav/ChannelRightSide/ChannelRightSi
 import "./ServerDisplay.css";
 
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getServers } from "../../store/server";
 import { getCurrServer } from "../../store/current_server";
 import { useParams } from "react-router-dom";
@@ -18,6 +19,7 @@ import UserHomeLoadingScreen from "../LoadingScreens/UserHomeLoadingScreen";
 
 function ServerDisplay() {
   const dispatch = useDispatch();
+  const history = useHistory();
   // const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -33,7 +35,8 @@ function ServerDisplay() {
     let t = setTimeout(() => {
       if (mounted) {
         dispatch(getServers()).then(() => {
-          dispatch(getCurrServer(newUuid)).then(() => {
+          dispatch(getCurrServer(newUuid)).then((res) => {
+            if (!res.ok) history.push("/me");
             setIsLoaded(true);
           });
         });
@@ -45,8 +48,6 @@ function ServerDisplay() {
     };
   }, [dispatch, newUuid]);
 
-  //TODO CREATE CURRENT CHANNEL STORE PASS CHANNEL AS PROPS TO CHANNEL DISPLAY
-  //TODO AND SERVER CHANNEL NAV AND HEADER & SEARCH
   return isLoaded ? (
     <div className="server__display">
       <UserServerList></UserServerList>
