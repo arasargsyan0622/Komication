@@ -1,9 +1,16 @@
 import "./NonAuthFormsCSS/ChannelDelete.css";
+import { useSelector, useDispatch } from "react-redux";
+import {deleteChannel} from "../../store/current_server";
 
 const ChannelDeleteForm = ({ setConfirmDelete }) => {
   let channel;
+
+  const dispatch = useDispatch();
+  const currChannel = Object.values(useSelector((state)=> state.current_channel))
+  const uuid = currChannel[0]?.channel.channel_uuid
+
   const handleSubmit = async (e) => {
-    //dispatch thunk to delete channel
+    dispatch(deleteChannel(uuid));
   };
 
   return (
