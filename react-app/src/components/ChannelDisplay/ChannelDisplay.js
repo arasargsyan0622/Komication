@@ -18,8 +18,16 @@ function ChannelDisplay() {
   console.log(user);
   console.log(channel);
 
+  const oldMessages = Object.values(
+    Object.values(channel)[0].channel.channel_messages
+  );
+
+  console.log(oldMessages);
+
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
+
+  console.log(messages);
 
   // console.log(messages);
   useEffect(() => {
@@ -60,8 +68,8 @@ function ChannelDisplay() {
     let chatroom = history.location.pathname;
 
     const payload = {
-      user: user.username,
-      msg: chatInput,
+      user_id: user.username,
+      content: chatInput,
       room: chatroom,
     };
     socket.emit("chat", payload);
@@ -72,16 +80,18 @@ function ChannelDisplay() {
     <div className="channel__display__container">
       <div className="channel__messages__container">
         <div ref={dummyMsg}></div>
-        {messages
+        {oldMessages
           .map((message, ind) => (
             <div className="channel__message__div" key={ind}>
               <div className="channel__message__avatar"></div>
               <div className="channel__message__contents">
                 <div className="message__user__time">
-                  <div className="channel__message__username">{`${message.user}`}</div>
-                  <div className="channel__message__date">Date Here</div>
+                  <div className="channel__message__username">{`${message.user_id}`}</div>
+                  <div className="channel__message__date">
+                    {message.timestamp}
+                  </div>
                 </div>
-                <div className="channel__message">{`${message.msg}`}</div>
+                <div className="channel__message">{`${message.content}`}</div>
               </div>
             </div>
           ))

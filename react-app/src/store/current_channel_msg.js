@@ -62,7 +62,7 @@ export const createMessage = (data) => async (dispatch) => {
 
 export const updateMessage = (data) => async (dispatch) => {
   const { content, id } = data;
-  console.log(id);
+  // console.log(id);
   const response = await fetch(`/api/channel_messages/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

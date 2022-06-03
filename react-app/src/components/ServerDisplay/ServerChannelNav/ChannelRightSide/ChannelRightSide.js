@@ -17,7 +17,7 @@ function ChannelRightSide() {
   const server = useSelector((state) => state.current_server);
   const currentServer = Object.values(server)[0];
 
-  console.log(currentServer.server.users);
+  // console.log(currentServer.server.users);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -43,7 +43,9 @@ function ChannelRightSide() {
                 <div>ONLINE — 0</div>
                 <div>OFFLINE — {currentServer.server.users.length}</div>
                 {currentServer.server.users.map((user) => {
-                  return <ServerUserCard user={user}></ServerUserCard>;
+                  return (
+                    <ServerUserCard user={user} key={user.id}></ServerUserCard>
+                  );
                 })}
               </div>
             </div>
