@@ -96,16 +96,24 @@ const LoginForm = () => {
         </form>
       </div>
       <div>
-        <img></img>
-        <form onSubmit={demoLogin1}>
-          <button type="submit" className="demo__login__button">Demo User:Demo</button>
-        </form>
-        <form onSubmit={demoLogin2}>
-          <button type="submit" className="demo__login__button">Demo User:Zensan</button>
-        </form>
-        <form onSubmit={demoLogin3}>
-          <button type="submit" className="demo__login__button">Demo User:Dripgod</button>
-        </form>
+        <div className="demo__user__button__container">
+          <img className="demo__user__icon" src="./Komi_Circle_Icon.svg"></img>
+          <form onSubmit={demoLogin1}>
+            <button type="submit" className="demo__login__button">Demo User:Demo</button>
+          </form>
+        </div>
+        <div className="demo__user__button__container">
+          <img className="demo__user__icon" src="./Komi_Circle_Icon.svg"></img>
+          <form onSubmit={demoLogin2}>
+            <button type="submit" className="demo__login__button">Demo User:Zensan</button>
+          </form>
+        </div>
+        <div className="demo__user__button__container">
+          <img className="demo__user__icon" src="./Komi_Circle_Icon.svg"></img>
+          <form onSubmit={demoLogin3}>
+            <button type="submit" className="demo__login__button">Demo User:Dripgod</button>
+          </form>
+        </div>
       </div>
 
     </div>
