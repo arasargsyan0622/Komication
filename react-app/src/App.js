@@ -21,10 +21,11 @@ import CreateServer from "./components/s3_test";
 
 import Servers from "./components/test_server";
 import CurrChannel from "./components/test_cur_channel";
-import CurrInbox from "./components/test_direct_messages"
-import Channels from "./components/test_channel"
+import CurrInbox from "./components/test_direct_messages";
+import Channels from "./components/test_channel";
 import DMs from "./components/dm";
 
+import UserHomeLoadingScreen from "./components/LoadingScreens/UserHomeLoadingScreen";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -94,6 +95,9 @@ function App() {
           {/* <ProtectedRoute path="/servers/:serverUuid/:channelId">
             <h1>this is working</h1>
           </ProtectedRoute> */}
+          <ProtectedRoute path="/poop2295" exact={true}>
+            <UserHomeLoadingScreen></UserHomeLoadingScreen>
+          </ProtectedRoute>
 
           <ProtectedRoute path="/servers/:serverUuid">
             <ServerDisplay></ServerDisplay>
