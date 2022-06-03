@@ -154,8 +154,8 @@ function ChannelDisplay() {
             placeholder={`Message #${myChannelName}`}
             required
             maxLength={900}
-            value={chatInput}
-            onChange={updateChatInput}
+            value={messageContent}
+            onChange={(e) => setMessageContent(e.target.value)}
           />
           <button className="send__chat__button"></button>
         </div>
