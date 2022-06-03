@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
 import "./ChannelDisplay.css";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 let socket;
@@ -29,11 +29,12 @@ function ChannelDisplay() {
 
   console.log(messages);
 
-  // console.log(messages);
   useEffect(() => {
     socket = io();
 
     let chatroom = history.location.pathname;
+
+    console.log(chatroom);
 
     dummyMsg?.current?.scrollIntoView();
 

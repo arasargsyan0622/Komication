@@ -6,7 +6,6 @@
   justify-content: center;
   background-color: #2f3136;
   border-bottom: 2px #27292c solid;
-  cursor: pointer;
 }
 .server__title__card__contents {
   display: flex;
@@ -26,4 +25,5 @@
   width: 18px;
   height: 18px;
   color: #ffffff;
+  cursor: pointer;
 }
