@@ -74,7 +74,11 @@ function ServerChannelList() {
       <div className="server__channels__container">
         <div className="server__channel__add__container">
           <div className={"server__channel__header"}>TEXT CHANNELS</div>
-          <NewChannelModal></NewChannelModal>
+          {currentUser.id === serverOwner ? (
+            <NewChannelModal></NewChannelModal>
+          ) : (
+            <></>
+          )}
         </div>
         {channels?.map((channel) => {
           return (
@@ -87,21 +91,20 @@ function ServerChannelList() {
             >
               <div key={channel.id} className={"server__channel__link"}>
                 <div className="server__channel__link__name">
-                  # {channel.channel_name}
+                  <span>#</span>
+                  {` `}
+                  <div>{`${channel.channel_name}`}</div>
                 </div>
-                <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
+                {currentUser.id === serverOwner ? (
+                  <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
+                ) : (
+                  <></>
+                )}
               </div>
             </NavLink>
           );
         })}
       </div>
-      {currentUser.id === serverOwner ? (
-        <div className="server__delete__container">
-          <ServerDeleteModal />
-        </div>
-      ) : (
-        <></>
-      )}
     </div>
   );
 }

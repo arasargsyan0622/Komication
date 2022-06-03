@@ -44,7 +44,9 @@ function ChannelRightSide() {
                 <div>OFFLINE — {currentServer.server.users.length}</div>
                 {currentServer.server.users.map((user) => {
                   return (
-                    <ServerUserCard user={user} key={user.id}></ServerUserCard>
+                    <div>
+                      <ServerUserCard user={user} key={user}></ServerUserCard>
+                    </div>
                   );
                 })}
               </div>

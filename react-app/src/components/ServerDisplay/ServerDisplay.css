@@ -45,7 +45,7 @@
 
 .online__users__container {
   width: 240px;
-  height: 100%;
+  height: 100vh;
   max-height: 100%;
   background-color: #2f3136;
   overflow-y: scroll;

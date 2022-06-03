@@ -89,9 +89,21 @@
   padding-top: 10px;
 }
 .server__channel__link__name {
+  display: flex;
   max-width: 200px;
   text-decoration: none;
+  overflow: hidden;
+  align-items: center;
 }
+
+.server__channel__link__name > div {
+  overflow: hidden;
+}
+
+.server__channel__link__name > span {
+  margin-right: 8px;
+}
+
 .server__channel__settings__container {
   margin-left: 20px;
 }
@@ -101,7 +113,7 @@
   height: 15px;
   background: url("./settings__kog.svg") center no-repeat;
   border: none;
-  padding: 0px;
+  padding: 8px;
   margin-right: 10px;
   cursor: pointer;
 }

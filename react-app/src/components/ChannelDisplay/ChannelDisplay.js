@@ -35,8 +35,6 @@ function ChannelDisplay() {
 
     let chatroom = history.location.pathname;
 
-    console.log(chatroom);
-
     dummyMsg?.current?.scrollIntoView();
 
     const payload = {
