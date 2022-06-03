@@ -9,8 +9,7 @@ def test_disconnect():
 
 @socketio.on("chat")
 def handle_chat(data):
-    print(data)
-    emit("chat", data, broadcast=True, to=data["room"])
+    emit("chat", broadcast=True, to=data["room"])
 
 @socketio.on('join')
 def on_join(data):
