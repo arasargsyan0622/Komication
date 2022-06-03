@@ -5,6 +5,7 @@ import serverReducer from "./server"
 import currServerReducer from './current_server';
 import currChannelReducer from "./current_channel_msg";
 import directMessagesReducer from "./direct_messages"
+import dirMsgsReducer from "./dir.msg"
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   current_server: currServerReducer,
   current_channel: currChannelReducer,
   current_inboxes: directMessagesReducer,
+  direct_messages: dirMsgsReducer
 });
 
 

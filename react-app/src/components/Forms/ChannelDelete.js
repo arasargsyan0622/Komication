@@ -1,6 +1,6 @@
 import "./NonAuthFormsCSS/ChannelDelete.css";
 
-const ChannelDeleteForm = ({ setShowModal }) => {
+const ChannelDeleteForm = ({ setConfirmDelete }) => {
   let channel;
   const handleSubmit = async (e) => {
     //dispatch thunk to delete channel
@@ -14,9 +14,9 @@ const ChannelDeleteForm = ({ setShowModal }) => {
       </div>
 
       <div className="delete__channel__bottom__buttons">
-        <div onClick={() => setShowModal(false)}>Back</div>
+        <div onClick={() => setConfirmDelete(false)}>Back</div>
         <button className="delete__channel__button" onClick={handleSubmit}>
-          Create
+          Delete
         </button>
       </div>
     </div>

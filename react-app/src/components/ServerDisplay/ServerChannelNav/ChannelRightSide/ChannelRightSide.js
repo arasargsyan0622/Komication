@@ -19,7 +19,7 @@ function ChannelRightSide() {
   }, [dispatch, channel]);
 
   return (
-    <div>
+    <div className="channel__right__side__container">
       {currentChannel ? (
         <div className="server__channel__display">
           <div className="server__header__nav">

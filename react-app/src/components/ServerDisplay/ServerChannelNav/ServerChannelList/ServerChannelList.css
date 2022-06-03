@@ -90,6 +90,7 @@
 }
 .server__channel__link__name {
   max-width: 200px;
+  text-decoration: none;
 }
 .server__channel__settings__container {
   margin-left: 20px;
