@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getServers } from "../../store/server";
 import { getCurrServer } from "../../store/current_server";
 import { useParams } from "react-router-dom";
+import UserHomeLoadingScreen from "../LoadingScreens/UserHomeLoadingScreen";
 
 function ServerDisplay() {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ function ServerDisplay() {
       <ChannelRightSide></ChannelRightSide>
     </div>
   ) : (
-    <p>loading.... this is server loading hehe</p>
+    <UserHomeLoadingScreen></UserHomeLoadingScreen>
   );
 }
 

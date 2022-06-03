@@ -5,7 +5,7 @@ import InboxSearch from "../Forms/InboxSearch";
 import InboxMessageList from "./Inbox/InboxMessageList/InboxMessageList";
 import InboxSearchNav from "./Inbox/InboxSearchNav/InboxSearchNav";
 import InboxChannelDisplay from "./Inbox/InboxChannelDisplay/InboxChannelDisplay";
-
+import UserHomeLoadingScreen from "../LoadingScreens/UserHomeLoadingScreen";
 import "./UserHomePage.css";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -32,7 +32,7 @@ function UserHomePage() {
           setIsLoaded(true);
         });
       }
-    }, 500);
+    }, 1500);
 
     return () => {
       mounted = false;
@@ -56,7 +56,7 @@ function UserHomePage() {
       </div>
     </div>
   ) : (
-    <p>loading.... ASDDDDDDDDDDDDDDDDDDDDDzsxcccccccccccccccccc You suck</p>
+    <UserHomeLoadingScreen></UserHomeLoadingScreen>
   );
 }
 
