@@ -23,6 +23,7 @@ function ChannelDisplay() {
   );
 
   console.log(oldMessages);
+  const channelName = Object.values(Object.values(channel)[0])[0].channel_name;
 
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
@@ -103,7 +104,7 @@ function ChannelDisplay() {
           <div className="channel__add__input"></div>
           <input
             className="channel__chat__input"
-            placeholder="Message #channelName"
+            placeholder={`Message #${channelName}`}
             value={chatInput}
             onChange={updateChatInput}
           />

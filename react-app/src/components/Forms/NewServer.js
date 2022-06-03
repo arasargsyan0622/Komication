@@ -6,6 +6,12 @@ import "./NonAuthFormsCSS/NewServerForm.css";
 import ServerInviteModal from "../Modals/ServerInviteModal";
 
 import { createServer } from "../../store/server";
+import { createChannel, getCurrServer } from "../../store/current_server";
+
+import {
+  cleanCurrChannel,
+  getCurrChannel,
+} from "../../store/current_channel_msg";
 
 const NewServerForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
@@ -28,13 +34,24 @@ const NewServerForm = ({ setShowModal }) => {
 
     const finishLoad = await dispatch(createServer(payload));
 
-    // console.log(finishLoad);
-    // console.log("hello?????????????");
+    await dispatch(getCurrServer(finishLoad.server_invite_url));
+
+    const payloadChannel = {
+      myServer: finishLoad,
+      channel_name: "general",
+    };
+
+    const newChannel = await dispatch(createChannel(payloadChannel));
+
+    await dispatch(cleanCurrChannel());
+    await dispatch(getCurrChannel(newChannel.channel_uuid));
 
     if (finishLoad) {
       setImageLoading(false);
       // setShowModal(false);
-      history.push(`/servers/${finishLoad.server_invite_url}`);
+      history.push(
+        `/servers/${finishLoad.server_invite_url}/${newChannel.channel_uuid}`
+      );
       window.location.reload(false);
     } else {
       setImageLoading(false);
