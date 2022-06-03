@@ -8,7 +8,7 @@ import ChannelDeleteForm from "./ChannelDelete";
 
 function ChannelEditForm({ setShowModal }) {
   const { server } = Object.values(useSelector((state) => state.current_server))[0];
-  const [confirmDelete, setConfirmDelete] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   return (
     <>
@@ -28,30 +28,34 @@ function ChannelEditForm({ setShowModal }) {
               <div className="channel__edit__option">Invites</div>
               <div className="channel__edit__option">Integrations</div>
             </div>
-            <div className="delete__channel__button__container">
-              <span>Delete Channel</span>
-            </div>
+            <ChannelDeleteModal confirmDelete={confirmDelete} setConfirmDelete={setConfirmDelete}></ChannelDeleteModal>
           </div>
         </div>
         <div className="channel__edit__container">
           <div className="channel__edit__form__container">
-            <form className="channel__edit__form">
-              <span>OVERVIEW</span>
-              <div className="channel__edit__input__container">
-                <label>CHANNEL NAME</label>
-                <input className="channel__edit__name__input" placeholder="channel name goes here"></input>
-              </div>
+            <div>
+              <form className="channel__edit__form">
+                <span>OVERVIEW</span>
+                <div className="channel__edit__input__container">
+                  <label>CHANNEL NAME</label>
+                  <input className="channel__edit__name__input" placeholder="channel name goes here"></input>
+                </div>
+                <div className="channel__edit__break"></div>
+              </form>
+            </div>
+
+            <div className="channel__save__container">
               <div className="channel__edit__break"></div>
               <div className="channel__edit__save__container">
                 <span>Careful -- check if you have unsaved changes!</span>
                 <div className="channel__save__buttons__container">
-                  <div onClick={() => setConfirmDelete(false)}>Back</div>
+                  <div onClick={() => setShowModal(false)}>Back</div>
                   <button onClick={() => setShowModal(false)} className="channel__edit__save__button">
                     Save Changes
                   </button>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
           <div className="full__screen__modal__esc__container" onClick={() => setShowModal(false)}>
             <div onClick={() => setShowModal(false)} className="escape__circle">
@@ -62,7 +66,6 @@ function ChannelEditForm({ setShowModal }) {
             </div>
           </div>
         </div>
-        <ChannelDeleteForm></ChannelDeleteForm>
       </div>
     </>
   );

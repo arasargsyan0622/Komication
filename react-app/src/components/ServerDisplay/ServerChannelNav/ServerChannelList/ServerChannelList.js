@@ -8,10 +8,7 @@ import { useHistory } from "react-router-dom";
 
 import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
-import {
-  getCurrChannel,
-  cleanCurrChannel,
-} from "../../../../store/current_channel_msg";
+import { getCurrChannel, cleanCurrChannel } from "../../../../store/current_channel_msg";
 
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
@@ -23,9 +20,7 @@ function ServerChannelList() {
   const currentUser = useSelector((state) => state.session.user);
   let currentServer = useSelector((state) => state.current_server);
   const serverOwner = Object.values(currentServer)[0]?.server.user_id;
-  const channels = useSelector((state) =>
-    Object.values(Object.values(state.current_server)[0].server.channels)
-  );
+  const channels = useSelector((state) => Object.values(Object.values(state.current_server)[0].server.channels));
   const currentChannelUuid = window.location.pathname.split("/")[3];
 
   const users = Object.values(currentServer)[0]?.server.users;
@@ -74,14 +69,11 @@ function ServerChannelList() {
         {channels?.map((channel) => {
           return (
             <NavLink
-              to={`/servers/${
-                Object.values(currentServer)[0].server.server_invite_url
-              }/${channel.channel_uuid}`}
+              className={"channel__nav__link"}
+              to={`/servers/${Object.values(currentServer)[0].server.server_invite_url}/${channel.channel_uuid}`}
             >
               <div key={channel.id} className={"server__channel__link"}>
-                <div className="server__channel__link__name">
-                  # {channel.channel_name}
-                </div>
+                <div className="server__channel__link__name"># {channel.channel_name}</div>
                 <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
               </div>
             </NavLink>

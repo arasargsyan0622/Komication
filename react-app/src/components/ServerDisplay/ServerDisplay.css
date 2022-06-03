@@ -4,6 +4,10 @@
   height: 100vh;
   /* border: 1px solid lime; */
 }
+.channel__right__side__container {
+  width: 100%;
+  height: 100%;
+}
 
 .server__channel__display {
   width: 100%;

@@ -13,7 +13,7 @@ function ServerDeleteModal() {
       </div>
       {showConfirm && (
         <Modal onClose={() => setShowConfirm(false)}>
-          <ConfirmDeleteServer />
+          <ConfirmDeleteServer setShowConfirm={setShowConfirm} />
         </Modal>
       )}
     </>

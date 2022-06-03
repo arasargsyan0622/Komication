@@ -5,7 +5,7 @@ import "./NonAuthFormsCSS/ConfirmDeleteServer.css";
 
 import { deleteServer } from "../../store/server";
 
-const ConfirmDeleteServer = () => {
+const ConfirmDeleteServer = ({ setShowConfirm }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const currentServer = useSelector((state) => state.current_server);
@@ -40,10 +40,7 @@ const ConfirmDeleteServer = () => {
     ) {
       history.push("/me");
       window.location.reload(false);
-    } else if (
-      joinedServers[0].server_invite_url !=
-      Object.values(currentServer)[0].server.server_invite_url
-    ) {
+    } else if (joinedServers[0].server_invite_url != Object.values(currentServer)[0].server.server_invite_url) {
       const firstJoinedServer = joinedServers[0]?.server_invite_url;
       history.push(`/servers/${firstJoinedServer}`);
       window.location.reload(false);
@@ -68,7 +65,7 @@ const ConfirmDeleteServer = () => {
         </div>
 
         <div className="confirm__delete__server__buttons">
-          <div>Cancel</div>
+          <div onClick={() => setShowConfirm(false)}>Cancel</div>
           <button className="" onClick={handleSubmit}>
             Delete Server
           </button>
