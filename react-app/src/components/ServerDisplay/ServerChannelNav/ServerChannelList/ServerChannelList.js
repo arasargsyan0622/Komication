@@ -61,9 +61,9 @@ function ServerChannelList() {
     const channelUuid = Object?.values(
       Object?.values(currentServer)[0]?.server.channels
     )[0]?.channel_uuid;
-    if (channelUuid) {
-      history.push(`/servers/${server_uuid}/${channelUuid}`);
-    }
+    // if (channelUuid) {
+    //   history.push(`/servers/${server_uuid}/${channelUuid}`);
+    // }
     return () => {
       dispatch(cleanCurrChannel());
     };
