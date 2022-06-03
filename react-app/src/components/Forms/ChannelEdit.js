@@ -4,11 +4,26 @@ import "./NonAuthFormsCSS/ChannelEditForm.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import ChannelDeleteModal from "../Modals/ChannelDeleteModal";
-import ChannelDeleteForm from "./ChannelDelete";
+// import ChannelDeleteForm from "./ChannelDelete";
+import {updateChannel} from "../../store/current_server";
 
 function ChannelEditForm({ setShowModal }) {
   const { server } = Object.values(useSelector((state) => state.current_server))[0];
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [editName, setEditName] = useState("");
+  const dispatch = useDispatch();
+  const currChannel = Object.values(useSelector((state)=> state.current_channel))
+  const uuid = currChannel[0]?.channel.channel_uuid
+
+
+
+  const editChannel = async () => {
+    const payload = {
+      channel_name: editName,
+      uuid,
+    };
+    dispatch(updateChannel(payload)).then(()=>setShowModal(false));
+  };
 
   return (
     <>
@@ -38,7 +53,7 @@ function ChannelEditForm({ setShowModal }) {
                 <span>OVERVIEW</span>
                 <div className="channel__edit__input__container">
                   <label>CHANNEL NAME</label>
-                  <input className="channel__edit__name__input" placeholder="channel name goes here"></input>
+                  <input className="channel__edit__name__input" placeholder="channel name goes here" value={editName} onChange={(e)=>setEditName(e.target.value)}></input>
                 </div>
                 <div className="channel__edit__break"></div>
               </form>
@@ -50,7 +65,7 @@ function ChannelEditForm({ setShowModal }) {
                 <span>Careful -- check if you have unsaved changes!</span>
                 <div className="channel__save__buttons__container">
                   <div onClick={() => setShowModal(false)}>Back</div>
-                  <button onClick={() => setShowModal(false)} className="channel__edit__save__button">
+                  <button onClick={() => editChannel()} className="channel__edit__save__button">
                     Save Changes
                   </button>
                 </div>
