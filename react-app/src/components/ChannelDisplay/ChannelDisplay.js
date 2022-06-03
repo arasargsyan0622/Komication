@@ -170,9 +170,12 @@ function ChannelDisplay() {
           <div className="channel__add__input"></div>
           <input
             className="channel__chat__input"
-            placeholder={`Message # ${myChannelName}`}
-            value={messageContent}
-            onChange={(e) => setMessageContent(e.target.value)}
+            placeholder={`Message #${channelName}`}
+            required
+            maxLength={900}
+            value={chatInput}
+            onChange={updateChatInput}
+
           />
           <button className="send__chat__button"></button>
         </div>
