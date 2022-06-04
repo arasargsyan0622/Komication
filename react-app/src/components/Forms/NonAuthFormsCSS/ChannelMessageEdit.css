@@ -1,0 +1,153 @@
+.channel__message__edit__form {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 104px;
+  /* border: 1px solid red; */
+  margin: 17px 0 0;
+  padding: 2px 15px 2px 15px;
+  background-color: #04040512;
+}
+.channel__edit__message__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: url("./Komi_Circle_Icon.svg") no-repeat center;
+  margin-right: 5px;
+  margin-bottom: 60px;
+}
+
+.channel__message__edit__input {
+  width: 100%;
+  height: auto;
+  min-height: 44px;
+  font-size: 16px;
+  padding: 10px;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #40444b;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.channel__message__edit__buttons {
+  display: flex;
+  align-self: center;
+}
+.channel__edit__message__info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.channel__edit__message__user {
+  font-size: 14px;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  margin-right: 6px;
+}
+.channel__edit__message__date {
+  font-size: 11px;
+  color: #727a85;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  margin-right: 6px;
+}
+.edited__confirmation {
+  font-size: 11px;
+  color: #727a85;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.channel__edit__contents {
+  width: 100%;
+  height: 100%;
+}
+
+.edit__cancel__save {
+  width: 400px;
+  height: 20px;
+  display: flex;
+}
+.edit__cancel__save > div {
+  width: auto;
+}
+.edit__cancel__save > span {
+  width: auto;
+}
+.edit__cancel__save {
+  font-size: 11px;
+  color: #727a85;
+  font-weight: 600px;
+  margin-top: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.edit__cancel__save > div {
+  font-size: 11px;
+  font-weight: 600px;
+  color: #00aff4;
+  margin-left: 3px;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+.edit__cancel__save > div:hover {
+  text-decoration: underline;
+}
+
+.message__delete__button {
+  background: url("./delete__server__channel.svg");
+  cursor: pointer;
+}
+.message__delete__button__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 25px;
+
+  height: 32px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+.message__delete__button__container > span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #727a85;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.message__delete__button__container > div {
+  background: url("./delete__server__channel.svg") center no-repeat;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+.message__delete__button__container > div:hover {
+  color: #ffffff;
+  background-color: #da3336;
+  border-radius: 5px;
+}
+
+.channel__edit__view__toggle__container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.channel__edit__pencil {
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  background: url("./edit__message__pencil.svg") center no-repeat;
+  margin-right: 25px;
+  cursor: pointer;
+}
