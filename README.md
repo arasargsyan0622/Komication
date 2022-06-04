@@ -116,7 +116,7 @@ The User can create servers. When a server is created, a "General" channel is cr
 
 Account registration and login are fully functional and error handled.
 
-![Login](readme-images/login.png "a title")
+![Login](readme-images/logingif.gif "a title")
 ![Sign up](readme-images/register.png "a title")
 
 ### Splash page and Home page
@@ -128,16 +128,16 @@ Account registration and login are fully functional and error handled.
 
 Server creation is a modal. The user can give a server name and upload an image. A user can also join a server with an invitation link
 
-![Create a Server](readme-images/create-server.png "a title")
-![Edit/Delete a Server](readme-images/edit-delete-server.png "a title")
+![Create a Server](readme-images/server-creation.gif "a title")
+![Edit/Delete a Server](readme-images/server-edit-delete.gif "a title")
 ![Join a Server](readme-images/server-join.png "a title")
 
 ### Channels CRUD
 
 Channel creation is a modal. The user can give a channel name.
 
-![Create a Channel](readme-images/create-channel.png "a title")
-![Edit/Delete a Channel](readme-images/edit-delete-channel.png "a title")
+![Create a Channel](readme-images/channel-creation.gif "a title")
+![Edit/Delete a Channel](readme-images/channel-edit-delete.gif "a title")
 
 ### Channel Messages CRUD
 
