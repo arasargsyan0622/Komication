@@ -124,13 +124,13 @@ Signup Page
 
 ![Sign up](readme-images/register.png "a title")
 
-### Splash page and Home page
+### Splash page
 
 ![Splash](readme-images/splash.gif.gif "a title")
 
 ### Servers CRUD
 
-Server creation is a modal. The user can give a server name and upload an image. A user can also join a server with an invitation link
+Server creation is a modal. The user can give a server name and upload an image. A user can also join a server with an invitation link. To save an edit, the user has to click on "Save Changes". In order to Delete a server, the user has to type in the server name.
 
 
 Create a Server
@@ -159,12 +159,14 @@ Edit/Delete a Channel
 
 ### Channel Messages CRUD
 
-Channel chat is a live chat where people can talk to each other. Message owner can edit or delete their messages
+Channel chat is a live chat where people can talk to each other. Message owner can edit or delete their messages by clicking the "pencil" icon.
 
 Create/Read a Message
+
 ![Message read/create](readme-images/channel-msg-view.png "a title")
 
 Edt/Delete a Message
+
 ![Message edit/delete](readme-images/channel-msg.png "a title")
 
 <!-- Direct messages here -->
