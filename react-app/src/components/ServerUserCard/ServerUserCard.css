@@ -30,7 +30,7 @@
   margin-right: 10px;
   transform: translate(7px, -13px);
   /* transform: translateY(-5px); */
-  z-index: 50;
+  /* z-index: 50; */
 }
 .user__offline__status {
   display: flex;
