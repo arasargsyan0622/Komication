@@ -30,17 +30,17 @@ const LoginForm = () => {
 
   const demoLogin1 = async (e) => {
     e.preventDefault();
-    await dispatch(login("demo@aa.io", "password"));
+    await dispatch(login("komi@aa.io", "password"));
   };
 
   const demoLogin2 = async (e) => {
     e.preventDefault();
-    await dispatch(login("zensan@p.hub", "DarrenStinks"));
+    await dispatch(login("brob@p.hub", "password1"));
   };
 
   const demoLogin3 = async (e) => {
     e.preventDefault();
-    await dispatch(login("dripgod@p.hub", "password1"));
+    await dispatch(login("danny@aa.io", "password"));
   };
 
   if (user) {
@@ -108,29 +108,29 @@ const LoginForm = () => {
           ></img>
           <form onSubmit={demoLogin1}>
             <button type="submit" className="demo__login__button">
-              Demo User:Demo
+              Login as Komi-san
             </button>
           </form>
         </div>
         <div className="demo__user__button__container">
           <img
             className="demo__user__icon"
-            src="http://komication.s3.amazonaws.com/c85fcf48768a4fac810e7ac3ee1a3b85.png"
+            src="http://komication.s3.amazonaws.com/c5e357ac29014d4c864e555668100510.png"
           ></img>
           <form onSubmit={demoLogin2}>
             <button type="submit" className="demo__login__button">
-              Demo User:Zensan
+              Login as ATLShawty
             </button>
           </form>
         </div>
         <div className="demo__user__button__container">
           <img
             className="demo__user__icon"
-            src="http://komication.s3.amazonaws.com/c85fcf48768a4fac810e7ac3ee1a3b85.png"
+            src="http://komication.s3.amazonaws.com/7947ca9db1384b29af36427eedef527b.png"
           ></img>
           <form onSubmit={demoLogin3}>
             <button type="submit" className="demo__login__button">
-              Demo User:Dripgod
+              Login as PropanePrince
             </button>
           </form>
         </div>

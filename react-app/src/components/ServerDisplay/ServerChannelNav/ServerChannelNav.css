@@ -4,6 +4,7 @@
 .server__channel__nav__container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 240px;
   height: auto;
   /* margin-left: 10px */

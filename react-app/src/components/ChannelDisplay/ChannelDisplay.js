@@ -2,12 +2,14 @@ import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
 import "./ChannelDisplay.css";
 import moment from "moment";
+import ChannelMessageEdit from "../Forms/ChannelMessageEdit";
 
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrChannel, createMessage, deleteMessage, updateMessage } from "../../store/current_channel_msg";
 
-import ChannelMsgEditModal from "../../components/Modals/ChannelMsgEditModal";
+import ChannelMessageDeleteModal from "../../components/Modals/ChannelMessageDeleteModal";
+import ChannelMessageView from "./ChannelMessage/ChannelMessageView";
 
 let socket;
 
@@ -59,6 +61,7 @@ function ChannelDisplay() {
         username: user.username,
         room: chatroom,
       };
+
       socket.emit("leave", payload);
       socket.disconnect();
     };
@@ -109,6 +112,7 @@ function ChannelDisplay() {
 
   const eraseMessage = async (e, message) => {
     e.preventDefault();
+    console.log(message);
     let chatroom = history.location.pathname;
     const payload = {
       // user: user.username,
@@ -125,25 +129,28 @@ function ChannelDisplay() {
       <div className="channel__messages__container">
         <div ref={dummyMsg}></div>
         {Object.values(channelMessages)
-          .map((message, ind) => (
-            <div className="channel__message__div" key={message.id}>
-              <div className="channel__message__avatar"></div>
-              <div className="channel__message__contents">
-                <div className="message__user__time">
-                  <div className="channel__message__username">{normUsers[message.user_id]?.username}</div>
-                  <div className="channel__message__date">{formatDate(message.timestamp)}</div>
-                  {message.edited == true ? <div>(edited)</div> : <></>}
-                  {message.user_id === user.id ? <ChannelMsgEditModal socket={socket} message={message} /> : <></>}
-                  {message.user_id === user.id ? (
-                    <button onClick={(e) => eraseMessage(e, message)}>Delete</button>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                <div className="channel__message">{`${message.content}`}</div>
-              </div>
-            </div>
-          ))
+          .map((message, ind) =>
+            message.user_id == user.id ? (
+              <ChannelMessageEdit
+                message={message}
+                normUsers={normUsers}
+                formatDate={formatDate}
+                socket={socket}
+                user={user}
+                eraseMessage={eraseMessage}
+                key={message.id}
+              ></ChannelMessageEdit>
+            ) : (
+              <ChannelMessageView
+                message={message}
+                normUsers={normUsers}
+                formatDate={formatDate}
+                socket={socket}
+                user={user}
+                key={message.id}
+              ></ChannelMessageView>
+            )
+          )
           .reverse()}
       </div>
       <form className="channel__chat__form" onSubmit={addMessage}>
