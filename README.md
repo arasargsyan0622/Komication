@@ -5,18 +5,25 @@ komication Live Link: https://komication.herokuapp.com/
 Git wiki: https://github.com/arasargsyan0622/Komication/wiki
 
 ### Contact
+<div>Vernyoon Chao
+   <a href="https://www.linkedin.com/in/vernyoon-chao-783494123/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+   <a href="https://github.com/VernyoonChao98"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+</div>
 
-<a href="https://www.linkedin.com/in/vernyoon-chao-783494123/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />Vernyoon Chao</a>
-<a href="https://github.com/VernyoonChao98"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
-
-<a href="https://www.linkedin.com/in/chris-threadgill-b05090185/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />Chris Treadgill</a>
+<div>Chris Treadgill
+<a href="https://www.linkedin.com/in/chris-threadgill-b05090185/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
 <a href="https://github.com/ChrisThreadgill"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+</div>
 
-<a href="https://www.linkedin.com/in/darren-kong-06b47013b/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />Darren Kong</a>
+<div>Darren Kong
+<a href="https://www.linkedin.com/in/darren-kong-06b47013b/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
 <a href="https://github.com/dkong1321"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+</div>
 
-<a href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />Ara Sargsyan</a>
+<div>Ara Sargsyan
+<a href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
 <a href="https://github.com/arasargsyan0622"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+</div>
 
 ## komication
 
@@ -93,11 +100,11 @@ Komication is a Full Stack Discord clone. It is a place to talk and hang out wit
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue
-![Socket.io])(https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white)
-![Flask])(https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+![Socket.io])(https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white)
+![Flask])(https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 
 ## Features
 
@@ -125,14 +132,14 @@ Server creation is a modal. The user can give a server name and upload an image.
 ![Edit/Delete a Server](readme-images/edit-delete-server.png "a title")
 ![Join a Server](readme-images/server-join.png "a title")
 
-### Channel CRUD
+### Channels CRUD
 
 Channel creation is a modal. The user can give a channel name.
 
 ![Create a Channel](readme-images/create-channel.png "a title")
 ![Edit/Delete a Channel](readme-images/edit-delete-channel.png "a title")
 
-### Channel Message CRUD
+### Channel Messages CRUD
 
 Channel chat is a live chat where people can talk to each other. Message owner can edit or delete their messages
 
