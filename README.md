@@ -1,8 +1,169 @@
-# Flask React Project
+# Komication
 
-This is the starter for the Flask React project.
+komication Live Link: https://komication.herokuapp.com/
+
+Git wiki: https://github.com/arasargsyan0622/Komication/wiki
+
+### Contact
+
+<a hfre="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://github.com/arasargsyan0622"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+
+<a hfre="https://www.linkedin.com/in/vernyoon-chao-783494123/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://github.com/VernyoonChao98"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+
+<a hfre="https://www.linkedin.com/in/chris-threadgill-b05090185/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://github.com/ChrisThreadgill"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+
+<a hfre="https://www.linkedin.com/in/darren-kong-06b47013b/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://github.com/dkong1321"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+
+## komication
+
+---
+
+Komication
+
+Komication is a Full Stack Discord clone. It is a place to talk and hang out with your friends. Users can create servers, channels, channel and direct messaging.
+
 
 ## Getting started
+1. Clone this repository
+
+   ```bash
+   git clone https://github.com/arasargsyan0622/Komication.git
+   ```
+
+2. Install dependencies
+
+      ```bash
+      pipenv install
+      ```
+
+      ```bash
+      cd react-app
+      ```
+
+      ```bash
+      npm install
+      ```
+
+3. Create a **.env** file based on the example with proper settings for your
+   development environment
+
+4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+
+5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+
+   ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+   ```
+
+6. To run the React App in development
+
+   ```bash
+   cd react-app
+   ```
+
+   ```bash
+   npm start
+   ```
+
+***
+
+## Technologies Used
+
+---
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Python])(https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+![Socket.io])(https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white)
+![Flask])(https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+SQLAlchemy
+
+## Features
+
+The User can create servers. When a server is created, a "General" channel is created automatically. The server owner can also create, edit and delete channels. There is a live chat in channels where users who are invited to that server, can chat with each other. Message owners can edit or delete their messages. Direct messaging is similar to channel's chat. Lastly, Server owners can also edit the server name or delete them.
+
+##
+
+### Login and Sign-up
+
+Account registration and login are fully functional and error handled.
+
+![Login](readme-images/login.png "a title")
+![Sign up](readme-images/signup.png "a title")
+
+### Splash page and Home page
+
+![Splash](readme-images/splash.gif.gif "a title")
+![Home](readme-images/homepage.png "a title")
+
+### Servers CRUD
+
+Server creation is a modal. The user can give a server name and upload an image. A user can also join a server with an invitation link
+
+![Create a Server](readme-images/create-server.png "a title")
+![Edit/Delete a Server](readme-images/edit-delete-server.png "a title")
+![Join a Server](readme-images/server-join.png "a title")
+
+### Channel CRUD
+
+Channel creation is a modal. The user can give a channel name.
+
+![Create a Channel](readme-images/create-channel.png "a title")
+![Edit/Delete a Channel](readme-images/edit-delete-channel.png "a title")
+
+### Channel Message CRUD
+
+Channel chat is a live chat where people can talk to each other. Message owner can edit or delete their messages
+
+![Message read/create](readme-images/channel-msg-view.png "a title")
+![Message edit/delete](readme-images/channel-msg.png "a title")
+
+<!-- Direct messages here -->
+
+## Future Features
+
+---
+
+- Implement profile page.
+- Implement a search feature to search for messages.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ## Getting started
 1. Clone this repository (only this branch)
 
    ```bash
@@ -50,14 +211,14 @@ This is the starter for the Flask React project.
 ### Dev Containers (OPTIONAL for M1 Users)
 The following instructions detail an *optional* development setup for M1 Mac users having issues with the `psycopg` package.
 
-1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. 
-2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer. 
+1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed.
+2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer.
 3. Clone the repository (only this branch)
    ```bash
    git clone https://github.com/appacademy-starters/python-project-starter.git
    ```
-4. Open the repo in VS Code. 
-5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner. 
+4. Open the repo in VS Code.
+5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner.
 6. **Be Patient!** The initial install will take a LONG time, it's building a container that has postgres preconfigured and even installing all your project dependencies. (For both flask and react!)
 
    **Note:** This will take much less time on future starts because everything will be cached.
@@ -87,7 +248,7 @@ The following instructions detail an *optional* development setup for M1 Mac use
 <br>
 
 ## Deploy to Heroku
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
+This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations.
 
 1. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
 
@@ -126,4 +287,4 @@ each of the following variables:
 | `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
 | `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
-| `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
+| `heroku run -a <app name>` | Run a command from within the deployed container on Heroku | -->
