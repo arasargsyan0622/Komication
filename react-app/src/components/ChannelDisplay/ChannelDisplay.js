@@ -61,6 +61,7 @@ function ChannelDisplay() {
         username: user.username,
         room: chatroom,
       };
+
       socket.emit("leave", payload);
       socket.disconnect();
     };

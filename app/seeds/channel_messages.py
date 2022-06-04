@@ -85,14 +85,7 @@ def seed_channel_messages():
             channel_msg1, channel_msg2, channel_msg3, channel_msg4, channel_msg5, channel_msg6, channel_msg7, channel_msg8,channel_msg9, channel_msg10, \
             channel_msg11, channel_msg12, channel_msg13, channel_msg14, channel_msg15, channel_msg16, channel_msg17, channel_msg18,channel_msg19, channel_msg20,
                     ]
-    db.session.add(channel_msg1)
-    db.session.add(channel_msg2)
-    db.session.add(channel_msg3)
-    db.session.add(channel_msg4)
-    db.session.add(channel_msg5)
-    db.session.add(channel_msg6)
-    db.session.add(channel_msg7)
-    db.session.add(channel_msg8)
+
 
     db.session.commit()
 

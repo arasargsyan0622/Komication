@@ -15,7 +15,8 @@ function ChannelMessageDelete({ socket, message, normUsers, formatDate, user, se
 
       <div className="channel__message__delete__contents__container">
         <div>
-          <div className="channel__message__delete__contents__avatar"></div>
+          <img className="channel__message__delete__contents__avatar" src={user.avatar_url}></img>
+
 
           <div className="channel__message__delete__user__message__container">
             <div>
