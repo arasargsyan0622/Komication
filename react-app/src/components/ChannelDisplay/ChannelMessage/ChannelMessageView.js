@@ -14,7 +14,7 @@ function ChannelMessageView({
       {/* <div className="channel__message__avatar"></div> */}
       <img
         className="channel__message__avatar"
-        src={normUsers[message.user_id].avatar_url}
+        src={normUsers[message.user_id]?.avatar_url}
         alt="avatar"
       ></img>
       <div className="channel__message__contents">
