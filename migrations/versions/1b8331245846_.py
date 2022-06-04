@@ -1,8 +1,8 @@
-"""model1.0
+"""empty message
 
-Revision ID: 2fbcdbdd4a0a
+Revision ID: 1b8331245846
 Revises: 
-Create Date: 2022-05-28 17:02:50.382210
+Create Date: 2022-06-03 22:51:54.799516
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2fbcdbdd4a0a'
+revision = '1b8331245846'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,7 +22,9 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_a_hide', sa.Boolean(), nullable=True),
     sa.Column('user_b_hide', sa.Boolean(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('inbox_uuid', sa.String(length=255), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('inbox_uuid')
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -69,8 +71,10 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('channel_name', sa.String(length=50), nullable=False),
     sa.Column('server_id', sa.Integer(), nullable=False),
+    sa.Column('channel_uuid', sa.String(length=255), nullable=False),
     sa.ForeignKeyConstraint(['server_id'], ['servers.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('channel_uuid')
     )
     op.create_table('server_users',
     sa.Column('user_id', sa.Integer(), nullable=False),
