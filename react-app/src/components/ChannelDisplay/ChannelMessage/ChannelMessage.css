@@ -14,12 +14,27 @@
   display: flex;
   margin-top: 17px;
 }
+.channel__message__username {
+  margin-right: 15px;
+  color: #dcddde;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.channel__message__date,
+.channel__message__edited {
+  margin-right: 15px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #727a85;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
 .message__user__time {
   display: flex;
 }
 .message__user__time > div {
   margin-right: 10px;
 }
+
 .channel__message__avatar {
   width: 40px;
   height: 40px;
