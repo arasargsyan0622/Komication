@@ -36,7 +36,8 @@ function ChannelMessageEdit({ message, normUsers, socket, eraseMessage, formatDa
     <div>
       {editActive ? (
         <form className="channel__message__edit__form" onSubmit={(e) => editMessage(e)}>
-          <div className="channel__edit__message__avatar"></div>
+          <img className="channel__edit__message__avatar" src={user.avatar_url}></img>
+
           <div className="channel__edit__contents">
             <div className="channel__edit__input__container">
               <div className="channel__edit__message__info">

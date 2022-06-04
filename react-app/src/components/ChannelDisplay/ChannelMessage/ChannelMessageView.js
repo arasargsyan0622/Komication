@@ -5,7 +5,8 @@ import ChannelMessageDeleteModal from "../../Modals/ChannelMessageDeleteModal";
 function ChannelMessageView({ message, normUsers, socket, eraseMessage, formatDate, user }) {
   return (
     <div className="channel__message__div" key={message.id}>
-      <div className="channel__message__avatar"></div>
+      {/* <div className="channel__message__avatar"></div> */}
+      <img className="channel__message__avatar" src={normUsers[message.user_id].avatar_url}></img>
       <div className="channel__message__contents">
         <div className="message__user__time">
           <div className="channel__message__username">{normUsers[message.user_id]?.username}</div>
