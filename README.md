@@ -6,17 +6,17 @@ Git wiki: https://github.com/arasargsyan0622/Komication/wiki
 
 ### Contact
 
-<a hfre="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-<a href="https://github.com/arasargsyan0622"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
-
-<a hfre="https://www.linkedin.com/in/vernyoon-chao-783494123/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://www.linkedin.com/in/vernyoon-chao-783494123/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />Vernyoon Chao</a>
 <a href="https://github.com/VernyoonChao98"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
 
-<a hfre="https://www.linkedin.com/in/chris-threadgill-b05090185/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://www.linkedin.com/in/chris-threadgill-b05090185/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />Chris Treadgill</a>
 <a href="https://github.com/ChrisThreadgill"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
 
-<a hfre="https://www.linkedin.com/in/darren-kong-06b47013b/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://www.linkedin.com/in/darren-kong-06b47013b/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />Darren Kong</a>
 <a href="https://github.com/dkong1321"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+
+<a href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />Ara Sargsyan</a>
+<a href="https://github.com/arasargsyan0622"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
 
 ## komication
 
@@ -93,12 +93,11 @@ Komication is a Full Stack Discord clone. It is a place to talk and hang out wit
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Python])(https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue
 ![Socket.io])(https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white)
 ![Flask])(https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-SQLAlchemy
 
 ## Features
 
@@ -111,7 +110,7 @@ The User can create servers. When a server is created, a "General" channel is cr
 Account registration and login are fully functional and error handled.
 
 ![Login](readme-images/login.png "a title")
-![Sign up](readme-images/signup.png "a title")
+![Sign up](readme-images/register.png "a title")
 
 ### Splash page and Home page
 
