@@ -21,10 +21,20 @@ function ChannelRightSide() {
 
   const server = useSelector((state) => state.current_server);
   const currentServer = Object.values(server)[0];
-  console.log(currentChannel, "current channel");
+
+  const onlineUsers = currentServer.server.users.filter(
+    (user) => user.online === true
+  );
+
+  const offlineUsers = currentServer.server.users.filter(
+    (user) => user.online === false
+  );
+
+  console.log(onlineUsers);
+  console.log(offlineUsers);
+
   useEffect(() => {
     let mounted = true;
-
     let t = setTimeout(() => {
       if (mounted) {
         setIsLoaded(true);
@@ -51,9 +61,16 @@ function ChannelRightSide() {
               <div className="server__channel__display__container">
                 <ChannelDisplay></ChannelDisplay>
                 <div className="online__users__container">
-                  <div>ONLINE — 0</div>
-                  <div>OFFLINE — {currentServer.server.users.length}</div>
-                  {currentServer.server.users.map((user, idx) => {
+                  <div>ONLINE — {onlineUsers.length}</div>
+                  {onlineUsers.map((user, idx) => {
+                    return (
+                      <div>
+                        <ServerUserCard user={user} key={idx}></ServerUserCard>
+                      </div>
+                    );
+                  })}
+                  <div>OFFLINE — {offlineUsers.length}</div>
+                  {offlineUsers.map((user, idx) => {
                     return (
                       <div>
                         <ServerUserCard user={user} key={idx}></ServerUserCard>
