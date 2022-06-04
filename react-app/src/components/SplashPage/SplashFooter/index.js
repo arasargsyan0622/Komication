@@ -1,8 +1,11 @@
 import "./SplashFooter.css";
 import { ExternalLink } from "react-external-link";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function SplashFooter() {
+  const user = useSelector((state) => state.session.user);
+  const history = useHistory();
   return (
     <div>
       <div className="splash__footer__container">
@@ -56,9 +59,15 @@ function SplashFooter() {
         <div className="splash__footer__sign__up">
           <div className="splash__footer__logo"></div>
           <button>
-            <Link className="splash__footer__sign__up__link" to="/sign-up">
-              Sign up
-            </Link>
+            {user ? (
+              <Link className="splash__footer__sign__up__link" to="/me">
+                Open Komi
+              </Link>
+            ) : (
+              <Link className="splash__footer__sign__up__link" to="/sign-up">
+                Sign up
+              </Link>
+            )}
           </button>
         </div>
       </div>

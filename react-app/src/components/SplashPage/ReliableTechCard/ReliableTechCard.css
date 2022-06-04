@@ -9,7 +9,8 @@
 }
 
 .reliable__tech__picture {
-  width: 1180px;
+  width: 100%;
+  max-width: 1180px;
   height: 715px;
   background: url("./reliable__tech__image.svg") no-repeat center;
   /* background-image: url("./reliable__tech__image.png"); */
@@ -19,7 +20,8 @@
 .reliable__tech__heading {
   display: flex;
   flex-direction: column;
-  width: 980px;
+  width: 100%;
+  max-width: 980px;
   height: 440px;
   justify-content: center;
   text-align: center;

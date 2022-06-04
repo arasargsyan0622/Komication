@@ -1,9 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { ExternalLink } from "react-external-link";
 import "./HeaderNav.css";
 
 function HeaderNav() {
+  const user = useSelector((state) => state.session.user);
+  const history = useHistory();
   return (
     <div>
       <div className="banner__container">
@@ -33,14 +36,20 @@ function HeaderNav() {
               </ExternalLink>
             </div>
             <button className="banner__nav__login">
-              <Link className="banner__nav__login" to="/login">
-                Login
-              </Link>
+              {!user ? (
+                <Link className="banner__nav__login" to="/login">
+                  Login
+                </Link>
+              ) : (
+                <Link className="banner__nav__login" to="/me">
+                  Open Komi
+                </Link>
+              )}
             </button>
           </div>
           <div className="banner__heading">
             <h1>IMAGINE A PLACE...</h1>
-            <div>
+            <div className="banner__heading__message">
               ...where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and
               a handful of friends can spend time together. A place that makes it easy to talk every day and hang out
               more often.
@@ -51,7 +60,14 @@ function HeaderNav() {
                   Download the Repo!
                 </ExternalLink>
               </button>
-              <button className="banner__open__button">Open Komication in your browser</button>
+              <button
+                className="banner__open__button"
+                onClick={() => {
+                  history.push("/me");
+                }}
+              >
+                Open Komication in your browser
+              </button>
             </div>
           </div>
         </div>
