@@ -7,6 +7,7 @@ function ServerInviteModal() {
 
   const showNestedModal = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setShowModal(true);
   };
 

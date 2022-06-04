@@ -7,14 +7,17 @@ import ServerUserCard from "../../../ServerUserCard/ServerUserCard";
 import NoTextChannel from "../../../NoTextChannel/NoTextChannel";
 import "../../../ServerDisplay/ServerDisplay.css";
 
-import UserHomeLoadingScreen from "../../../LoadingScreens/UserHomeLoadingScreen";
+// import { getCurrChannel } from "../../../../store/current_channel_msg";
+
+// import UserHomeLoadingScreen from "../../../LoadingScreens/UserHomeLoadingScreen";
 import ChannelLoadingScreen from "../../../LoadingScreens/ChannelLoadingScreen";
+// import { useParams } from "react-router-dom";
 
 function ChannelRightSide() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [textCheck, setTextCheck] = useState(false);
+  // const [textCheck, setTextCheck] = useState(false);
 
   const channel = useSelector((state) => state.current_channel);
   const currentChannel = Object.values(channel)[0];
@@ -30,21 +33,28 @@ function ChannelRightSide() {
     (user) => user.online === false
   );
 
-  console.log(onlineUsers);
-  console.log(offlineUsers);
+  const channelUuid = window.location.pathname.split("/")[3];
 
   useEffect(() => {
     let mounted = true;
     let t = setTimeout(() => {
       if (mounted) {
+        // if (window.location.pathname.split("/")[3]) {
+        //   dispatch(getCurrChannel(window.location.pathname.split("/")[3])).then(
+        //     () => {
         setIsLoaded(true);
+        //       }
+        //     );
+        //   }
       }
-    }, 1500);
-  }, [dispatch, channel]);
+    }, 500);
+    return () => {
+      clearTimeout(t);
+    };
+  }, [dispatch, channelUuid]);
 
   return isLoaded && currentServer && currentChannel ? (
     <>
-      {" "}
       {currentServer && currentChannel ? (
         <div className="channel__right__side__container">
           {currentChannel ? (
@@ -64,16 +74,22 @@ function ChannelRightSide() {
                   <div>ONLINE — {onlineUsers.length}</div>
                   {onlineUsers.map((user, idx) => {
                     return (
-                      <div>
-                        <ServerUserCard user={user} key={idx}></ServerUserCard>
+                      <div key={user.id}>
+                        <ServerUserCard
+                          user={user}
+                          key={user.id}
+                        ></ServerUserCard>
                       </div>
                     );
                   })}
                   <div>OFFLINE — {offlineUsers.length}</div>
                   {offlineUsers.map((user, idx) => {
                     return (
-                      <div>
-                        <ServerUserCard user={user} key={idx}></ServerUserCard>
+                      <div key={user.id}>
+                        <ServerUserCard
+                          user={user}
+                          key={user.id}
+                        ></ServerUserCard>
                       </div>
                     );
                   })}

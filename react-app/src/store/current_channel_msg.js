@@ -102,8 +102,8 @@ const currChannelReducer = (state = initialState, action) => {
       return newState;
     case ADD_MESSAGE:
       const newMessage = action.myMessage;
-      console.log(newState);
-      console.log(newMessage);
+      // console.log(newState);
+      // console.log(newMessage);
       newState[newMessage.channel_id].channel.channel_messages[newMessage.id] = newMessage;
       return newState;
     case EDIT_MESSAGE:

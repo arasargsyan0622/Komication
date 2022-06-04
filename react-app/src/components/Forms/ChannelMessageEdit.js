@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { updateMessage } from "../../store/current_channel_msg";
 import { useHistory } from "react-router-dom";
 import ChannelMessageDeleteModal from "../Modals/ChannelMessageDeleteModal";
 import "./NonAuthFormsCSS/ChannelMessageEdit.css";
 import ChannelMessageView from "../ChannelDisplay/ChannelMessage/ChannelMessageView";
 
-function ChannelMessageEdit({ message, normUsers, socket, eraseMessage, formatDate, user, setShowModal }) {
+function ChannelMessageEdit({
+  message,
+  normUsers,
+  socket,
+  eraseMessage,
+  formatDate,
+  user,
+  setShowModal,
+}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [editMessageContent, setEditMessageContent] = useState(message.content);
   const [editActive, setEditActive] = useState(false);
-  const [showPencil, setShowPencil] = useState(false);
 
   const editMessage = async (e) => {
     e.preventDefault();
@@ -35,15 +42,30 @@ function ChannelMessageEdit({ message, normUsers, socket, eraseMessage, formatDa
   return (
     <div>
       {editActive ? (
-        <form className="channel__message__edit__form" onSubmit={(e) => editMessage(e)}>
-          <img className="channel__edit__message__avatar" src={user.avatar_url}></img>
+        <form
+          className="channel__message__edit__form"
+          onSubmit={(e) => editMessage(e)}
+        >
+          <img
+            className="channel__edit__message__avatar"
+            src={user.avatar_url}
+            alt="avatar"
+          ></img>
 
           <div className="channel__edit__contents">
             <div className="channel__edit__input__container">
               <div className="channel__edit__message__info">
-                <div className="channel__edit__message__user">{normUsers[message?.user_id]?.username}</div>
-                <div className="channel__edit__message__date">{formatDate(message.timestamp)}</div>
-                {message.edited == true ? <div className="edited__confirmation">(edited)</div> : <></>}
+                <div className="channel__edit__message__user">
+                  {normUsers[message?.user_id]?.username}
+                </div>
+                <div className="channel__edit__message__date">
+                  {formatDate(message.timestamp)}
+                </div>
+                {message.edited === true ? (
+                  <div className="edited__confirmation">(edited)</div>
+                ) : (
+                  <></>
+                )}
               </div>
               <input
                 className="channel__message__edit__input"
@@ -63,7 +85,8 @@ function ChannelMessageEdit({ message, normUsers, socket, eraseMessage, formatDa
                   {" "}
                   cancel{" "}
                 </div>{" "}
-                <span> * enter to</span> <div onClick={(e) => editMessage(e)}>save</div>
+                <span> * enter to</span>{" "}
+                <div onClick={(e) => editMessage(e)}>save</div>
               </div>
             </div>
           </div>
@@ -88,7 +111,10 @@ function ChannelMessageEdit({ message, normUsers, socket, eraseMessage, formatDa
             socket={socket}
             message={message}
           ></ChannelMessageView>
-          <div className="channel__edit__pencil" onClick={() => setEditActive(true)}></div>
+          <div
+            className="channel__edit__pencil"
+            onClick={() => setEditActive(true)}
+          ></div>
         </div>
       )}
     </div>

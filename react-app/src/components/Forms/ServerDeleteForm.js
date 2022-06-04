@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./NonAuthFormsCSS/ConfirmDeleteServer.css";
@@ -12,10 +12,22 @@ const ConfirmDeleteServer = ({ setShowConfirm }) => {
   const servers = useSelector((state) => state.servers);
   const user = useSelector((state) => state.session.user);
 
+  const [inputServerName, setInputServerName] = useState("");
+  const [errors, setErrors] = useState([]);
+
   const uuid = Object.values(currentServer)[0].server.server_invite_url;
+
+  const serverName = Object.values(currentServer)[0].server.server_name;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
+
+    if (inputServerName !== serverName) {
+      setErrors(["Server name does not match! Caps Matter!"]);
+      return;
+    }
+
     await dispatch(deleteServer(uuid));
     const valuesServer = Object.values(servers);
     // checks to see if im in any server
@@ -72,16 +84,23 @@ const ConfirmDeleteServer = ({ setShowConfirm }) => {
   return (
     <div>
       <div className="confirm__delete__server">
-        <div className="server__delete__header">{`Delete '${`server.name`}'`}</div>
+        <div className="server__delete__header">{`Delete '${serverName}'`}</div>
         <div className="confirm__server__name__input__container">
-          <div className="confirm__delete__server__warning">{`Are you sure you want to delete ${`server.name`}?
+          <div className="confirm__delete__server__warning">{`Are you sure you want to delete ${serverName}?
           This action cannot be undone.`}</div>
           <label>ENTER SERVER NAME</label>
-          <form>
-            <input type="text"></input>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder={serverName}
+              value={inputServerName}
+              onChange={(e) => setInputServerName(e.target.value)}
+            ></input>
           </form>
         </div>
-
         <div className="confirm__delete__server__buttons">
           <div onClick={() => setShowConfirm(false)}>Cancel</div>
           <button className="" onClick={handleSubmit}>

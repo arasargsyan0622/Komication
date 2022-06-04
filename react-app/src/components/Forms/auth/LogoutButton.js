@@ -6,8 +6,6 @@ import { useHistory } from "react-router-dom";
 
 import { io } from "socket.io-client";
 
-import { getServers } from "../../../store/server";
-
 let socket;
 
 const LogoutButton = () => {
@@ -22,7 +20,6 @@ const LogoutButton = () => {
     };
   });
 
-  console.log("from logoutbutton");
 
   const onLogout = async (e) => {
     socket.emit("offline", user);

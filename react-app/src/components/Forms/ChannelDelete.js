@@ -4,8 +4,6 @@ import { deleteChannel } from "../../store/current_server";
 import { useHistory } from "react-router-dom";
 
 const ChannelDeleteForm = ({ setConfirmDelete }) => {
-  let channel;
-
   const dispatch = useDispatch();
   const history = useHistory();
   const currServer = useSelector((state) =>
@@ -19,12 +17,23 @@ const ChannelDeleteForm = ({ setConfirmDelete }) => {
   const firstChannelUuid = Object.values(
     Object.values(currServer[0])[0].channels
   )[0].channel_uuid;
+  const secondChannelUuid = Object?.values(
+    Object?.values(currServer[0])[0]?.channels
+  )[1]?.channel_uuid;
+
+  const channels = Object.values(Object.values(currServer[0])[0].channels);
 
   const handleSubmit = async (e) => {
-    dispatch(deleteChannel(uuid));
+    await dispatch(deleteChannel(uuid));
 
-    history.push(`/servers/${serverUuid}/${firstChannelUuid}`);
-    window.location.reload(false);
+    if (uuid === firstChannelUuid && channels.length === 1) {
+      history.push(`/servers/${serverUuid}`);
+    } else if (uuid === firstChannelUuid && channels.length > 1) {
+      history.push(`/servers/${serverUuid}/${secondChannelUuid}`);
+    } else {
+      history.push(`/servers/${serverUuid}/${firstChannelUuid}`);
+    }
+    // window.location.reload(false);
   };
 
   return (

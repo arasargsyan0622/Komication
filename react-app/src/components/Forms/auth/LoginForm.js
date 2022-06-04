@@ -105,6 +105,7 @@ const LoginForm = () => {
           <img
             className="demo__user__icon"
             src="http://komication.s3.amazonaws.com/c85fcf48768a4fac810e7ac3ee1a3b85.png"
+            alt="demo1-avatar"
           ></img>
           <form onSubmit={demoLogin1}>
             <button type="submit" className="demo__login__button">
@@ -116,6 +117,7 @@ const LoginForm = () => {
           <img
             className="demo__user__icon"
             src="http://komication.s3.amazonaws.com/c5e357ac29014d4c864e555668100510.png"
+            alt="demo2-avatar"
           ></img>
           <form onSubmit={demoLogin2}>
             <button type="submit" className="demo__login__button">
@@ -127,6 +129,7 @@ const LoginForm = () => {
           <img
             className="demo__user__icon"
             src="http://komication.s3.amazonaws.com/7947ca9db1384b29af36427eedef527b.png"
+            alt="demo3-avatar"
           ></img>
           <form onSubmit={demoLogin3}>
             <button type="submit" className="demo__login__button">

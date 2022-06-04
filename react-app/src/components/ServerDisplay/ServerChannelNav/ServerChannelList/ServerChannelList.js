@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -16,7 +16,7 @@ import {
 
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
-import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
+// import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
 
 let socket;
 
@@ -51,13 +51,14 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
       }
     });
     const server_uuid = window.location.pathname.split("/")[2];
-    console.log(allServers);
+    // console.log(allServers);
 
     const invalidUrl = Object.values(allServers).filter(
       (server) => server.server_invite_url === server_uuid
     );
-    console.log(invalidUrl);
+    // console.log(invalidUrl);
     if (!invalidUrl.length) history.push("/");
+
     if (was_I_Invited === true && users) {
       const payload = {
         user_id: currentUser.id,
@@ -71,7 +72,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
         dispatch(getServers()).then(() => {
           socket.disconnect();
           try {
-            console.log("hello");
+            // console.log("hello");
             dispatch(getCurrServer(server_uuid)).then((res) => {
               if (!res.ok) {
                 history.push("/me");
@@ -80,7 +81,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
               dispatch(getCurrChannel(currentChannelUuid));
             });
           } catch (error) {
-            console.log("hello");
+            // console.log("hello");
             history.push("/");
           }
         });
@@ -91,10 +92,13 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
       dispatch(getCurrChannel(currentChannelUuid));
     }
 
-    // const channelUuid = Object?.values(Object?.values(currentServer)[0]?.server.channels)[0]?.channel_uuid;
+    // const channelUuid = Object?.values(
+    //   Object?.values(currentServer)[0]?.server.channels
+    // )[0]?.channel_uuid;
     // if (channelUuid) {
     //   history.push(`/servers/${server_uuid}/${channelUuid}`);
     // }
+
     return () => {
       dispatch(cleanCurrChannel());
     };
@@ -128,7 +132,10 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
                   <div>{`${channel.channel_name}`}</div>
                 </div>
                 {currentUser.id === serverOwner ? (
-                  <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
+                  <ChannelEditModal
+                    channel={channel}
+                    className="server__channel__settings__container"
+                  ></ChannelEditModal>
                 ) : (
                   <></>
                 )}
