@@ -34,7 +34,8 @@ body {
   align-items: center;
 }
 .banner__nav {
-  width: 1260px;
+  width: 100%;
+  max-width: 1260px;
   height: 80px;
   display: flex;
   align-items: center;
@@ -69,7 +70,8 @@ body {
   border-radius: 40px;
 }
 .banner__heading {
-  width: 1260px;
+  width: 100%;
+  max-width: 1260px;
   height: 518px;
   padding-left: 55px;
   display: flex;
