@@ -16,10 +16,10 @@ function ServerChannelNav() {
   // let channels;
   const [channelChange, setChannelChange] = useState("");
   const server_uuid = window.location.pathname.split("/")[2];
-  console.log(server_uuid, "current server in channel nav");
+  // console.log(server_uuid, "current server in channel nav");
   useEffect(() => {
     try {
-      console.log("inside the try block on server channel");
+      // console.log("inside the try block on server channel");
       dispatch(getCurrServer(server_uuid)).then((res) => {
         if (!res.ok) history.push("/me");
       });

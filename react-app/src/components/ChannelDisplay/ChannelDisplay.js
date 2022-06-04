@@ -51,8 +51,8 @@ function ChannelDisplay() {
     socket.emit("join", payload);
 
     socket.on("chat", async () => {
-      dispatch(getCurrChannel(myChannelUuid)).then(() => dummyMsg?.current?.scrollIntoView());
     });
+      dispatch(getCurrChannel(myChannelUuid)).then(() => dummyMsg?.current?.scrollIntoView());
 
     return () => {
       const payload = {

@@ -8,7 +8,6 @@ const CurrInbox = () => {
     const [ isLoaded, setIsLoaded ] = useState(false)
     const [newUser, setNewUser] = useState()
     const currInbox = Object.values(useSelector((state) => state.current_inboxes))
-    // console.log("currInbox ----------", currInbox[0])
     const userId = useSelector((state) => state.session.user.id)
 
     useEffect(() => {
@@ -28,7 +27,6 @@ const CurrInbox = () => {
     return (
         isLoaded && (
             <div>
-                <div>hello from </div>
                 {Object.values(currInbox[0]).map((inbox) => {
                     return (
                         <div key={inbox.id}>
