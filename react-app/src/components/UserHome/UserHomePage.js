@@ -19,7 +19,7 @@ function UserHomePage() {
 
   const servers = Object.values(useSelector((state) => state.servers));
 
-  console.log("hello from user home page");
+  // console.log("hello from user home page");
 
   let newUuid = useParams().serverUuid;
   let channel;
@@ -51,7 +51,7 @@ function UserHomePage() {
 
       <div className="inbox__channel__display__container">
         <InboxSearchNav channel={channel}></InboxSearchNav>
-
+        
         <InboxChannelDisplay channel={channel}></InboxChannelDisplay>
       </div>
     </div>
