@@ -128,7 +128,7 @@ def seed_server_users():
         users=[demo,danny, bri,zensan,cecc,paul,leo,maica, agustin, brianmay, kai, bb, cesar]
     )
     server8 = Server(
-        server_name="Push2Main4Life", server_icon_url="http://komication.s3.amazonaws.com/e3adba5845a049e1a21fe3a13248b315.png",
+        server_name="Push2Main4Life",
         server_invite_url="da98e0700e3543b98d865a2c24bef528", user_id=6,
         users=[chrischarming]
     )
@@ -140,7 +140,7 @@ def seed_server_users():
     )
 
     server10 = Server(
-        server_name="Debonair BnB", server_icon_url="http://komication.s3.amazonaws.com/912074c8250e4b98922c3488926cadff.png",
+        server_name="Debonair BnB",
         server_invite_url="d7bbe56be5fb4deb94001b1fd21bce24", user_id=5,
         users=[paul,brianmay, kai]
     )
