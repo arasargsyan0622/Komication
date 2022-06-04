@@ -13,25 +13,21 @@ import "../../../ServerDisplay/ServerDisplay.css";
 import ChannelLoadingScreen from "../../../LoadingScreens/ChannelLoadingScreen";
 // import { useParams } from "react-router-dom";
 
-function ChannelRightSide() {
+function ChannelRightSide({ channel }) {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   // const [textCheck, setTextCheck] = useState(false);
 
-  const channel = useSelector((state) => state.current_channel);
+  // const channel = useSelector((state) => state.current_channel);
   const currentChannel = Object.values(channel)[0];
 
   const server = useSelector((state) => state.current_server);
   const currentServer = Object.values(server)[0];
 
-  const onlineUsers = currentServer.server.users.filter(
-    (user) => user.online === true
-  );
+  const onlineUsers = currentServer.server.users.filter((user) => user.online === true);
 
-  const offlineUsers = currentServer.server.users.filter(
-    (user) => user.online === false
-  );
+  const offlineUsers = currentServer.server.users.filter((user) => user.online === false);
 
   const channelUuid = window.location.pathname.split("/")[3];
 
@@ -75,10 +71,7 @@ function ChannelRightSide() {
                   {onlineUsers.map((user, idx) => {
                     return (
                       <div key={user.id}>
-                        <ServerUserCard
-                          user={user}
-                          key={user.id}
-                        ></ServerUserCard>
+                        <ServerUserCard user={user} key={user.id}></ServerUserCard>
                       </div>
                     );
                   })}
@@ -86,10 +79,7 @@ function ChannelRightSide() {
                   {offlineUsers.map((user, idx) => {
                     return (
                       <div key={user.id}>
-                        <ServerUserCard
-                          user={user}
-                          key={user.id}
-                        ></ServerUserCard>
+                        <ServerUserCard user={user} key={user.id}></ServerUserCard>
                       </div>
                     );
                   })}
