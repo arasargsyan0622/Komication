@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 240px;
-  height: 910px;
+  height: 100%;
   padding-top: 15px;
   overflow-x: hidden;
   overflow-y: scroll hidden;
