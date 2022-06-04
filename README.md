@@ -122,28 +122,44 @@ Account registration and login are fully functional and error handled.
 ### Splash page and Home page
 
 ![Splash](readme-images/splash.gif.gif "a title")
-![Home](readme-images/homepage.png "a title")
 
 ### Servers CRUD
 
 Server creation is a modal. The user can give a server name and upload an image. A user can also join a server with an invitation link
 
+
+Create a Server
+
 ![Create a Server](readme-images/server-creation.gif "a title")
+
+Edit/Delete a Server
+
 ![Edit/Delete a Server](readme-images/server-edit-delete.gif "a title")
+
+Join a server
+
 ![Join a Server](readme-images/server-join.png "a title")
 
 ### Channels CRUD
 
 Channel creation is a modal. The user can give a channel name.
 
+Create a Channel
+
 ![Create a Channel](readme-images/channel-creation.gif "a title")
+
+Edit/Delete a Channel
+
 ![Edit/Delete a Channel](readme-images/channel-edit-delete.gif "a title")
 
 ### Channel Messages CRUD
 
 Channel chat is a live chat where people can talk to each other. Message owner can edit or delete their messages
 
+Create/Read a Message
 ![Message read/create](readme-images/channel-msg-view.png "a title")
+
+Edt/Delete a Message
 ![Message edit/delete](readme-images/channel-msg.png "a title")
 
 <!-- Direct messages here -->
