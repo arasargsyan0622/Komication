@@ -10,7 +10,8 @@ function ChannelMessageView({ message, normUsers, socket, eraseMessage, formatDa
         <div className="message__user__time">
           <div className="channel__message__username">{normUsers[message.user_id]?.username}</div>
           <div className="channel__message__date">{formatDate(message.timestamp)}</div>
-          {message.edited == true ? <div>(edited)</div> : <></>}
+          {message.edited == true ? <div className="channel__message__edited">(edited)</div> : <></>}
+
         </div>
         <div className="channel__message">{`${message.content}`}</div>
       </div>
