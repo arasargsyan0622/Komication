@@ -116,7 +116,12 @@ The User can create servers. When a server is created, a "General" channel is cr
 
 Account registration and login are fully functional and error handled.
 
+Login Page
+
 ![Login](readme-images/logingif.gif "a title")
+
+Signup Page
+
 ![Sign up](readme-images/register.png "a title")
 
 ### Splash page and Home page
