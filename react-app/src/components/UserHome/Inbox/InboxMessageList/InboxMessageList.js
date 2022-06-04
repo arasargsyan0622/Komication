@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from "react-router-dom";
 import { getCurrentUserInboxes, addCurrentUserInbox } from "../../../../store/direct_messages"
-
 
 import "./InboxMessageList.css";
 
@@ -12,12 +12,6 @@ function InboxMessageList() {
   const [ newUser, setNewUser ] = useState()
   const currInbox = Object.values(useSelector((state) => state.current_inboxes))
   const userId = useSelector((state) => state.session.user.id)
-  // const inboxUuid = Object.values(currInbox[0]).map((inbox) => {
-  //   if (inbox) {
-  //     return inbox?.inbox_uuid
-  //   }
-  // })
-  // console.log("---------", inboxUuid)
 
     useEffect(() => {
         dispatch(getCurrentUserInboxes(userId)).then(() => setIsLoaded(true))
@@ -59,9 +53,9 @@ function InboxMessageList() {
           {Object.values(currInbox[0]).map((inbox) => {
               return (
                   <div key={inbox.id}>
-                      <div>uuid: {inbox.inbox_uuid}</div>
-                      <div className="direct__message__avatar"></div>
-                      <div className="direct__message__username">{inbox.users.username}</div>
+                      {/* <div>uuid: {inbox.inbox_uuid}</div> */}
+                      <NavLink to={`/me/${inbox.inbox_uuid}`} className="direct__message__avatar"></NavLink>
+                      <NavLink to={`/me/${inbox.inbox_uuid}`} className="direct__message__username">{inbox.users.username}</NavLink>
                   </div>
               )
           })}
