@@ -1,0 +1,51 @@
+.user__channel__list__loading__container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #36393f;
+}
+.user__channel__list__loading__container > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #36393f;
+}
+
+.channel__list__loading__image {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 50px;
+  animation: rotation 5s infinite linear;
+  /* background: url("./Komi_Circle_Icon_Grey.png") center no-repeat; */
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.user__channel__list__loading__container > div > div {
+  margin-top: 50px;
+}
+.channel__list__loading__header {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+.channel__list__loading__text {
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
