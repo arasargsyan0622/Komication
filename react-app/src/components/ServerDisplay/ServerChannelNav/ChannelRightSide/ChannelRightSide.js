@@ -8,12 +8,13 @@ import NoTextChannel from "../../../NoTextChannel/NoTextChannel";
 import "../../../ServerDisplay/ServerDisplay.css";
 
 import UserHomeLoadingScreen from "../../../LoadingScreens/UserHomeLoadingScreen";
+import ChannelLoadingScreen from "../../../LoadingScreens/ChannelLoadingScreen";
 
 function ChannelRightSide() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [noText, setNoText] = useState(false);
-  const [textCheck, setTextCheck] = useState(true);
+
+  const [textCheck, setTextCheck] = useState(false);
 
   const channel = useSelector((state) => state.current_channel);
   const currentChannel = Object.values(channel)[0];
@@ -23,6 +24,7 @@ function ChannelRightSide() {
   console.log(currentChannel, "current channel");
   useEffect(() => {
     let mounted = true;
+
     let t = setTimeout(() => {
       if (mounted) {
         setIsLoaded(true);
@@ -66,11 +68,12 @@ function ChannelRightSide() {
           )}
         </div>
       ) : (
-        <UserHomeLoadingScreen></UserHomeLoadingScreen>
+        <ChannelLoadingScreen></ChannelLoadingScreen>
+        // <UserHomeLoadingScreen></UserHomeLoadingScreen>
       )}
     </>
   ) : (
-    <UserHomeLoadingScreen></UserHomeLoadingScreen>
+    <ChannelLoadingScreen></ChannelLoadingScreen>
     // <h1>hello</h1>
   );
 }
