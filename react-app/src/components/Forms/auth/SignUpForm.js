@@ -46,7 +46,7 @@ const SignUpForm = () => {
       <div className="sign__up__form">
         <h1 className="sign__up__header">Create an account</h1>
         <form onSubmit={onSignUp}>
-          <div>
+          <div className="signup__form__validation__error">
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}

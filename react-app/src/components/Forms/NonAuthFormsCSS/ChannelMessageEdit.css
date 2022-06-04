@@ -151,3 +151,13 @@
   margin-right: 25px;
   cursor: pointer;
 }
+
+.channel__message__edit__form__validation__error {
+  display: flex;
+  flex-direction: column;
+  color: #af4d39;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 3px;
+}

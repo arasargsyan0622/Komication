@@ -22,10 +22,10 @@ function ChannelDisplay() {
   const history = useHistory();
   const dispatch = useDispatch();
   const dummyMsg = useRef();
-
   const user = useSelector((state) => state.session.user);
   const channel = useSelector((state) => state.current_channel);
   const [messageContent, setMessageContent] = useState("");
+  const [errors, setErrors] = useState([])
   const channelMessages = Object.values(channel)[0].channel.channel_messages;
   const currServer = Object.values(
     useSelector((state) => state.current_server)
@@ -86,6 +86,16 @@ function ChannelDisplay() {
     e.preventDefault();
     let chatroom = history.location.pathname;
 
+    setErrors([])
+    if (!messageContent.length){
+      setErrors(["Message cannot be empty select delete to remove"])
+      return
+    }
+    if (messageContent.length>900){
+      setErrors(["Message cannot be more than 900 characters"])
+      return
+    }
+
     const payload = {
       room: chatroom,
     };
@@ -97,7 +107,6 @@ function ChannelDisplay() {
       channel_id: myChannelId,
     };
     dispatch(createMessage(msgPayload));
-
     setMessageContent("");
   };
 
@@ -143,13 +152,18 @@ function ChannelDisplay() {
           .reverse()}
       </div>
       <form className="channel__chat__form" onSubmit={addMessage}>
+        <div className="channel__form__validation__error">
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+        </div>
         <div className="channel__chat__input__container">
           <div className="channel__add__input"></div>
           <input
             className="channel__chat__input"
             placeholder={`Message #${myChannelName}`}
-            required
-            maxLength={900}
+            // required
+            maxLength={901}
             value={messageContent}
             onChange={(e) => setMessageContent(e.target.value)}
           />
