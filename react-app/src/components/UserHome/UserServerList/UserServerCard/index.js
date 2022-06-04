@@ -19,7 +19,11 @@ function UserServerCard({ server }) {
             to={`/servers/${server.server_invite_url}/${channels[0]?.channel_uuid}`}
             src="serverIconUrl"
           >
-            <img src={serverIconUrl} className="user__server__card" />
+            <img
+              src={serverIconUrl}
+              className="user__server__card"
+              alt="serverIcon"
+            />
           </NavLink>
         ) : (
           <NavLink
@@ -35,7 +39,11 @@ function UserServerCard({ server }) {
           className={"server__card__link"}
           to={`/servers/${server.server_invite_url}`}
         >
-          <img src={serverIconUrl} className="user__server__card" />
+          <img
+            src={serverIconUrl}
+            className="user__server__card"
+            alt="serverIcon"
+          />
         </NavLink>
       ) : (
         <div>

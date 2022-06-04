@@ -10,18 +10,22 @@ import "./UserHomePage.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getServers } from "../../store/server";
-import { getCurrServer } from "../../store/current_server";
-import { useParams } from "react-router-dom";
+// import { getCurrServer } from "../../store/current_server";
+// import { useParams } from "react-router-dom";
+
+import { io } from "socket.io-client";
+
+let socket;
 
 function UserHomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.session.user);
+
   const servers = Object.values(useSelector((state) => state.servers));
 
-  console.log("hello from user home page");
-
-  let newUuid = useParams().serverUuid;
+  // let newUuid = useParams().serverUuid;
   let channel;
 
   useEffect(() => {
@@ -34,9 +38,14 @@ function UserHomePage() {
       }
     }, 1500);
 
+    socket = io();
+
+    socket.emit("online", user);
+
     return () => {
       mounted = false;
       clearTimeout(t);
+      socket.disconnect();
     };
   }, [dispatch]);
 

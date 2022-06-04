@@ -6,9 +6,14 @@ import ChannelMessageEdit from "../Forms/ChannelMessageEdit";
 
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getCurrChannel, createMessage, deleteMessage, updateMessage } from "../../store/current_channel_msg";
+import {
+  getCurrChannel,
+  createMessage,
+  deleteMessage,
+} from "../../store/current_channel_msg";
 
-import ChannelMessageDeleteModal from "../../components/Modals/ChannelMessageDeleteModal";
+import { getCurrServer } from "../../store/current_server";
+
 import ChannelMessageView from "./ChannelMessage/ChannelMessageView";
 
 let socket;
@@ -17,32 +22,27 @@ function ChannelDisplay() {
   const history = useHistory();
   const dispatch = useDispatch();
   const dummyMsg = useRef();
-  // const [ isLoaded, setIsLoaded ] = useState(false)
 
   const user = useSelector((state) => state.session.user);
   const channel = useSelector((state) => state.current_channel);
-  const [messages, setMessages] = useState([]);
-  const [chatInput, setChatInput] = useState("");
   const [messageContent, setMessageContent] = useState("");
   const channelMessages = Object.values(channel)[0].channel.channel_messages;
-  const currServer = Object.values(useSelector((state) => state.current_server))[0];
+  const currServer = Object.values(
+    useSelector((state) => state.current_server)
+  )[0];
   const users = currServer.server.users;
   const normUsers = {};
   users.forEach((user) => {
     normUsers[user.id] = user;
   });
-  console.log(normUsers);
+
   const myChannelId = Object.values(channel)[0].channel.id;
   const myChannelName = Object.values(channel)[0].channel.channel_name;
   const myChannelUuid = Object.values(channel)[0].channel.channel_uuid;
 
   useEffect(() => {
-    // dispatch(getCurrChannel(uuid)).then(()=>setIsLoaded(true))
-
     socket = io();
-
     let chatroom = history.location.pathname;
-
     dummyMsg?.current?.scrollIntoView();
 
     const payload = {
@@ -53,7 +53,17 @@ function ChannelDisplay() {
     socket.emit("join", payload);
 
     socket.on("chat", async () => {
-      dispatch(getCurrChannel(myChannelUuid)).then(() => dummyMsg?.current?.scrollIntoView());
+      dispatch(getCurrChannel(myChannelUuid)).then(() =>
+        dummyMsg?.current?.scrollIntoView()
+      );
+    });
+
+    socket.on("online", async () => {
+      dispatch(getCurrServer(window.location.pathname.split("/")[2]));
+    });
+
+    socket.on("offline", async () => {
+      dispatch(getCurrServer(window.location.pathname.split("/")[2]));
     });
 
     return () => {
@@ -65,24 +75,7 @@ function ChannelDisplay() {
       socket.emit("leave", payload);
       socket.disconnect();
     };
-  }, [dispatch]);
-
-  const updateChatInput = (e) => {
-    setChatInput(e.target.value);
-  };
-
-  const sendChat = (e) => {
-    e.preventDefault();
-    let chatroom = history.location.pathname;
-
-    const payload = {
-      user: user.username,
-      msg: chatInput,
-      room: chatroom,
-    };
-    socket.emit("chat", payload);
-    setChatInput("");
-  };
+  }, [dispatch, history.location.pathname, myChannelUuid, user.username]);
 
   const formatDate = (date) => {
     const newDate = moment(date).format("DD/MM/YY hh:mm a");
@@ -94,8 +87,6 @@ function ChannelDisplay() {
     let chatroom = history.location.pathname;
 
     const payload = {
-      // user: user.username,
-      // msg: chatInput,
       room: chatroom,
     };
     socket.emit("chat", payload);
@@ -112,11 +103,9 @@ function ChannelDisplay() {
 
   const eraseMessage = async (e, message) => {
     e.preventDefault();
-    console.log(message);
     let chatroom = history.location.pathname;
+
     const payload = {
-      // user: user.username,
-      // msg: chatInput,
       room: chatroom,
     };
     socket.emit("chat", payload);
@@ -130,7 +119,7 @@ function ChannelDisplay() {
         <div ref={dummyMsg}></div>
         {Object.values(channelMessages)
           .map((message, ind) =>
-            message.user_id == user.id ? (
+            message.user_id === user.id ? (
               <ChannelMessageEdit
                 message={message}
                 normUsers={normUsers}

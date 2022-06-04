@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "../../context/Modal";
 import ChannelDeleteForm from "../Forms/ChannelDelete";
 
 function ChannelDeleteModal({ confirmDelete, setConfirmDelete }) {
-  const [showModal, setShowModal] = useState("");
   return (
     <>
-      <div className="delete__channel__button__container" onClick={() => setConfirmDelete(true)}>
+      <div
+        className="delete__channel__button__container"
+        onClick={() => setConfirmDelete(true)}
+      >
         <span onClick={() => setConfirmDelete(true)}>Delete Channel</span>
-        <div className="delete__trash__can" onClick={() => setConfirmDelete(true)}></div>
+        <div
+          className="delete__trash__can"
+          onClick={() => setConfirmDelete(true)}
+        ></div>
       </div>
 
       {confirmDelete && (

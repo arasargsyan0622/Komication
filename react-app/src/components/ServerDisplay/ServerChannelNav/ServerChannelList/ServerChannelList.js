@@ -1,18 +1,24 @@
 import "./ServerChannelList.css";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { io } from "socket.io-client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
 import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
-import { getCurrChannel, cleanCurrChannel } from "../../../../store/current_channel_msg";
+import {
+  getCurrChannel,
+  cleanCurrChannel,
+} from "../../../../store/current_channel_msg";
 
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
-import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
+// import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
+
+let socket;
 
 function ServerChannelList({ server, channelChange, setChannelChange }) {
   const dispatch = useDispatch();
@@ -45,30 +51,37 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
       }
     });
     const server_uuid = window.location.pathname.split("/")[2];
-    console.log(allServers);
+    // console.log(allServers);
 
-    const invalidUrl = Object.values(allServers).filter((server) => server.server_invite_url === server_uuid);
-    console.log(invalidUrl);
+    const invalidUrl = Object.values(allServers).filter(
+      (server) => server.server_invite_url === server_uuid
+    );
+    // console.log(invalidUrl);
     if (!invalidUrl.length) history.push("/");
+
     if (was_I_Invited === true && users) {
       const payload = {
         user_id: currentUser.id,
         server_uuid,
       };
       dispatch(wasInvited(payload)).then(() => {
+        socket = io();
+
+        socket.emit("online", currentUser);
+
         dispatch(getServers()).then(() => {
+          socket.disconnect();
           try {
-            console.log("hello");
+            // console.log("hello");
             dispatch(getCurrServer(server_uuid)).then((res) => {
               if (!res.ok) {
                 history.push("/me");
                 return;
               }
-
               dispatch(getCurrChannel(currentChannelUuid));
             });
           } catch (error) {
-            console.log("hello");
+            // console.log("hello");
             history.push("/");
           }
         });
@@ -79,10 +92,13 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
       dispatch(getCurrChannel(currentChannelUuid));
     }
 
-    // const channelUuid = Object?.values(Object?.values(currentServer)[0]?.server.channels)[0]?.channel_uuid;
+    // const channelUuid = Object?.values(
+    //   Object?.values(currentServer)[0]?.server.channels
+    // )[0]?.channel_uuid;
     // if (channelUuid) {
     //   history.push(`/servers/${server_uuid}/${channelUuid}`);
     // }
+
     return () => {
       dispatch(cleanCurrChannel());
     };
@@ -93,7 +109,11 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
       <div className="server__channels__container">
         <div className="server__channel__add__container">
           <div className={"server__channel__header"}>TEXT CHANNELS</div>
-          {currentUser?.id === serverOwner ? <NewChannelModal></NewChannelModal> : <></>}
+          {currentUser?.id === serverOwner ? (
+            <NewChannelModal></NewChannelModal>
+          ) : (
+            <></>
+          )}
         </div>
         {Object?.values(channelsObj)?.map((channel) => {
           return (
@@ -101,7 +121,9 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
               key={channel.id}
               className={"channel__nav__link"}
               onClick={() => setChannelChange(true)}
-              to={`/servers/${Object.values(currentServer)[0].server.server_invite_url}/${channel.channel_uuid}`}
+              to={`/servers/${
+                Object.values(currentServer)[0].server.server_invite_url
+              }/${channel.channel_uuid}`}
             >
               <div key={channel.id} className={"server__channel__link"}>
                 <div className="server__channel__link__name">
@@ -110,7 +132,10 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
                   <div>{`${channel.channel_name}`}</div>
                 </div>
                 {currentUser.id === serverOwner ? (
-                  <ChannelEditModal className="server__channel__settings__container"></ChannelEditModal>
+                  <ChannelEditModal
+                    channel={channel}
+                    className="server__channel__settings__container"
+                  ></ChannelEditModal>
                 ) : (
                   <></>
                 )}

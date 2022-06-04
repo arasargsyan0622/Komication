@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import { Modal } from "../../context/Modal";
 import "./NonAuthFormsCSS/ChannelEditForm.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import ChannelDeleteModal from "../Modals/ChannelDeleteModal";
-// import ChannelDeleteForm from "./ChannelDelete";
 import { updateChannel } from "../../store/current_server";
+import { getCurrChannel } from "../../store/current_channel_msg";
 
-function ChannelEditForm({ setShowModal }) {
-  const { server } = Object.values(
-    useSelector((state) => state.current_server)
-  )[0];
+function ChannelEditForm({ channel, setShowModal }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [editName, setEditName] = useState("");
   const dispatch = useDispatch();
+
   const currChannel = Object.values(
     useSelector((state) => state.current_channel)
   );
@@ -24,7 +21,9 @@ function ChannelEditForm({ setShowModal }) {
       channel_name: editName,
       uuid,
     };
-    dispatch(updateChannel(payload)).then(() => setShowModal(false));
+    dispatch(updateChannel(payload))
+      .then(() => dispatch(getCurrChannel(uuid)))
+      .then(() => setShowModal(false));
   };
 
   return (
@@ -65,7 +64,7 @@ function ChannelEditForm({ setShowModal }) {
                   <label>CHANNEL NAME</label>
                   <input
                     className="channel__edit__name__input"
-                    placeholder={`${currChannel[0].channel.channel_name}`}
+                    placeholder={`${channel.channel_name}`}
                     value={editName}
                     onChange={(e) => setEditName(e.target.value)}
                   ></input>

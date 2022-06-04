@@ -73,7 +73,7 @@ const NewServerForm = ({ setShowModal }) => {
           always change it later.
         </div>
       </div>
-      <form className="create__form">
+      <form className="create__form" onSubmit={handleSubmit}>
         <input
           className="create__form__image__input"
           type="file"
@@ -91,14 +91,14 @@ const NewServerForm = ({ setShowModal }) => {
           type="text"
           placeholder="User's server"
         />
-        <div className="server__invite__link__container">
-          Already have an invite link?{" "}
-          {/* <Link className="server__invite__link" to="/servers/invite">
+      </form>
+      <div className="server__invite__link__container">
+        Already have an invite link?{" "}
+        {/* <Link className="server__invite__link" to="/servers/invite">
             Join a Server.
           </Link> */}
-          <ServerInviteModal></ServerInviteModal>
-        </div>
-      </form>
+        <ServerInviteModal></ServerInviteModal>
+      </div>
       <div className="create__server__bottom__buttons">
         <div onClick={() => setShowModal(false)}>Back</div>
         <button className="create__server__button" onClick={handleSubmit}>

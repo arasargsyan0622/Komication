@@ -1,11 +1,10 @@
 import "./SplashFooter.css";
 import { ExternalLink } from "react-external-link";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function SplashFooter() {
   const user = useSelector((state) => state.session.user);
-  const history = useHistory();
   return (
     <div>
       <div className="splash__footer__container">
@@ -24,33 +23,57 @@ function SplashFooter() {
             <div className="splash__footer__names">
               <h5>Vernyoon Chao</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://www.linkedin.com/in/vernyoon-chao-783494123/">Portfolio</ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/vernyoon-chao-783494123/">LinkedIn</ExternalLink>
-                <ExternalLink href="https://github.com/VernyoonChao98">Github</ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/vernyoon-chao-783494123/">
+                  Portfolio
+                </ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/vernyoon-chao-783494123/">
+                  LinkedIn
+                </ExternalLink>
+                <ExternalLink href="https://github.com/VernyoonChao98">
+                  Github
+                </ExternalLink>
               </div>
             </div>
             <div className="splash__footer__names">
               <h5>Darren Kong</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://www.linkedin.com/in/darren-kong-06b47013b/">Portfolio</ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/darren-kong-06b47013b/">LinkedIn</ExternalLink>
-                <ExternalLink href="https://github.com/dkong1321">Github</ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/darren-kong-06b47013b/">
+                  Portfolio
+                </ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/darren-kong-06b47013b/">
+                  LinkedIn
+                </ExternalLink>
+                <ExternalLink href="https://github.com/dkong1321">
+                  Github
+                </ExternalLink>
               </div>
             </div>
             <div className="splash__footer__names">
               <h5>Chris Threadgill</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://www.linkedin.com/in/chris-threadgill-b05090185/">Portfolio</ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/chris-threadgill-b05090185/">LinkedIn</ExternalLink>
-                <ExternalLink href="https://github.com/ChrisThreadgill">Github</ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/chris-threadgill-b05090185/">
+                  Portfolio
+                </ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/chris-threadgill-b05090185/">
+                  LinkedIn
+                </ExternalLink>
+                <ExternalLink href="https://github.com/ChrisThreadgill">
+                  Github
+                </ExternalLink>
               </div>
             </div>
             <div className="splash__footer__names">
               <h5>Ara Sargsyan</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">Portfolio</ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">LinkedIn</ExternalLink>
-                <ExternalLink href="https://github.com/arasargsyan0622">Github</ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">
+                  Portfolio
+                </ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">
+                  LinkedIn
+                </ExternalLink>
+                <ExternalLink href="https://github.com/arasargsyan0622">
+                  Github
+                </ExternalLink>
               </div>
             </div>
           </div>
