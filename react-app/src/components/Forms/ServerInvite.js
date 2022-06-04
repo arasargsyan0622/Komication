@@ -7,7 +7,6 @@ const ServerInvite = ({ setShowModal }) => {
   const history = useHistory();
 
   const [serverInvite, setServerInvite] = useState("");
-  console.log(serverInvite);
 
   const servers = useSelector((state) => state.servers);
   const matchedServer = Object.values(servers).filter(

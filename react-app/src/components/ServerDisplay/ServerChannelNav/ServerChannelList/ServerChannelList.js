@@ -1,6 +1,7 @@
 import "./ServerChannelList.css";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { io } from "socket.io-client";
 
 import { useState, useEffect } from "react";
 
@@ -8,11 +9,16 @@ import { useHistory } from "react-router-dom";
 
 import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
-import { getCurrChannel, cleanCurrChannel } from "../../../../store/current_channel_msg";
+import {
+  getCurrChannel,
+  cleanCurrChannel,
+} from "../../../../store/current_channel_msg";
 
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
 import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
+
+let socket;
 
 function ServerChannelList({ server, channelChange, setChannelChange }) {
   const dispatch = useDispatch();
@@ -47,7 +53,9 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
     const server_uuid = window.location.pathname.split("/")[2];
     console.log(allServers);
 
-    const invalidUrl = Object.values(allServers).filter((server) => server.server_invite_url === server_uuid);
+    const invalidUrl = Object.values(allServers).filter(
+      (server) => server.server_invite_url === server_uuid
+    );
     console.log(invalidUrl);
     if (!invalidUrl.length) history.push("/");
     if (was_I_Invited === true && users) {
@@ -56,7 +64,12 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
         server_uuid,
       };
       dispatch(wasInvited(payload)).then(() => {
+        socket = io();
+
+        socket.emit("online", currentUser);
+
         dispatch(getServers()).then(() => {
+          socket.disconnect();
           try {
             console.log("hello");
             dispatch(getCurrServer(server_uuid)).then((res) => {
@@ -64,7 +77,6 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
                 history.push("/me");
                 return;
               }
-
               dispatch(getCurrChannel(currentChannelUuid));
             });
           } catch (error) {
@@ -93,7 +105,11 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
       <div className="server__channels__container">
         <div className="server__channel__add__container">
           <div className={"server__channel__header"}>TEXT CHANNELS</div>
-          {currentUser?.id === serverOwner ? <NewChannelModal></NewChannelModal> : <></>}
+          {currentUser?.id === serverOwner ? (
+            <NewChannelModal></NewChannelModal>
+          ) : (
+            <></>
+          )}
         </div>
         {Object?.values(channelsObj)?.map((channel) => {
           return (
@@ -101,7 +117,9 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
               key={channel.id}
               className={"channel__nav__link"}
               onClick={() => setChannelChange(true)}
-              to={`/servers/${Object.values(currentServer)[0].server.server_invite_url}/${channel.channel_uuid}`}
+              to={`/servers/${
+                Object.values(currentServer)[0].server.server_invite_url
+              }/${channel.channel_uuid}`}
             >
               <div key={channel.id} className={"server__channel__link"}>
                 <div className="server__channel__link__name">
