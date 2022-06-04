@@ -18,14 +18,28 @@ const NewServerForm = ({ setShowModal }) => {
   const history = useHistory();
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
-  const [serverName, setServerName] = useState("");
-
+  const [errors, setErrors] = useState([])
   const user = useSelector((state) => state.session.user);
+  const [serverName, setServerName] = useState(`${user.username}'s Server`);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setImageLoading(true);
+    setErrors([])
+    if (!serverName.length){
 
+      setErrors(["Server must have a name"])
+      setImageLoading(false);
+
+      return
+    }
+    if (serverName.length>50){
+
+      setErrors(["Server name cannot be more than 50 characters"])
+      setImageLoading(false);
+
+      return
+    }
     const payload = {
       image,
       serverName,
@@ -81,15 +95,21 @@ const NewServerForm = ({ setShowModal }) => {
           onChange={updateImage}
         ></input>
         {imageLoading && <p>Loading...</p>}
+
         <label className="create__server__label" htmlFor="email">
           SERVER NAME
         </label>
+        <div className="server__form__validation__error">
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+        </div>
         <input
           className="create__server__name__input"
           value={serverName}
           onChange={(e) => setServerName(e.target.value)}
           type="text"
-          placeholder="User's server"
+          required
         />
       </form>
       <div className="server__invite__link__container">

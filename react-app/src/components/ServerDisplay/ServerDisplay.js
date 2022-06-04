@@ -5,7 +5,7 @@ import ChannelRightSide from "./ServerChannelNav/ChannelRightSide/ChannelRightSi
 
 import "./ServerDisplay.css";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getServers } from "../../store/server";
 import { getCurrServer } from "../../store/current_server";
@@ -16,6 +16,10 @@ function ServerDisplay() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
+  const channel = useSelector((state) => state.current_channel);
+  const server = useSelector((state) => state.current_server);
+
+  console.log(channel, "channel in the server display ");
 
   let newUuid = useParams().serverUuid;
 
@@ -40,8 +44,8 @@ function ServerDisplay() {
   return isLoaded ? (
     <div className="server__display">
       <UserServerList></UserServerList>
-      <ServerChannelNav></ServerChannelNav>
-      <ChannelRightSide></ChannelRightSide>
+      <ServerChannelNav server={server}></ServerChannelNav>
+      <ChannelRightSide channel={channel}></ChannelRightSide>
     </div>
   ) : (
     <UserHomeLoadingScreen></UserHomeLoadingScreen>

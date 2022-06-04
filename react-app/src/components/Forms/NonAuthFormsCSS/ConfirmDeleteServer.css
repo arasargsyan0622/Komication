@@ -92,3 +92,12 @@
 .confirm__delete__server__buttons > button:hover {
   background-color: #8d2c2d;
 }
+
+.server__delete__form__validation__error {
+  color: #af4d39;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  margin-bottom: 5px;
+}

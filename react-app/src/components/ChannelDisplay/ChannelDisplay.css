@@ -111,3 +111,14 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
+
+.channel__form__validation__error {
+  display: flex;
+  flex-direction: column;
+  color: #af4d39;
+  font-size: 12px;
+  margin-left: 34px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 3px;
+}

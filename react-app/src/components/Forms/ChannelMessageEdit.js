@@ -19,10 +19,22 @@ function ChannelMessageEdit({
   const history = useHistory();
   const [editMessageContent, setEditMessageContent] = useState(message.content);
   const [editActive, setEditActive] = useState(false);
+  const [errors, setErrors] = useState([]);
+
 
   const editMessage = async (e) => {
     e.preventDefault();
     let chatroom = history.location.pathname;
+    setErrors([])
+    if (!editMessageContent.length){
+      setErrors(["Message cannot be empty select delete to remove message from channel"])
+      return
+    }
+    if (editMessageContent.length>900){
+      setErrors(["Message cannot be more than 900 characters"])
+      return
+    }
+
     const roomWithMe = {
       // user: user.username,
       // msg: chatInput,
@@ -67,10 +79,16 @@ function ChannelMessageEdit({
                   <></>
                 )}
               </div>
+              <div className="channel__message__edit__form__validation__error">
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+
+                ))}
+              </div>
               <input
                 className="channel__message__edit__input"
-                required
-                maxLength={900}
+                // required
+                maxLength={901}
                 value={editMessageContent}
                 onChange={(e) => setEditMessageContent(e.target.value)}
               />

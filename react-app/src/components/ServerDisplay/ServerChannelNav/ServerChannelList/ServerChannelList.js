@@ -3,19 +3,18 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useHistory } from "react-router-dom";
 
 import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
-import {
-  getCurrChannel,
-  cleanCurrChannel,
-} from "../../../../store/current_channel_msg";
+import { getCurrChannel, cleanCurrChannel } from "../../../../store/current_channel_msg";
 
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
+import ChannelListLoadingScreen from "../../../LoadingScreens/ChannelListLoadingScreen";
+import UserHomeLoadingScreen from "../../../LoadingScreens/UserHomeLoadingScreen";
 // import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
 
 let socket;
@@ -27,7 +26,8 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
   const currentServer = useSelector((state) => state.current_server);
   const allServers = useSelector((state) => state.servers);
   const serverOwner = Object.values(currentServer)[0]?.server.user_id;
-
+  const [isLoaded, setIsLoaded] = useState(false);
+  console.log(isLoaded);
   // const [allChannels, setAllChannels] = useState("");
   // useEffect(() => {
   //   const test = Object?.values(currentServer)[0]?.server?.channels;
@@ -43,6 +43,20 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
   const users = Object.values(currentServer)[0]?.server.users;
 
   useEffect(() => {
+    let mounted = true;
+    let t = setTimeout(() => {
+      if (mounted) {
+        // if (window.location.pathname.split("/")[3]) {
+        //   dispatch(getCurrChannel(window.location.pathname.split("/")[3])).then(
+        //     () => {
+        console.log("inside the mounted server channel list");
+        setIsLoaded(true);
+        //       }
+        //     );
+        //   }
+      }
+    }, 1000);
+
     let was_I_Invited = true;
     users?.forEach((user) => {
       // checks if I am in the server
@@ -53,9 +67,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
     const server_uuid = window.location.pathname.split("/")[2];
     // console.log(allServers);
 
-    const invalidUrl = Object.values(allServers).filter(
-      (server) => server.server_invite_url === server_uuid
-    );
+    const invalidUrl = Object.values(allServers).filter((server) => server.server_invite_url === server_uuid);
     // console.log(invalidUrl);
     if (!invalidUrl.length) history.push("/");
 
@@ -101,19 +113,16 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
 
     return () => {
       dispatch(cleanCurrChannel());
+      setIsLoaded(false);
     };
   }, [dispatch, currentChannelUuid]);
 
-  return (
+  return isLoaded ? (
     <div className="server__channel__list__container">
       <div className="server__channels__container">
         <div className="server__channel__add__container">
           <div className={"server__channel__header"}>TEXT CHANNELS</div>
-          {currentUser?.id === serverOwner ? (
-            <NewChannelModal></NewChannelModal>
-          ) : (
-            <></>
-          )}
+          {currentUser?.id === serverOwner ? <NewChannelModal></NewChannelModal> : <></>}
         </div>
         {Object?.values(channelsObj)?.map((channel) => {
           return (
@@ -121,9 +130,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
               key={channel.id}
               className={"channel__nav__link"}
               onClick={() => setChannelChange(true)}
-              to={`/servers/${
-                Object.values(currentServer)[0].server.server_invite_url
-              }/${channel.channel_uuid}`}
+              to={`/servers/${Object.values(currentServer)[0].server.server_invite_url}/${channel.channel_uuid}`}
             >
               <div key={channel.id} className={"server__channel__link"}>
                 <div className="server__channel__link__name">
@@ -145,6 +152,8 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
         })}
       </div>
     </div>
+  ) : (
+    <ChannelListLoadingScreen></ChannelListLoadingScreen>
   );
 }
 

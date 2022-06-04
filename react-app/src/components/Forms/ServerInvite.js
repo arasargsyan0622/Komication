@@ -7,7 +7,7 @@ const ServerInvite = ({ setShowModal }) => {
   const history = useHistory();
 
   const [serverInvite, setServerInvite] = useState("");
-
+  const [errors, setErrors] = useState();
   const servers = useSelector((state) => state.servers);
   const matchedServer = Object.values(servers).filter(
     (server) => server.server_invite_url == serverInvite
@@ -15,15 +15,24 @@ const ServerInvite = ({ setShowModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (matchedServer[0]?.channels[0]?.channel_uuid) {
+    // if (matchedServer[0]?.channels[0]?.channel_uuid) {
+    //   history.push(
+    //     `/servers/${serverInvite}/${matchedServer[0]?.channels[0].channel_uuid}`
+    //   );
+    //   window.location.reload(false);
+    // } else {
+    //   history.push(`/servers/${serverInvite}`);
+    //   window.location.reload(false);
+    // }
+     if (matchedServer[0]?.channels[0]?.channel_uuid) {
       history.push(
         `/servers/${serverInvite}/${matchedServer[0]?.channels[0].channel_uuid}`
       );
       window.location.reload(false);
     } else {
-      history.push(`/servers/${serverInvite}`);
-      window.location.reload(false);
+      setErrors(["Error with server invite, confirm link and resubmit"])
     }
+
   };
   return (
     <div className="server__invite__form__container">
@@ -38,7 +47,11 @@ const ServerInvite = ({ setShowModal }) => {
           <label className="server__invite__label" htmlFor="email">
             INVITE LINK <span>*</span>
           </label>
-
+          <div className="server__invite__form__validation__error">
+            {errors?.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
           <input
             className="server__invite__url__input"
             value={serverInvite}

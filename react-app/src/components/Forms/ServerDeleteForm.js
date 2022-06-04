@@ -24,7 +24,7 @@ const ConfirmDeleteServer = ({ setShowConfirm }) => {
     setErrors([]);
 
     if (inputServerName !== serverName) {
-      setErrors(["Server name does not match! Caps Matter!"]);
+      setErrors(["Server name does not match (case sensitive)"]);
       return;
     }
 
@@ -89,9 +89,11 @@ const ConfirmDeleteServer = ({ setShowConfirm }) => {
           <div className="confirm__delete__server__warning">{`Are you sure you want to delete ${serverName}?
           This action cannot be undone.`}</div>
           <label>ENTER SERVER NAME</label>
+          <div className="server__delete__form__validation__error">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
+          </div>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
