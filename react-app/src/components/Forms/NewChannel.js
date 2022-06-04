@@ -7,12 +7,24 @@ import { createChannel } from "../../store/current_server";
 
 const NewChannelForm = ({ setShowModal, server }) => {
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState([])
+
   // const history = useHistory();
 
   const [channelName, setChannelName] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setErrors([])
+    if (!channelName.length){
+      setErrors(["Channel must have a name"])
+      return
+    }
+    if (channelName.length>50){
+      setErrors(["Channel name cannot be more than 50 characters"])
+      return
+    }
 
     const payload = {
       myServer: server,
@@ -55,6 +67,11 @@ const NewChannelForm = ({ setShowModal, server }) => {
           </div>
         </div>
         <label className="create__channel__label">CHANNEL NAME</label>
+        <div className="channel__form__validation__error">
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
         <div className="create__channel__input__container">
           <span className="new__channel__hash">#</span>
           <input

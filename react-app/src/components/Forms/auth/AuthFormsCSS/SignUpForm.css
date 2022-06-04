@@ -135,3 +135,12 @@
   color: #00aff4;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.signup__form__validation__error {
+  color: #af4d39;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  margin-bottom: 5px;
+}

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./NonAuthFormsCSS/ServerEditForm.css";
-
 import { editServer } from "../../store/server";
 import { getCurrServer } from "../../store/current_server";
 import ServerDeleteModal from "../Modals/ServerDeleteModal";
 
 const ServerEditForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState([])
   const currentServer = useSelector((state) => state.current_server);
 
   const serverUuid = Object.values(currentServer)[0]?.server.server_invite_url;
@@ -26,6 +26,18 @@ const ServerEditForm = ({ setShowModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setImageLoading(true);
+
+    setErrors([])
+    if (!serverName.length){
+      setErrors(["Server must have a name"])
+      setImageLoading(false);
+      return
+    }
+    if (serverName.length>50){
+      setErrors(["Server name cannot be more than 50 characters"])
+      setImageLoading(false);
+      return
+    }
 
     const payload = {
       server_name: serverName,
@@ -161,6 +173,11 @@ const ServerEditForm = ({ setShowModal }) => {
                   <label className="edit__server__label" htmlFor="email">
                     SERVER NAME
                   </label>
+                  <div className="server__edit__form__validation__error">
+                      {errors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                      ))}
+                  </div>
                   <input
                     className="edit__server__name__input"
                     value={serverName}

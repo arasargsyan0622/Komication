@@ -9,6 +9,7 @@ import { getCurrChannel } from "../../store/current_channel_msg";
 function ChannelEditForm({ channel, setShowModal }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [editName, setEditName] = useState("");
+  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
   const currChannel = Object.values(
@@ -17,6 +18,20 @@ function ChannelEditForm({ channel, setShowModal }) {
   const uuid = currChannel[0]?.channel.channel_uuid;
 
   const editChannel = async () => {
+    setErrors([])
+    if (!editName.length){
+
+      setErrors(["Channel must have a name, select 'Delete Channel' to remove channel from server"])
+
+      return
+    }
+    if (editName.length>50){
+
+      setErrors(["Channel name cannot be more than 50 characters"])
+
+      return
+    }
+
     const payload = {
       channel_name: editName,
       uuid,
@@ -62,6 +77,11 @@ function ChannelEditForm({ channel, setShowModal }) {
                 <span>OVERVIEW</span>
                 <div className="channel__edit__input__container">
                   <label>CHANNEL NAME</label>
+                  <div className="channel__edit__form__validation__error">
+                    {errors.map((error, ind) => (
+                      <div key={ind}>{error}</div>
+                    ))}
+                  </div>
                   <input
                     className="channel__edit__name__input"
                     placeholder={`${channel.channel_name}`}
