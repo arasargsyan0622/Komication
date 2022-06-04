@@ -1,0 +1,166 @@
+.channel__message__delete__form__container {
+  width: 440px;
+  height: auto;
+  min-height: 254px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #36393f;
+}
+.hElLo_QuEsTiOn_MaRk {
+  background-color: #36393f;
+  color: #dcddde;
+  width: 440px;
+  height: 20px;
+  padding: 16px;
+  padding-top: 0px;
+  font-size: 15px;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+.channel__message__delete__contents__container {
+  display: flex;
+  background-color: #36393f;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 25px;
+
+  padding: 10px;
+}
+.channel__message__delete__contents__container > div {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #36393f;
+  border: 2px solid #2f3136;
+  box-shadow: 1px 1px 4px #2f3136;
+  border-radius: 4px;
+  margin: 20px 15px 20px 15px;
+  min-height: 65px;
+  height: auto;
+  width: 410px;
+  padding: 25px;
+
+  padding: 10px;
+}
+
+.channel__message__delete__contents__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  background: url("./Komi_Circle_Icon.svg");
+}
+.channel__message__delete__user__message__container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.channel__message__delete__user__message__container > div {
+  display: flex;
+  height: auto;
+  padding: 5px;
+  padding-right: 20px;
+}
+.channel__message__delete__username {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  width: auto;
+  max-width: 400px;
+  overflow: hidden;
+}
+.channel__message__delete__content {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+  width: auto;
+  max-width: 400px;
+  height: auto;
+  word-break: break-all;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.channel__message__delete__heading {
+  width: 440px;
+  height: 56px;
+  padding: 16px;
+  background-color: #36393f;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+}
+
+.channel__message__delete__contents {
+  width: 440px;
+  height: 128px;
+  padding: 0 8px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  background-color: #36393f;
+}
+.channel__message__delete__timestamp {
+  display: flex;
+  margin-left: 7px;
+  font-size: 11px;
+  color: #71778a;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.channel__message__delete__buttons {
+  width: 440px;
+  height: 70px;
+  background-color: #3c3e44;
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.channel__message__delete__buttons > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 38px;
+  background-color: #d83c3e;
+  padding: 2px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.channel__message__delete__buttons > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 38px;
+  padding: 2px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+.channel__message__delete__buttons > span:hover {
+  text-decoration: underline;
+}
+
+.channel__message__delete__buttons > div:hover {
+  background-color: #8d2c2d;
+}
