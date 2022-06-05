@@ -7,36 +7,30 @@ import ServerDeleteModal from "../Modals/ServerDeleteModal";
 
 const ServerEditForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
   const currentServer = useSelector((state) => state.current_server);
 
   const serverUuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
-  const [image, setImage] = useState(
-    Object.values(currentServer)[0]?.server.server_icon_url
-  );
+  const [image, setImage] = useState(Object.values(currentServer)[0]?.server.server_icon_url);
   const [imageLoading, setImageLoading] = useState(false);
-  const [serverName, setServerName] = useState(
-    Object.values(currentServer)[0]?.server.server_name
-  );
-  const [priv, setPriv] = useState(
-    Object.values(currentServer)[0]?.server.private
-  );
+  const [serverName, setServerName] = useState(Object.values(currentServer)[0]?.server.server_name);
+  const [priv, setPriv] = useState(Object.values(currentServer)[0]?.server.private);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setImageLoading(true);
 
-    setErrors([])
-    if (!serverName.length){
-      setErrors(["Server must have a name"])
+    setErrors([]);
+    if (!serverName.length) {
+      setErrors(["Server must have a name"]);
       setImageLoading(false);
-      return
+      return;
     }
-    if (serverName.length>50){
-      setErrors(["Server name cannot be more than 50 characters"])
+    if (serverName.length > 50) {
+      setErrors(["Server name cannot be more than 50 characters"]);
       setImageLoading(false);
-      return
+      return;
     }
 
     const payload = {
@@ -80,10 +74,7 @@ const ServerEditForm = ({ setShowModal }) => {
             </div>
 
             <div className="server__nav__options">
-              <div
-                className="server__edit__option"
-                id="hard__code__server__edit"
-              >
+              <div className="server__edit__option" id="hard__code__server__edit">
                 Overview
               </div>
               <div className="server__edit__option"></div>
@@ -112,9 +103,7 @@ const ServerEditForm = ({ setShowModal }) => {
               <div className="server__community__display">COMMUNITY</div>
             </div>
             <div className="server__nav__options">
-              <div className="server__edit__option__coming__soon">
-                Coming Soon!
-              </div>
+              <div className="server__edit__option__coming__soon">Coming Soon!</div>
               <div className="server__nav__break"></div>
               <div className="server__edit__option"></div>
               <div className="server__edit__option"></div>
@@ -122,14 +111,10 @@ const ServerEditForm = ({ setShowModal }) => {
               <div className="server__nav__break"></div>
 
               <div className="server__nav__header">
-                <div className="server__community__display">
-                  USER MANAGEMENT
-                </div>
+                <div className="server__community__display">USER MANAGEMENT</div>
                 <div className="server__edit__option"></div>
               </div>
-              <div className="server__edit__option__coming__soon">
-                Coming Soon!
-              </div>
+              <div className="server__edit__option__coming__soon">Coming Soon!</div>
               <div className="server__edit__option"></div>
               <div className="server__edit__option"></div>
               <div className="server__edit__option"></div>
@@ -153,18 +138,14 @@ const ServerEditForm = ({ setShowModal }) => {
                       onChange={updateImage}
                     ></input>
                     <div className="server__edit__image__min__size">
-                      Minimum Size:{" "}
-                      <span className="server__image__min__nums">128x128</span>
+                      Minimum Size: <span className="server__image__min__nums">128x128</span>
                     </div>
                   </div>
                   <div className="server__edit__submit">
                     <div className="server__image__recommend">
                       We recommend an image of at least 512x512 for the server.
                     </div>
-                    <button
-                      className="server__edit__image__button"
-                      onClick={handleSubmit}
-                    >
+                    <button className="server__edit__image__button" onClick={handleSubmit}>
                       Upload Image
                     </button>
                   </div>
@@ -174,9 +155,9 @@ const ServerEditForm = ({ setShowModal }) => {
                     SERVER NAME
                   </label>
                   <div className="server__edit__form__validation__error">
-                      {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
-                      ))}
+                    {errors.map((error, ind) => (
+                      <div key={ind}>{error}</div>
+                    ))}
                   </div>
                   <input
                     className="edit__server__name__input"
@@ -192,7 +173,7 @@ const ServerEditForm = ({ setShowModal }) => {
                   )} */}
                 </form>
               </div>
-              {imageLoading && <p>Loading...</p>}
+              {imageLoading && <p className="image__upload__loading">Loading...</p>}
               <div className="edit__server__form__break"></div>
             </div>
             <div>
@@ -207,25 +188,16 @@ const ServerEditForm = ({ setShowModal }) => {
                   >
                     Back
                   </div>
-                  <button
-                    onClick={handleSubmit}
-                    className="server__edit__save__button"
-                  >
+                  <button onClick={handleSubmit} className="server__edit__save__button">
                     Save Changes
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="full__screen__modal__esc__container"
-            onClick={() => setShowModal(false)}
-          >
+          <div className="full__screen__modal__esc__container" onClick={() => setShowModal(false)}>
             <div onClick={() => setShowModal(false)} className="escape__circle">
-              <div
-                onClick={() => setShowModal(false)}
-                className="escape__x"
-              ></div>
+              <div onClick={() => setShowModal(false)} className="escape__x"></div>
             </div>
             <div onClick={() => setShowModal(false)} className="escape__text">
               ESC

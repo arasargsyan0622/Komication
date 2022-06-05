@@ -25,6 +25,8 @@
   display: flex;
   margin-right: 20px;
 }
+.server__image__loading {
+}
 
 .edit__server__image__input {
   width: 100px;

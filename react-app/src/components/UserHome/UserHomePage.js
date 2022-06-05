@@ -14,6 +14,8 @@ import { getServers } from "../../store/server";
 // import { useParams } from "react-router-dom";
 
 import { io } from "socket.io-client";
+import ProtectedRoute from "../Forms/auth/ProtectedRoute";
+import { useParams } from "react-router-dom";
 
 let socket;
 
@@ -24,8 +26,12 @@ function UserHomePage() {
   const user = useSelector((state) => state.session.user);
 
   const servers = Object.values(useSelector((state) => state.servers));
+  const inboxUuId = window.location.pathname.split("/")[2];
+  //dispatch thunk to find the inbox by ID
+  // channel comes back pass it in as props to the channel display
 
-  // let newUuid = useParams().serverUuid;
+  let inboxChannel = true;
+
   let channel;
 
   useEffect(() => {
@@ -57,12 +63,13 @@ function UserHomePage() {
         <InboxMessageList></InboxMessageList>
         <UserFooterDisplay></UserFooterDisplay>
       </div>
+      {inboxUuId ? (
+        <div className="inbox__channel__display__container">
+          <InboxSearchNav channel={channel}></InboxSearchNav>
 
-      <div className="inbox__channel__display__container">
-        <InboxSearchNav channel={channel}></InboxSearchNav>
-
-        <InboxChannelDisplay channel={channel}></InboxChannelDisplay>
-      </div>
+          <InboxChannelDisplay channel={channel}></InboxChannelDisplay>
+        </div>
+      ) : null}
     </div>
   ) : (
     <UserHomeLoadingScreen></UserHomeLoadingScreen>

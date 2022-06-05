@@ -98,7 +98,9 @@ function App() {
           <ProtectedRoute path="/poop2295" exact={true}>
             <UserHomeLoadingScreen></UserHomeLoadingScreen>
           </ProtectedRoute>
-
+          <ProtectedRoute path="/me/:inboxUuId">
+            <UserHomePage></UserHomePage>
+          </ProtectedRoute>
           <ProtectedRoute path="/servers/:serverUuid">
             <ServerDisplay></ServerDisplay>
           </ProtectedRoute>
