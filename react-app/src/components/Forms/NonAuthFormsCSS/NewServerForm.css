@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: space-between;
   width: 440px;
-  height: 404px;
+  min-height: 404px;
+  height: 440px;
   border-radius: 5px;
   background-color: #ffffff;
 }
@@ -15,6 +16,7 @@
   color: #060607;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .create__server__message {
   width: auto;
   height: 40;
@@ -24,9 +26,16 @@
   padding-right: 23px;
   padding-left: 23px;
 }
+.image__upload__loading {
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0068e0;
+  font-weight: 600;
+}
 
 .create__form {
   display: flex;
+  height: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;

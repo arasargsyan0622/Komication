@@ -8,37 +8,32 @@ import ServerInviteModal from "../Modals/ServerInviteModal";
 import { createServer } from "../../store/server";
 import { createChannel, getCurrServer } from "../../store/current_server";
 
-import {
-  cleanCurrChannel,
-  getCurrChannel,
-} from "../../store/current_channel_msg";
+import { cleanCurrChannel, getCurrChannel } from "../../store/current_channel_msg";
 
 const NewServerForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.session.user);
   const [serverName, setServerName] = useState(`${user.username}'s Server`);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setImageLoading(true);
-    setErrors([])
-    if (!serverName.length){
-
-      setErrors(["Server must have a name"])
+    setErrors([]);
+    if (!serverName.length) {
+      setErrors(["Server must have a name"]);
       setImageLoading(false);
 
-      return
+      return;
     }
-    if (serverName.length>50){
-
-      setErrors(["Server name cannot be more than 50 characters"])
+    if (serverName.length > 50) {
+      setErrors(["Server name cannot be more than 50 characters"]);
       setImageLoading(false);
 
-      return
+      return;
     }
     const payload = {
       image,
@@ -63,9 +58,7 @@ const NewServerForm = ({ setShowModal }) => {
     if (finishLoad) {
       setImageLoading(false);
       // setShowModal(false);
-      history.push(
-        `/servers/${finishLoad.server_invite_url}/${newChannel.channel_uuid}`
-      );
+      history.push(`/servers/${finishLoad.server_invite_url}/${newChannel.channel_uuid}`);
       window.location.reload(false);
     } else {
       setImageLoading(false);
@@ -83,26 +76,20 @@ const NewServerForm = ({ setShowModal }) => {
       <div className="create__server__form__heading">
         <h1 className="create__server__header">Customize your server</h1>
         <div className="create__server__message">
-          Give your new server a personality with a name and an icon. You can
-          always change it later.
+          Give your new server a personality with a name and an icon. You can always change it later.
         </div>
       </div>
       <form className="create__form" onSubmit={handleSubmit}>
-        <input
-          className="create__form__image__input"
-          type="file"
-          accept="image/*"
-          onChange={updateImage}
-        ></input>
-        {imageLoading && <p>Loading...</p>}
+        <input className="create__form__image__input" type="file" accept="image/*" onChange={updateImage}></input>
+        {imageLoading && <p className="image__upload__loading">Loading...</p>}
 
         <label className="create__server__label" htmlFor="email">
           SERVER NAME
         </label>
         <div className="server__form__validation__error">
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
         </div>
         <input
           className="create__server__name__input"
