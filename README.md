@@ -180,6 +180,10 @@ Edt/Delete a Message
 
 <!-- Direct messages here -->
 
+## Bloopers
+
+![Oops](readme-images/blooper.gif "a title")
+
 ## Future Features
 
 ---
@@ -188,9 +192,6 @@ Edt/Delete a Message
 - Implement a search feature to search for messages.
 
 
-## Bloopers
-
-![Oops](readme-images/blooper.gif "a title")
 
 
 
