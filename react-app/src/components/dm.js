@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getInbox, addMessageThunk, editMessageThunk } from '../store/dir.msg'
-import { getCurrentInbox } from "../store/direct_messages"
+import { getInbox, addMessageThunk} from '../store/dir.msg'
+// import { getCurrentInbox } from "../store/direct_messages"
 
 const DMs = () => {
     const dispatch = useDispatch()

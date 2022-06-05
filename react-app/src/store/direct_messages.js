@@ -1,6 +1,7 @@
 import rfdc from 'rfdc'
 const clone = rfdc()
 
+// const GET_ONE_INBOX = "/api/direct_messages/GET_ONE_INBOX"
 const LOAD_CURR_INBOXES = '/api/direct_messages/LOAD_CURR_INBOX'
 const ADD_INBOX = 'api/direct_messages/ADD_INBOX'
 
@@ -18,6 +19,18 @@ const addInbox = (inbox) => {
     }
 }
 
+// const oneInbox = inbox => {
+//     return {
+//         type: GET_ONE_INBOX,
+//         inbox
+//     }
+// }
+
+// export const getOneInbox = data => async dispatch => {
+//     console.log("getOneInboxThunk ------", data)
+//     const response = await fetch(`api/inbox`)
+// }
+
 
 export const getCurrentUserInboxes = (data) => async (dispatch) => {
     const response = await fetch(`/api/inbox_channel/${data}`)
@@ -30,17 +43,25 @@ export const getCurrentUserInboxes = (data) => async (dispatch) => {
 
 export const addCurrentUserInbox = (data) => async (dispatch) => {
     const {userId, newUser} = data
+    // console.log("======================================")
+    // console.log(data)
+    // console.log("======================================")
+
     const response = await fetch(`api/inbox_channel/${userId}`, {
         method: "POST",
         headers:  { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, newUser }),
     })
     // console.log(response)
-    if (response.ok) {
-        const inboxChannel = await response.json()
-        // console.log(inboxChannel)
-        // console.log(inboxChannel.users)
+    const inboxChannel = await response.json()
+    // console.log(inboxChannel)
+    if (inboxChannel.id) {
         dispatch(addInbox(inboxChannel))
+        return inboxChannel
+    }
+    else {
+        // console.log(inboxChannel)
+        return inboxChannel
     }
 }
 

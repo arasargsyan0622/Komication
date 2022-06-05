@@ -81,12 +81,13 @@
 }
 .direct__message__card {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 224px;
   height: 42px;
   padding: 0px 8px;
   padding-right: 0px;
+  text-decoration: none;
 }
 .direct__message__avatar {
   width: 32px;
@@ -97,12 +98,18 @@
 .direct__message__username {
   margin-right: 55px;
   font-size: 16px;
+  padding-left: 7px;
   color: #96989d;
   font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
 }
 .direct__message__hide {
   width: 11px;
   height: 11px;
   border: none;
-  background: url("./direct__message__hide.svg") center no-repeat;
+  background-color: #2f3136;
+  /* background: url("./direct__message__hide.svg") center no-repeat; */
+}
+.direct__message__nav__link {
+  text-decoration: none;
 }

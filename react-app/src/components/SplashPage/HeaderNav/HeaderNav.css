@@ -34,7 +34,8 @@ body {
   align-items: center;
 }
 .banner__nav {
-  width: 1260px;
+  width: 100%;
+  max-width: 1260px;
   height: 80px;
   display: flex;
   align-items: center;
@@ -69,7 +70,9 @@ body {
   border-radius: 40px;
 }
 .banner__heading {
-  width: 1260px;
+  width: 100%;
+  max-width: 1260px;
+  overflow: hidden;
   height: 518px;
   padding-left: 55px;
   display: flex;
@@ -121,9 +124,14 @@ body {
   background: #23272a;
   border: none;
   border-radius: 28px;
+  cursor: pointer;
 }
 .banner__buttons {
   margin-top: 60px;
+  width: 400px;
+}
+.banner__heading__message {
+  width: 1800px;
 }
 
 .splash__page__image__left {

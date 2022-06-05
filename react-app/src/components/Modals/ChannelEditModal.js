@@ -2,17 +2,27 @@ import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import ChannelEditForm from "../Forms/ChannelEdit";
 
-import { useSelector, useDispatch } from "react-redux";
-
-function ChannelEditModal() {
-  const { server } = Object.values(useSelector((state) => state.current_server))[0];
+function ChannelEditModal({ channel }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <button className="channel__edit__button" onClick={() => setShowModal(true)}></button>
+      <button
+        className="channel__edit__button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setShowModal(true);
+        }}
+      ></button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <ChannelEditForm setShowModal={setShowModal} server={server} />
+        <Modal
+          onClose={(e) => {
+            // e.preventDefault();
+            // e.stopPropagation();
+            setShowModal(false);
+          }}
+        >
+          <ChannelEditForm channel={channel} setShowModal={setShowModal} />
         </Modal>
       )}
     </>

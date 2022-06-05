@@ -10,21 +10,30 @@ import "./UserHomePage.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getServers } from "../../store/server";
-import { getCurrServer } from "../../store/current_server";
-import { useParams } from "react-router-dom";
+import { getAllUsers } from "../../store/users";
+// import { getCurrServer } from "../../store/current_server";
+// import { useParams } from "react-router-dom";
+
+import { io } from "socket.io-client";
+import NoTextChannel from "../NoTextChannel/NoTextChannel";
+
+let socket;
 
 function UserHomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [ currentInbox, setCurentInbox ] = useState("")
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.session.user);
+  console.log(window.location.pathname);
+  const homePageCheck = window.location.pathname;
   const servers = Object.values(useSelector((state) => state.servers));
 
-  console.log("hello from user home page");
-
-  let newUuid = useParams().serverUuid;
+  // let newUuid = useParams().serverUuid;
   let channel;
 
   useEffect(() => {
+    dispatch(getAllUsers());
     let mounted = true;
     let t = setTimeout(() => {
       if (mounted) {
@@ -34,9 +43,14 @@ function UserHomePage() {
       }
     }, 1500);
 
+    socket = io();
+
+    socket.emit("online", user);
+
     return () => {
       mounted = false;
       clearTimeout(t);
+      socket.disconnect();
     };
   }, [dispatch]);
 
@@ -45,15 +59,23 @@ function UserHomePage() {
       <UserServerList servers={servers}></UserServerList>
       <div className="inbox__channel__nav__container">
         <InboxSearch></InboxSearch>
-        <InboxMessageList></InboxMessageList>
+        <InboxMessageList setCurentInbox={setCurentInbox}></InboxMessageList>
         <UserFooterDisplay></UserFooterDisplay>
       </div>
+      {homePageCheck === "/me" ? (
+        <NoTextChannel></NoTextChannel>
+      ) : (
+        <div className="inbox__channel__display__container">
+          <InboxSearchNav channel={channel}></InboxSearchNav>
 
-      <div className="inbox__channel__display__container">
+          <InboxChannelDisplay currentInbox={currentInbox} channel={channel} setCurentInbox={setCurentInbox}></InboxChannelDisplay>
+        </div>
+      )}
+      {/* <div className="inbox__channel__display__container">
         <InboxSearchNav channel={channel}></InboxSearchNav>
 
         <InboxChannelDisplay channel={channel}></InboxChannelDisplay>
-      </div>
+      </div> */}
     </div>
   ) : (
     <UserHomeLoadingScreen></UserHomeLoadingScreen>

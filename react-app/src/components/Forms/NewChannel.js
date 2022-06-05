@@ -7,12 +7,24 @@ import { createChannel } from "../../store/current_server";
 
 const NewChannelForm = ({ setShowModal, server }) => {
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState([]);
+
   // const history = useHistory();
 
   const [channelName, setChannelName] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setErrors([]);
+    if (!channelName.length) {
+      setErrors(["Channel must have a name"]);
+      return;
+    }
+    if (channelName.length > 50) {
+      setErrors(["Channel name cannot be more than 50 characters"]);
+      return;
+    }
 
     const payload = {
       myServer: server,
@@ -35,7 +47,7 @@ const NewChannelForm = ({ setShowModal, server }) => {
           onClick={() => setShowModal(false)}
         ></button>
       </div>
-      <form className="create__channel__form">
+      <form className="create__channel__form" onSubmit={(e) => handleSubmit(e)}>
         <div className="server__channel__add__placeholder__top">
           <div className="server__text__channel__add__placeholder">
             <div className="text__channel__add__hash"></div>
@@ -55,6 +67,11 @@ const NewChannelForm = ({ setShowModal, server }) => {
           </div>
         </div>
         <label className="create__channel__label">CHANNEL NAME</label>
+        <div className="channel__form__validation__error">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
         <div className="create__channel__input__container">
           <span className="new__channel__hash">#</span>
           <input
@@ -82,7 +99,10 @@ const NewChannelForm = ({ setShowModal, server }) => {
       </form>
       <div className="create__channel__bottom__buttons">
         <div onClick={() => setShowModal(false)}>Cancel</div>
-        <button className="create__channel__button" onClick={handleSubmit}>
+        <button
+          className="create__channel__button"
+          onClick={(e) => handleSubmit(e)}
+        >
           Create Channel
         </button>
       </div>

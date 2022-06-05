@@ -1,28 +1,44 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
 import "./NonAuthFormsCSS/ServerEditForm.css";
-
 import { editServer } from "../../store/server";
 import { getCurrServer } from "../../store/current_server";
-import ConfirmDeleteServer from "./ServerDeleteForm";
 import ServerDeleteModal from "../Modals/ServerDeleteModal";
 
 const ServerEditForm = ({ setShowModal }) => {
-  // const history = useHistory();
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState([]);
   const currentServer = useSelector((state) => state.current_server);
 
   const serverUuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
-  const [image, setImage] = useState(Object.values(currentServer)[0]?.server.server_icon_url);
+  const [image, setImage] = useState(
+    Object.values(currentServer)[0]?.server.server_icon_url
+  );
   const [imageLoading, setImageLoading] = useState(false);
-  const [serverName, setServerName] = useState(Object.values(currentServer)[0]?.server.server_name);
-  const [priv, setPriv] = useState(Object.values(currentServer)[0]?.server.private);
+  const [serverName, setServerName] = useState(
+    Object.values(currentServer)[0]?.server.server_name
+  );
+  const [priv, setPriv] = useState(
+    Object.values(currentServer)[0]?.server.private
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setImageLoading(true);
+
+    setErrors([]);
+    if (!serverName.length) {
+      setErrors(["Server must have a name"]);
+      setImageLoading(false);
+      return;
+    }
+    if (serverName.length > 50) {
+      setErrors(["Server name cannot be more than 50 characters"]);
+      setImageLoading(false);
+      return;
+    }
 
     const payload = {
       server_name: serverName,
@@ -50,10 +66,10 @@ const ServerEditForm = ({ setShowModal }) => {
     setImage(file);
   };
 
-  const changePrivState = async () => {
-    if (priv === false) setPriv(true);
-    else setPriv(false);
-  };
+  // const changePrivState = async () => {
+  //   if (priv === false) setPriv(true);
+  //   else setPriv(false);
+  // };
 
   return (
     <>
@@ -65,7 +81,10 @@ const ServerEditForm = ({ setShowModal }) => {
             </div>
 
             <div className="server__nav__options">
-              <div className="server__edit__option" id="hard__code__server__edit">
+              <div
+                className="server__edit__option"
+                id="hard__code__server__edit"
+              >
                 Overview
               </div>
               <div className="server__edit__option"></div>
@@ -94,7 +113,9 @@ const ServerEditForm = ({ setShowModal }) => {
               <div className="server__community__display">COMMUNITY</div>
             </div>
             <div className="server__nav__options">
-              <div className="server__edit__option__coming__soon">Coming Soon!</div>
+              <div className="server__edit__option__coming__soon">
+                Coming Soon!
+              </div>
               <div className="server__nav__break"></div>
               <div className="server__edit__option"></div>
               <div className="server__edit__option"></div>
@@ -102,10 +123,14 @@ const ServerEditForm = ({ setShowModal }) => {
               <div className="server__nav__break"></div>
 
               <div className="server__nav__header">
-                <div className="server__community__display">USER MANAGEMENT</div>
+                <div className="server__community__display">
+                  USER MANAGEMENT
+                </div>
                 <div className="server__edit__option"></div>
               </div>
-              <div className="server__edit__option__coming__soon">Coming Soon!</div>
+              <div className="server__edit__option__coming__soon">
+                Coming Soon!
+              </div>
               <div className="server__edit__option"></div>
               <div className="server__edit__option"></div>
               <div className="server__edit__option"></div>
@@ -120,7 +145,10 @@ const ServerEditForm = ({ setShowModal }) => {
             <div className="edit__server__container">
               <h1>Server Overview</h1>
               <div className="edit__server__form__container">
-                <form className="edit__server__image__form">
+                <form
+                  className="edit__server__image__form"
+                  onSubmit={(e) => handleSubmit(e)}
+                >
                   <div>
                     <input
                       className="edit__server__image__input"
@@ -129,22 +157,34 @@ const ServerEditForm = ({ setShowModal }) => {
                       onChange={updateImage}
                     ></input>
                     <div className="server__edit__image__min__size">
-                      Minimum Size: <span className="server__image__min__nums">128x128</span>
+                      Minimum Size:{" "}
+                      <span className="server__image__min__nums">128x128</span>
                     </div>
                   </div>
                   <div className="server__edit__submit">
                     <div className="server__image__recommend">
                       We recommend an image of at least 512x512 for the server.
                     </div>
-                    <button className="server__edit__image__button" onClick={handleSubmit}>
+                    <button
+                      className="server__edit__image__button"
+                      onClick={(e) => handleSubmit(e)}
+                    >
                       Upload Image
                     </button>
                   </div>
                 </form>
-                <form className="edit__server__name__form">
+                <form
+                  className="edit__server__name__form"
+                  onSubmit={(e) => handleSubmit(e)}
+                >
                   <label className="edit__server__label" htmlFor="email">
                     SERVER NAME
                   </label>
+                  <div className="server__edit__form__validation__error">
+                    {errors.map((error, ind) => (
+                      <div key={ind}>{error}</div>
+                    ))}
+                  </div>
                   <input
                     className="edit__server__name__input"
                     value={serverName}
@@ -174,16 +214,25 @@ const ServerEditForm = ({ setShowModal }) => {
                   >
                     Back
                   </div>
-                  <button onClick={handleSubmit} className="server__edit__save__button">
+                  <button
+                    onClick={(e) => handleSubmit(e)}
+                    className="server__edit__save__button"
+                  >
                     Save Changes
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="full__screen__modal__esc__container" onClick={() => setShowModal(false)}>
+          <div
+            className="full__screen__modal__esc__container"
+            onClick={() => setShowModal(false)}
+          >
             <div onClick={() => setShowModal(false)} className="escape__circle">
-              <div onClick={() => setShowModal(false)} className="escape__x"></div>
+              <div
+                onClick={() => setShowModal(false)}
+                className="escape__x"
+              ></div>
             </div>
             <div onClick={() => setShowModal(false)} className="escape__text">
               ESC

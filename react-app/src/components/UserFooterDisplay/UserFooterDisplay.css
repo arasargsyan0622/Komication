@@ -50,3 +50,22 @@
   height: 20px;
   cursor: pointer;
 }
+.user__footer__avatar__container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  margin-right: 10px;
+}
+.user__footer__online__status {
+  display: flex;
+  align-self: flex-end;
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  background-color: green;
+  margin-right: 10px;
+  transform: translate(12px, -9px);
+  /* transform: translateY(-5px); */
+  /* z-index: 50; */
+}

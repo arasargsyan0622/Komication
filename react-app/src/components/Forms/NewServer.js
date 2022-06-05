@@ -18,14 +18,26 @@ const NewServerForm = ({ setShowModal }) => {
   const history = useHistory();
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
-  const [serverName, setServerName] = useState("");
-
+  const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.session.user);
+  const [serverName, setServerName] = useState(`${user.username}'s Server`);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setImageLoading(true);
+    setErrors([]);
+    if (!serverName.length) {
+      setErrors(["Server must have a name"]);
+      setImageLoading(false);
 
+      return;
+    }
+    if (serverName.length > 50) {
+      setErrors(["Server name cannot be more than 50 characters"]);
+      setImageLoading(false);
+
+      return;
+    }
     const payload = {
       image,
       serverName,
@@ -73,32 +85,38 @@ const NewServerForm = ({ setShowModal }) => {
           always change it later.
         </div>
       </div>
-      <form className="create__form">
+      <form className="create__form" onSubmit={handleSubmit}>
         <input
           className="create__form__image__input"
           type="file"
           accept="image/*"
           onChange={updateImage}
         ></input>
-        {imageLoading && <p>Loading...</p>}
+        {imageLoading && <p className="image__upload__loading">Loading...</p>}
+
         <label className="create__server__label" htmlFor="email">
           SERVER NAME
         </label>
+        <div className="server__form__validation__error">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
         <input
           className="create__server__name__input"
           value={serverName}
           onChange={(e) => setServerName(e.target.value)}
           type="text"
-          placeholder="User's server"
+          required
         />
-        <div className="server__invite__link__container">
-          Already have an invite link?{" "}
-          {/* <Link className="server__invite__link" to="/servers/invite">
+      </form>
+      <div className="server__invite__link__container">
+        Already have an invite link?{" "}
+        {/* <Link className="server__invite__link" to="/servers/invite">
             Join a Server.
           </Link> */}
-          <ServerInviteModal></ServerInviteModal>
-        </div>
-      </form>
+        <ServerInviteModal></ServerInviteModal>
+      </div>
       <div className="create__server__bottom__buttons">
         <div onClick={() => setShowModal(false)}>Back</div>
         <button className="create__server__button" onClick={handleSubmit}>

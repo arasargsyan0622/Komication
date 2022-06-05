@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, jsonify, request
 from app.models.channel_message import ChannelMessage
 from app.models import db
 from app.forms.channel_message_form import ChannelMessageCreateForm, ChannelMessageUpdateForm
+import datetime
 
 channel_message_routes = Blueprint("channel_messages", __name__)
 
@@ -13,7 +14,8 @@ def create_channel_message():
         channel_message = ChannelMessage(
             content = form.content.data,
             user_id = form.user_id.data,
-            channel_id = form.channel_id.data
+            channel_id = form.channel_id.data,
+            timestamp = datetime.datetime.now() 
         )
         db.session.add(channel_message)
         db.session.commit()

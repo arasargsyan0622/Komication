@@ -46,14 +46,20 @@ const SignUpForm = () => {
       <div className="sign__up__form">
         <h1 className="sign__up__header">Create an account</h1>
         <form onSubmit={onSignUp}>
-          <div>
+          <div className="signup__form__validation__error">
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
           <h4>EMAIL</h4>
           <div>
-            <input className="sign__up__input" type="text" name="email" onChange={updateEmail} value={email}></input>
+            <input
+              className="sign__up__input"
+              type="email"
+              name="email"
+              onChange={updateEmail}
+              value={email}
+            ></input>
           </div>
           <h4>USERNAME</h4>
           <div>
@@ -82,8 +88,15 @@ const SignUpForm = () => {
               style={{ color: monthColor }}
               onFocus={() => setMonthColor("#dcddde")}
               onChange={() => setMonthColor("#dcddde")}
+              required
             >
-              <option className="option__placeholder" value="" disabled selected hidden>
+              <option
+                className="option__placeholder"
+                value=""
+                disabled
+                selected
+                hidden
+              >
                 Select
               </option>
               {months.map((month) => {
@@ -99,8 +112,15 @@ const SignUpForm = () => {
               style={{ color: dayColor }}
               onFocus={() => setDayColor("#dcddde")}
               onChange={() => setDayColor("#dcddde")}
+              required
             >
-              <option className="option__placeholder" value="" disabled selected hidden>
+              <option
+                className="option__placeholder"
+                value=""
+                disabled
+                selected
+                hidden
+              >
                 Select
               </option>
               {Array.apply(null, Array(31)).map(function (x, i) {
@@ -116,8 +136,15 @@ const SignUpForm = () => {
               style={{ color: yearColor }}
               onFocus={() => setYearColor("#dcddde")}
               onChange={() => setYearColor("#dcddde")}
+              required
             >
-              <option className="option__placeholder" value="" disabled selected hidden>
+              <option
+                className="option__placeholder"
+                value=""
+                disabled
+                selected
+                hidden
+              >
                 Select
               </option>
               {years.map((year) => {
