@@ -21,7 +21,7 @@ let socket;
 
 function UserHomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [ currentInbox, setCurentInbox ] = useState("")
+  const [currentInbox, setCurrentInbox] = useState("");
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
@@ -59,7 +59,7 @@ function UserHomePage() {
       <UserServerList servers={servers}></UserServerList>
       <div className="inbox__channel__nav__container">
         <InboxSearch></InboxSearch>
-        <InboxMessageList setCurentInbox={setCurentInbox}></InboxMessageList>
+        <InboxMessageList setCurrentInbox={setCurrentInbox}></InboxMessageList>
         <UserFooterDisplay></UserFooterDisplay>
       </div>
       {homePageCheck === "/me" ? (
@@ -68,7 +68,11 @@ function UserHomePage() {
         <div className="inbox__channel__display__container">
           <InboxSearchNav channel={channel}></InboxSearchNav>
 
-          <InboxChannelDisplay currentInbox={currentInbox} channel={channel} setCurentInbox={setCurentInbox}></InboxChannelDisplay>
+          <InboxChannelDisplay
+            currentInbox={currentInbox}
+            channel={channel}
+            setCurrentInbox={setCurrentInbox}
+          ></InboxChannelDisplay>
         </div>
       )}
       {/* <div className="inbox__channel__display__container">

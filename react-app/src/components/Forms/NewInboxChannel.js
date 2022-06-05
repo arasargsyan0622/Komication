@@ -1,8 +1,8 @@
 import "./NonAuthFormsCSS/NewInboxChannelForm.css";
 import InboxChannelInvite from "../UserHome/Inbox/InboxChannelInvite/InboxChannelInvite";
 import { useState, useEffect } from "react";
-import { getCurrentUserInboxes, addCurrentUserInbox } from "../../store/direct_messages"
-import { useDispatch } from 'react-redux'
+import { getCurrentUserInboxes, addCurrentUserInbox } from "../../store/direct_messages";
+import { useDispatch } from "react-redux";
 
 function NewInboxChannelForm({ users, setShowModal }) {
   // setup on change for input field
@@ -44,7 +44,7 @@ function NewInboxChannelForm({ users, setShowModal }) {
       </div>
       <div className="create__inbox__search__results__container">
         {searchResults.map((user) => {
-          return <InboxChannelInvite user={user}></InboxChannelInvite>;
+          return <InboxChannelInvite user={user} setShowModal={setShowModal}></InboxChannelInvite>;
         })}
       </div>
     </div>
