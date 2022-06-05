@@ -43,17 +43,25 @@ export const getCurrentUserInboxes = (data) => async (dispatch) => {
 
 export const addCurrentUserInbox = (data) => async (dispatch) => {
     const {userId, newUser} = data
+    console.log("======================================")
+    console.log(data)
+    console.log("======================================")
+
     const response = await fetch(`api/inbox_channel/${userId}`, {
         method: "POST",
         headers:  { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, newUser }),
     })
-    // console.log(response)
-    if (response.ok) {
-        const inboxChannel = await response.json()
-        // console.log(inboxChannel)
-        // console.log(inboxChannel.users)
+    console.log(response)
+    const inboxChannel = await response.json()
+    console.log(inboxChannel)
+    if (inboxChannel.id) {
         dispatch(addInbox(inboxChannel))
+        return inboxChannel
+    }
+    else {
+        console.log(inboxChannel)
+        return inboxChannel
     }
 }
 
