@@ -6,7 +6,11 @@ import ChannelMessageEdit from "../Forms/ChannelMessageEdit";
 
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getCurrChannel, createMessage, deleteMessage } from "../../store/current_channel_msg";
+import {
+  getCurrChannel,
+  createMessage,
+  deleteMessage,
+} from "../../store/current_channel_msg";
 
 import { getCurrServer } from "../../store/current_server";
 
@@ -21,9 +25,11 @@ function ChannelDisplay() {
   const user = useSelector((state) => state.session.user);
   const channel = useSelector((state) => state.current_channel);
   const [messageContent, setMessageContent] = useState("");
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
   const channelMessages = Object.values(channel)[0].channel.channel_messages;
-  const currServer = Object.values(useSelector((state) => state.current_server))[0];
+  const currServer = Object.values(
+    useSelector((state) => state.current_server)
+  )[0];
   const users = currServer.server.users;
   const normUsers = {};
   users.forEach((user) => {
@@ -47,7 +53,9 @@ function ChannelDisplay() {
     socket.emit("join", payload);
 
     socket.on("chat", async () => {
-      dispatch(getCurrChannel(myChannelUuid)).then(() => dummyMsg?.current?.scrollIntoView());
+      dispatch(getCurrChannel(myChannelUuid)).then(() =>
+        dummyMsg?.current?.scrollIntoView()
+      );
     });
 
     socket.on("online", async () => {
@@ -57,7 +65,10 @@ function ChannelDisplay() {
     socket.on("offline", async () => {
       dispatch(getCurrServer(window.location.pathname.split("/")[2]));
     });
-    dispatch(getCurrChannel(myChannelUuid)).then(() => dummyMsg?.current?.scrollIntoView());
+
+    dispatch(getCurrChannel(myChannelUuid)).then(() =>
+      dummyMsg?.current?.scrollIntoView()
+    );
 
     return () => {
       const payload = {
@@ -68,7 +79,7 @@ function ChannelDisplay() {
       socket.emit("leave", payload);
       socket.disconnect();
     };
-  }, [dispatch, history.location.pathname, myChannelUuid, user.username]);
+  }, [dispatch, history.location.pathname]);
 
   const formatDate = (date) => {
     const newDate = moment(date).format("DD/MM/YY hh:mm a");
@@ -79,14 +90,14 @@ function ChannelDisplay() {
     e.preventDefault();
     let chatroom = history.location.pathname;
 
-    setErrors([])
-    if (!messageContent.length){
-      setErrors(["Message cannot be empty select delete to remove"])
-      return
+    setErrors([]);
+    if (!messageContent.length) {
+      setErrors(["Message cannot be empty select delete to remove"]);
+      return;
     }
-    if (messageContent.length>900){
-      setErrors(["Message cannot be more than 900 characters"])
-      return
+    if (messageContent.length > 900) {
+      setErrors(["Message cannot be more than 900 characters"]);
+      return;
     }
 
     const payload = {
@@ -146,9 +157,9 @@ function ChannelDisplay() {
       </div>
       <form className="channel__chat__form" onSubmit={addMessage}>
         <div className="channel__form__validation__error">
-                {errors.map((error, ind) => (
-                  <div key={ind}>{error}</div>
-                ))}
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
         </div>
         <div className="channel__chat__input__container">
           <div className="channel__add__input"></div>
