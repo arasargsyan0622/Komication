@@ -1,17 +1,26 @@
 import "./NonAuthFormsCSS/NewInboxChannelForm.css";
 import InboxChannelInvite from "../UserHome/Inbox/InboxChannelInvite/InboxChannelInvite";
+<<<<<<< HEAD
 import { useState } from "react";
 import { getCurrentUserInboxes, addCurrentUserInbox } from "../../store/direct_messages"
 import { useDispatch } from 'react-redux'
+=======
+import { useEffect, useState } from "react";
+>>>>>>> main
 
 function NewInboxChannelForm({ users, setShowModal }) {
   // setup on change for input field
   const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   //
   // filter through this array of users based on search input
   // if includes send to all users array
-  const allUsers = Object.values(users);
+  let allUsers = Object.values(users);
+
   //set up use effect on the input field
+  useEffect(() => {
+    setSearchResults(allUsers.filter((user) => user.username.toLowerCase().includes(searchInput)));
+  }, [searchInput]);
 
   return (
     <div className="create__inbox__channel__container">
@@ -27,12 +36,18 @@ function NewInboxChannelForm({ users, setShowModal }) {
         </div>
         <span># USERS</span>
         <div className="inbox__users__search__input__container">
-          <input className="inbox__users__search__input" placeholder="Search for users..."></input>
+          <input
+            className="inbox__users__search__input"
+            placeholder="Search for users..."
+            onChange={(e) => {
+              setSearchInput(e.target.value);
+            }}
+          ></input>
           <div className="inbox__eye__glass"></div>
         </div>
       </div>
       <div className="create__inbox__search__results__container">
-        {allUsers.map((user) => {
+        {searchResults.map((user) => {
           return <InboxChannelInvite user={user}></InboxChannelInvite>;
         })}
       </div>
