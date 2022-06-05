@@ -54,6 +54,10 @@ function UserHomePage() {
     };
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log("working");
+  }, [homePageCheck]);
+
   return isLoaded ? (
     <div className="user__home__page">
       <UserServerList servers={servers}></UserServerList>
