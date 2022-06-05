@@ -24,7 +24,7 @@ function ServerChannelNav({ server }) {
   useEffect(() => {
     setTimeout(() => {
       setIsLoaded(true);
-      console.log("inside set timeout");
+      // console.log("inside set timeout");
     }, 1000);
     try {
       // console.log("inside the try block on server channel");
@@ -37,7 +37,7 @@ function ServerChannelNav({ server }) {
     }
   }, [dispatch]);
   // setIsLoaded(false);
-  console.log(isLoaded);
+  // console.log(isLoaded);
   return (
     <div className="server__channel__nav__container">
       {isLoaded ? (

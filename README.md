@@ -5,6 +5,7 @@ komication Live Link: https://komication.herokuapp.com/
 Git wiki: https://github.com/arasargsyan0622/Komication/wiki
 
 ### Contact
+
 <div>Vernyoon Chao
    <a href="https://www.linkedin.com/in/vernyoon-chao-783494123/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
    <a href="https://github.com/VernyoonChao98"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
@@ -33,8 +34,8 @@ Komication
 
 Komication is a Full Stack Discord clone. It is a place to talk and hang out with your friends. Users can create servers, channels, channel and direct messaging.
 
-
 ## Getting started
+
 1. Clone this repository
 
    ```bash
@@ -43,17 +44,17 @@ Komication is a Full Stack Discord clone. It is a place to talk and hang out wit
 
 2. Install dependencies
 
-      ```bash
-      pipenv install
-      ```
+   ```bash
+   pipenv install
+   ```
 
-      ```bash
-      cd react-app
-      ```
+   ```bash
+   cd react-app
+   ```
 
-      ```bash
-      npm install
-      ```
+   ```bash
+   npm install
+   ```
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
@@ -88,7 +89,7 @@ Komication is a Full Stack Discord clone. It is a place to talk and hang out wit
    npm start
    ```
 
-***
+---
 
 ## Technologies Used
 
@@ -132,7 +133,6 @@ Signup Page
 ### Servers CRUD
 
 Server creation is a modal. The user can give a server name and upload an image. A user can also join a server with an invitation link. To save an edit, the user has to click on "Save Changes". In order to Delete a server, the user has to type in the server name.
-
 
 Create a Server
 
@@ -178,20 +178,6 @@ Edt/Delete a Message
 
 - Implement profile page.
 - Implement a search feature to search for messages.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- ## Getting started
 1. Clone this repository (only this branch)

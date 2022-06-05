@@ -7,7 +7,7 @@ import ServerDeleteModal from "../Modals/ServerDeleteModal";
 
 const ServerEditForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
   const currentServer = useSelector((state) => state.current_server);
 
   const serverUuid = Object.values(currentServer)[0]?.server.server_invite_url;
@@ -25,18 +25,19 @@ const ServerEditForm = ({ setShowModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setImageLoading(true);
 
-    setErrors([])
-    if (!serverName.length){
-      setErrors(["Server must have a name"])
+    setErrors([]);
+    if (!serverName.length) {
+      setErrors(["Server must have a name"]);
       setImageLoading(false);
-      return
+      return;
     }
-    if (serverName.length>50){
-      setErrors(["Server name cannot be more than 50 characters"])
+    if (serverName.length > 50) {
+      setErrors(["Server name cannot be more than 50 characters"]);
       setImageLoading(false);
-      return
+      return;
     }
 
     const payload = {
@@ -144,7 +145,10 @@ const ServerEditForm = ({ setShowModal }) => {
             <div className="edit__server__container">
               <h1>Server Overview</h1>
               <div className="edit__server__form__container">
-                <form className="edit__server__image__form">
+                <form
+                  className="edit__server__image__form"
+                  onSubmit={(e) => handleSubmit(e)}
+                >
                   <div>
                     <input
                       className="edit__server__image__input"
@@ -163,20 +167,23 @@ const ServerEditForm = ({ setShowModal }) => {
                     </div>
                     <button
                       className="server__edit__image__button"
-                      onClick={handleSubmit}
+                      onClick={(e) => handleSubmit(e)}
                     >
                       Upload Image
                     </button>
                   </div>
                 </form>
-                <form className="edit__server__name__form">
+                <form
+                  className="edit__server__name__form"
+                  onSubmit={(e) => handleSubmit(e)}
+                >
                   <label className="edit__server__label" htmlFor="email">
                     SERVER NAME
                   </label>
                   <div className="server__edit__form__validation__error">
-                      {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
-                      ))}
+                    {errors.map((error, ind) => (
+                      <div key={ind}>{error}</div>
+                    ))}
                   </div>
                   <input
                     className="edit__server__name__input"
@@ -208,7 +215,7 @@ const ServerEditForm = ({ setShowModal }) => {
                     Back
                   </div>
                   <button
-                    onClick={handleSubmit}
+                    onClick={(e) => handleSubmit(e)}
                     className="server__edit__save__button"
                   >
                     Save Changes

@@ -52,7 +52,7 @@ function ChannelMessageDelete({
         </span>
         <div
           onClick={(e) => {
-            console.log(message);
+            // console.log(message);
             eraseMessage(e, message);
           }}
         >
