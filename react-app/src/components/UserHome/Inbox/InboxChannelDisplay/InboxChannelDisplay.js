@@ -1,16 +1,24 @@
 import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from 'react-redux'
 import "./InboxChannelDisplay.css";
-
-import { useHistory } from "react-router-dom";
+import { addMessageThunk } from "../../../../store/dir.msg"
+import moment from "moment";
+import { useHistory, useParams } from "react-router-dom";
 
 let socket;
 
 function InboxChannelDisplay({ channel }) {
+  const dispatch = useDispatch()
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
+  const [messageContent, setMessageContent] = useState("");
   const history = useHistory();
   const dummyMsg = useRef();
+  const userId = useSelector((state) => state.session.user.id)
+
+  // const inboxMessages = Object.values()
+  // console.log("userid -------", userId)
   // console.log(messages);
   useEffect(() => {
     socket = io();
@@ -63,6 +71,23 @@ function InboxChannelDisplay({ channel }) {
     socket.emit("chat", payload);
     setChatInput("");
   };
+
+  const formatDate = (date) => {
+    const newDate = moment(date).format("DD/MM/YY hh:mm a");
+    return newDate;
+  };
+
+  const addMessage = async (e) => {
+    e.preventDefault()
+    const payload = {
+      content: messageContent,
+      user_id: userId,
+      inbox_channel_id: 1
+    }
+    dispatch(addMessageThunk(payload))
+  }
+
+
   return (
     <div className="channel__display__container">
       <div className="channel__messages__container">
@@ -82,14 +107,14 @@ function InboxChannelDisplay({ channel }) {
           ))
           .reverse()}
       </div>
-      <form className="channel__chat__form" onSubmit={sendChat}>
+      <form className="channel__chat__form" onSubmit={addMessage}>
         <div className="channel__chat__input__container">
           <div className="channel__add__input"></div>
           <input
             className="channel__chat__input"
             placeholder="Message #channelName"
-            value={chatInput}
-            onChange={updateChatInput}
+            value={messageContent}
+            onChange={e => setMessageContent(e.target.value)}
           />
           <button className="send__chat__button"></button>
         </div>

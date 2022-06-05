@@ -10,6 +10,7 @@ import "./UserHomePage.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getServers } from "../../store/server";
+import { getAllUsers } from "../../store/users";
 // import { getCurrServer } from "../../store/current_server";
 // import { useParams } from "react-router-dom";
 
@@ -29,6 +30,7 @@ function UserHomePage() {
   let channel;
 
   useEffect(() => {
+    dispatch(getAllUsers());
     let mounted = true;
     let t = setTimeout(() => {
       if (mounted) {

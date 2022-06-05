@@ -1,6 +1,7 @@
 import rfdc from 'rfdc'
 const clone = rfdc()
 
+// const GET_ONE_INBOX = "/api/direct_messages/GET_ONE_INBOX"
 const LOAD_CURR_INBOXES = '/api/direct_messages/LOAD_CURR_INBOX'
 const ADD_INBOX = 'api/direct_messages/ADD_INBOX'
 
@@ -17,6 +18,18 @@ const addInbox = (inbox) => {
         inbox
     }
 }
+
+// const oneInbox = inbox => {
+//     return {
+//         type: GET_ONE_INBOX,
+//         inbox
+//     }
+// }
+
+// export const getOneInbox = data => async dispatch => {
+//     console.log("getOneInboxThunk ------", data)
+//     const response = await fetch(`api/inbox`)
+// }
 
 
 export const getCurrentUserInboxes = (data) => async (dispatch) => {
