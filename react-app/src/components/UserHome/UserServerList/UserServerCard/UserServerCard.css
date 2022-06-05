@@ -9,7 +9,10 @@
   margin-bottom: 7px;
   background-color: #36393f;
   border-radius: 50px;
+  transition: .4s;
 }
+
+/* $dk */
 
 .server__card__link {
   text-decoration: none;
@@ -17,4 +20,9 @@
   color: #dcddde;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.user__server__card:hover {
+  border-radius: 12px;
+  background-color: #7C3AED;
 }
