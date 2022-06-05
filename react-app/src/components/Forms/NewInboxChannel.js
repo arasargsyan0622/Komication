@@ -1,12 +1,13 @@
 import "./NonAuthFormsCSS/NewInboxChannelForm.css";
 import InboxChannelInvite from "../UserHome/Inbox/InboxChannelInvite/InboxChannelInvite";
 import { useState } from "react";
+import { getCurrentUserInboxes, addCurrentUserInbox } from "../../store/direct_messages"
+import { useDispatch } from 'react-redux'
 
 function NewInboxChannelForm({ users, setShowModal }) {
   // setup on change for input field
   const [searchInput, setSearchInput] = useState("");
   //
-  console.log(users);
   // filter through this array of users based on search input
   // if includes send to all users array
   const allUsers = Object.values(users);
