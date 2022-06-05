@@ -84,7 +84,8 @@ function App() {
             <UserHomePage></UserHomePage>
           </ProtectedRoute>
           <ProtectedRoute path="/me/:inbox_uuid">
-            <UserHomePage></UserHomePage>
+            <h1>h1</h1>
+            {/* <UserHomePage></UserHomePage> */}
           </ProtectedRoute>
           <ProtectedRoute path="/servers/invite" exact={true}>
             <ServerInvite></ServerInvite>
