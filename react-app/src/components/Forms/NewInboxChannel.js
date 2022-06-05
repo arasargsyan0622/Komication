@@ -1,7 +1,42 @@
 import "./NonAuthFormsCSS/NewInboxChannelForm.css";
+import InboxChannelInvite from "../UserHome/Inbox/InboxChannelInvite/InboxChannelInvite";
+import { useState } from "react";
 
-function NewInboxChannelForm() {
-  return <div className="create__inbox__channel__container">DIRECT MESSAGE FORM</div>;
+function NewInboxChannelForm({ users, setShowModal }) {
+  // setup on change for input field
+  const [searchInput, setSearchInput] = useState("");
+  //
+  console.log(users);
+  // filter through this array of users based on search input
+  // if includes send to all users array
+  const allUsers = Object.values(users);
+  //set up use effect on the input field
+
+  return (
+    <div className="create__inbox__channel__container">
+      <div className="create__inbox__search__input__container">
+        <div className="create__message__header">
+          <span>Send a message to a friend!</span>
+          <div
+            onClick={() => {
+              setShowModal(false);
+            }}
+            className="create__inbox__x"
+          ></div>
+        </div>
+        <span># USERS</span>
+        <div className="inbox__users__search__input__container">
+          <input className="inbox__users__search__input" placeholder="Search for users..."></input>
+          <div className="inbox__eye__glass"></div>
+        </div>
+      </div>
+      <div className="create__inbox__search__results__container">
+        {allUsers.map((user) => {
+          return <InboxChannelInvite user={user}></InboxChannelInvite>;
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default NewInboxChannelForm;

@@ -1,0 +1,27 @@
+.create__inbox__channel__invite {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 380px;
+  height: 44px;
+  padding: 7px 16px 7px 8px;
+  padding-right: 0px;
+  /* margin: 0 10px 0px 0px; */
+}
+.user__search__result__image {
+  width: 32px;
+  height: 32px;
+  margin: 0px 10px 0px 0px;
+}
+
+.inbox__invite__user__contents {
+  display: flex;
+}
+.inbox__invite__username {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f6f6f7;
+  font-family: Arial, Helvetica, sans-serif;
+}

@@ -15,6 +15,7 @@ import ProtectedRoute from "./components/Forms/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
+import { getAllUsers } from "./store/users";
 
 import SplashPage from "./components/SplashPage/SplashPage";
 import CreateServer from "./components/s3_test";
@@ -79,10 +80,10 @@ function App() {
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
           </ProtectedRoute>
-          <ProtectedRoute path="/me" >
+          <ProtectedRoute path="/me">
             <UserHomePage></UserHomePage>
           </ProtectedRoute>
-          <ProtectedRoute path="/me/:inbox_uuid" >
+          <ProtectedRoute path="/me/:inbox_uuid">
             <UserHomePage></UserHomePage>
           </ProtectedRoute>
           <ProtectedRoute path="/servers/invite" exact={true}>
