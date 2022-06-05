@@ -9,14 +9,14 @@
   margin-bottom: 7px;
   background-color: #36393f;
   border-radius: 50px;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 /* $dk */
 
 .server__card__link {
   display: flex;
-  align-items:center ;
+  align-items: center;
   text-decoration: none;
   cursor: pointer;
   color: #dcddde;
@@ -26,9 +26,9 @@
 
 .user__server__card:hover {
   border-radius: 12px;
-  background-color: #7C3AED;
+  background-color: #7c3aed;
 }
-
+/*
 .server__card__name__tag{
 
   background-color: #55575c;
@@ -38,7 +38,7 @@
   position: absolute;
   left: 70px;
   color: #dcddde;
-  /* opacity: 0; */
+  opacity: 0;
   z-index: -1;
   transition: .3s;
   font-weight: 600;
@@ -52,10 +52,10 @@
 }
 
 .server__card__link:hover .server__card__name__tag{
-  /* opacity: 1; */
+  opacity: 1;
   z-index: 1;
 }
 
 .server__card__link:onclick {
   border: red 2px solid;
-}
+} */
