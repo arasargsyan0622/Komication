@@ -8,7 +8,7 @@ import NewInboxChannelForm from "./NewInboxChannel";
 function InboxSearch() {
   const users = useSelector((state) => state.users);
   const [showModal, setShowModal] = useState(false);
-  console.log(users);
+  // console.log(users);
 
   return (
     <div className="inbox__search__container">

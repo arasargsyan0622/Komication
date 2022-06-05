@@ -26,7 +26,7 @@ const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ALL_USERS:
       const allUsers = action.users;
-      console.log(allUsers, "all users");
+      // console.log(allUsers, "all users");
       const normUsers = {};
       allUsers.users.forEach((user) => {
         normUsers[user.id] = user;

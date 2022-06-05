@@ -67,7 +67,7 @@ const LoginForm = () => {
             <input
               className="login__input"
               name="email"
-              type="text"
+              type="email"
               value={email}
               onChange={updateEmail}
             />

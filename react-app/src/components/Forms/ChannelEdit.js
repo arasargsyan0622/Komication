@@ -8,28 +8,36 @@ import { getCurrChannel } from "../../store/current_channel_msg";
 
 function ChannelEditForm({ channel, setShowModal }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [editName, setEditName] = useState("");
+  const [editName, setEditName] = useState(`${channel.channel_name}`);
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
+
+  console.log(channel);
+
+  console.log(channel.channel_uuid);
 
   const currChannel = Object.values(
     useSelector((state) => state.current_channel)
   );
+  console.log(currChannel);
   const uuid = currChannel[0]?.channel.channel_uuid;
 
-  const editChannel = async () => {
-    setErrors([])
-    if (!editName.length){
+  const editChannel = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-      setErrors(["Channel must have a name, select 'Delete Channel' to remove channel from server"])
+    setErrors([]);
+    if (!editName.length) {
+      setErrors([
+        "Channel must have a name, select 'Delete Channel' to remove channel from server",
+      ]);
 
-      return
+      return;
     }
-    if (editName.length>50){
+    if (editName.length > 50) {
+      setErrors(["Channel name cannot be more than 50 characters"]);
 
-      setErrors(["Channel name cannot be more than 50 characters"])
-
-      return
+      return;
     }
 
     const payload = {
@@ -73,7 +81,10 @@ function ChannelEditForm({ channel, setShowModal }) {
         <div className="channel__edit__container">
           <div className="channel__edit__form__container">
             <div>
-              <form className="channel__edit__form">
+              <form
+                className="channel__edit__form"
+                onSubmit={(e) => editChannel(e)}
+              >
                 <span>OVERVIEW</span>
                 <div className="channel__edit__input__container">
                   <label>CHANNEL NAME</label>
@@ -100,7 +111,7 @@ function ChannelEditForm({ channel, setShowModal }) {
                 <div className="channel__save__buttons__container">
                   <div onClick={() => setShowModal(false)}>Back</div>
                   <button
-                    onClick={() => editChannel()}
+                    onClick={(e) => editChannel(e)}
                     className="channel__edit__save__button"
                   >
                     Save Changes
@@ -115,7 +126,11 @@ function ChannelEditForm({ channel, setShowModal }) {
           >
             <div onClick={() => setShowModal(false)} className="escape__circle">
               <div
-                onClick={() => setShowModal(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowModal(false);
+                }}
                 className="escape__x"
               ></div>
             </div>
