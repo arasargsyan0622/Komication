@@ -119,7 +119,7 @@ Account registration and login are fully functional and error handled.
 
 Login Page
 
-![Login](readme-images/logingif.gif "a title")
+![Login](readme-images/login-c.gif "a title")
 
 Signup Page
 
@@ -136,11 +136,15 @@ Server creation is a modal. The user can give a server name and upload an image.
 
 Create a Server
 
-![Create a Server](readme-images/server-creation.gif "a title")
+![Create a Server](readme-images/create-server-c.gif "a title")
 
-Edit/Delete a Server
+Edit a Server
 
-![Edit/Delete a Server](readme-images/server-edit-delete.gif "a title")
+![Edit a Server](readme-images/edit-server-c.gif "a title")
+
+Delete a server
+
+![Delete a Server](readme-images/delete-server-c.gif)
 
 Join a server
 
@@ -152,11 +156,15 @@ Channel creation is a modal. The user can give a channel name.
 
 Create a Channel
 
-![Create a Channel](readme-images/channel-creation.gif "a title")
+![Create a Channel](readme-images/create-channel-c.gif "a title")
 
-Edit/Delete a Channel
+Edit a Channel
 
-![Edit/Delete a Channel](readme-images/channel-edit-delete.gif "a title")
+![Edit a Channel](readme-images/edit-channel-c.gif "a title")
+
+Delete a Channel
+
+![Delete a Channel](readme-images/delete-channel.gif)
 
 ### Channel Messages CRUD
 
@@ -180,7 +188,9 @@ Edt/Delete a Message
 - Implement a search feature to search for messages.
 
 
+## Bloopers
 
+![Oops](readme-images/blooper.gif "a title")
 
 
 
