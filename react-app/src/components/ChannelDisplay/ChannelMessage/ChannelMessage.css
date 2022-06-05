@@ -10,15 +10,28 @@
   color: #dcddde;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* $dk */
 .channel__message__div {
   display: flex;
   margin-top: 17px;
+  /* border: red solid 5px; */
 }
+
+.channel__message__div:hover{
+  background-color: #33353B;
+}
+
+.channel__message__div:hover {
+  background-color: #33353B;
+}
+
 .channel__message__username {
   margin-right: 15px;
   color: #dcddde;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .channel__message__date,
 .channel__message__edited {
   margin-right: 15px;

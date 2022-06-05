@@ -75,6 +75,8 @@
   border: none;
   cursor: pointer;
 }
+
+/* $dk */
 .server__channel__link {
   display: flex;
   justify-content: space-between;
@@ -87,6 +89,14 @@
   font-family: Arial, Helvetica, sans-serif;
   padding-left: 20px;
   padding-top: 10px;
+  border-radius: 3px;
+}
+.server__channel__link:hover{
+  background-color: #434344;
+}
+
+.server__channel__link:hover .channel__edit__button{
+  opacity: 1;
 }
 .server__channel__link__name {
   display: flex;
@@ -116,4 +126,5 @@
   padding: 8px;
   margin-right: 10px;
   cursor: pointer;
+  opacity: 0;
 }

@@ -143,6 +143,11 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.channel__edit__view__toggle__container:hover {
+  background-color: #33353B;
+}
+/* $dk */
 .channel__edit__pencil {
   width: 25px;
   height: 25px;
@@ -150,7 +155,13 @@
   background: url("./edit__message__pencil.svg") center no-repeat;
   margin-right: 25px;
   cursor: pointer;
+  opacity: 0;
 }
+
+.channel__edit__view__toggle__container:hover .channel__edit__pencil {
+  opacity: 1;
+}
+
 
 .channel__message__edit__form__validation__error {
   display: flex;
