@@ -5,14 +5,13 @@ import { getCurrentUserInboxes, addCurrentUserInbox } from "../../../../store/di
 
 import "./InboxMessageList.css";
 
-function InboxMessageList() {
+function InboxMessageList({ setCurentInbox }) {
   const dispatch = useDispatch();
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [newUser, setNewUser] = useState();
   const inboxChannels = Object.values(useSelector((state) => state.current_inboxes));
   const userId = useSelector((state) => state.session.user.id);
-
   useEffect(() => {
     dispatch(getCurrentUserInboxes(userId)).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -27,6 +26,10 @@ function InboxMessageList() {
     dispatch(addCurrentUserInbox(payload));
     setNewUser("");
   };
+
+  const handle = (inbox_uuid) => {
+
+  }
 
   return (
     isLoaded && (
@@ -50,7 +53,10 @@ function InboxMessageList() {
               return (
                 <div key={inbox.id}>
                   {/* <div>uuid: {inbox.inbox_uuid}</div> */}
-                  <NavLink to={`/me/${inbox.inbox_uuid}`} className="direct__message__nav__link">
+                  <NavLink to={`/me/${inbox.inbox_uuid}`} className="direct__message__nav__link"
+                    onClick={() => {
+                    console.log("click")
+                    setCurentInbox(`/me/${inbox.inbox_uuid}`)}}>
                     <div className="direct__message__card">
                       <img className="direct__message__avatar" src={inbox.users.avatar_url}></img>
                       <div className="direct__message__username">{inbox.users.username}</div>
