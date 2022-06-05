@@ -5,6 +5,7 @@
   padding: 16px;
   width: 440px;
   height: 527px;
+  min-height: 527px;
   border-radius: 5px;
 }
 

@@ -6,6 +6,9 @@ function InboxChannelInvite({ user }) {
   const loggedInUser = useSelector((state) => state.session.user);
   console.log(loggedInUser.id, "logged in user");
   console.log(user.id, "user that is receiving message id");
+  const onSubmit = async function () {
+    return "logic";
+  };
 
   return (
     <div className="create__inbox__channel__invite">
@@ -13,7 +16,7 @@ function InboxChannelInvite({ user }) {
         <img src={user.avatar_url} className="user__search__result__image"></img>
         <div className="inbox__invite__username">{user.username}</div>
       </div>
-      <div className="inbox__invite__button" onClick={"create new inbox channel with user and session user id"}>
+      <div className="inbox__invite__button" onClick={onSubmit}>
         INVITE
       </div>
     </div>
