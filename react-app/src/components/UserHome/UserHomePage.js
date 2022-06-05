@@ -15,6 +15,7 @@ import { getAllUsers } from "../../store/users";
 // import { useParams } from "react-router-dom";
 
 import { io } from "socket.io-client";
+import NoTextChannel from "../NoTextChannel/NoTextChannel";
 
 let socket;
 
@@ -23,7 +24,8 @@ function UserHomePage() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
-
+  console.log(window.location.pathname);
+  const homePageCheck = window.location.pathname;
   const servers = Object.values(useSelector((state) => state.servers));
 
   // let newUuid = useParams().serverUuid;
@@ -59,12 +61,20 @@ function UserHomePage() {
         <InboxMessageList></InboxMessageList>
         <UserFooterDisplay></UserFooterDisplay>
       </div>
+      {homePageCheck === "/me" ? (
+        <NoTextChannel></NoTextChannel>
+      ) : (
+        <div className="inbox__channel__display__container">
+          <InboxSearchNav channel={channel}></InboxSearchNav>
 
-      <div className="inbox__channel__display__container">
+          <InboxChannelDisplay channel={channel}></InboxChannelDisplay>
+        </div>
+      )}
+      {/* <div className="inbox__channel__display__container">
         <InboxSearchNav channel={channel}></InboxSearchNav>
 
         <InboxChannelDisplay channel={channel}></InboxChannelDisplay>
-      </div>
+      </div> */}
     </div>
   ) : (
     <UserHomeLoadingScreen></UserHomeLoadingScreen>

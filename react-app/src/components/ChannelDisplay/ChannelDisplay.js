@@ -6,11 +6,7 @@ import ChannelMessageEdit from "../Forms/ChannelMessageEdit";
 
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getCurrChannel,
-  createMessage,
-  deleteMessage,
-} from "../../store/current_channel_msg";
+import { getCurrChannel, createMessage, deleteMessage } from "../../store/current_channel_msg";
 
 import { getCurrServer } from "../../store/current_server";
 
@@ -27,9 +23,7 @@ function ChannelDisplay() {
   const [messageContent, setMessageContent] = useState("");
   const [errors, setErrors] = useState([]);
   const channelMessages = Object.values(channel)[0].channel.channel_messages;
-  const currServer = Object.values(
-    useSelector((state) => state.current_server)
-  )[0];
+  const currServer = Object.values(useSelector((state) => state.current_server))[0];
   const users = currServer.server.users;
   const normUsers = {};
   users.forEach((user) => {
@@ -53,9 +47,7 @@ function ChannelDisplay() {
     socket.emit("join", payload);
 
     socket.on("chat", async () => {
-      dispatch(getCurrChannel(myChannelUuid)).then(() =>
-        dummyMsg?.current?.scrollIntoView()
-      );
+      dispatch(getCurrChannel(myChannelUuid)).then(() => dummyMsg?.current?.scrollIntoView());
     });
 
     socket.on("online", async () => {
@@ -66,9 +58,7 @@ function ChannelDisplay() {
       dispatch(getCurrServer(window.location.pathname.split("/")[2]));
     });
 
-    dispatch(getCurrChannel(myChannelUuid)).then(() =>
-      dummyMsg?.current?.scrollIntoView()
-    );
+    dispatch(getCurrChannel(myChannelUuid)).then(() => dummyMsg?.current?.scrollIntoView());
 
     return () => {
       const payload = {

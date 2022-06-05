@@ -13,7 +13,6 @@ function InboxMessageList() {
   const inboxChannels = Object.values(useSelector((state) => state.current_inboxes));
   const userId = useSelector((state) => state.session.user.id);
 
-  console.log(inboxChannels);
   useEffect(() => {
     dispatch(getCurrentUserInboxes(userId)).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -44,20 +43,19 @@ function InboxMessageList() {
         </div>
         <div className="direct__message__container">
           <div className="direct__message__header__container">
-            <form onSubmit={addInboxChannel}>
-              <div className="direct__message__header">DIRECT MESSAGES</div>
-              <input onChange={(e) => setNewUser(e.target.value)} placeholder="Enter username"></input>
-              <button className="new__direct__message__button" type="submit"></button>
-            </form>
+            <div className="direct__message__header">DIRECT MESSAGES</div>
           </div>
           <>
             {Object.values(inboxChannels[0]).map((inbox) => {
               return (
                 <div key={inbox.id}>
                   {/* <div>uuid: {inbox.inbox_uuid}</div> */}
-                  <NavLink to={`/me/${inbox.inbox_uuid}`} className="direct__message__avatar"></NavLink>
-                  <NavLink to={`/me/${inbox.inbox_uuid}`} className="direct__message__username">
-                    {inbox.users.username}
+                  <NavLink to={`/me/${inbox.inbox_uuid}`} className="direct__message__nav__link">
+                    <div className="direct__message__card">
+                      <img className="direct__message__avatar" src={inbox.users.avatar_url}></img>
+                      <div className="direct__message__username">{inbox.users.username}</div>
+                      <button className="direct__message__hide"></button>
+                    </div>
                   </NavLink>
                 </div>
               );
