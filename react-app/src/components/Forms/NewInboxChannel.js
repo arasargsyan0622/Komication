@@ -1,12 +1,8 @@
 import "./NonAuthFormsCSS/NewInboxChannelForm.css";
 import InboxChannelInvite from "../UserHome/Inbox/InboxChannelInvite/InboxChannelInvite";
-<<<<<<< HEAD
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCurrentUserInboxes, addCurrentUserInbox } from "../../store/direct_messages"
 import { useDispatch } from 'react-redux'
-=======
-import { useEffect, useState } from "react";
->>>>>>> main
 
 function NewInboxChannelForm({ users, setShowModal }) {
   // setup on change for input field

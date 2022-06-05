@@ -29,11 +29,7 @@ function InboxChannelInvite({ user }) {
         <img src={user.avatar_url} className="user__search__result__image"></img>
         <div className="inbox__invite__username">{user.username}</div>
       </div>
-<<<<<<< HEAD
       <div className="inbox__invite__button" onClick={(e)=>addInboxChannel(user.username)}>
-=======
-      <div className="inbox__invite__button" onClick={onSubmit}>
->>>>>>> main
         INVITE
       </div>
     </div>
