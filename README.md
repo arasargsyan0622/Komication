@@ -178,7 +178,13 @@ Edt/Delete a Message
 
 ![Message edit/delete](readme-images/channel-msg.png "a title")
 
-<!-- Direct messages here -->
+### Direct Messages and Inboxes
+
+Users can invite others to their dm via modal
+
+![Invite](readme-images/invite.png)
+![DM](readme-images/dm.png)
+
 
 ## Bloopers
 
