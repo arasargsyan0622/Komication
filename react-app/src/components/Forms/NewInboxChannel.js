@@ -1,16 +1,15 @@
 import "./NonAuthFormsCSS/NewInboxChannelForm.css";
 import InboxChannelInvite from "../UserHome/Inbox/InboxChannelInvite/InboxChannelInvite";
 import { useState, useEffect } from "react";
-import { getCurrentUserInboxes, addCurrentUserInbox } from "../../store/direct_messages";
+import { addCurrentUserInbox } from "../../store/direct_messages";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 function NewInboxChannelForm({ users, setShowModal }) {
   // setup on change for input field
-  const history = useHistory();
+
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [setNewInboxMade] = useState(false);
+  // const [setNewInboxMade] = useState(false);
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.session.user);
   //

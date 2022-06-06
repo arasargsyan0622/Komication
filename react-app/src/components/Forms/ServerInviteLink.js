@@ -16,9 +16,9 @@ function ServerInviteLink({ setShowInvite }) {
     url.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(url.value);
     setCopied(true);
-    console.log(url.value);
+    // console.log(url.value);
   }
-  console.log(copied);
+  // console.log(copied);
 
   //
   const server_uuid = window.location.pathname.split("/")[2];

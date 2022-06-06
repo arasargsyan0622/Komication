@@ -14,7 +14,7 @@ import { getCurrChannel, cleanCurrChannel } from "../../../../store/current_chan
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
 import ChannelListLoadingScreen from "../../../LoadingScreens/ChannelListLoadingScreen";
-import UserHomeLoadingScreen from "../../../LoadingScreens/UserHomeLoadingScreen";
+// import UserHomeLoadingScreen from "../../../LoadingScreens/UserHomeLoadingScreen";
 // import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
 
 let socket;
@@ -28,7 +28,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
   const currChannel = useSelector((state) => state.current_channel);
   const serverOwner = Object.values(currentServer)[0]?.server.user_id;
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   // console.log(isLoaded);
   // const [allChannels, setAllChannels] = useState("");
   // useEffect(() => {

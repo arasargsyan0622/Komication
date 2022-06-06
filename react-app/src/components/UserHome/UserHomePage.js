@@ -61,15 +61,15 @@ function UserHomePage() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(homePageCheck, "homepagecheck");
-    console.log("home page check inside the use effect on home page");
+    // console.log(homePageCheck, "homepagecheck");
+    // console.log("home page check inside the use effect on home page");
     const inboxUuId = homePageCheck.split("/")[2];
     // console.log(inboxUuId);
 
     if (allInboxes) {
       setPlease(Object.values(allInboxes)?.filter((inbox) => inbox?.inbox_uuid == inboxUuId));
-      console.log(allInboxes, "alll inboxesssssssss");
-      console.log(please[0]);
+      // console.log(allInboxes, "alll inboxesssssssss");
+      // console.log(please[0]);
     }
 
     // setTimeout(() => {

@@ -1,9 +1,9 @@
 import "./LoadingScreens.CSS/ChannelNavLoadingScreen.css";
 
-let random = Math.floor(Math.random() * 5);
-setInterval(() => {
-  random = Math.floor(Math.random() * 5);
-}, 5000);
+// let random = Math.floor(Math.random() * 5);
+// setInterval(() => {
+//   random = Math.floor(Math.random() * 5);
+// }, 5000);
 function ChannelNavLoadingScreen() {
   return (
     <div className="user__channel__nav__loading__container">

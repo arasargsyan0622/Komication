@@ -28,7 +28,7 @@ function InboxMessageList({ setCurrentInbox }) {
     setNewUser("");
   };
 
-  const handle = (inbox_uuid) => {};
+  // const handle = (inbox_uuid) => {};
 
   return isLoaded ? (
     <div className="inbox__message__list__container">
@@ -55,12 +55,12 @@ function InboxMessageList({ setCurrentInbox }) {
                   to={`/me/${inbox.inbox_uuid}`}
                   className="direct__message__nav__link"
                   onClick={() => {
-                    console.log("click");
+                    // console.log("click");
                     setCurrentInbox(`/me/${inbox.inbox_uuid}`);
                   }}
                 >
                   <div className="direct__message__card">
-                    <img className="direct__message__avatar" src={inbox.users.avatar_url}></img>
+                    <img className="direct__message__avatar" alt="profile" src={inbox.users.avatar_url}></img>
                     <div className="direct__message__username">{inbox.users.username}</div>
                     <button className="direct__message__hide"></button>
                   </div>
