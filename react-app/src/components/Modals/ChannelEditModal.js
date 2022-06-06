@@ -8,10 +8,20 @@ function ChannelEditModal({ channel }) {
     <>
       <button
         className="channel__edit__button"
-        onClick={() => setShowModal(true)}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setShowModal(true);
+        }}
       ></button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal
+          onClose={(e) => {
+            // e.preventDefault();
+            // e.stopPropagation();
+            setShowModal(false);
+          }}
+        >
           <ChannelEditForm channel={channel} setShowModal={setShowModal} />
         </Modal>
       )}

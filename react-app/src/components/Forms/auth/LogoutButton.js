@@ -20,7 +20,6 @@ const LogoutButton = () => {
     };
   });
 
-
   const onLogout = async (e) => {
     socket.emit("offline", user);
 

@@ -1,14 +1,14 @@
 import "./NonAuthFormsCSS/InboxSearch.css";
-import { useSelector, useDispatch } from "react-redux";
-import { useState, dispatch } from "react";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 import { Modal } from "../../context/Modal";
 import NewInboxChannelForm from "./NewInboxChannel";
 
-function InboxSearch() {
+function InboxSearch({ newInboxMade }) {
   const users = useSelector((state) => state.users);
   const [showModal, setShowModal] = useState(false);
-  console.log(users);
+  // console.log(users);
 
   return (
     <div className="inbox__search__container">
@@ -20,7 +20,11 @@ function InboxSearch() {
       ></input>
       {showModal && (
         <Modal>
-          <NewInboxChannelForm users={users} setShowModal={setShowModal}></NewInboxChannelForm>
+          <NewInboxChannelForm
+            users={users}
+            setShowModal={setShowModal}
+            newInboxMade={newInboxMade}
+          ></NewInboxChannelForm>
         </Modal>
       )}
     </div>

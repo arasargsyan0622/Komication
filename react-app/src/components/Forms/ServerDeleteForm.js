@@ -47,21 +47,15 @@ const ConfirmDeleteServer = ({ setShowConfirm }) => {
     });
 
     if (
-      joinedServers[0].server_invite_url ==
-        Object.values(currentServer)[0].server.server_invite_url &&
+      joinedServers[0].server_invite_url == Object.values(currentServer)[0].server.server_invite_url &&
       joinedServers.length === 1
     ) {
       history.push("/me");
       window.location.reload(false);
-    } else if (
-      joinedServers[0].server_invite_url !=
-      Object.values(currentServer)[0].server.server_invite_url
-    ) {
+    } else if (joinedServers[0].server_invite_url != Object.values(currentServer)[0].server.server_invite_url) {
       const firstJoinedServer = joinedServers[0]?.server_invite_url;
       if (joinedServers[0].channels[0]) {
-        history.push(
-          `/servers/${firstJoinedServer}/${joinedServers[0].channels[0].channel_uuid}`
-        );
+        history.push(`/servers/${firstJoinedServer}/${joinedServers[0].channels[0].channel_uuid}`);
         window.location.reload(false);
       } else {
         history.push(`/servers/${firstJoinedServer}`);
@@ -70,9 +64,7 @@ const ConfirmDeleteServer = ({ setShowConfirm }) => {
     } else {
       const firstJoinedServer = joinedServers[1]?.server_invite_url;
       if (joinedServers[1].channels[0]) {
-        history.push(
-          `/servers/${firstJoinedServer}/${joinedServers[1].channels[0].channel_uuid}`
-        );
+        history.push(`/servers/${firstJoinedServer}/${joinedServers[1].channels[0].channel_uuid}`);
         window.location.reload(false);
       } else {
         history.push(`/servers/${firstJoinedServer}`);
@@ -90,9 +82,9 @@ const ConfirmDeleteServer = ({ setShowConfirm }) => {
           This action cannot be undone.`}</div>
           <label>ENTER SERVER NAME</label>
           <div className="server__delete__form__validation__error">
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
           </div>
           <form onSubmit={handleSubmit}>
             <input

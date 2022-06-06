@@ -91,11 +91,11 @@
   padding-top: 10px;
   border-radius: 3px;
 }
-.server__channel__link:hover{
+.server__channel__link:hover {
   background-color: #434344;
 }
 
-.server__channel__link:hover .channel__edit__button{
+.server__channel__link:hover .channel__edit__button {
   opacity: 1;
 }
 .server__channel__link__name {

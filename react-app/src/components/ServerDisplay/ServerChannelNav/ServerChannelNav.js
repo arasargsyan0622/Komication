@@ -2,12 +2,12 @@ import "./ServerChannelNav.css";
 import ServerTitleCard from "./ServerTitleCard";
 import ServerChannelList from "./ServerChannelList/ServerChannelList";
 import UserFooterDisplay from "../../UserFooterDisplay/UserFooterDisplay";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { getCurrServer } from "../../../store/current_server";
-import UserHomeLoadingScreen from "../../LoadingScreens/UserHomeLoadingScreen";
-import ChannelListLoadingScreen from "../../LoadingScreens/ChannelListLoadingScreen";
+// import UserHomeLoadingScreen from "../../LoadingScreens/UserHomeLoadingScreen";
+// import ChannelListLoadingScreen from "../../LoadingScreens/ChannelListLoadingScreen";
 import ChannelNavLoadingScreen from "../../LoadingScreens/ChannelNavLoadingScreen";
 
 function ServerChannelNav({ server }) {
@@ -24,7 +24,7 @@ function ServerChannelNav({ server }) {
   useEffect(() => {
     setTimeout(() => {
       setIsLoaded(true);
-      console.log("inside set timeout");
+      // console.log("inside set timeout");
     }, 1000);
     try {
       // console.log("inside the try block on server channel");
@@ -37,7 +37,7 @@ function ServerChannelNav({ server }) {
     }
   }, [dispatch]);
   // setIsLoaded(false);
-  console.log(isLoaded);
+  // console.log(isLoaded);
   return (
     <div className="server__channel__nav__container">
       {isLoaded ? (

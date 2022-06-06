@@ -14,7 +14,7 @@ import { getCurrChannel, cleanCurrChannel } from "../../../../store/current_chan
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
 import ChannelListLoadingScreen from "../../../LoadingScreens/ChannelListLoadingScreen";
-import UserHomeLoadingScreen from "../../../LoadingScreens/UserHomeLoadingScreen";
+// import UserHomeLoadingScreen from "../../../LoadingScreens/UserHomeLoadingScreen";
 // import ServerDeleteModal from "../../../Modals/ServerDeleteModal";
 
 let socket;
@@ -25,9 +25,11 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
   const currentUser = useSelector((state) => state.session.user);
   const currentServer = useSelector((state) => state.current_server);
   const allServers = useSelector((state) => state.servers);
+  const currChannel = useSelector((state) => state.current_channel);
   const serverOwner = Object.values(currentServer)[0]?.server.user_id;
   const [isLoaded, setIsLoaded] = useState(false);
-  console.log(isLoaded);
+  // const [showModal, setShowModal] = useState(false);
+  // console.log(isLoaded);
   // const [allChannels, setAllChannels] = useState("");
   // useEffect(() => {
   //   const test = Object?.values(currentServer)[0]?.server?.channels;
@@ -37,10 +39,14 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
   //   console.log(allChannels);
   // }, [allChannels]);
 
-  const channelsObj = Object.values(server)[0]?.server?.channels;
-  const currentChannelUuid = window.location.pathname.split("/")[3];
+  const currChannelId = Object.values(currChannel)[0]?.channel?.id;
 
+  const channelsObj = Object.values(server)[0]?.server?.channels;
+  const channelsArr = Object.values(channelsObj);
+
+  const currentChannelUuid = window.location.pathname.split("/")[3];
   const users = Object.values(currentServer)[0]?.server.users;
+  const server_uuid = window.location.pathname.split("/")[2];
 
   useEffect(() => {
     let mounted = true;
@@ -49,7 +55,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
         // if (window.location.pathname.split("/")[3]) {
         //   dispatch(getCurrChannel(window.location.pathname.split("/")[3])).then(
         //     () => {
-        console.log("inside the mounted server channel list");
+        // console.log("inside the mounted server channel list");
         setIsLoaded(true);
         //       }
         //     );
@@ -64,7 +70,6 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
         was_I_Invited = false;
       }
     });
-    const server_uuid = window.location.pathname.split("/")[2];
     // console.log(allServers);
 
     const invalidUrl = Object.values(allServers).filter((server) => server.server_invite_url === server_uuid);
@@ -90,6 +95,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
                 history.push("/me");
                 return;
               }
+              console.log("am i getting here");
               dispatch(getCurrChannel(currentChannelUuid));
             });
           } catch (error) {
@@ -124,13 +130,17 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
           <div className={"server__channel__header"}>TEXT CHANNELS</div>
           {currentUser?.id === serverOwner ? <NewChannelModal></NewChannelModal> : <></>}
         </div>
-        {Object?.values(channelsObj)?.map((channel) => {
+        {channelsArr.map((channel, idx) => {
           return (
             <NavLink
               key={channel.id}
               className={"channel__nav__link"}
-              onClick={() => setChannelChange(true)}
-              to={`/servers/${Object.values(currentServer)[0].server.server_invite_url}/${channel.channel_uuid}`}
+              onClick={(e) => {
+                // e.preventDefault();
+                e.stopPropagation();
+                setChannelChange(true);
+              }}
+              to={`/servers/${server_uuid}/${channel.channel_uuid}`}
             >
               <div key={channel.id} className={"server__channel__link"}>
                 <div className="server__channel__link__name">
@@ -138,7 +148,10 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
                   {` `}
                   <div>{`${channel.channel_name}`}</div>
                 </div>
-                {currentUser.id === serverOwner ? (
+                {currentUser.id === serverOwner &&
+                // temp fix
+                currChannelId === channel.id &&
+                idx != 0 ? (
                   <ChannelEditModal
                     channel={channel}
                     className="server__channel__settings__container"
