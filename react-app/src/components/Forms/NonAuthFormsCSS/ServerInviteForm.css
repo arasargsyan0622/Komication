@@ -3,7 +3,10 @@
   flex-direction: column;
   justify-content: space-between;
   width: 440px;
-  height: 404px;
+  height: auto;
+  min-height: 440px;
+  align-items: center;
+
   border-radius: 5px;
   background-color: #ffffff;
 }
@@ -24,7 +27,7 @@
   color: #4f5660;
   margin-right: 0px;
   padding-right: 23px;
-  padding-left: 23px;
+  /* padding-left: 23px; */
   font-family: Arial, Helvetica, sans-serif;
 }
 

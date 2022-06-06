@@ -9,10 +9,7 @@ import { useHistory } from "react-router-dom";
 
 import { getServers, wasInvited } from "../../../../store/server";
 import { getCurrServer } from "../../../../store/current_server";
-import {
-  getCurrChannel,
-  cleanCurrChannel,
-} from "../../../../store/current_channel_msg";
+import { getCurrChannel, cleanCurrChannel } from "../../../../store/current_channel_msg";
 
 import NewChannelModal from "../../../Modals/NewChannelModal";
 import ChannelEditModal from "../../../Modals/ChannelEditModal";
@@ -45,6 +42,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
   const currChannelId = Object.values(currChannel)[0]?.channel?.id;
 
   const channelsObj = Object.values(server)[0]?.server?.channels;
+  const channelsArr = Object.values(channelsObj);
 
   const currentChannelUuid = window.location.pathname.split("/")[3];
   const users = Object.values(currentServer)[0]?.server.users;
@@ -74,9 +72,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
     });
     // console.log(allServers);
 
-    const invalidUrl = Object.values(allServers).filter(
-      (server) => server.server_invite_url === server_uuid
-    );
+    const invalidUrl = Object.values(allServers).filter((server) => server.server_invite_url === server_uuid);
     // console.log(invalidUrl);
     if (!invalidUrl.length) history.push("/");
 
@@ -132,13 +128,9 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
       <div className="server__channels__container">
         <div className="server__channel__add__container">
           <div className={"server__channel__header"}>TEXT CHANNELS</div>
-          {currentUser?.id === serverOwner ? (
-            <NewChannelModal></NewChannelModal>
-          ) : (
-            <></>
-          )}
+          {currentUser?.id === serverOwner ? <NewChannelModal></NewChannelModal> : <></>}
         </div>
-        {Object?.values(channelsObj)?.map((channel) => {
+        {channelsArr.map((channel, idx) => {
           return (
             <NavLink
               key={channel.id}
@@ -158,7 +150,8 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
                 </div>
                 {currentUser.id === serverOwner &&
                 // temp fix
-                currChannelId === channel.id ? (
+                currChannelId === channel.id &&
+                idx != 0 ? (
                   <ChannelEditModal
                     channel={channel}
                     className="server__channel__settings__container"
