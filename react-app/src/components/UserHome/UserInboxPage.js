@@ -19,7 +19,7 @@ import NoTextChannel from "../NoTextChannel/NoTextChannel";
 
 let socket;
 
-function UserHomePage() {
+function UserInboxPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentInbox, setCurrentInbox] = useState("");
   const [newInboxMade, setNewInboxMade] = useState(false);
@@ -118,4 +118,4 @@ function UserHomePage() {
   );
 }
 
-export default UserHomePage;
+export default UserInboxPage;

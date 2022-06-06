@@ -24,18 +24,20 @@ function NewInboxChannelForm({ users, setShowModal }) {
       userId,
       newUser,
     };
-    const res = dispatch(addCurrentUserInbox(payload));
-    // console.log(res, "response from adding inbox");
-    // console.log(res.inbox_uuid, "hopefully new inbox uuid");
-    if (!res.message) {
-      // console.log(res);
+    const res = await dispatch(addCurrentUserInbox(payload));
+    console.log(res, "response from adding inbox");
+
+    console.log(res.inbox_uuid, "hopefully new inbox uuid");
+    if (res.inbox_uuid) {
+      console.log(res);
       // setShowModal(false);
-      // history.push(`/me/${res.inbox_uuid}`);
+      history.push(`/me/${res.inbox_uuid}`);
 
       // setNewInboxMade(true);
     } else {
-      // console.log("in the else on inbox invite");
-      // history.push(`/me/${res.inbox_uuid}`);
+      console.log("in the else on inbox invite");
+      console.log(res.message)
+      history.push(`/me/${res.message}`);
     }
   };
   //set up use effect on the input field

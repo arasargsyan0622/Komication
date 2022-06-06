@@ -38,7 +38,16 @@ def create_inbox_channel(id):
     # print(current_user.inbox_channel_user[3].channel_inbox_user)
     # print(new_user in current_user.inbox_channel_user[3].channel_inbox_user)
     myInbox = [inbox for inbox in current_user.inbox_channel_user if new_user in inbox.channel_inbox_user ]
-    # print(myInbox)
+    print(myInbox)
+    print(len(myInbox))
+    print(not len(myInbox))
+    print("-----------------------")
+    print("-----------------------")
+    print("-----------------------")
+    print("-----------------------")
+
+
+        # return myInbox[0].to_dict()
     # print(InboxChannel.channel_inbox_user)
     # print("-----------------------")
     if not len(myInbox):
@@ -65,8 +74,14 @@ def create_inbox_channel(id):
             # print("==-=-=-=-", test)
             # send inbox state with new user to match get inbox state
             return test
-    else:
-        return {"message": "inbox already exists"}
+
+    if myInbox[0]:
+        test = myInbox[0].inbox_uuid
+        print("====================")
+        print("existing inbox")
+        print(test)
+        print("====================")
+        return {"message": test}
 
 @inbox_channel_routes.route("/hide/<int:id>", methods=["POST"])
 def hide_inbox_channel(id):

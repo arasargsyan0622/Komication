@@ -10,6 +10,8 @@ import ServerEdit from "./components/Forms/ServerEdit";
 
 import ServerDisplay from "./components/ServerDisplay/ServerDisplay";
 import UserHomePage from "./components/UserHome/UserHomePage";
+import UserInboxPage from "./components/UserHome/UserInboxPage";
+
 
 import ProtectedRoute from "./components/Forms/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -80,11 +82,11 @@ function App() {
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
           </ProtectedRoute>
-          <ProtectedRoute path="/me">
+          <ProtectedRoute path="/me" exact={true}>
             <UserHomePage></UserHomePage>
           </ProtectedRoute>
-          <ProtectedRoute path="/me/:inbox_uuid">
-            <UserHomePage></UserHomePage>
+          <ProtectedRoute path="/me/:inbox_uuid" exact={true}>
+            <UserInboxPage></UserInboxPage>
           </ProtectedRoute>
           <ProtectedRoute path="/servers/invite" exact={true}>
             <ServerInvite></ServerInvite>
