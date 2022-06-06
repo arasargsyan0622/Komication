@@ -95,7 +95,7 @@ function ServerChannelList({ server, channelChange, setChannelChange }) {
                 history.push("/me");
                 return;
               }
-              console.log("am i getting here");
+              // console.log("am i getting here");
               dispatch(getCurrChannel(currentChannelUuid));
             });
           } catch (error) {
