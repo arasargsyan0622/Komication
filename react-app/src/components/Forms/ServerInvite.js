@@ -22,12 +22,12 @@ const ServerInvite = ({ setShowModal }) => {
     //   history.push(`/servers/${serverInvite}`);
     //   window.location.reload(false);
     // }
-    if (matchedServer[0]?.channels[0]?.channel_uuid) {
-      history.push(`/servers/${serverInvite}/${matchedServer[0]?.channels[0].channel_uuid}`);
-      window.location.reload(false);
-    } else {
-      setErrors(["Error with server invite, confirm link and resubmit"]);
-    }
+    history.push(`/servers/${serverInvite}`);
+    window.location.reload(false);
+    // if (matchedServer[0]?.channels[0]?.channel_uuid) {
+    // } else {
+    //   setErrors(["Error with server invite, confirm link and resubmit"]);
+    // }
   };
   return (
     <div className="server__invite__form__container">

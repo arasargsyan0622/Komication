@@ -34,7 +34,7 @@ function ServerEditModal() {
         </Modal>
       )}
       {showInvite && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal onClose={() => setShowInvite(false)}>
           <ServerInviteLink setShowInvite={setShowInvite}></ServerInviteLink>
         </Modal>
       )}
