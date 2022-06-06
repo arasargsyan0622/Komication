@@ -32,24 +32,8 @@ def create_inbox_channel(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     current_user = User.query.get(id)
     new_user = User.query.filter(User.username == form.newUser.data).first()
-    # inbox_a = InboxChannel.query.filter(current_user in InboxChannel.channel_inbox_user and new_inbox in InboxChannel.channel_inbox_user).first()
-    # print("-----------------------")
-    # print("-=-=-=-", current_user.inbox_channel_user)
-    # print(current_user.inbox_channel_user[3].channel_inbox_user)
-    # print(new_user in current_user.inbox_channel_user[3].channel_inbox_user)
     myInbox = [inbox for inbox in current_user.inbox_channel_user if new_user in inbox.channel_inbox_user ]
-    print(myInbox)
-    print(len(myInbox))
-    print(not len(myInbox))
-    print("-----------------------")
-    print("-----------------------")
-    print("-----------------------")
-    print("-----------------------")
 
-
-        # return myInbox[0].to_dict()
-    # print(InboxChannel.channel_inbox_user)
-    # print("-----------------------")
     if not len(myInbox):
         if form.validate_on_submit():
             random_string = ""
@@ -58,29 +42,15 @@ def create_inbox_channel(id):
             new_inbox = InboxChannel(inbox_uuid= string_uuid)
             new_inbox.channel_inbox_user.append(current_user)
             new_inbox.channel_inbox_user.append(new_user)
-
-            # print("====================")
-            # print(id)
-            # print(new_user)
-            # print(form.newUser.data)
-            # print(new_inbox)
-            # print(new_inbox.channel_inbox_user)
-            # print(new_inbox.users)
-            # print("====================")
             db.session.add(new_inbox)
             db.session.commit()
             test = new_inbox.to_dict()
             test["users"] = new_user.to_dict()
-            # print("==-=-=-=-", test)
-            # send inbox state with new user to match get inbox state
+
             return test
 
     if myInbox[0]:
         test = myInbox[0].inbox_uuid
-        print("====================")
-        print("existing inbox")
-        print(test)
-        print("====================")
         return {"message": test}
 
 @inbox_channel_routes.route("/hide/<int:id>", methods=["POST"])

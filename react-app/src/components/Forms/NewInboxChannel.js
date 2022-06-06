@@ -25,18 +25,10 @@ function NewInboxChannelForm({ users, setShowModal }) {
       newUser,
     };
     const res = await dispatch(addCurrentUserInbox(payload));
-    console.log(res, "response from adding inbox");
 
-    console.log(res.inbox_uuid, "hopefully new inbox uuid");
     if (res.inbox_uuid) {
-      console.log(res);
-      // setShowModal(false);
       history.push(`/me/${res.inbox_uuid}`);
-
-      // setNewInboxMade(true);
     } else {
-      console.log("in the else on inbox invite");
-      console.log(res.message)
       history.push(`/me/${res.message}`);
     }
   };
@@ -50,12 +42,6 @@ function NewInboxChannelForm({ users, setShowModal }) {
       <div className="create__inbox__search__input__container">
         <div className="create__message__header">
           <span>Send a message to a friend!</span>
-          <div
-            onClick={() => {
-              setShowModal(false);
-            }}
-            className="create__inbox__x"
-          ></div>
         </div>
         <span># USERS</span>
         <div className="inbox__users__search__input__container">
