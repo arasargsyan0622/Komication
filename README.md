@@ -170,7 +170,6 @@ Edt/Delete a Message
 
 ![Message edit/delete](readme-images/channel-msg.png "a title")
 
-<!-- Direct messages here -->
 
 ## Future Features
 
