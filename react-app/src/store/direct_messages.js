@@ -51,9 +51,9 @@ export const addCurrentUserInbox = (data) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId, newUser }),
   });
-  console.log(response);
+  // console.log(response);
   const inboxChannel = await response.json();
-  console.log(inboxChannel);
+  // console.log(inboxChannel);
   if (inboxChannel.id) {
     dispatch(addInbox(inboxChannel));
     return inboxChannel;

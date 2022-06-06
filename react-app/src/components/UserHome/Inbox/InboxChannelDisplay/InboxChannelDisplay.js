@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import "./InboxChannelDisplay.css";
 import { addMessageThunk } from "../../../../store/dir.msg";
 import moment from "moment";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getCurrentUserInboxes } from "../../../../store/direct_messages";
-import ChannelMessageEdit from "../../../Forms/ChannelMessageEdit";
+// import ChannelMessageEdit from "../../../Forms/ChannelMessageEdit";
 
 let socket;
 
 function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please }) {
   const dispatch = useDispatch();
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const [messageContent, setMessageContent] = useState("");
   const history = useHistory();
@@ -29,17 +29,17 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
     filteredInboxes = inboxesArray?.filter((inbox) => inbox.inbox_uuid === path)[0];
   }
 
-  const CURRENTINBOX = please[0];
-  console.log(please[0], "this is please pleas pleas");
-  console.log(filteredInboxes, "filter inboxes");
+  // const CURRENTINBOX = please[0];
+  // console.log(please[0], "this is please pleas pleas");
+  // console.log(filteredInboxes, "filter inboxes");
   // console.log(currentInbox, "current channel in the inbox channel display");
 
   const username = filteredInboxes?.users.username;
   const userAvatarIcon = filteredInboxes?.users.avatar_url;
   const oldMessages = filteredInboxes?.inbox_messages;
-  console.log(CURRENTINBOX?.inbox_messages);
-  console.log(CURRENTINBOX, "current inboxxxxxxxxxxxxx");
-  console.log(oldMessages, "old messagessssssss");
+  // console.log(CURRENTINBOX?.inbox_messages);
+  // console.log(CURRENTINBOX, "current inboxxxxxxxxxxxxx");
+  // console.log(oldMessages, "old messagessssssss");
   const inboxId = filteredInboxes?.id;
 
   let chatroom = window.location.pathname;
@@ -73,7 +73,7 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
     });
 
     return () => {
-      console.log("hello");
+      // console.log("hello");
       const payload = {
         username: "TestUser",
         room: chatroom,
@@ -137,7 +137,7 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
               //yes? <ChannelMessageViewComponent>
               // <ChannelMessageEdit></ChannelMessageEdit>
               <div className="channel__message__div" key={ind}>
-                <img className="channel__message__avatar" src={`${user.avatar_url}`}></img>
+                <img className="channel__message__avatar" alt="user avatar" src={`${user.avatar_url}`}></img>
                 <div className="channel__message__contents">
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${user.username}`}</div>
@@ -148,7 +148,7 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
               </div>
             ) : (
               <div className="channel__message__div" key={ind}>
-                <img className="channel__message__avatar" src={`${userAvatarIcon}`}></img>
+                <img className="channel__message__avatar" alt="user avatar" src={`${userAvatarIcon}`}></img>
                 <div className="channel__message__contents">
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${username}`}</div>

@@ -1,6 +1,6 @@
 import "./NonAuthFormsCSS/InboxSearch.css";
-import { useSelector, useDispatch } from "react-redux";
-import { useState, dispatch } from "react";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 import { Modal } from "../../context/Modal";
 import NewInboxChannelForm from "./NewInboxChannel";

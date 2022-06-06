@@ -4,7 +4,7 @@ import "./InboxSearchNav.css";
 function InboxSearchNav({ currentChannel, please }) {
   // const [setIsLoaded] = useState(false);
   // console.log(currentChannel[0], "in the current channel component inbox search");
-  console.log(please[0]);
+  // console.log(please[0]);
 
   useEffect(() => {}, [currentChannel]);
   return (

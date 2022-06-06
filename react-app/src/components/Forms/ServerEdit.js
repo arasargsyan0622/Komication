@@ -13,7 +13,7 @@ const ServerEditForm = ({ setShowModal }) => {
   const serverUuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
   const [image, setImage] = useState(Object.values(currentServer)[0]?.server.server_icon_url);
-  console.log(image);
+  // console.log(image);
   const [imageLoading, setImageLoading] = useState(false);
   const [serverName, setServerName] = useState(Object.values(currentServer)[0]?.server.server_name);
   const [priv, setPriv] = useState(Object.values(currentServer)[0]?.server.private);
@@ -53,7 +53,7 @@ const ServerEditForm = ({ setShowModal }) => {
       // window.location.reload(false);
     } else {
       setImageLoading(false);
-      console.log("error");
+      // console.log("error");
     }
   };
 
