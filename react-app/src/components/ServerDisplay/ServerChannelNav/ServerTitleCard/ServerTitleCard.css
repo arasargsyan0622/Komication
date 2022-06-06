@@ -10,11 +10,17 @@
 .server__title__card__contents {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 208px;
   height: 24px;
 }
-
+.server__options__container {
+  display: flex;
+}
 .server__title {
+  width: auto;
+  max-width: 160px;
+  overflow: hidden;
   font-size: 15px;
   font-weight: 600;
   color: #ffffff;
@@ -26,4 +32,13 @@
   height: 18px;
   color: #ffffff;
   cursor: pointer;
+}
+
+.server__invite {
+  background: url("./server__invite.svg") no-repeat center;
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-right: 10px;
 }
