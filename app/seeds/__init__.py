@@ -16,7 +16,7 @@ def seed():
     seed_server_users()
     seed_channels()
     # seed_channel_messages()
-    seed_direct_messages()
+    # seed_direct_messages()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
@@ -25,4 +25,4 @@ def undo():
     undo_server_users()
     undo_channels()
     # undo_channel_messages()
-    undo_direct_messages()
+    # undo_direct_messages()
