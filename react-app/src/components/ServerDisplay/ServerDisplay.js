@@ -19,7 +19,7 @@ function ServerDisplay() {
   const channel = useSelector((state) => state.current_channel);
   const server = useSelector((state) => state.current_server);
 
-  console.log(channel, "channel in the server display ");
+  // console.log(channel, "channel in the server display ");
 
   let newUuid = useParams().serverUuid;
 

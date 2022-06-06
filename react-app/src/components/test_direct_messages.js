@@ -21,7 +21,7 @@ const CurrInbox = () => {
             userId,
             newUser,
         }
-        console.log(payload)
+        // console.log(payload)
         dispatch(addCurrentUserInbox(payload))
     })
     return (
