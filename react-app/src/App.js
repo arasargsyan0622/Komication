@@ -58,11 +58,11 @@ function App() {
           <Route path="/sign-up" exact={true}>
             <SignUpPage />
           </Route>
-          <Route path="/test" exact={true}>
+          {/* <Route path="/test" exact={true}>
             <CreateServer />
             <Servers />
-          </Route>
-          <Route path="/test_single" exact={true}>
+          </Route> */}
+          {/* <Route path="/test_single" exact={true}>
             <Channels />
           </Route>
           <Route path="/test_channel" exact={true}>
@@ -73,20 +73,20 @@ function App() {
           </Route>
           <Route path="/dms" exact={true}>
             <DMs />
-          </Route>
-          <ProtectedRoute path="/users" exact={true}>
+          </Route> */}
+          {/* <ProtectedRoute path="/users" exact={true}>
             <UsersList />
           </ProtectedRoute>
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
           <ProtectedRoute path="/me">
             <UserHomePage></UserHomePage>
           </ProtectedRoute>
           <ProtectedRoute path="/me/:inbox_uuid">
             <UserHomePage></UserHomePage>
           </ProtectedRoute>
-          <ProtectedRoute path="/servers/invite" exact={true}>
+          {/* <ProtectedRoute path="/servers/invite" exact={true}>
             <ServerInvite></ServerInvite>
           </ProtectedRoute>
           <ProtectedRoute path="/servers/serverId/edit" exact={true}>
@@ -94,13 +94,10 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path="/user/newServer" exact={true}>
             <NewServerForm></NewServerForm>
-          </ProtectedRoute>
+          </ProtectedRoute> */}
           {/* <ProtectedRoute path="/servers/:serverUuid/:channelId">
             <h1>this is working</h1>
           </ProtectedRoute> */}
-          <ProtectedRoute path="/poop2295" exact={true}>
-            <UserHomeLoadingScreen></UserHomeLoadingScreen>
-          </ProtectedRoute>
 
           <ProtectedRoute path="/servers/:serverUuid">
             <ServerDisplay></ServerDisplay>
@@ -108,6 +105,9 @@ function App() {
           <ProtectedRoute path="/servers/:serverUuid/:channelUuid">
             <ServerDisplay></ServerDisplay>
           </ProtectedRoute>
+          <Route path="/">
+            <SplashPage />
+          </Route>
         </Switch>
       </BrowserRouter>
     )
