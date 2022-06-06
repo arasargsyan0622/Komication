@@ -7,7 +7,7 @@ import InboxSearchNav from "./Inbox/InboxSearchNav/InboxSearchNav";
 import InboxChannelDisplay from "./Inbox/InboxChannelDisplay/InboxChannelDisplay";
 import UserHomeLoadingScreen from "../LoadingScreens/UserHomeLoadingScreen";
 import "./UserHomePage.css";
-import NewInboxChannelForm from "../Forms/NewInboxChannel"
+
 import { useSelector, useDispatch } from "react-redux";
 import { getServers } from "../../store/server";
 import { getAllUsers } from "../../store/users";
@@ -29,8 +29,6 @@ function UserHomePage() {
 
   const user = useSelector((state) => state.session.user);
   const allInboxes = useSelector((state) => state?.current_inboxes?.inbox_channels);
-  const users = useSelector((state) => state.users);
-
   // console.log(allInboxes);
   // console.log(Object.values(allInboxes));
   // const allInboxArray = Object?.values(allInboxes);
@@ -93,11 +91,7 @@ function UserHomePage() {
         <UserFooterDisplay></UserFooterDisplay>
       </div>
       {homePageCheck === "/me" ? (
-        <NewInboxChannelForm
-            users={users}
-            // setShowModal={setShowModal}
-            newInboxMade={newInboxMade}
-          ></NewInboxChannelForm>
+        <NoTextChannel></NoTextChannel>
       ) : (
         <div className="inbox__channel__display__container">
           <InboxSearchNav

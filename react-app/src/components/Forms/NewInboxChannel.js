@@ -29,7 +29,7 @@ function NewInboxChannelForm({ users, setShowModal }) {
     // console.log(res.inbox_uuid, "hopefully new inbox uuid");
     if (!res.message) {
       // console.log(res);
-      setShowModal(false);
+      // setShowModal(false);
       // history.push(`/me/${res.inbox_uuid}`);
 
       // setNewInboxMade(true);
