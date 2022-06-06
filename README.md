@@ -184,7 +184,7 @@ Users can invite others to their dm via modal
 
 ![Invite](readme-images/invite.png)
 ![DM](readme-images/dm.png)
-
+![Dm Chat](readme-images/dmchat.png)
 
 ## Bloopers
 
