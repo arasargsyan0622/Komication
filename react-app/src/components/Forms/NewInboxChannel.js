@@ -2,17 +2,42 @@ import "./NonAuthFormsCSS/NewInboxChannelForm.css";
 import InboxChannelInvite from "../UserHome/Inbox/InboxChannelInvite/InboxChannelInvite";
 import { useState, useEffect } from "react";
 import { getCurrentUserInboxes, addCurrentUserInbox } from "../../store/direct_messages";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function NewInboxChannelForm({ users, setShowModal }) {
   // setup on change for input field
+  const history = useHistory();
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [setNewInboxMade] = useState(false);
+  const dispatch = useDispatch();
+  const loggedInUser = useSelector((state) => state.session.user);
   //
   // filter through this array of users based on search input
   // if includes send to all users array
   let allUsers = Object.values(users);
 
+  const addInboxChannel = async (newUser) => {
+    const userId = loggedInUser.id;
+    const payload = {
+      userId,
+      newUser,
+    };
+    const res = dispatch(addCurrentUserInbox(payload));
+    // console.log(res, "response from adding inbox");
+    // console.log(res.inbox_uuid, "hopefully new inbox uuid");
+    if (!res.message) {
+      // console.log(res);
+      setShowModal(false);
+      // history.push(`/me/${res.inbox_uuid}`);
+
+      // setNewInboxMade(true);
+    } else {
+      // console.log("in the else on inbox invite");
+      // history.push(`/me/${res.inbox_uuid}`);
+    }
+  };
   //set up use effect on the input field
   useEffect(() => {
     setSearchResults(allUsers.filter((user) => user.username.toLowerCase().includes(searchInput)));
@@ -44,7 +69,14 @@ function NewInboxChannelForm({ users, setShowModal }) {
       </div>
       <div className="create__inbox__search__results__container">
         {searchResults.map((user) => {
-          return <InboxChannelInvite user={user} setShowModal={setShowModal}></InboxChannelInvite>;
+          return (
+            <InboxChannelInvite
+              key={user.id}
+              user={user}
+              setShowModal={setShowModal}
+              addInboxChannel={addInboxChannel}
+            ></InboxChannelInvite>
+          );
         })}
       </div>
     </div>

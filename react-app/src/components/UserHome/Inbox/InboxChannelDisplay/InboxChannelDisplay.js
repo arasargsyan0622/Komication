@@ -10,7 +10,7 @@ import ChannelMessageEdit from "../../../Forms/ChannelMessageEdit";
 
 let socket;
 
-function InboxChannelDisplay({ channel, setCurentInbox, currentInbox }) {
+function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please }) {
   const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
@@ -19,28 +19,39 @@ function InboxChannelDisplay({ channel, setCurentInbox, currentInbox }) {
   const dummyMsg = useRef();
   const user = useSelector((state) => state.session.user);
   const inboxes = useSelector((state) => state.current_inboxes);
+  // console.log(inboxes, "inboxes in the inbox channel");
+
   const path = window.location.pathname.split("/")[2];
   let filteredInboxes;
+
   if (inboxes.inbox_channels) {
     const inboxesArray = Object.values(inboxes?.inbox_channels);
     filteredInboxes = inboxesArray?.filter((inbox) => inbox.inbox_uuid === path)[0];
   }
 
+  const CURRENTINBOX = please[0];
+  console.log(please[0], "this is please pleas pleas");
+  console.log(filteredInboxes, "filter inboxes");
+  // console.log(currentInbox, "current channel in the inbox channel display");
+
   const username = filteredInboxes?.users.username;
   const userAvatarIcon = filteredInboxes?.users.avatar_url;
   const oldMessages = filteredInboxes?.inbox_messages;
+  console.log(CURRENTINBOX?.inbox_messages);
+  console.log(CURRENTINBOX, "current inboxxxxxxxxxxxxx");
+  console.log(oldMessages, "old messagessssssss");
   const inboxId = filteredInboxes?.id;
 
   let chatroom = window.location.pathname;
 
-  console.log("iofwefwe", user);
-  console.log("path", path);
-  console.log("filtered", filteredInboxes);
-  console.log("-----------------", oldMessages);
+  // console.log("iofwefwe", user);
+  // console.log("path", path);
+  // console.log("filtered", filteredInboxes);
+  // console.log("-----------------", oldMessages);
   useEffect(() => {
     socket = io();
 
-    console.log("chatroom", chatroom);
+    // console.log("chatroom", chatroom);
 
     dummyMsg.current?.scrollIntoView();
 
@@ -70,7 +81,7 @@ function InboxChannelDisplay({ channel, setCurentInbox, currentInbox }) {
       socket.emit("leave", payload);
       socket.disconnect();
     };
-  }, [history, currentInbox, path]);
+  }, [history, path]);
 
   const updateChatInput = (e) => {
     setChatInput(e.target.value);

@@ -22,10 +22,16 @@ let socket;
 function UserHomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentInbox, setCurrentInbox] = useState("");
+  const [newInboxMade, setNewInboxMade] = useState(false);
+  const [currentChannel, setCurrentChannel] = useState("");
+  const [please, setPlease] = useState({});
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
-  console.log(window.location.pathname);
+  const allInboxes = useSelector((state) => state?.current_inboxes?.inbox_channels);
+  // console.log(allInboxes);
+  // console.log(Object.values(allInboxes));
+  // const allInboxArray = Object?.values(allInboxes);
   const homePageCheck = window.location.pathname;
   const servers = Object.values(useSelector((state) => state.servers));
 
@@ -55,14 +61,32 @@ function UserHomePage() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("working");
-  }, [homePageCheck]);
+    console.log(homePageCheck, "homepagecheck");
+    console.log("home page check inside the use effect on home page");
+    const inboxUuId = homePageCheck.split("/")[2];
+    // console.log(inboxUuId);
+
+    if (allInboxes) {
+      setPlease(Object.values(allInboxes)?.filter((inbox) => inbox?.inbox_uuid == inboxUuId));
+      console.log(allInboxes, "alll inboxesssssssss");
+      console.log(please[0]);
+    }
+
+    // setTimeout(() => {
+    //   if (allInboxes) {
+    //     setCurrentChannel(Object?.values(allInboxes).filter((channel) => `/me/${channel.inbox_uuid}` == homePageCheck));
+    //     // console.log("home page check inside the use effect on home page");
+    //     // console.log(currentChannel);
+    //   }
+    // }, 500);
+    // console.log(currentChannel, "current inbox channel");
+  }, [homePageCheck, newInboxMade]);
 
   return isLoaded ? (
     <div className="user__home__page">
       <UserServerList servers={servers}></UserServerList>
       <div className="inbox__channel__nav__container">
-        <InboxSearch></InboxSearch>
+        <InboxSearch newInboxMade={newInboxMade}></InboxSearch>
         <InboxMessageList setCurrentInbox={setCurrentInbox}></InboxMessageList>
         <UserFooterDisplay></UserFooterDisplay>
       </div>
@@ -70,12 +94,16 @@ function UserHomePage() {
         <NoTextChannel></NoTextChannel>
       ) : (
         <div className="inbox__channel__display__container">
-          <InboxSearchNav channel={channel}></InboxSearchNav>
+          <InboxSearchNav
+            currentChannel={currentChannel}
+            setCurrentChannel={currentChannel}
+            please={please}
+          ></InboxSearchNav>
 
           <InboxChannelDisplay
-            currentInbox={currentInbox}
             channel={channel}
-            setCurrentInbox={setCurrentInbox}
+            please={please}
+            setCurrentChannel={setCurrentChannel}
           ></InboxChannelDisplay>
         </div>
       )}

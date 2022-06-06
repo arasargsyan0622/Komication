@@ -12,7 +12,8 @@ function ServerSearch() {
           onBlur={() => setSearchActive(false)}
           className={searchActive ? "server__search__active" : "server__search__inactive"}
           type="search"
-          placeholder="Search"
+          placeholder="Coming Soon!"
+          disabled
         ></input>
       </form>
     </div>
