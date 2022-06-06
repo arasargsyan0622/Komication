@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/Forms/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
 
 import SplashPage from "./components/SplashPage/SplashPage";
+import ErrorPage from "./components/404/404";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,7 +64,7 @@ function App() {
           </ProtectedRoute>
 
           <Route path="/">
-            <SplashPage />
+            <ErrorPage />
           </Route>
         </Switch>
       </BrowserRouter>

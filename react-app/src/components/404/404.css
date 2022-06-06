@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+
+}
+
+.img {
+    background: url("./Komi_Shocked_face.svg") center no-repeat;
+    width: 500px;
+    height: 500px;
+    margin-top: 3.5rem;
+    /* background-color: grey; */
+    /* border-radius: 1.5rem; */
+}
+
+.second {
+    display: flex;
+    justify-content: center;
+}
