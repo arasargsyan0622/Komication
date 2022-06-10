@@ -13,8 +13,8 @@ class DirectMessage(db.Model):
     inbox_channel_id = db.Column(db.Integer, db.ForeignKey("inbox_channels.id"), nullable=False)
     edited = db.Column(db.Boolean, default=False)
 
-    user_direct_messages = db.relationship("User", back_populates="direct_user_messages")
     inbox_owner = db.relationship("InboxChannel", back_populates="inbox_messages")
+    user_direct_messages = db.relationship("User", back_populates="direct_user_messages")
 
     def to_dict(self):
         return {

@@ -28,6 +28,8 @@ function UserHomePage() {
   const allInboxes = useSelector((state) => state?.current_inboxes?.inbox_channels);
   const users = useSelector((state) => state.users);
   const homePageCheck = window.location.pathname;
+  console.log(homePageCheck.split("/")[2])
+  const pathUuid = homePageCheck.split("/")[2]
   const servers = Object.values(useSelector((state) => state.servers));
   let channel;
 
@@ -71,19 +73,20 @@ function UserHomePage() {
         <InboxMessageList setCurrentInbox={setCurrentInbox}></InboxMessageList>
         <UserFooterDisplay></UserFooterDisplay>
       </div>
-      {homePageCheck === "/me" ? (
+      {pathUuid?.length !== 32 ? (
         <NewInboxChannelForm
             users={users}
             newInboxMade={newInboxMade}
+            homePageCheck={homePageCheck}
           ></NewInboxChannelForm>
       ) : (
         <div className="inbox__channel__display__container">
-          <InboxSearchNav
+          {/* <InboxSearchNav
             currentChannel={currentChannel}
             setCurrentChannel={currentChannel}
             please={please}
-          ></InboxSearchNav>
-
+          ></InboxSearchNav> */}
+          <div>hello</div>
           <InboxChannelDisplay
             channel={channel}
             please={please}

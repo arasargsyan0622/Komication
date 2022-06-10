@@ -82,12 +82,12 @@ function App() {
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
           </ProtectedRoute>
-          <ProtectedRoute path="/me" exact={true}>
+          <ProtectedRoute path="/me">
             <UserHomePage></UserHomePage>
           </ProtectedRoute>
-          <ProtectedRoute path="/me/:inbox_uuid" exact={true}>
+          {/* <ProtectedRoute path="/me/:inbox_uuid" exact={true}>
             <UserInboxPage></UserInboxPage>
-          </ProtectedRoute>
+          </ProtectedRoute> */}
           <ProtectedRoute path="/servers/invite" exact={true}>
             <ServerInvite></ServerInvite>
           </ProtectedRoute>

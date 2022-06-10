@@ -5,7 +5,7 @@ import { getCurrentUserInboxes, addCurrentUserInbox } from "../../store/direct_m
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-function NewInboxChannelForm({ users, setShowModal }) {
+function NewInboxChannelForm({ users, setShowModal, homePageCheck }) {
   // setup on change for input field
   const history = useHistory();
   const [searchInput, setSearchInput] = useState("");
