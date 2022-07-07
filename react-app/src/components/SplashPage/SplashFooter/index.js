@@ -11,7 +11,7 @@ function SplashFooter() {
         <div className="splash__footer__container__links">
           <div className="splash__footer__left">
             <h4>IMAGINE A PLACE</h4>
-            <a href="mailto: KomicationApp@gmail.com">Contact Us!</a>
+            <a href="mailto: KomicationApp@gmail.com">Email Us!</a>
             <div className="splash__footer__left__images">
               <div className="splash__footer__tweet"></div>
               <div className="splash__footer__insta"></div>
@@ -23,57 +23,33 @@ function SplashFooter() {
             <div className="splash__footer__names">
               <h5>Vernyoon Chao</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://www.linkedin.com/in/vernyoon-chao-783494123/">
-                  Portfolio
-                </ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/vernyoon-chao-783494123/">
-                  LinkedIn
-                </ExternalLink>
-                <ExternalLink href="https://github.com/VernyoonChao98">
-                  Github
-                </ExternalLink>
+                <ExternalLink href="https://vernyoonchao.com/">Portfolio</ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/vernyoon-chao-783494123/">LinkedIn</ExternalLink>
+                <ExternalLink href="https://github.com/VernyoonChao98">Github</ExternalLink>
               </div>
             </div>
             <div className="splash__footer__names">
               <h5>Darren Kong</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://www.linkedin.com/in/darren-kong-06b47013b/">
-                  Portfolio
-                </ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/darren-kong-06b47013b/">
-                  LinkedIn
-                </ExternalLink>
-                <ExternalLink href="https://github.com/dkong1321">
-                  Github
-                </ExternalLink>
+                <ExternalLink href="https://dkong1321.github.io/dkong-portfolio-page/">Portfolio</ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/darren-kong-06b47013b/">LinkedIn</ExternalLink>
+                <ExternalLink href="https://github.com/dkong1321">Github</ExternalLink>
               </div>
             </div>
             <div className="splash__footer__names">
               <h5>Chris Threadgill</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://www.linkedin.com/in/chris-threadgill-b05090185/">
-                  Portfolio
-                </ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/chris-threadgill-b05090185/">
-                  LinkedIn
-                </ExternalLink>
-                <ExternalLink href="https://github.com/ChrisThreadgill">
-                  Github
-                </ExternalLink>
+                <ExternalLink href="https://christhreadgill.com/">Portfolio</ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/chris-threadgill-b05090185/">LinkedIn</ExternalLink>
+                <ExternalLink href="https://github.com/ChrisThreadgill">Github</ExternalLink>
               </div>
             </div>
             <div className="splash__footer__names">
               <h5>Ara Sargsyan</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">
-                  Portfolio
-                </ExternalLink>
-                <ExternalLink href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">
-                  LinkedIn
-                </ExternalLink>
-                <ExternalLink href="https://github.com/arasargsyan0622">
-                  Github
-                </ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">Portfolio</ExternalLink>
+                <ExternalLink href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">LinkedIn</ExternalLink>
+                <ExternalLink href="https://github.com/arasargsyan0622">Github</ExternalLink>
               </div>
             </div>
           </div>
