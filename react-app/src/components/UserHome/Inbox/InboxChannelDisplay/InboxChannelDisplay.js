@@ -141,7 +141,9 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
                 <div className="channel__message__contents">
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${user.username}`}</div>
-                    <div className="channel__message__date">{formatDate(message.timestamp)}</div>
+                    <div className="channel__message__date">{`${formatDate(message.timestamp)} ${
+                      message.timestamp
+                    }`}</div>
                   </div>
                   <div className="channel__message">{`${message.content}`}</div>
                 </div>

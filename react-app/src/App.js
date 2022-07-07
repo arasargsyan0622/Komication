@@ -62,7 +62,9 @@ function App() {
           <ProtectedRoute path="/servers/:serverUuid/:channelUuid">
             <ServerDisplay></ServerDisplay>
           </ProtectedRoute>
-
+          <Route path="/404" exact={true}>
+            <ErrorPage />
+          </Route>
           <Route path="/">
             <ErrorPage />
           </Route>

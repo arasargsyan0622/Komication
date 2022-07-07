@@ -19,19 +19,16 @@ function HeaderNav() {
           <div className="banner__nav">
             <div className="banner__nav__logo"></div>
             <div className="banner__nav__links__container">
-              <ExternalLink className="banner__nav__links" href="https://www.linkedin.com/in/ara-sargsyan-9a8a07237/">
+              <ExternalLink className="banner__nav__links" href="https://arasargsyan0622.github.io/">
                 Ara Sargsyan
               </ExternalLink>
-              <ExternalLink
-                className="banner__nav__links"
-                href="https://www.linkedin.com/in/chris-threadgill-b05090185/"
-              >
+              <ExternalLink className="banner__nav__links" href="https://christhreadgill.com/">
                 Chris Threadgill
               </ExternalLink>
-              <ExternalLink className="banner__nav__links" href="https://www.linkedin.com/in/darren-kong-06b47013b/">
+              <ExternalLink className="banner__nav__links" href="https://dkong1321.github.io/dkong-portfolio-page/">
                 Darren Kong
               </ExternalLink>
-              <ExternalLink className="banner__nav__links" href="https://www.linkedin.com/in/vernyoon-chao-783494123/">
+              <ExternalLink className="banner__nav__links" href="https://github.com/VernyoonChao98">
                 Vernyoon Chao
               </ExternalLink>
             </div>
