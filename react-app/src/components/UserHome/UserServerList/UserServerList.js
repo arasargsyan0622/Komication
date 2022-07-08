@@ -46,7 +46,7 @@ function UserServerList() {
       <div className="user__server__list__break__div">
         <div className="user__server__list__break"></div>
       </div>
-      <LogoutButton></LogoutButton>
+      {/* <LogoutButton></LogoutButton> */}
     </div>
   );
 }

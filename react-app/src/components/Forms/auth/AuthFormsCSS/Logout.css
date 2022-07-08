@@ -1,4 +1,4 @@
-.user__logout {
+/* .user__logout {
   width: 48px;
   height: 48px;
   border-radius: 50px;
@@ -7,4 +7,21 @@
   background-color: #36393f;
   margin-left: 9px;
   cursor: pointer;
+} */
+
+.user__logout {
+  width: 96px;
+  height: 38px;
+  background-color: #d83c3e;
+  padding: 2px 16px;
+  border: none;
+  outline: 0;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.user__logout:hover {
+  background-color: #b32225;
 }
