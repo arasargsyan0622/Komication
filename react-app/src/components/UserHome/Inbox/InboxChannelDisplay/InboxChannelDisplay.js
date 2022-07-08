@@ -12,7 +12,6 @@ let socket;
 
 function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please }) {
   const dispatch = useDispatch();
-  // const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const [messageContent, setMessageContent] = useState("");
   const history = useHistory();
@@ -43,21 +42,9 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
   const inboxId = filteredInboxes?.id;
 
   let chatroom = window.location.pathname;
-
-  // console.log("iofwefwe", user);
-  // console.log("path", path);
-  // console.log("filtered", filteredInboxes);
-  // console.log("-----------------", oldMessages);
   useEffect(() => {
     socket = io();
-
-    // console.log("chatroom", chatroom);
-
     dummyMsg.current?.scrollIntoView();
-
-    // let newdate = new Date();
-    // console.log(newdate);
-
     const payload = {
       username: "TestUser",
       room: chatroom,
@@ -66,14 +53,12 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
     socket.emit("join", payload);
 
     socket.on("chat", (data) => {
-      // console.log(data);
-      // setMessages((messages) => [...messages, data]);
+
       dispatch(getCurrentUserInboxes(user.id));
       dummyMsg.current?.scrollIntoView();
     });
 
     return () => {
-      // console.log("hello");
       const payload = {
         username: "TestUser",
         room: chatroom,
@@ -83,24 +68,6 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
     };
   }, [history, path]);
 
-  const updateChatInput = (e) => {
-    setChatInput(e.target.value);
-  };
-
-  const sendChat = (e) => {
-    e.preventDefault();
-    let chatroom = history.location.pathname;
-
-    const payload = {
-      user: "TestUser",
-      msg: chatInput,
-      room: chatroom,
-    };
-
-    socket.emit("chat", payload);
-    setChatInput("");
-  };
-
   const formatDate = (date) => {
     const newDate = moment(date).format("DD/MM/YY hh:mm a");
     return newDate;
@@ -108,7 +75,6 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
 
   const addMessage = async (e) => {
     e.preventDefault();
-    // let chatroom = window.location.pathname;
 
     const payload = {
       room: chatroom,
@@ -131,19 +97,17 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
         {oldMessages
           ?.map((message, ind) =>
             message.user_id === user.id ? (
-              // does this message belong to me?
-              //yes? <ChannelMessageEditComponent>
-              //does this message belong to the other user?
-              //yes? <ChannelMessageViewComponent>
-              // <ChannelMessageEdit></ChannelMessageEdit>
               <div className="channel__message__div" key={ind}>
                 <img className="channel__message__avatar" alt="user avatar" src={`${user.avatar_url}`}></img>
                 <div className="channel__message__contents">
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${user.username}`}</div>
-                    <div className="channel__message__date">{`${formatDate(message.timestamp)} ${
-                      message.timestamp
-                    }`}</div>
+                    <div className="channel__message__date">{formatDate(message.timestamp)}</div>
+                    {message.edited === true ? (
+                      <div className="channel__message__edited">(edited)</div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                   <div className="channel__message">{`${message.content}`}</div>
                 </div>
@@ -155,6 +119,11 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${username}`}</div>
                     <div className="channel__message__date">{formatDate(message.timestamp)}</div>
+                    {message.edited === true ? (
+                      <div className="channel__message__edited">(edited)</div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                   <div className="channel__message">{`${message.content}`}</div>
                 </div>

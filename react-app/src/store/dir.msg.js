@@ -54,27 +54,27 @@ export const addMessageThunk = (data) => async (dispatch) => {
     body: JSON.stringify({ content, user_id, inbox_channel_id }),
   });
   // console.log("response ins addMessageThunk --------", response)
-  if (response.ok) {
-    const message = await response.json();
+  // if (response.ok) {
+  //   const message = await response.json();
     // console.log("message: ---------", message)
-    dispatch(addMessage(message));
-  }
+    // dispatch(addMessage(message));
+  // }
   return response;
 };
 
-// export const editMessageThunk = (data) => async (dispatch) => {
-//     const { content, id } = data
-//     const response = await fetch(`/api/direct_messages/${id}`, {
-//         method: "PUT",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ content }),
-//     })
-//     if (response.ok) {
-//         const message = await response.json()
-//         dispatch(editMessage(message))
-//     }
-//     return response
-// }
+export const editMessageThunk = (data) => async (dispatch) => {
+    const { content, id } = data
+    const response = await fetch(`/api/direct_messages/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content }),
+    })
+    // if (response.ok) {
+    //     const message = await response.json()
+    //     dispatch(editMessage(message))
+    // }
+    return response;
+}
 
 // export const deleteMessageThunk = (data) => async (dispatch) => {
 //     const { message } = data
