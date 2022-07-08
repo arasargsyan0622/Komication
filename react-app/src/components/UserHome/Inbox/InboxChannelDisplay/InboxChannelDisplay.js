@@ -2,11 +2,14 @@ import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./InboxChannelDisplay.css";
-import { addMessageThunk } from "../../../../store/dir.msg";
+import { addMessageThunk, deleteMessageThunk } from "../../../../store/dir.msg";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { getCurrentUserInboxes } from "../../../../store/direct_messages";
 // import ChannelMessageEdit from "../../../Forms/ChannelMessageEdit";
+import InboxMessageEdit from "../../../Forms/InboxMessageEdit"
+import InboxMessageView from "../InboxMessage/InboxMessageView"
+
 
 let socket;
 
@@ -17,9 +20,9 @@ function InboxChannelDisplay({
   please,
 }) {
   const dispatch = useDispatch();
-  // const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
   const [messageContent, setMessageContent] = useState("");
+  const [errors, setErrors] = useState([]);
   const history = useHistory();
   const dummyMsg = useRef();
   const user = useSelector((state) => state.session.user);
@@ -36,35 +39,31 @@ function InboxChannelDisplay({
     )[0];
   }
 
+  const users = filteredInboxes?.channel_inbox_user
+  const normUsers = {};
+  users?.forEach((user) => {
+    normUsers[user.id] = user;
+  });
   // const CURRENTINBOX = please[0];
   // console.log(please[0], "this is please pleas pleas");
   // console.log(filteredInboxes, "filter inboxes");
   // console.log(currentInbox, "current channel in the inbox channel display");
-
+  let oldMessages
   const username = filteredInboxes?.users.username;
   const userAvatarIcon = filteredInboxes?.users.avatar_url;
-  const oldMessages = filteredInboxes?.inbox_messages;
+  if(filteredInboxes) {
+    // console.log("=============", Object?.values(filteredInboxes?.inbox_messages))
+    oldMessages = Object?.values(filteredInboxes?.inbox_messages);
+  }
   // console.log(CURRENTINBOX?.inbox_messages);
   // console.log(CURRENTINBOX, "current inboxxxxxxxxxxxxx");
   // console.log(oldMessages, "old messagessssssss");
   const inboxId = filteredInboxes?.id;
 
   let chatroom = window.location.pathname;
-
-  // console.log("iofwefwe", user);
-  // console.log("path", path);
-  // console.log("filtered", filteredInboxes);
-  // console.log("-----------------", oldMessages);
   useEffect(() => {
     socket = io();
-
-    // console.log("chatroom", chatroom);
-
     dummyMsg.current?.scrollIntoView();
-
-    // let newdate = new Date();
-    // console.log(newdate);
-
     const payload = {
       username: "TestUser",
       room: chatroom,
@@ -73,16 +72,16 @@ function InboxChannelDisplay({
     socket.emit("join", payload);
 
     socket.on("chat", (data) => {
-      // console.log(data);
-      // setMessages((messages) => [...messages, data]);
+
       dispatch(getCurrentUserInboxes(user.id));
       dummyMsg.current?.scrollIntoView();
     });
 
-    console.log("hello?asdddddddddddddddddddddddddddddddddddddd");
+
+
+    // console.log("hello?asdddddddddddddddddddddddddddddddddddddd");
 
     return () => {
-      // console.log("hello");
       const payload = {
         username: "TestUser",
         room: chatroom,
@@ -92,24 +91,6 @@ function InboxChannelDisplay({
     };
   }, [history, path]);
 
-  const updateChatInput = (e) => {
-    setChatInput(e.target.value);
-  };
-
-  const sendChat = (e) => {
-    e.preventDefault();
-    let chatroom = history.location.pathname;
-
-    const payload = {
-      user: "TestUser",
-      msg: chatInput,
-      room: chatroom,
-    };
-
-    socket.emit("chat", payload);
-    setChatInput("");
-  };
-
   const formatDate = (date) => {
     const newDate = moment(date).format("DD/MM/YY hh:mm a");
     return newDate;
@@ -117,7 +98,16 @@ function InboxChannelDisplay({
 
   const addMessage = async (e) => {
     e.preventDefault();
-    // let chatroom = window.location.pathname;
+
+    setErrors([]);
+    if (!messageContent.length) {
+      setErrors(["Message cannot be empty select delete to remove"]);
+      return;
+    }
+    if (messageContent.length > 900) {
+      setErrors(["Message cannot be more than 900 characters"]);
+      return;
+    }
 
     const payload = {
       room: chatroom,
@@ -133,6 +123,17 @@ function InboxChannelDisplay({
     setMessageContent("");
   };
 
+  const eraseMessage = async (e, message) => {
+    e.preventDefault();
+    let chatroom = history.location.pathname;
+
+    const payload = {
+      room: chatroom,
+    };
+    socket.emit("chat", payload);
+    dispatch(deleteMessageThunk(message));
+  };
+
   return (
     <div className="channel__display__container">
       <div className="channel__messages__container">
@@ -140,54 +141,80 @@ function InboxChannelDisplay({
         {oldMessages
           ?.map((message, ind) =>
             message.user_id === user.id ? (
-              // does this message belong to me?
-              //yes? <ChannelMessageEditComponent>
-              //does this message belong to the other user?
-              //yes? <ChannelMessageViewComponent>
-              // <ChannelMessageEdit></ChannelMessageEdit>
-              <div className="channel__message__div" key={ind}>
-                <img
-                  className="channel__message__avatar"
-                  alt="user avatar"
-                  src={`${user.avatar_url}`}
-                ></img>
-                <div className="channel__message__contents">
-                  <div className="message__user__time">
-                    <div className="channel__message__username">{`${user.username}`}</div>
-                    <div className="channel__message__date">{`${formatDate(
-                      message.timestamp
-                    )} ${message.timestamp}`}</div>
-                  </div>
-                  <div className="channel__message">{`${message.content}`}</div>
-                </div>
-              </div>
+               <InboxMessageEdit
+                message={message}
+                normUsers={normUsers}
+                formatDate={formatDate}
+                socket={socket}
+                user={user}
+                eraseMessage={eraseMessage}
+                key={message.id}
+              ></InboxMessageEdit>
             ) : (
-              <div className="channel__message__div" key={ind}>
-                <img
-                  className="channel__message__avatar"
-                  alt="user avatar"
-                  src={`${userAvatarIcon}`}
-                ></img>
-                <div className="channel__message__contents">
-                  <div className="message__user__time">
-                    <div className="channel__message__username">{`${username}`}</div>
-                    <div className="channel__message__date">
-                      {formatDate(message.timestamp)}
-                    </div>
-                  </div>
-                  <div className="channel__message">{`${message.content}`}</div>
-                </div>
-              </div>
+              <InboxMessageView
+                message={message}
+                normUsers={normUsers}
+                formatDate={formatDate}
+                socket={socket}
+                user={user}
+                key={message.id}
+              ></InboxMessageView>
+            //   <div className="channel__message__div" key={ind}>
+            //     <img
+            //       className="channel__message__avatar"
+            //       alt="user avatar"
+            //       src={`${user.avatar_url}`}
+            //     ></img>
+            //     <div className="channel__message__contents">
+            //       <div className="message__user__time">
+            //         <div className="channel__message__username">{`${user.username}`}</div>
+            //         <div className="channel__message__date">{formatDate(message.timestamp)}</div>
+            //         {message.edited === true ? (
+            //           <div className="channel__message__edited">(edited)</div>
+            //         ) : (
+            //           <></>
+            //         )}
+            //       </div>
+            //       <div className="channel__message">{`${message.content}`}</div>
+            //     </div>
+            //   </div>
+            // ) : (
+            //   <div className="channel__message__div" key={ind}>
+            //     <img
+            //       className="channel__message__avatar"
+            //       alt="user avatar"
+            //       src={`${userAvatarIcon}`}
+            //     ></img>
+            //     <div className="channel__message__contents">
+            //       <div className="message__user__time">
+            //         <div className="channel__message__username">{`${username}`}</div>
+            //         <div className="channel__message__date">{formatDate(message.timestamp)}</div>
+            //         {message.edited === true ? (
+            //           <div className="channel__message__edited">(edited)</div>
+            //         ) : (
+            //           <></>
+            //         )}
+            //       </div>
+            //       <div className="channel__message">{`${message.content}`}</div>
+            //     </div>
+            //   </div>
             )
           )
           .reverse()}
       </div>
       <form className="channel__chat__form" onSubmit={addMessage}>
+        <div className="channel__form__validation__error">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
         <div className="channel__chat__input__container">
           <div className="channel__add__input"></div>
           <input
             className="channel__chat__input"
-            placeholder="Message #channelName"
+            // placeholder={`Message #${myChannelName}`}
+            // required
+            maxLength={901}
             value={messageContent}
             onChange={(e) => setMessageContent(e.target.value)}
           />
