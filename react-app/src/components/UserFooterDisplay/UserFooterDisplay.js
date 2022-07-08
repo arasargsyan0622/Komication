@@ -1,4 +1,5 @@
 import "./UserFooterDisplay.css";
+import UserEditModal from "../Modals/UserEditModal";
 
 import { useSelector } from "react-redux";
 
@@ -23,7 +24,7 @@ function UserFooterDisplay() {
             <span>#{user.id}</span>
           </div>
         </div>
-        <div className="user__footer__settings"></div>
+        <UserEditModal></UserEditModal>
       </div>
     </div>
   );
