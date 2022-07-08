@@ -3,8 +3,11 @@ import InboxChannelInvite from "../UserHome/Inbox/InboxChannelInvite/InboxChanne
 import { useState, useEffect } from "react";
 import { addCurrentUserInbox } from "../../store/direct_messages";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { getCurrentUserInboxes } from "../../store/direct_messages";
 
 function NewInboxChannelForm({ users, setShowModal }) {
+  const history = useHistory();
   // setup on change for input field
 
   const [searchInput, setSearchInput] = useState("");
@@ -12,34 +15,39 @@ function NewInboxChannelForm({ users, setShowModal }) {
   // const [setNewInboxMade] = useState(false);
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.session.user);
-  //
   // filter through this array of users based on search input
   // if includes send to all users array
   let allUsers = Object.values(users);
 
   const addInboxChannel = async (newUser) => {
     const userId = loggedInUser.id;
+
     const payload = {
       userId,
       newUser,
     };
-    const res = dispatch(addCurrentUserInbox(payload));
+    const res = await dispatch(addCurrentUserInbox(payload));
+
     // console.log(res, "response from adding inbox");
     // console.log(res.inbox_uuid, "hopefully new inbox uuid");
     if (!res.message) {
-      // console.log(res);
       setShowModal(false);
-      // history.push(`/me/${res.inbox_uuid}`);
-
-      // setNewInboxMade(true);
+      history.push(`/me/${res.inbox_uuid}`);
+      dispatch(getCurrentUserInboxes(userId));
     } else {
-      // console.log("in the else on inbox invite");
-      // history.push(`/me/${res.inbox_uuid}`);
+      setShowModal(false);
+      history.push(`/me/${res.oldInbox.inbox_uuid}`);
+      dispatch(getCurrentUserInboxes(userId));
     }
   };
+
   //set up use effect on the input field
   useEffect(() => {
-    setSearchResults(allUsers.filter((user) => user.username.toLowerCase().includes(searchInput)));
+    setSearchResults(
+      allUsers.filter((user) =>
+        user.username.toLowerCase().includes(searchInput)
+      )
+    );
   }, [searchInput]);
 
   return (

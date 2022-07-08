@@ -10,7 +10,12 @@ import { getCurrentUserInboxes } from "../../../../store/direct_messages";
 
 let socket;
 
-function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please }) {
+function InboxChannelDisplay({
+  channel,
+  setCurrentInbox,
+  currentInbox,
+  please,
+}) {
   const dispatch = useDispatch();
   // const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState("");
@@ -26,7 +31,9 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
 
   if (inboxes.inbox_channels) {
     const inboxesArray = Object.values(inboxes?.inbox_channels);
-    filteredInboxes = inboxesArray?.filter((inbox) => inbox.inbox_uuid === path)[0];
+    filteredInboxes = inboxesArray?.filter(
+      (inbox) => inbox.inbox_uuid === path
+    )[0];
   }
 
   // const CURRENTINBOX = please[0];
@@ -71,6 +78,8 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
       dispatch(getCurrentUserInboxes(user.id));
       dummyMsg.current?.scrollIntoView();
     });
+
+    console.log("hello?asdddddddddddddddddddddddddddddddddddddd");
 
     return () => {
       // console.log("hello");
@@ -137,24 +146,34 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
               //yes? <ChannelMessageViewComponent>
               // <ChannelMessageEdit></ChannelMessageEdit>
               <div className="channel__message__div" key={ind}>
-                <img className="channel__message__avatar" alt="user avatar" src={`${user.avatar_url}`}></img>
+                <img
+                  className="channel__message__avatar"
+                  alt="user avatar"
+                  src={`${user.avatar_url}`}
+                ></img>
                 <div className="channel__message__contents">
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${user.username}`}</div>
-                    <div className="channel__message__date">{`${formatDate(message.timestamp)} ${
+                    <div className="channel__message__date">{`${formatDate(
                       message.timestamp
-                    }`}</div>
+                    )} ${message.timestamp}`}</div>
                   </div>
                   <div className="channel__message">{`${message.content}`}</div>
                 </div>
               </div>
             ) : (
               <div className="channel__message__div" key={ind}>
-                <img className="channel__message__avatar" alt="user avatar" src={`${userAvatarIcon}`}></img>
+                <img
+                  className="channel__message__avatar"
+                  alt="user avatar"
+                  src={`${userAvatarIcon}`}
+                ></img>
                 <div className="channel__message__contents">
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${username}`}</div>
-                    <div className="channel__message__date">{formatDate(message.timestamp)}</div>
+                    <div className="channel__message__date">
+                      {formatDate(message.timestamp)}
+                    </div>
                   </div>
                   <div className="channel__message">{`${message.content}`}</div>
                 </div>
