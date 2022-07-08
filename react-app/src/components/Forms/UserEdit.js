@@ -160,7 +160,8 @@ const UserEditForm = ({ setShowModal, user }) => {
 
                   <div className="user__edit__avatar__username">
                     <span>
-                      {user.username} <span id="user__edit__id">#{user.id}</span>
+                      {user.username}
+                      <span id="user__edit__id">#{user.id}</span>
                     </span>
 
                     <div className="user__edit__avatar__button">Edit User Avatar</div>
