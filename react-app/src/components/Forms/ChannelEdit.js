@@ -102,7 +102,7 @@ function ChannelEditForm({ channel, setShowModal }) {
               </div>
             </div>
           </div>
-          <div className="full__screen__modal__esc__container" onClick={() => setShowModal(false)}>
+          <div className="full__screen__modal__esc__container">
             <div onClick={() => setShowModal(false)} className="escape__circle">
               <div
                 onClick={(e) => {

@@ -45,7 +45,9 @@
   border-radius: 50px;
 }
 .user__footer__settings {
-  background: url("./settings__kog.svg");
+  background: url("./settings__kog.svg") center;
+  outline: none;
+  border: none;
   width: 20px;
   height: 20px;
   cursor: pointer;

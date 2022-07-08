@@ -9,6 +9,7 @@ const ServerEditForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const currentServer = useSelector((state) => state.current_server);
+  console.log(currentServer);
 
   const serverUuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
@@ -73,7 +74,7 @@ const ServerEditForm = ({ setShowModal }) => {
         <div className="server__edit__nav__container">
           <div className="server__edit__nav">
             <div className="server__nav__header">
-              <div className="server__edit__name__display">Server.name</div>
+              <div className="server__edit__name__display">{serverName}</div>
             </div>
 
             <div className="server__nav__options">
@@ -198,7 +199,7 @@ const ServerEditForm = ({ setShowModal }) => {
               </div>
             </div>
           </div>
-          <div className="full__screen__modal__esc__container" onClick={() => setShowModal(false)}>
+          <div className="full__screen__modal__esc__container">
             <div onClick={() => setShowModal(false)} className="escape__circle">
               <div onClick={() => setShowModal(false)} className="escape__x"></div>
             </div>
