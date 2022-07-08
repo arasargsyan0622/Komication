@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import LogoutModal from "../Modals/LogoutModal";
 import "./NonAuthFormsCSS/UserEditFormCSS.css";
 
 const UserEditForm = ({ setShowModal, user }) => {
@@ -135,10 +136,7 @@ const UserEditForm = ({ setShowModal, user }) => {
             </div>
 
             <div className="server__nav__options">
-              <div className="user__edit__logout">
-                <div>Log Out</div>
-                <div className="user__logout__door"></div>
-              </div>
+              <LogoutModal></LogoutModal>
 
               <div className="server__nav__break"></div>
 
