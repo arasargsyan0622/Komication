@@ -2,13 +2,14 @@ import { io } from "socket.io-client";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./InboxChannelDisplay.css";
-import { addMessageThunk } from "../../../../store/dir.msg";
+import { addMessageThunk, deleteMessageThunk } from "../../../../store/dir.msg";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { getCurrentUserInboxes } from "../../../../store/direct_messages";
 // import ChannelMessageEdit from "../../../Forms/ChannelMessageEdit";
 import InboxMessageEdit from "../../../Forms/InboxMessageEdit"
 import InboxMessageView from "../InboxMessage/InboxMessageView"
+
 
 let socket;
 
@@ -76,6 +77,8 @@ function InboxChannelDisplay({
       dummyMsg.current?.scrollIntoView();
     });
 
+
+
     // console.log("hello?asdddddddddddddddddddddddddddddddddddddd");
 
     return () => {
@@ -120,6 +123,17 @@ function InboxChannelDisplay({
     setMessageContent("");
   };
 
+  const eraseMessage = async (e, message) => {
+    e.preventDefault();
+    let chatroom = history.location.pathname;
+
+    const payload = {
+      room: chatroom,
+    };
+    socket.emit("chat", payload);
+    dispatch(deleteMessageThunk(message));
+  };
+
   return (
     <div className="channel__display__container">
       <div className="channel__messages__container">
@@ -133,7 +147,7 @@ function InboxChannelDisplay({
                 formatDate={formatDate}
                 socket={socket}
                 user={user}
-                // eraseMessage={eraseMessage}
+                eraseMessage={eraseMessage}
                 key={message.id}
               ></InboxMessageEdit>
             ) : (

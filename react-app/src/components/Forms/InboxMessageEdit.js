@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { editMessageThunk } from "../../store/dir.msg";
 import "./NonAuthFormsCSS/ChannelMessageEdit.css"
 import InboxMessageView from "../UserHome/Inbox/InboxMessage/InboxMessageView";
+import InboxMessageDeleteModal from "../Modals/InboxMessageDeleteModal";
 
 function InboxMessageEdit({
   message,
@@ -111,14 +112,13 @@ return (
           </div>
           <div className="channel__message__edit__buttons">
             {editActive ? (
-                <></>
-            //   <ChannelMessageDeleteModal
-            //     eraseMessage={eraseMessage}
-            //     message={message}
-            //     user={user}
-            //     normUsers={normUsers}
-            //     formatDate={formatDate}
-            //   ></ChannelMessageDeleteModal>
+              <InboxMessageDeleteModal
+                eraseMessage={eraseMessage}
+                message={message}
+                user={user}
+                normUsers={normUsers}
+                formatDate={formatDate}
+              ></InboxMessageDeleteModal>
             ) : null}
           </div>
         </form>

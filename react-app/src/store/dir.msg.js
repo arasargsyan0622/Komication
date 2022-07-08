@@ -76,19 +76,18 @@ export const editMessageThunk = (data) => async (dispatch) => {
     return response;
 }
 
-// export const deleteMessageThunk = (data) => async (dispatch) => {
-//     const { message } = data
-//     const response = await fetch(`/api/direct_messages/${message.id}`, {
-//         method: "DELETE",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ message }),
-//     })
-//     if (response.ok) {
-//         const message = await response.json()
-//         dispatch(removeMessage(message))
-//     }
-//     return response
-// }
+export const deleteMessageThunk = (message) => async (dispatch) => {
+    const response = await fetch(`/api/direct_messages/${message.id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+    })
+    // if (response.ok) {
+    //     const message = await response.json()
+    //     dispatch(removeMessage(message))
+    // }
+    return response
+}
 
 const initialState = {};
 const dirMsgsReducer = (state = initialState, action) => {
