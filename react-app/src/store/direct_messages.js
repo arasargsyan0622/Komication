@@ -69,6 +69,12 @@ const directMessagesReducer = (state = initialState, action) => {
       const normInboxes = {};
       currentInboxes.inbox_channels.forEach((inbox) => {
         normInboxes[inbox.id] = inbox;
+        const inbox_messages = {}
+        // console.log("normInboxes", normInboxes[inbox.id].inbox_messages)
+        inbox.inbox_messages.forEach((message) => {
+          inbox_messages[message.id] = message
+        })
+        normInboxes[inbox.id].inbox_messages = inbox_messages
       });
       newState = currentInboxes;
       newState.inbox_channels = normInboxes;

@@ -3,7 +3,7 @@ const clone = rfdc();
 
 const GET_MESSAGES = "api/direct_messages/GET_MESSAGES";
 const ADD_MESSAGE = "/api/direct_messages/ADD_MESSAGE";
-// const EDIT_MESSAGE = '/api/direct_messages/EDIT_MESSAGE'
+const EDIT_MESSAGE = '/api/direct_messages/EDIT_MESSAGE'
 // const REMOVE_MESSAGE = '/api/direct_messages/REMOVE_MESSAGE'
 
 const getMessages = (inbox) => {
@@ -20,12 +20,12 @@ const addMessage = (message) => {
   };
 };
 
-// const editMessage = (message) => {
-//     return {
-//         type: EDIT_MESSAGE,
-//         message,
-//     }
-// }
+const editMessage = (message) => {
+    return {
+        type: EDIT_MESSAGE,
+        message,
+    }
+}
 
 // const removeMessage = (message) => {
 //     return {
@@ -102,6 +102,9 @@ const dirMsgsReducer = (state = initialState, action) => {
       newState = newObj;
       return newState;
     case ADD_MESSAGE:
+      newState[action.message.id] = action.message;
+      return newState
+    case EDIT_MESSAGE:
       newState[action.message.id] = action.message;
       return newState
     default:
