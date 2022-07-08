@@ -10,7 +10,12 @@ import { getCurrentUserInboxes } from "../../../../store/direct_messages";
 
 let socket;
 
-function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please }) {
+function InboxChannelDisplay({
+  channel,
+  setCurrentInbox,
+  currentInbox,
+  please,
+}) {
   const dispatch = useDispatch();
   const [chatInput, setChatInput] = useState("");
   const [messageContent, setMessageContent] = useState("");
@@ -25,7 +30,9 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
 
   if (inboxes.inbox_channels) {
     const inboxesArray = Object.values(inboxes?.inbox_channels);
-    filteredInboxes = inboxesArray?.filter((inbox) => inbox.inbox_uuid === path)[0];
+    filteredInboxes = inboxesArray?.filter(
+      (inbox) => inbox.inbox_uuid === path
+    )[0];
   }
 
   // const CURRENTINBOX = please[0];
@@ -57,6 +64,8 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
       dispatch(getCurrentUserInboxes(user.id));
       dummyMsg.current?.scrollIntoView();
     });
+
+    console.log("hello?asdddddddddddddddddddddddddddddddddddddd");
 
     return () => {
       const payload = {
@@ -98,7 +107,11 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
           ?.map((message, ind) =>
             message.user_id === user.id ? (
               <div className="channel__message__div" key={ind}>
-                <img className="channel__message__avatar" alt="user avatar" src={`${user.avatar_url}`}></img>
+                <img
+                  className="channel__message__avatar"
+                  alt="user avatar"
+                  src={`${user.avatar_url}`}
+                ></img>
                 <div className="channel__message__contents">
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${user.username}`}</div>
@@ -114,7 +127,11 @@ function InboxChannelDisplay({ channel, setCurrentInbox, currentInbox, please })
               </div>
             ) : (
               <div className="channel__message__div" key={ind}>
-                <img className="channel__message__avatar" alt="user avatar" src={`${userAvatarIcon}`}></img>
+                <img
+                  className="channel__message__avatar"
+                  alt="user avatar"
+                  src={`${userAvatarIcon}`}
+                ></img>
                 <div className="channel__message__contents">
                   <div className="message__user__time">
                     <div className="channel__message__username">{`${username}`}</div>

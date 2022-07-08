@@ -53,7 +53,7 @@ export const createServer = (data) => async (dispatch) => {
     method: "POST",
     body: formData,
   });
-
+  
   if (response.ok) {
     const newServer = await response.json();
     // console.log(newServer);

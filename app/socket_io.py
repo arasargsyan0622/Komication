@@ -3,10 +3,6 @@ from app.models import db, User
 
 socketio = SocketIO(cors_allowed_origins="*")
 
-@socketio.on('disconnect')
-def test_disconnect():
-    print('Client disconnected')
-
 @socketio.on("chat")
 def handle_chat(data):
     emit("chat", broadcast=True, to=data["room"])

@@ -28,7 +28,9 @@ def get_user_inbox_channels(id):
 
 @inbox_channel_routes.route("/<int:id>", methods=["POST"])
 def create_inbox_channel(id):
+    print("BACK END ROUTEEEE")
     form = UserInboxCreateForm()
+    print(form)
     form['csrf_token'].data = request.cookies['csrf_token']
     current_user = User.query.get(id)
     new_user = User.query.filter(User.username == form.newUser.data).first()
@@ -66,7 +68,8 @@ def create_inbox_channel(id):
             # send inbox state with new user to match get inbox state
             return test
     else:
-        return {"message": "inbox already exists"}
+        print(myInbox[0].to_dict())
+        return {"message": "inbox already exists", "oldInbox": myInbox[0].to_dict() }
 
 @inbox_channel_routes.route("/hide/<int:id>", methods=["POST"])
 def hide_inbox_channel(id):
