@@ -9,7 +9,7 @@ import ServerDisplay from "./components/ServerDisplay/ServerDisplay";
 import UserHomePage from "./components/UserHome/UserHomePage";
 
 import ProtectedRoute from "./components/Forms/auth/ProtectedRoute";
-
+import CurrServer from "./components/test_cur_server"
 import { authenticate } from "./store/session";
 
 import SplashPage from "./components/SplashPage/SplashPage";
@@ -40,13 +40,15 @@ function App() {
           <Route path="/" exact={true}>
             <SplashPage />
           </Route>
+          <Route path="/test">
+            <CurrServer />
+          </Route>
           <Route path="/login" exact={true}>
             <LoginPage></LoginPage>
           </Route>
           <Route path="/sign-up" exact={true}>
             <SignUpPage />
           </Route>
-
           <ProtectedRoute path="/me">
             <UserHomePage></UserHomePage>
           </ProtectedRoute>

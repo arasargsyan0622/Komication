@@ -1,11 +1,37 @@
 import { useState } from "react";
 import "./NonAuthFormsCSS/UsernameEditCSS.css";
+import { editUsername } from "../../store/session";
+import { useDispatch } from "react-redux"
+
 
 function UsernameEditForm({ setShowModal, user }) {
   //
   const [username, setUsername] = useState(user.username);
   const [questionHover, setQuestionHover] = useState(false);
-  const handleSubmit = () => {};
+  const [errors, setErrors] = useState([])
+  const dispatch = useDispatch()
+
+  const submitUsername = (e) => {
+    e.preventDefault()
+
+    if (username.length < 1 || username.length > 40) {
+      setErrors(["Username has to be between 1 and 40 characters."])
+      return
+    }
+
+    const payload = {
+        userId: user.id,
+        username: username,
+    }
+    dispatch(editUsername(payload)).then((data) => {
+      console.log("data", data)
+      if (data.ok === false) {
+        setErrors(["Username already exists."])
+      } else {
+        setShowModal(false)
+      }
+    })
+    }
 
   return (
     <div className="username__edit__form__container">
@@ -16,13 +42,13 @@ function UsernameEditForm({ setShowModal, user }) {
         </div>
         <button className="cancel__modal__x" onClick={() => setShowModal(false)}></button>
       </div>
-      <form className="username__edit__form" onSubmit={(e) => handleSubmit(e)}>
+      <form className="username__edit__form" onSubmit={(e) => submitUsername(e)}>
         <label className="username__edit__label">USERNAME</label>
-        {/* <div className="channel__form__validation__error">
+        <div className="channel__form__validation__error">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
-        </div> */}
+        </div>
         <div className="username__edit__input__container">
           <input
             className="username__edit__name__input"
@@ -46,7 +72,7 @@ function UsernameEditForm({ setShowModal, user }) {
       </form>
       <div className="username__edit__bottom__buttons">
         <div onClick={() => setShowModal(false)}>Cancel</div>
-        <button className="username__edit__button" onClick={(e) => handleSubmit(e)}>
+        <button className="username__edit__button" onClick={(e) => submitUsername(e)}>
           Done
         </button>
       </div>
