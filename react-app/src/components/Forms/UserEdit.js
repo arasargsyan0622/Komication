@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { editAvatar } from "../../store/session";
 import ChangePasswordModal from "../Modals/ChangePasswordModal";
 import LogoutModal from "../Modals/LogoutModal";
 import UserEmailEditModal from "../Modals/UserEmailEditModal";
@@ -7,12 +8,13 @@ import UsernameEditModal from "../Modals/UsernameEditModal";
 import UserPhoneNumberEditModal from "../Modals/UserPhoneNumberEditModal";
 import "./NonAuthFormsCSS/UserEditFormCSS.css";
 
+
 const UserEditForm = ({ setShowModal, user }) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
-  const phoneNum = "1234567890";
+  const phoneNum = user.phone_number
   const hiddenPhoneNum = "******" + phoneNum.slice(-4);
-  console.log(hiddenPhoneNum);
+  // console.log(hiddenPhoneNum);
   const hideEmailArr = [];
   const emailArr = user.email.split("@");
   const starCount = emailArr[0].length;
@@ -98,6 +100,13 @@ const UserEditForm = ({ setShowModal, user }) => {
 
   const handleSaveChanges = (e) => {
     e.preventDefault();
+
+    const payload = {
+      userId: user.id,
+      avatar_url: avatarImage
+    }
+    dispatch(editAvatar(payload)).then(() => setShowModal(false))
+
   };
 
   // const changePrivState = async () => {
@@ -334,7 +343,7 @@ const UserEditForm = ({ setShowModal, user }) => {
                     Reset
                   </div>
                   <button
-                    onClick={(e) => handleSubmit(e)}
+                    onClick={(e) => handleSaveChanges(e)}
                     className="user__avatar__save__button"
                   >
                     Save Changes
