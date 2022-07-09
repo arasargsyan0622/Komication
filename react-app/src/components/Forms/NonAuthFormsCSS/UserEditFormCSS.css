@@ -260,6 +260,24 @@
   background-color: #202225e6;
   padding: 10px 10px 10px 16px;
   margin-top: 40px;
+  animation: bounce 0.75s linear;
+}
+@keyframes bounce {
+  20%,
+  50%,
+  80%,
+  to {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  70% {
+    transform: translateY(-3px);
+  }
+  90% {
+    transform: translateY(-3px);
+  }
 }
 .user__avatar__save__container > span {
   font-size: 16px;
@@ -283,6 +301,9 @@
   align-items: center;
   cursor: pointer;
 }
+.user__avatar__save__buttons__container > div:hover {
+  text-decoration: underline;
+}
 .user__avatar__save__button {
   width: 113px;
   height: 32px;
@@ -297,4 +318,11 @@
   cursor: pointer;
 
   color: #ffffff;
+}
+.user__avatar__save__button:hover {
+  background: #215c33;
+}
+.user__avatar__save__buttons__placeholder {
+  width: 660px;
+  height: 92px;
 }
