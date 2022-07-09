@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ChangePasswordModal from "../Modals/ChangePasswordModal";
 import LogoutModal from "../Modals/LogoutModal";
@@ -23,6 +23,12 @@ const UserEditForm = ({ setShowModal, user }) => {
   const hiddenEmail = hideEmailArr.join("");
   const [showEmail, setShowEmail] = useState(false);
   const [showPhoneNum, setShowPhoneNum] = useState(false);
+
+  const uploadHiddenInput = useRef();
+  const [avatarImage, setAvatarImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState();
+  const [imageLoading, setImageLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   // const currentServer = useSelector((state) => state.current_server);
 
@@ -71,8 +77,27 @@ const UserEditForm = ({ setShowModal, user }) => {
   };
 
   const updateImage = (e) => {
-    // const file = e.target.files[0];
-    // setImage(file);
+    let file = e.target.files[0];
+    setAvatarImage(file);
+    if (file) {
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+    setSubmitted(true);
+  };
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    uploadHiddenInput.current.click();
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    setAvatarImage(null);
+    setSubmitted(false);
+  };
+
+  const handleSaveChanges = (e) => {
+    e.preventDefault();
   };
 
   // const changePrivState = async () => {
@@ -90,7 +115,10 @@ const UserEditForm = ({ setShowModal, user }) => {
             </div>
 
             <div className="server__nav__options">
-              <div className="server__edit__option" id="hard__code__server__edit">
+              <div
+                className="server__edit__option"
+                id="hard__code__server__edit"
+              >
                 My Account
               </div>
               <div className="server__edit__option"></div>
@@ -156,9 +184,26 @@ const UserEditForm = ({ setShowModal, user }) => {
             <div className="edit__user__container">
               <h1>My Account</h1>
               <div className="user__edit__personal__panel">
-                <div className="user__edit__banner">User Banners Coming Soon!</div>
+                <div className="user__edit__banner">
+                  User Banners Coming Soon!
+                </div>
                 <div className="user__edit__avatar__container">
-                  <img className="user__edit__avatar__display" src={user.avatar_url}></img>
+                  {submitted === true ? (
+                    <>
+                      <img
+                        className="user__edit__avatar__display"
+                        src={`${previewUrl}`}
+                        alt="previewImage"
+                      ></img>
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        className="user__edit__avatar__display"
+                        src={user.avatar_url}
+                      ></img>
+                    </>
+                  )}
 
                   <div className="user__edit__avatar__username">
                     <span>
@@ -166,7 +211,23 @@ const UserEditForm = ({ setShowModal, user }) => {
                       <span id="user__edit__id">#{user.id}</span>
                     </span>
 
-                    <div className="user__edit__avatar__button">Edit User Avatar</div>
+                    <div
+                      className="user__edit__avatar__button"
+                      onClick={handleUpload}
+                    >
+                      Edit User Avatar
+                    </div>
+                    <input
+                      name="upload"
+                      type="file"
+                      accept="image/*"
+                      ref={uploadHiddenInput}
+                      onChange={updateImage}
+                      onClick={(e) => {
+                        e.target.value = null;
+                      }}
+                      hidden
+                    ></input>
                   </div>
                 </div>
                 <div className="user__contact__edit">
@@ -174,7 +235,8 @@ const UserEditForm = ({ setShowModal, user }) => {
                     <div className="user__edit__card">
                       <span className="user__edit__card__header">USERNAME</span>
                       <span className="user__edit__info">
-                        {user.username} <span id="user__edit__id">#{user.id}</span>
+                        {user.username}{" "}
+                        <span id="user__edit__id">#{user.id}</span>
                       </span>
                     </div>
                     {/* <div className="user__edit__modal__button">Edit</div> */}
@@ -215,19 +277,27 @@ const UserEditForm = ({ setShowModal, user }) => {
                   </div>
                   <div className="user__edit__phone">
                     <div className="user__edit__card">
-                      <span className="user__edit__card__header">PHONE NUMBER</span>
+                      <span className="user__edit__card__header">
+                        PHONE NUMBER
+                      </span>
 
                       {showPhoneNum ? (
                         <span className="user__edit__info">
                           {phoneNum}{" "}
-                          <span id="user__info__reveal" onClick={() => setShowPhoneNum(false)}>
+                          <span
+                            id="user__info__reveal"
+                            onClick={() => setShowPhoneNum(false)}
+                          >
                             Hide
                           </span>
                         </span>
                       ) : (
                         <span className="user__edit__info">
                           {hiddenPhoneNum}{" "}
-                          <span id="user__info__reveal" onClick={() => setShowPhoneNum(true)}>
+                          <span
+                            id="user__info__reveal"
+                            onClick={() => setShowPhoneNum(true)}
+                          >
                             Reveal
                           </span>
                         </span>
@@ -250,25 +320,35 @@ const UserEditForm = ({ setShowModal, user }) => {
               </div>
             </div>
             <div className="edit__server__form__break"></div>
-            <div className="user__avatar__save__container">
-              <span>Careful -- You've changed your avatar click here to save!</span>
-              <div className="user__avatar__save__buttons__container">
-                <div
-                  onClick={() => {
-                    // setShowModal(false);
-                  }}
-                >
-                  Reset
+            {submitted === true ? (
+              <div className="user__avatar__save__container">
+                <span>
+                  Careful -- You've changed your avatar click here to save!
+                </span>
+                <div className="user__avatar__save__buttons__container">
+                  <div
+                    onClick={(e) => {
+                      handleReset(e);
+                    }}
+                  >
+                    Reset
+                  </div>
+                  <button
+                    onClick={(e) => handleSubmit(e)}
+                    className="user__avatar__save__button"
+                  >
+                    Save Changes
+                  </button>
                 </div>
-                <button onClick={(e) => handleSubmit(e)} className="user__avatar__save__button">
-                  Save Changes
-                </button>
               </div>
-            </div>
+            ) : null}
           </div>
           <div className="full__screen__modal__esc__container">
             <div onClick={() => setShowModal(false)} className="escape__circle">
-              <div onClick={() => setShowModal(false)} className="escape__x"></div>
+              <div
+                onClick={() => setShowModal(false)}
+                className="escape__x"
+              ></div>
             </div>
             <div onClick={() => setShowModal(false)} className="escape__text">
               ESC
