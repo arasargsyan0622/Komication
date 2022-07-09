@@ -42,10 +42,7 @@ const NewChannelForm = ({ setShowModal, server }) => {
           <h2 className="create__channel__header">CreateChannel</h2>
           <div className="create__channel__message">In Text Channels</div>
         </div>
-        <button
-          className="cancel__modal__x"
-          onClick={() => setShowModal(false)}
-        ></button>
+        <button className="cancel__modal__x" onClick={() => setShowModal(false)}></button>
       </div>
       <form className="create__channel__form" onSubmit={(e) => handleSubmit(e)}>
         <div className="server__channel__add__placeholder__top">
@@ -92,17 +89,12 @@ const NewChannelForm = ({ setShowModal, server }) => {
               <span></span>
             </span>
           </div>
-          <div className="private__channel__message">
-            Coming soon, private channels for select members and roles!
-          </div>
+          <div className="private__channel__message">Coming soon, private channels for select members and roles!</div>
         </div>
       </form>
       <div className="create__channel__bottom__buttons">
         <div onClick={() => setShowModal(false)}>Cancel</div>
-        <button
-          className="create__channel__button"
-          onClick={(e) => handleSubmit(e)}
-        >
+        <button className="create__channel__button" onClick={(e) => handleSubmit(e)}>
           Create Channel
         </button>
       </div>
