@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import ChangePasswordModal from "../Modals/ChangePasswordModal";
 import LogoutModal from "../Modals/LogoutModal";
+import UserEmailEditModal from "../Modals/UserEmailEditModal";
+import UsernameEditModal from "../Modals/UsernameEditModal";
+import UserPhoneNumberEditModal from "../Modals/UserPhoneNumberEditModal";
 import "./NonAuthFormsCSS/UserEditFormCSS.css";
 
 const UserEditForm = ({ setShowModal, user }) => {
@@ -173,7 +177,8 @@ const UserEditForm = ({ setShowModal, user }) => {
                         {user.username} <span id="user__edit__id">#{user.id}</span>
                       </span>
                     </div>
-                    <div className="user__edit__modal__button">Edit</div>
+                    {/* <div className="user__edit__modal__button">Edit</div> */}
+                    <UsernameEditModal></UsernameEditModal>
                   </div>
                   <div className="user__edit__email">
                     <div className="user__edit__card">
@@ -205,7 +210,8 @@ const UserEditForm = ({ setShowModal, user }) => {
                         </span>
                       )}
                     </div>
-                    <div className="user__edit__modal__button">Edit</div>
+                    {/* <div className="user__edit__modal__button">Edit</div> */}
+                    <UserEmailEditModal></UserEmailEditModal>
                   </div>
                   <div className="user__edit__phone">
                     <div className="user__edit__card">
@@ -227,7 +233,8 @@ const UserEditForm = ({ setShowModal, user }) => {
                         </span>
                       )}
                     </div>
-                    <div className="user__edit__modal__button">Edit</div>
+                    {/* <div className="user__edit__modal__button">Edit</div> */}
+                    <UserPhoneNumberEditModal></UserPhoneNumberEditModal>
                   </div>
                 </div>
               </div>
@@ -237,11 +244,27 @@ const UserEditForm = ({ setShowModal, user }) => {
             <div className="user__authorization__edit">
               <h1>Password and Authentication</h1>
               <div className="user__password__change">
-                <div className="user__change__password__button">Change Password</div>
+                {/* <div className="user__change__password__button">Change Password</div> */}
+                <ChangePasswordModal></ChangePasswordModal>
                 <div className="user__oath__image"></div>
               </div>
             </div>
             <div className="edit__server__form__break"></div>
+            <div className="user__avatar__save__container">
+              <span>Careful -- You've changed your avatar click here to save!</span>
+              <div className="user__avatar__save__buttons__container">
+                <div
+                  onClick={() => {
+                    // setShowModal(false);
+                  }}
+                >
+                  Reset
+                </div>
+                <button onClick={(e) => handleSubmit(e)} className="user__avatar__save__button">
+                  Save Changes
+                </button>
+              </div>
+            </div>
           </div>
           <div className="full__screen__modal__esc__container">
             <div onClick={() => setShowModal(false)} className="escape__circle">

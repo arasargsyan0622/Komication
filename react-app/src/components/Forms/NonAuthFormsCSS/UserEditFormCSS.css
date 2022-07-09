@@ -198,9 +198,13 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   display: flex;
+  align-self: flex-start;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+.user__change__password__button:hover {
+  background-color: #3742bc;
 }
 
 .user__oath__image {
@@ -244,4 +248,53 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.user__avatar__save__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 660px;
+  height: 52px;
+  border-radius: 5px;
+  background-color: #202225e6;
+  padding: 10px 10px 10px 16px;
+  margin-top: 40px;
+}
+.user__avatar__save__container > span {
+  font-size: 16px;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 461px;
+  height: 20px;
+  margin: 0px 10px 0px 0px;
+}
+
+.user__avatar__save__buttons__container {
+  display: flex;
+}
+.user__avatar__save__buttons__container > div {
+  display: flex;
+  width: 60px;
+  height: 32px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+  cursor: pointer;
+}
+.user__avatar__save__button {
+  width: 113px;
+  height: 32px;
+  background: #2d7d46;
+  margin: 0 0 0 10px;
+  padding: 2px 16px;
+  border: none;
+  outline: 0;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+
+  color: #ffffff;
 }
