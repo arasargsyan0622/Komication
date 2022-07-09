@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     avatar_url = db.Column(db.String(255), default="http://komication.s3.amazonaws.com/c85fcf48768a4fac810e7ac3ee1a3b85.png")
     online = db.Column(db.Boolean, nullable=False, default=False)
-    
+    phone_number = db.Column(db.String(15), unique=True)
 
     servers = db.relationship("Server", back_populates="owner")
     channel_user_messages = db.relationship("ChannelMessage", back_populates="user_channel_messages")
@@ -41,4 +41,5 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'avatar_url': self.avatar_url,
             'online': self.online,
+            'phone_number': self.phone_number
         }
