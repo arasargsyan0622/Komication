@@ -12,7 +12,9 @@ const UserEditForm = ({ setShowModal, user }) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const phoneNum = user.phone_number;
+
   const hiddenPhoneNum = "******" + phoneNum?.slice(-4);
+
   // console.log(hiddenPhoneNum);
   const hideEmailArr = [];
   const emailArr = user.email.split("@");
@@ -31,7 +33,7 @@ const UserEditForm = ({ setShowModal, user }) => {
   const [imageLoading, setImageLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // const currentServer = useSelector((state) => state.current_server);
+  // co nst currentServer = useSelector((state) => state.current_server);
 
   // const serverUuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
@@ -345,10 +347,7 @@ const UserEditForm = ({ setShowModal, user }) => {
                   >
                     Reset
                   </div>
-                  <button
-                    onClick={(e) => handleSaveChanges(e)}
-                    className="user__avatar__save__button"
-                  >
+                  <button onClick={(e) => handleSaveChanges(e)} className="user__avatar__save__button">
                     Save Changes
                   </button>
                 </div>
