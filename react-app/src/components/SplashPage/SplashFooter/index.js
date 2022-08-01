@@ -39,7 +39,7 @@ function SplashFooter() {
             <div className="splash__footer__names">
               <h5>Chris Threadgill</h5>
               <div className="splash__footer__names__links">
-                <ExternalLink href="https://christhreadgill.com/">Portfolio</ExternalLink>
+                <ExternalLink href="https://christhreadgill.github.io/">Portfolio</ExternalLink>
                 <ExternalLink href="https://www.linkedin.com/in/chris-threadgill-b05090185/">LinkedIn</ExternalLink>
                 <ExternalLink href="https://github.com/ChrisThreadgill">Github</ExternalLink>
               </div>
