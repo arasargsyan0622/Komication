@@ -8,12 +8,13 @@ import UsernameEditModal from "../Modals/UsernameEditModal";
 import UserPhoneNumberEditModal from "../Modals/UserPhoneNumberEditModal";
 import "./NonAuthFormsCSS/UserEditFormCSS.css";
 
-
 const UserEditForm = ({ setShowModal, user }) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
-  const phoneNum = user.phone_number
-  const hiddenPhoneNum = "******" + phoneNum.slice(-4);
+  const phoneNum = user.phone_number;
+
+  const hiddenPhoneNum = "******" + phoneNum?.slice(-4);
+
   // console.log(hiddenPhoneNum);
   const hideEmailArr = [];
   const emailArr = user.email.split("@");
@@ -32,7 +33,7 @@ const UserEditForm = ({ setShowModal, user }) => {
   const [imageLoading, setImageLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // const currentServer = useSelector((state) => state.current_server);
+  // co nst currentServer = useSelector((state) => state.current_server);
 
   // const serverUuid = Object.values(currentServer)[0]?.server.server_invite_url;
 
@@ -103,10 +104,9 @@ const UserEditForm = ({ setShowModal, user }) => {
 
     const payload = {
       userId: user.id,
-      avatar_url: avatarImage
-    }
-    dispatch(editAvatar(payload)).then(() => setShowModal(false))
-
+      avatar_url: avatarImage,
+    };
+    dispatch(editAvatar(payload)).then(() => setShowModal(false));
   };
 
   // const changePrivState = async () => {
@@ -124,7 +124,10 @@ const UserEditForm = ({ setShowModal, user }) => {
             </div>
 
             <div className="server__nav__options">
-              <div className="server__edit__option" id="hard__code__server__edit">
+              <div
+                className="server__edit__option"
+                id="hard__code__server__edit"
+              >
                 My Account
               </div>
               <div className="server__edit__option"></div>
@@ -190,15 +193,24 @@ const UserEditForm = ({ setShowModal, user }) => {
             <div className="edit__user__container">
               <h1>My Account</h1>
               <div className="user__edit__personal__panel">
-                <div className="user__edit__banner">User Banners Coming Soon!</div>
+                <div className="user__edit__banner">
+                  User Banners Coming Soon!
+                </div>
                 <div className="user__edit__avatar__container">
                   {submitted === true ? (
                     <>
-                      <img className="user__edit__avatar__display" src={`${previewUrl}`} alt="previewImage"></img>
+                      <img
+                        className="user__edit__avatar__display"
+                        src={`${previewUrl}`}
+                        alt="previewImage"
+                      ></img>
                     </>
                   ) : (
                     <>
-                      <img className="user__edit__avatar__display" src={user.avatar_url}></img>
+                      <img
+                        className="user__edit__avatar__display"
+                        src={user.avatar_url}
+                      ></img>
                     </>
                   )}
 
@@ -208,7 +220,10 @@ const UserEditForm = ({ setShowModal, user }) => {
                       <span id="user__edit__id">#{user.id}</span>
                     </span>
 
-                    <div className="user__edit__avatar__button" onClick={handleUpload}>
+                    <div
+                      className="user__edit__avatar__button"
+                      onClick={handleUpload}
+                    >
                       Edit User Avatar
                     </div>
                     <input
@@ -229,7 +244,8 @@ const UserEditForm = ({ setShowModal, user }) => {
                     <div className="user__edit__card">
                       <span className="user__edit__card__header">USERNAME</span>
                       <span className="user__edit__info">
-                        {user.username} <span id="user__edit__id">#{user.id}</span>
+                        {user.username}{" "}
+                        <span id="user__edit__id">#{user.id}</span>
                       </span>
                     </div>
                     {/* <div className="user__edit__modal__button">Edit</div> */}
@@ -238,7 +254,6 @@ const UserEditForm = ({ setShowModal, user }) => {
                   <div className="user__edit__email">
                     <div className="user__edit__card">
                       <span className="user__edit__card__header">EMAIL</span>
-
                       {showEmail ? (
                         <span className="user__edit__info">
                           {user.email}{" "}
@@ -270,22 +285,36 @@ const UserEditForm = ({ setShowModal, user }) => {
                   </div>
                   <div className="user__edit__phone">
                     <div className="user__edit__card">
-                      <span className="user__edit__card__header">PHONE NUMBER</span>
+                      <span className="user__edit__card__header">
+                        PHONE NUMBER
+                      </span>
 
-                      {showPhoneNum ? (
-                        <span className="user__edit__info">
-                          {phoneNum}{" "}
-                          <span id="user__info__reveal" onClick={() => setShowPhoneNum(false)}>
-                            Hide
-                          </span>
-                        </span>
+                      {phoneNum ? (
+                        <>
+                          {showPhoneNum ? (
+                            <span className="user__edit__info">
+                              {phoneNum}{" "}
+                              <span
+                                id="user__info__reveal"
+                                onClick={() => setShowPhoneNum(false)}
+                              >
+                                Hide
+                              </span>
+                            </span>
+                          ) : (
+                            <span className="user__edit__info">
+                              {hiddenPhoneNum}{" "}
+                              <span
+                                id="user__info__reveal"
+                                onClick={() => setShowPhoneNum(true)}
+                              >
+                                Reveal
+                              </span>
+                            </span>
+                          )}
+                        </>
                       ) : (
-                        <span className="user__edit__info">
-                          {hiddenPhoneNum}{" "}
-                          <span id="user__info__reveal" onClick={() => setShowPhoneNum(true)}>
-                            Reveal
-                          </span>
-                        </span>
+                        <div style={{ color: "white" }}>ADD A PHONE NUMBER</div>
                       )}
                     </div>
                     {/* <div className="user__edit__modal__button">Edit</div> */}
@@ -307,7 +336,9 @@ const UserEditForm = ({ setShowModal, user }) => {
             <div className="edit__server__form__break"></div>
             {submitted === true ? (
               <div className="user__avatar__save__container">
-                <span>Careful -- You've changed your avatar click here to save!</span>
+                <span>
+                  Careful -- You've changed your avatar click here to save!
+                </span>
                 <div className="user__avatar__save__buttons__container">
                   <div
                     onClick={(e) => {
@@ -316,10 +347,7 @@ const UserEditForm = ({ setShowModal, user }) => {
                   >
                     Reset
                   </div>
-                  <button
-                    onClick={(e) => handleSaveChanges(e)}
-                    className="user__avatar__save__button"
-                  >
+                  <button onClick={(e) => handleSaveChanges(e)} className="user__avatar__save__button">
                     Save Changes
                   </button>
                 </div>
@@ -330,7 +358,10 @@ const UserEditForm = ({ setShowModal, user }) => {
           </div>
           <div className="full__screen__modal__esc__container">
             <div onClick={() => setShowModal(false)} className="escape__circle">
-              <div onClick={() => setShowModal(false)} className="escape__x"></div>
+              <div
+                onClick={() => setShowModal(false)}
+                className="escape__x"
+              ></div>
             </div>
             <div onClick={() => setShowModal(false)} className="escape__text">
               ESC
