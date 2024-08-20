@@ -22,7 +22,7 @@ function HeaderNav() {
               <ExternalLink className="banner__nav__links" href="https://arasargsyan0622.github.io/">
                 Ara Sargsyan
               </ExternalLink>
-              <ExternalLink className="banner__nav__links" href="https://christhreadgill.github.io/">
+              <ExternalLink className="banner__nav__links" href="https://www.linkedin.com/in/chris-threadgill/">
                 Chris Threadgill
               </ExternalLink>
               <ExternalLink className="banner__nav__links" href="https://dkong1321.github.io/dkong-portfolio-page/">
